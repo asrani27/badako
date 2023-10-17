@@ -13,19 +13,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK CPNS - No Dokumen </label>
+      <label class="col-sm-3 control-label">No Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK CPNS - Dokumen </label>
+      <label class="col-sm-3 control-label">Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK CPNS - Keterangan </label>
+      <label class="col-sm-3 control-label">Keterangan </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
@@ -37,19 +37,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SPMT - No Dokumen </label>
+      <label class="col-sm-3 control-label">No Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SPMT - Dokumen </label>
+      <label class="col-sm-3 control-label">Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SPMT - Keterangan </label>
+      <label class="col-sm-3 control-label">Keterangan </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
@@ -61,19 +61,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK PNS - No Dokumen </label>
+      <label class="col-sm-3 control-label">No Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK PNS - Dokumen </label>
+      <label class="col-sm-3 control-label">Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK PNS - Keterangan </label>
+      <label class="col-sm-3 control-label">Keterangan </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
@@ -86,19 +86,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK Pangkat - No Dokumen </label>
+      <label class="col-sm-3 control-label">No Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK Pangkat - Dokumen </label>
+      <label class="col-sm-3 control-label">Dokumen </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK Pangkat - Keterangan </label>
+      <label class="col-sm-3 control-label">Keterangan </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
