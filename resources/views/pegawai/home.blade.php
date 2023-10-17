@@ -291,7 +291,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Telp </label>
+                <label class="col-sm-2 control-label">No Whatsapp Aktif </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" readonly value="{{$data->telp}}">
                 </div>
