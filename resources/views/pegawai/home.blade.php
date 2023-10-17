@@ -76,7 +76,7 @@
                 <input type="text" class="form-control" readonly value="{{$data->nip}}">
               </div>
             </div>
-            @if (Auth::user()->pegawai->status_pegawai == 'PNS')
+            @if (Auth::user()->pegawai->status_pegawai == 'PNS' || Auth::user()->pegawai->status_pegawai == 'PKKK')
                 
             <div class="form-group">
               <label class="col-sm-2 control-label">Pangkat</label>
