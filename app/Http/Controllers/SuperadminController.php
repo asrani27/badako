@@ -17,8 +17,7 @@ class SuperadminController extends Controller
 
     public function index()
     {
-        $data = Timeline::orderBy('id', 'DESC')->paginate(15);
-        return view('superadmin.home', compact('data'));
+        return view('superadmin.home');
     }
     public function pegawai()
     {
