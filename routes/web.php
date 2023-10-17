@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
@@ -7,11 +8,12 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\GantiPassController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\UnitKerjaController;
+use App\Http\Controllers\SuperadminController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -34,6 +36,16 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/data/pegawai/edit/{id}', [SuperadminController::class, 'updatePegawai']);
         Route::get('/data/pegawai/delete/{id}', [SuperadminController::class, 'deletePegawai']);
         Route::get('/data/pegawai/profile/{id}', [SuperadminController::class, 'profilPegawai']);
+
+        Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
+        Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);
+        Route::get('/data/unitkerja/akun', [UnitKerjaController::class, 'akun']);
+        Route::get('/data/unitkerja', [UnitKerjaController::class, 'index']);
+        Route::get('/data/unitkerja/add', [UnitKerjaController::class, 'add']);
+        Route::post('/data/unitkerja/add', [UnitKerjaController::class, 'store']);
+        Route::get('/data/unitkerja/edit/{id}', [UnitKerjaController::class, 'edit']);
+        Route::post('/data/unitkerja/edit/{id}', [UnitKerjaController::class, 'update']);
+        Route::get('/data/unitkerja/delete/{id}', [UnitKerjaController::class, 'delete']);
 
         Route::get('role', [RoleController::class, 'index']);
         Route::get('akun', [AkunController::class, 'index']);
@@ -70,7 +82,13 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 });
 
 
-Route::group(['middleware' => ['auth', 'role:superadmin|pegawai']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('beranda', [AdminController::class, 'beranda']);
+        Route::get('/data/pegawai', [AdminController::class, 'pegawai']);
+    });
+});
+Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {
     Route::get('/logout', [LogoutController::class, 'logout']);
 
     Route::get('gantipass', [GantiPassController::class, 'index']);

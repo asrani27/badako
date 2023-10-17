@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class T_pbj extends Model
+class UnitKerja extends Model
 {
     use HasFactory;
-    protected $table = 't_pbj';
+    protected $table = 'unit_kerja';
     protected $guarded = ['id'];
-    public function t_input()
+    public $timestamps = false;
+
+    public function user()
     {
-        return $this->belongsTo(T_input::class, 't_input_id');
+        return $this->hasOne(User::class, 'unitkerja_id');
     }
 }

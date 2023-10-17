@@ -16,4 +16,8 @@ class M_pegawai extends Model
     {
         return $this->hasOne(User::class, 'pegawai_id');
     }
+    public function unitkerja()
+    {
+        return $this->belongsTo(UnitKerja::class, 'unitkerja_id');
+    }
 }

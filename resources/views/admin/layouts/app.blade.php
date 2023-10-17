@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-blue layout-top-nav" style="box-shadow: 5px 20px;" >
+<body class="hold-transition skin-purple layout-top-nav" style="box-shadow: 5px 20px;" >
 <div class="wrapper">
 
   <header class="main-header">
@@ -49,13 +49,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/superadmin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
+            <li><a href="/admin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
             
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  MASTER DATA <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/superadmin/data/pegawai"><i class="fa fa-users"></i>  DATA PEGAWAI</a></li>
-                <li><a href="/superadmin/data/unitkerja"><i class="fa fa-th"></i>  DATA UNIT KERJA</a></li>
+                <li><a href="/admin/data/pegawai"><i class="fa fa-users"></i>  DATA PEGAWAI</a></li>
                 
               </ul>
             </li>

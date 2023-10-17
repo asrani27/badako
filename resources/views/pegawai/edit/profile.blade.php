@@ -33,7 +33,12 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Unit Kerja</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="unit_kerja" value="{{$data->unit_kerja}}">
+                    <select name="unitkerja_id" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        @foreach ($unitkerja as $item)
+                        <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                        @endforeach
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">

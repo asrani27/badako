@@ -23,8 +23,8 @@ class LoginController extends Controller
                 return redirect('/superadmin/beranda');
             } elseif (Auth::user()->hasRole('pegawai')) {
                 return redirect('/pegawai/beranda');
-            } elseif (Auth::user()->hasRole('bidang')) {
-                return redirect('/bidang/beranda');
+            } elseif (Auth::user()->hasRole('admin')) {
+                return redirect('/admin/beranda');
             } elseif (Auth::user()->hasRole('pptk')) {
                 return redirect('/pptk/beranda');
             } else {
@@ -92,9 +92,9 @@ class LoginController extends Controller
             } elseif (Auth::user()->hasRole('pegawai')) {
                 Session::flash('success', 'Selamat Datang');
                 return redirect('/pegawai/beranda');
-            } elseif (Auth::user()->hasRole('bidang')) {
+            } elseif (Auth::user()->hasRole('admin')) {
                 Session::flash('success', 'Selamat Datang');
-                return redirect('/bidang/beranda');
+                return redirect('/admin/beranda');
             } elseif (Auth::user()->hasRole('pptk')) {
                 Session::flash('success', 'Selamat Datang');
                 return redirect('/pptk/beranda');

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
+use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -30,6 +31,7 @@ class SuperadminController extends Controller
         $response = Http::get('https://tpp.banjarmasinkota.go.id/api/pegawai/skpd/1.02.01.');
         $data = $response->getBody()->getContents();
         $data = json_decode($data)->data;
+
         foreach ($data as $key => $item) {
             $check = M_pegawai::where('nip', $item->nip)->first();
             if ($check == null) {
@@ -37,6 +39,13 @@ class SuperadminController extends Controller
                 $n->nip = $item->nip;
                 $n->nama = $item->nama;
                 $n->save();
+            } else {
+                if ($item->nama_puskesmas == null) {
+                } else {
+                    $update = $check;
+                    $update->unitkerja_id = UnitKerja::where('nama', $item->nama_puskesmas->nama)->first()->id;
+                    $update->save();
+                }
             }
         }
 
