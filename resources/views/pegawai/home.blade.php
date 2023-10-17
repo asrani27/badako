@@ -12,12 +12,13 @@
 
       <!-- Profile Image -->
       <div class="box box-primary">
-        <div class="box-body box-profile">
+        <div class="box-body box-profile text-center">
           <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/user4-128x128.jpg" alt="User profile picture">
 
           <h3 class="profile-username text-center">{{$data->nama}}</h3>
 
           <p class="text-muted text-center">NIP. {{$data->nip}}</p>
+          <a href="" class="btn btn-sm bg-purple">Ubah Gambar</a>
 
         </div>
         <!-- /.box-body -->
@@ -78,7 +79,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="{{$data->unit_kerja}}">
+                <input type="text" class="form-control" readonly value="{{$data->unitkerja == null ? '': $data->unitkerja->nama}}">
               </div>
             </div>
             <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -26,7 +27,8 @@ class PegawaiController extends Controller
     public function editProfile()
     {
         $data = Auth::user()->pegawai;
-        return view('pegawai.edit.profile', compact('data'));
+        $unitkerja = UnitKerja::get();
+        return view('pegawai.edit.profile', compact('data', 'unitkerja'));
     }
     public function editStatus()
     {
@@ -65,7 +67,7 @@ class PegawaiController extends Controller
         $data = Auth::user()->pegawai;
         $data->nama = $req->nama;
         $data->nip = $req->nip;
-        $data->unit_kerja = $req->unit_kerja;
+        $data->unitkerja_id = $req->unitkerja_id;
         $data->jkel = $req->jkel;
         $data->tempat_lahir = $req->tempat_lahir;
         $data->tanggal_lahir = $req->tanggal_lahir;
