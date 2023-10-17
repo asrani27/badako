@@ -343,7 +343,7 @@
           @if (Auth::user()->pegawai->status_pegawai == 'PNS')
               @include('pegawai.sk.pns')
           @elseif (Auth::user()->pegawai->status_pegawai == 'PKKK')
-              @include('pegawai.sk.pkk')
+              @include('pegawai.sk.pkkk')
           @elseif (Auth::user()->pegawai->status_pegawai == 'NON ASN')
               @include('pegawai.sk.nonasn')
           @else
