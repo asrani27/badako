@@ -13,13 +13,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK PKKK - No SK </label>
+      <label class="col-sm-3 control-label">No SK </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK PKKK - Tanggal SK </label>
+      <label class="col-sm-3 control-label">Tanggal SK </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
       </div>
