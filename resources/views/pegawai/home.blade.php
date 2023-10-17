@@ -18,7 +18,7 @@
           <h3 class="profile-username text-center">{{$data->nama}}</h3>
 
           <p class="text-muted text-center">NIP. {{$data->nip}}</p>
-          <a href="" class="btn btn-sm bg-purple">Ubah Gambar</a>
+          <a href="#" class="btn btn-sm bg-purple ubahfoto">Ubah Gambar</a>
 
         </div>
         <!-- /.box-body -->
@@ -187,7 +187,7 @@
       <!-- PENDIDIKAN -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">PENDIDIKAN</h3>
+          <h3 class="box-title">PENDIDIKAN TERAKHIR</h3>
 
           <div class="box-tools pull-right">
             <a href="/pegawai/biodata/edit/pendidikan" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Pendidikan</a>
@@ -233,7 +233,7 @@
       <!-- ALAMAT -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">ALAMAT & KONTAK</h3>
+          <h3 class="box-title">ALAMAT TINGGAL SEKARANG</h3>
 
           <div class="box-tools pull-right">
             <a href="/pegawai/biodata/edit/alamat" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Alamat</a>
@@ -339,111 +339,17 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Status Pegawai </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->status_pegawai}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK CPNS </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK CPNS - No Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK CPNS - Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK CPNS - Keterangan </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SPMT </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SPMT - No Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SPMT - Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SPMT - Keterangan </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK PNS </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK PNS - No Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK PNS - Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK PNS - Keterangan </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
+          
+          @if (Auth::user()->pegawai->status_pegawai == 'PNS')
+              @include('pegawai.sk.pns')
+          @elseif (Auth::user()->pegawai->status_pegawai == 'PKKK')
+              @include('pegawai.sk.pkk')
+          @elseif (Auth::user()->pegawai->status_pegawai == 'NON ASN')
+              @include('pegawai.sk.nonasn')
+          @else
+              
+          @endif
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK Pangkat </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK Pangkat - No Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK Pangkat - Dokumen </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">SK Pangkat - Keterangan </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly value="{{$data->sk_cpns}}">
-              </div>
-            </div>
-          </form>
         </div>
       </div>
     </div>
@@ -451,8 +357,41 @@
 </div>
 </section>
 
+<div class="modal fade" id="modal-ubahfoto">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form role="form" method="post" action="/pegawai/ubahfoto" enctype="multipart/form-data">
+              @csrf
+              
+              <div class="modal-header" style="background-color:#37517e; color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Ubah Profil Foto</h4>
+              </div>
 
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Foto</label>
+                      <input type="file" class="form-control" name="foto" required>
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-send"></i>Kirim</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 @endsection
 @push('js')
 
+
+<script>
+  $(document).on('click', '.ubahfoto', function() {
+    //$('#step1').val($(this).data('id'));
+     $("#modal-ubahfoto").modal();
+  });
+</script>
 @endpush

@@ -19,6 +19,22 @@
             <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/alamat">
                 @csrf
                 <div class="form-group">
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10">
+                    <h4 class="text-bold">ALAMAT TINGGAL SEKARANG </h4>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Sesuai KTP?</label>
+                  <div class="col-sm-10">
+                    <select name="sesuai_ktp" required class="form-control">
+                      <option value="">-pilih-</option>
+                      <option value="Y">Ya</option>
+                      <option value="T">Tidak</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="alamat" required value="{{$data->alamat}}">
@@ -70,6 +86,12 @@
                   <label class="col-sm-2 control-label">Telp</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="telp" required value="{{$data->telp}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10">
                   </div>
                 </div>
                 <div class="form-group">

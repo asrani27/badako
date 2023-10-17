@@ -39,13 +39,13 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Upload KTP</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" name="file_ktp">
+                    <input type="file" class="form-control" name="file_ktp" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Upload KK</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" name="file_kk">
+                    <input type="file" class="form-control" name="file_kk" required>
                   </div>
                 </div>
                 <div class="form-group">

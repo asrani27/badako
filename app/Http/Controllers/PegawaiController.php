@@ -17,6 +17,33 @@ class PegawaiController extends Controller
         $data = Auth::user()->pegawai;
         return view('pegawai.home', compact('data'));
     }
+
+    public function ubahfoto(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'file'  => 'mimes:jpg,png,jpeg|max:1024',
+        ]);
+
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File Harus Gambar, Maksimal 1MB');
+            return back();
+        }
+
+        if ($req->file == null) {
+            $filename = Auth::user()->pegawai->foto;
+        } else {
+            $extension = $req->file->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $extension;
+            $image = $req->file('file');
+            $realPath = public_path('storage') . '/foto';
+            $image->move($realPath, $filename);
+        }
+
+        Auth::user()->pegawai->update(['foto' => $filename]);
+        Session::flash('success', 'Berhasil Disimpan');
+        return back();
+    }
     public function edit()
     {
         $data = Auth::user()->pegawai;

@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
     Route::prefix('pegawai')->group(function () {
         Route::get('beranda', [PegawaiController::class, 'beranda']);
+        Route::post('ubahfoto', [PegawaiController::class, 'ubahfoto']);
         Route::get('biodata/edit', [PegawaiController::class, 'edit']);
         Route::get('biodata/edit/status', [PegawaiController::class, 'editStatus']);
         Route::get('biodata/edit/profile', [PegawaiController::class, 'editProfile']);
