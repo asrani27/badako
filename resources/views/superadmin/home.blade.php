@@ -8,7 +8,7 @@ DASHBOARD
 @section('content')
 <div class="row">
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -26,7 +26,7 @@ DASHBOARD
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -44,7 +44,7 @@ DASHBOARD
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -62,7 +62,7 @@ DASHBOARD
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -79,7 +79,7 @@ DASHBOARD
     </div>
   </div>
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -97,7 +97,7 @@ DASHBOARD
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIMPEG</title>
+  <title>BADAKO</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-purple-light layout-top-nav" style="box-shadow: 5px 20px;">
+<body class="hold-transition skin-blue layout-top-nav" style="box-shadow: 5px 20px;" >
 <div class="wrapper">
 
   <header class="main-header">
@@ -66,7 +66,7 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
+            {{-- <li class="dropdown messages-menu">
               <!-- Menu toggle button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-envelope-o"></i>
@@ -98,11 +98,11 @@
                 </li>
                 <li class="footer"><a href="#">See All Messages</a></li>
               </ul>
-            </li>
+            </li> --}}
             <!-- /.messages-menu -->
 
             <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
+            {{-- <li class="dropdown notifications-menu">
               <!-- Menu toggle button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i>
@@ -123,9 +123,9 @@
                 </li>
                 <li class="footer"><a href="#">View all</a></li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Tasks Menu -->
-            <li class="dropdown tasks-menu">
+            {{-- <li class="dropdown tasks-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-flag-o"></i>
@@ -159,7 +159,7 @@
                   <a href="#">View all tasks</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
