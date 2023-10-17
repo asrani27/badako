@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
-<body class="hold-transition sidebar-mini" >
+<body class="hold-transition skin-purple sidebar-mini" >
 <div class="wrapper">
 
   <!-- Main Header -->
