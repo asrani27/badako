@@ -76,6 +76,42 @@
                 <input type="text" class="form-control" readonly value="{{$data->nip}}">
               </div>
             </div>
+            @if (Auth::user()->pegawai->status_pegawai == 'PNS')
+                
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Pangkat</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Golongan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Kelas Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            @else
+                
+            @endif
+
             <div class="form-group">
               <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-10">
