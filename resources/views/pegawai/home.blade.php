@@ -111,6 +111,12 @@
             @else
                 
             <div class="form-group">
+              <label class="col-sm-2 control-label">Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" readonly >
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-sm-2 control-label">Masa Kerja</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" readonly >
