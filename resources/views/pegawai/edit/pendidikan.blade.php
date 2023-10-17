@@ -11,7 +11,7 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#bpjs" data-toggle="tab">Pendidikan</a></li>
+          <li class="active"><a href="#bpjs" data-toggle="tab">Pendidikan Terakhir</a></li>
         </ul>
         <div class="tab-content">
             
@@ -21,7 +21,19 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenjang</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="jenjang" required value="{{$data->jenjang}}">
+                    <select name="jenjang" class="form-control">
+                      <option value="">-pilih-</option>
+                      <option value="SD">SD sederajat</option>
+                      <option value="SMP">SMP sederajat</option>
+                      <option value="SMA">SMA sederajat</option>
+                      <option value="DI">D I</option>
+                      <option value="DII">D II</option>
+                      <option value="DIII">D III</option>
+                      <option value="DIV">D IV</option>
+                      <option value="SI">S I</option>
+                      <option value="SII">S II</option>
+                      <option value="SIII">S III</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -37,7 +49,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Tempat Pendidikan</label>
+                  <label class="col-sm-2 control-label">Nama Tempat Pendidikan</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="tempat_pendidikan" required value="{{$data->tempat_pendidikan}}">
                   </div>
