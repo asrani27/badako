@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">File Transkrip</label>
+                  <label class="col-sm-2 control-label">File Transkrip Nilai</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="file_transkrip" >
                   </div>
