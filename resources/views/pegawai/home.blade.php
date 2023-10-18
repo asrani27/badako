@@ -462,7 +462,7 @@ $(document).ready(function(){
   
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -476,7 +476,7 @@ $(document).ready(function(){
 
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -490,7 +490,7 @@ $(document).ready(function(){
 
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -504,7 +504,7 @@ $(document).ready(function(){
 
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
