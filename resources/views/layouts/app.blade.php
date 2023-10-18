@@ -26,7 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
-<body class="hold-transition skin-purple sidebar-mini" >
+
+<body class="hold-transition skin-blue-light sidebar-mini" >
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -35,17 +36,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">DINKES</span>
+      <span class="logo-mini">BADAKO</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>DINKES</b></span>
+      <span class="logo-lg"><b>BADAKO</b></span>
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f)" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+      <a href="#"class="sidebar-toggle">BASIC DATA KEPEGAWAIAN ONLINE</a>
+      
       @include('layouts.navbar')
     </nav>
   </header>

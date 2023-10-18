@@ -176,7 +176,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Pensiun Bulan ini</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> PNS Yang Akan Pensiun Tahun ini</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}

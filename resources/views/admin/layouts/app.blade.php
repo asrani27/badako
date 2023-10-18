@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-purple layout-top-nav" style="box-shadow: 5px 20px;" >
+<body class="hold-transition layout-top-nav" style="box-shadow: 5px 20px;background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f)" >
 <div class="wrapper">
 
   <header class="main-header">
@@ -49,7 +49,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/admin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
+            <li><a href="/admin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD<span class="sr-only">(current)</span></a></li>
             
             <li><a href="/admin/profil"><i class="fa fa-fw fa-user"></i> PROFIL <span class="sr-only"></span></a></li>
             
@@ -165,35 +165,13 @@
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="/logout" onclick="return confirm('Yakin ingin keluar?');">
                 <!-- The user image in the navbar-->
                 <img src="/assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">{{Auth::user()->name}}</span>
+                <i class="fa fa-sign-out"></i> 
               </a>
-              <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header">
-                  <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                  <p>
-                    {{Auth::user()->name}} - Nama Jabatan
-                    <small>NIP</small>
-                  </p>
-                </li>
-                <!-- Menu Body -->
-                
-                
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  {{-- <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div> --}}
-                  <div class="pull-right">
-                    <a href="/logout" class="btn btn-default btn-flat">Log out</a>
-                  </div>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

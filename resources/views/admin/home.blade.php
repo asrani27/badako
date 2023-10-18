@@ -8,7 +8,7 @@ DASHBOARD ADMIN
 @section('content')
 <div class="row">
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-aqua-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -26,7 +26,7 @@ DASHBOARD ADMIN
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -44,7 +44,7 @@ DASHBOARD ADMIN
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-red-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -62,7 +62,7 @@ DASHBOARD ADMIN
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-black-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -79,7 +79,7 @@ DASHBOARD ADMIN
     </div>
   </div>
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-yellow-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -97,7 +97,7 @@ DASHBOARD ADMIN
   </div>
   
   <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-blue-gradient">
+    <div class="info-box bg-teal-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
@@ -128,7 +128,7 @@ DASHBOARD ADMIN
     <div class="box-body no-padding">
       <table class="table table-hover table-bordered">
         <tbody>
-        <tr style="background-color:#a8c4f1">
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
           <th>Tanggal</th>
@@ -157,7 +157,7 @@ DASHBOARD ADMIN
     <div class="box-body no-padding">
       <table class="table table-hover table-bordered">
         <tbody>
-        <tr style="background-color:#a8c4f1">
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
           <th>Tanggal</th>
@@ -185,7 +185,7 @@ DASHBOARD ADMIN
     <div class="box-body no-padding">
       <table class="table table-hover table-bordered">
       <tbody>
-      <tr style="background-color:#a8c4f1">
+      <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
         <th class="text-center">No</th>
         <th>NIP/Nama</th>
         <th>Tanggal</th>

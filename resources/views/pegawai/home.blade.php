@@ -18,7 +18,7 @@
           <h3 class="profile-username text-center">{{$data->nama}}</h3>
 
           <p class="text-muted text-center">NIP. {{$data->nip}}</p>
-          <a href="#" class="btn btn-sm bg-purple ubahfoto">Ubah Gambar</a>
+          <a href="#" class="btn btn-sm bg-blue-gradient ubahfoto">Ubah Gambar</a>
 
         </div>
         <!-- /.box-body -->
@@ -36,7 +36,7 @@
           <h3 class="box-title">Status Pegawai</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/status" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Status</a>
+            <a href="/pegawai/biodata/edit/status" class="btn btn-xs bg-red-gradient"><i class="fa fa-edit"></i> Edit Status</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -164,7 +164,7 @@
           <h3 class="box-title">Kependudukan</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/kependudukan" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Kependudukan</a>
+            <a href="/pegawai/biodata/edit/kependudukan" class="btn btn-xs bg-aqua-gradient"><i class="fa fa-edit"></i> Edit Kependudukan</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -204,7 +204,7 @@
           <h3 class="box-title">BPJS</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/bpjs" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit BPJS</a>
+            <a href="/pegawai/biodata/edit/bpjs" class="btn btn-xs bg-green-gradient"><i class="fa fa-edit"></i> Edit BPJS</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -238,7 +238,7 @@
           <h3 class="box-title">PENDIDIKAN TERAKHIR</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/pendidikan" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Pendidikan</a>
+            <a href="/pegawai/biodata/edit/pendidikan" class="btn btn-xs bg-yellow-gradient"><i class="fa fa-edit"></i> Edit Pendidikan</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -284,7 +284,7 @@
           <h3 class="box-title">ALAMAT TINGGAL SEKARANG</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/alamat" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Alamat</a>
+            <a href="/pegawai/biodata/edit/alamat" class="btn btn-xs bg-red-gradient"><i class="fa fa-edit"></i> Edit Alamat</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -354,7 +354,7 @@
           <h3 class="box-title">NPWP</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/npwp" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit npwp</a>
+            <a href="/pegawai/biodata/edit/npwp" class="btn btn-xs bg-blue-gradient"><i class="fa fa-edit"></i> Edit npwp</a>
           </div>
         </div>
         <!-- /.box-header -->
@@ -382,7 +382,7 @@
           <h3 class="box-title">KEPEGAWAIAN</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/kepegawaian" class="btn btn-xs bg-purple"><i class="fa fa-edit"></i> Edit Kepegawaian</a>
+            <a href="/pegawai/biodata/edit/kepegawaian" class="btn btn-xs bg-navy"><i class="fa fa-edit"></i> Edit Kepegawaian</a>
           </div>
         </div>
         <!-- /.box-header -->
