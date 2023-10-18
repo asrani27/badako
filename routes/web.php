@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('beranda', [AdminController::class, 'beranda']);
         Route::get('/data/pegawai', [AdminController::class, 'pegawai']);
+        Route::get('/data/pegawai/resetpass/{id}', [AdminController::class, 'resetPassPegawai']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {

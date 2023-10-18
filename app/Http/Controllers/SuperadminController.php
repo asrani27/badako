@@ -17,7 +17,10 @@ class SuperadminController extends Controller
 
     public function index()
     {
-        return view('superadmin.home');
+        $pns = M_pegawai::where('status_pegawai', 'pns')->count();
+        $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
+        $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
+        return view('superadmin.home', compact('pns', 'pkkk', 'nonasn'));
     }
     public function pegawai()
     {
@@ -108,19 +111,6 @@ class SuperadminController extends Controller
         $data = User::where('is_petugas', null)->where('username', '!=', 'superadmin')->paginate(10);
 
         return view('superadmin.pelanggan.index', compact('data'));
-    }
-
-    public function timeline($id)
-    {
-        $data = Timeline::find($id);
-        return view('superadmin.pelanggan.timeline', compact('data'));
-    }
-
-    public function deletePermohonan($id)
-    {
-        Timeline::find($id)->delete();
-        Session::flash('success', 'Berhasil Di hapus');
-        return redirect('/superadmin/beranda');
     }
 
     public function profilPegawai($id)

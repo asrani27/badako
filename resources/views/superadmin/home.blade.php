@@ -13,7 +13,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI PNS</span>
-        <span class="info-box-number">5,200</span>
+        <span class="info-box-number">{{$pns}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -31,13 +31,13 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI PKKK</span>
-        <span class="info-box-number">5,200</span>
+        <span class="info-box-number">{{$pkkk}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai PNS
+             Total Pegawai PKKK
             </span>
       </div>
     </div>
@@ -49,19 +49,19 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI NON ASN</span>
-        <span class="info-box-number">5,200</span>
+        <span class="info-box-number">{{$nonasn}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai PNS
+             Total Pegawai NON ASN
             </span>
       </div>
     </div>
   </div>
   
-  <div class="col-md-4 col-sm-6 col-xs-12">
+  {{-- <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box bg-green-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
@@ -112,7 +112,7 @@ DASHBOARD
             </span>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 
 <div class="row">

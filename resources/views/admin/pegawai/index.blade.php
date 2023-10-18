@@ -23,18 +23,18 @@ PEGAWAI
         <table class="table table-hover">
           <tbody>
           <tr style="background-color: #a8c4f1">
-            <th class="text-center">No</th>
-            <th>#</th>
+            <th class="text-center">NO</th>
             <th>NIP</th>
             <th>NAMA</th>
-            <th>Aksi</th>
+            <th>STATUS PEGAWAI</th>
+            <th>AKSI</th>
           </tr>
           @foreach ($data as $key => $item)
           <tr>
               <td class="text-center">{{$data->firstItem() + $key}}</td>
-              <td></td>
               <td>{{$item->nip}}</td>
               <td>{{$item->nama}}</td>
+              <td>{{$item->status_pegawai}}</td>
               <td>                  
                 <a href="/admin/data/pegawai/profile/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-user"></i> profile </a>
                   <a href="/admin/data/pegawai/edit/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
