@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->hasOne(Skpd::class, 'user_id');
     }
 
-    public function bidang()
+    public function unitkerja()
     {
-        return $this->hasOne(Bidang::class, 'user_id');
+        return $this->belongsTo(UnitKerja::class, 'unitkerja_id');
     }
 
     public function pegawai()

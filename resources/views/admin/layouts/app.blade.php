@@ -51,6 +51,8 @@
           <ul class="nav navbar-nav">
             <li><a href="/admin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
             
+            <li><a href="/admin/profil"><i class="fa fa-fw fa-user"></i> PROFIL <span class="sr-only"></span></a></li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  MASTER DATA <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

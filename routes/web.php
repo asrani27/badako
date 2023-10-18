@@ -86,8 +86,17 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('beranda', [AdminController::class, 'beranda']);
+        Route::get('profil', [AdminController::class, 'profil']);
+        Route::post('profil', [AdminController::class, 'updateProfil']);
         Route::get('/data/pegawai', [AdminController::class, 'pegawai']);
         Route::get('/data/pegawai/resetpass/{id}', [AdminController::class, 'resetPassPegawai']);
+        Route::get('/data/pegawai/add', [AdminController::class, 'addPegawai']);
+        Route::post('/data/pegawai/add', [AdminController::class, 'storePegawai']);
+        Route::get('/data/pegawai/edit/{id}', [AdminController::class, 'editPegawai']);
+        Route::post('/data/pegawai/edit/{id}', [AdminController::class, 'updatePegawai']);
+        Route::get('/data/pegawai/delete/{id}', [AdminController::class, 'deletePegawai']);
+        Route::get('/data/pegawai/profile/{id}', [AdminController::class, 'profilPegawai']);
+        Route::get('/data/pegawai/akun', [AdminController::class, 'akunPegawai']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {
