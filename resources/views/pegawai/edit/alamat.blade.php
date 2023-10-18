@@ -130,7 +130,7 @@ $(document).ready(function(){
   
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -147,7 +147,7 @@ $(document).ready(function(){
   //kota
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -163,7 +163,7 @@ $(document).ready(function(){
   //kecamatan
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -180,7 +180,7 @@ $(document).ready(function(){
   //kelurahan
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -199,7 +199,7 @@ $(document).ready(function(){
   console.log(id_prov)
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+id_prov+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+id_prov+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -219,7 +219,7 @@ $(document).ready(function(){
   console.log(id_kota)
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+id_kota+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/districts/'+id_kota+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
@@ -239,7 +239,7 @@ $(document).ready(function(){
   console.log(id_kecamatan)
   axios({
     method: 'get',
-    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+id_kecamatan+'.json',
+    url: 'https://www.emsifa.com/api-wilayah-indonesia/api/villages/'+id_kecamatan+'.json',
     responseType: 'stream'
   })
   .then(function (response) {
