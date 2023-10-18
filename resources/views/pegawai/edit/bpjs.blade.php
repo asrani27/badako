@@ -16,7 +16,7 @@
         <div class="tab-content">
             
           <div class="active tab-pane" id="kependudukan">
-            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/bpjs">
+            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/bpjs" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label text-right">No BPJS</label>
@@ -30,12 +30,23 @@
                     <input type="text" class="form-control" name="kelas_bpjs" required value="{{$data->kelas_bpjs}}">
                   </div>
                 </div>
+                @if (Auth::user()->pegawai->file_bpjs == null)
+                    
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">File Foto Kartu BPJS</label>
+                  <label class="col-sm-2 control-label">File Kartu BPJS (PDF, Maks 2MB)</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="file_bpjs" required >
                   </div>
                 </div>
+                @else
+                    
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">File Kartu BPJS (PDF, Maks 2MB)</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" name="file_bpjs" >
+                  </div>
+                </div>
+                @endif
                 <div class="form-group">
                   <label class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">

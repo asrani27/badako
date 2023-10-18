@@ -16,7 +16,7 @@
         <div class="tab-content">
             
           <div class="active tab-pane" id="kependudukan">
-            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/kependudukan">
+            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/kependudukan" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label text-right">NIK</label>
@@ -27,7 +27,14 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Agama</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="agama" required value="{{$data->agama}}">
+                    <select class="form-control" name="agama" required>
+                      <option value="">-pilih-</option>
+                      <option value="ISLAM" {{$data->agama == 'ISLAM' ? 'selected':''}}>ISLAM</option>
+                      <option value="PROTESTAN" {{$data->agama == 'PROTESTAN' ? 'selected':''}}>PROTESTAN</option>
+                      <option value="KATOLIk" {{$data->agama == 'KATOLIk' ? 'selected':''}}>KATOLIk</option>
+                      <option value="HINDU" {{$data->agama == 'HINDU' ? 'selected':''}}>HINDU</option>
+                      <option value="BUDDHA" {{$data->agama == 'BUDDHA' ? 'selected':''}}>BUDDHA</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -36,18 +43,35 @@
                     <input type="text" class="form-control" name="kewarganegaraan" required value="{{$data->kewarganegaraan}}">
                   </div>
                 </div>
+
+                @if (Auth::user()->pegawai->file_kk == null)
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Upload KTP</label>
+                  <label class="col-sm-2 control-label">Upload KTP (PDF, Maks 2MB)</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="file_ktp" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Upload KK</label>
+                  <label class="col-sm-2 control-label">Upload KK (PDF, Maks 2MB)</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="file_kk" required>
                   </div>
                 </div>
+                @else
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Upload KTP (PDF, Maks 2MB)</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" name="file_ktp">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Upload KK (PDF, Maks 2MB)</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" name="file_kk">
+                  </div>
+                </div>
+                @endif
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">

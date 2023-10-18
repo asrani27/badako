@@ -20,4 +20,8 @@ class M_pegawai extends Model
     {
         return $this->belongsTo(UnitKerja::class, 'unitkerja_id');
     }
+    public function pangkat()
+    {
+        return $this->belongsTo(Pangkat::class, 'pangkat_id');
+    }
 }

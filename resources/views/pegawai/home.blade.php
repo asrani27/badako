@@ -13,7 +13,12 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile text-center">
-          <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/user4-128x128.jpg" alt="User profile picture">
+          @if (Auth::user()->pegawai->foto == null)
+              
+          <img class="profile-user-img img-responsive img-circle" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" alt="User profile picture">
+          @else
+          <img class="profile-user-img img-responsive img-circle" src="/storage/{{Auth::user()->pegawai->nip}}/foto/compress/{{Auth::user()->pegawai->foto}}" alt="User profile picture">
+          @endif
 
           <h3 class="profile-username text-center">{{$data->nama}}</h3>
 
@@ -81,31 +86,37 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Pangkat</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" value="{{$data->pangkat == null ? '': $data->pangkat->nama}}" readonly >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Golongan</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" value="{{$data->pangkat == null ? '': $data->pangkat->golongan}}" readonly >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Jabatan</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" value="{{$data->jabatan}}" readonly >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Kelas Jabatan</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" value="{{$data->kelas_jabatan}}" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Jenis Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$data->jenis_jabatan}}" readonly >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" value="{{$data->mkg}}" readonly >
               </div>
             </div>
             @else
@@ -191,7 +202,8 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">File KTP dan KK</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="{{$data->ktp}}">
+                <a href="/storage/{{Auth::user()->pegawai->nip}}/kependudukan/{{Auth::user()->pegawai->file_ktp}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download KTP</a>
+                <a href="/storage/{{Auth::user()->pegawai->nip}}/kependudukan/{{Auth::user()->pegawai->file_kk}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download KK</a>
               </div>
             </div>
           </form>
@@ -225,7 +237,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">File BPJS </label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->file_bpjs}}">
+                  <a href="/storage/{{Auth::user()->pegawai->nip}}/bpjs/{{Auth::user()->pegawai->file_bpjs}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download BPJS</a>
                 </div>
               </div>
           </form>
@@ -272,6 +284,14 @@
                 <label class="col-sm-2 control-label">Tahun Lulus </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" readonly value="{{$data->tahun_lulus}}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">File Ijazah & Transkrip </label>
+                <div class="col-sm-10">
+                  <a href="/storage/{{Auth::user()->pegawai->nip}}/pendidikan/{{Auth::user()->pegawai->file_ijazah}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Ijazah</a>
+                  <a href="/storage/{{Auth::user()->pegawai->nip}}/pendidikan/{{Auth::user()->pegawai->file_transkrip}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Transkrip</a>
                 </div>
               </div>
           </form>
@@ -367,9 +387,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">File NPWP </label>
+              <label class="col-sm-2 control-label">File BPJS </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="file_npwp" readonly value="{{$data->file_npwp}}">
+                <a href="/storage/{{Auth::user()->pegawai->nip}}/npwp/{{Auth::user()->pegawai->file_npwp}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download NPWP</a>
               </div>
             </div>
           </form>

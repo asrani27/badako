@@ -31,6 +31,47 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label">Pangkat/Gol</label>
+                  <div class="col-sm-10">
+                    <select name="pangkat_id" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        @foreach ($pangkat as $item)
+                        <option value="{{$item->id}}" {{$data->pangkat_id == $item->id ? 'selected':''}}>{{$item->nama}} - {{$item->golongan}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Jabatan</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="jabatan" required value="{{$data->jabatan}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kelas Jabatan</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="kelas_jabatan" required value="{{$data->kelas_jabatan}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Jenis Jabatan</label>
+                  <div class="col-sm-10">
+                    <select name="jenis_jabatan" class="form-control">
+                      <option value="">-pilih-</option>
+                      <option value="PELAKSANA" {{$data->jenis_jabatan == 'PELAKSANA' ? 'selected':''}}>PELAKSANA</option>
+                      <option value="JFM" {{$data->jenis_jabatan == 'JFM' ? 'selected':''}}>JABATAN FUNGSIONAL MADYA</option>
+                      <option value="JPT" {{$data->jenis_jabatan == 'JPT' ? 'selected':''}}>JPT</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
+                  </div>
+                </div>
+                
+                <div class="form-group">
                   <label class="col-sm-2 control-label">Unit Kerja</label>
                   <div class="col-sm-10">
                     <select name="unitkerja_id" class="form-control" required>

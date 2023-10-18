@@ -16,23 +16,23 @@
         <div class="tab-content">
             
           <div class="active tab-pane" id="kependudukan">
-            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/pendidikan">
+            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/pendidikan" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenjang</label>
                   <div class="col-sm-10">
                     <select name="jenjang" class="form-control">
                       <option value="">-pilih-</option>
-                      <option value="SD">SD sederajat</option>
-                      <option value="SMP">SMP sederajat</option>
-                      <option value="SMA">SMA sederajat</option>
-                      <option value="DI">D I</option>
-                      <option value="DII">D II</option>
-                      <option value="DIII">D III</option>
-                      <option value="DIV">D IV</option>
-                      <option value="SI">S I</option>
-                      <option value="SII">S II</option>
-                      <option value="SIII">S III</option>
+                      <option value="SD" {{$data->jenjang == 'SD' ? 'selected':''}}>SD sederajat</option>
+                      <option value="SMP" {{$data->jenjang == 'SMP' ? 'selected':''}}>SMP sederajat</option>
+                      <option value="SMA" {{$data->jenjang == 'SMA' ? 'selected':''}}>SMA sederajat</option>
+                      <option value="DI" {{$data->jenjang == 'DI' ? 'selected':''}}>D I</option>
+                      <option value="DII" {{$data->jenjang == 'DII' ? 'selected':''}}>D II</option>
+                      <option value="DIII" {{$data->jenjang == 'DIII' ? 'selected':''}}>D III</option>
+                      <option value="DIV" {{$data->jenjang == 'DIV' ? 'selected':''}}>D IV</option>
+                      <option value="SI" {{$data->jenjang == 'SI' ? 'selected':''}}>S I</option>
+                      <option value="SII" {{$data->jenjang == 'SII' ? 'selected':''}}>S II</option>
+                      <option value="SIII" {{$data->jenjang == 'SIII' ? 'selected':''}}>S III</option>
                     </select>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">File Ijazah</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" name="file_ijazah" required >
+                    <input type="file" class="form-control" name="file_ijazah">
                   </div>
                 </div>
                 <div class="form-group">

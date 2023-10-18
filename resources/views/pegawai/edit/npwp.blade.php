@@ -16,16 +16,16 @@
         <div class="tab-content">
             
           <div class="active tab-pane" id="kependudukan">
-            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/npwp">
+            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/npwp" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label text-right">No NPWP</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="no_bpjs" required value="{{$data->no_npwp}}">
+                    <input type="text" class="form-control" name="no_npwp" required value="{{$data->no_npwp}}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Foto NPWP</label>
+                  <label class="col-sm-2 control-label">File NPWP</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="file_npwp">
                   </div>
