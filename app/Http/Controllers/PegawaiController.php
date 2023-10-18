@@ -309,4 +309,108 @@ class PegawaiController extends Controller
 
         return redirect('/pegawai/beranda');
     }
+
+
+    public function updateKepegawaian(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'file_cpns'  => 'mimes:pdf|max:2048',
+            'file_spmt'  => 'mimes:pdf|max:2048',
+            'file_pns'  => 'mimes:pdf|max:2048',
+            'file_pangkat'  => 'mimes:pdf|max:2048',
+            'file_jafung'  => 'mimes:pdf|max:2048',
+            'file_kariskarsu'  => 'mimes:pdf|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File harus PDF dan Maks 2MB');
+            return back();
+        }
+
+        $path = public_path('storage') . '/' . Auth::user()->pegawai->nip . '/kepegawaian';
+
+        if ($req->file_cpns == null) {
+            $name_cpns = Auth::user()->pegawai->file_cpns;
+        } else {
+            $file_cpns = $req->file('file_cpns');
+            $extension_cpns = $req->file_cpns->getClientOriginalExtension();
+            $name_cpns = 'cpns' . uniqid() . '.' . $extension_cpns;
+            $file_cpns->move($path, $name_cpns);
+        }
+
+        if ($req->file_spmt == null) {
+            $name_spmt = Auth::user()->pegawai->file_spmt;
+        } else {
+            $file_spmt = $req->file('file_spmt');
+            $extension_spmt = $req->file_spmt->getClientOriginalExtension();
+            $name_spmt = 'spmt' . uniqid() . '.' . $extension_spmt;
+            $file_spmt->move($path, $name_spmt);
+        }
+
+        if ($req->file_pns == null) {
+            $name_pns = Auth::user()->pegawai->file_pns;
+        } else {
+            $file_pns = $req->file('file_pns');
+            $extension_pns = $req->file_pns->getClientOriginalExtension();
+            $name_pns = 'pns' . uniqid() . '.' . $extension_pns;
+            $file_pns->move($path, $name_pns);
+        }
+
+        if ($req->file_pangkat == null) {
+            $name_pangkat = Auth::user()->pegawai->file_pangkat;
+        } else {
+            $file_pangkat = $req->file('file_pangkat');
+            $extension_pangkat = $req->file_pangkat->getClientOriginalExtension();
+            $name_pangkat = 'pangkat' . uniqid() . '.' . $extension_pangkat;
+            $file_pangkat->move($path, $name_pangkat);
+        }
+
+        if ($req->file_jafung == null) {
+            $name_jafung = Auth::user()->pegawai->file_jafung;
+        } else {
+            $file_jafung = $req->file('file_jafung');
+            $extension_jafung = $req->file_jafung->getClientOriginalExtension();
+            $name_jafung = 'jafung' . uniqid() . '.' . $extension_jafung;
+            $file_jafung->move($path, $name_jafung);
+        }
+
+        if ($req->file_kariskarsu == null) {
+            $name_kariskarsu = Auth::user()->pegawai->file_kariskarsu;
+        } else {
+            $file_kariskarsu = $req->file('file_kariskarsu');
+            $extension_kariskarsu = $req->file_kariskarsu->getClientOriginalExtension();
+            $name_kariskarsu = 'kariskarsu' . uniqid() . '.' . $extension_kariskarsu;
+            $file_kariskarsu->move($path, $name_kariskarsu);
+        }
+
+        $data = Auth::user()->pegawai;
+        $data->nomor_cpns = $req->nomor_cpns;
+        $data->tanggal_cpns = $req->tanggal_cpns;
+        $data->file_cpns = $name_cpns;
+
+        $data->nomor_spmt = $req->nomor_spmt;
+        $data->tanggal_spmt = $req->tanggal_spmt;
+        $data->file_spmt = $name_spmt;
+
+        $data->nomor_pns = $req->nomor_pns;
+        $data->tanggal_pns = $req->tanggal_pns;
+        $data->file_pns = $name_pns;
+
+        $data->nomor_pangkat = $req->nomor_pangkat;
+        $data->tanggal_pangkat = $req->tanggal_pangkat;
+        $data->file_pangkat = $name_pangkat;
+
+        $data->nomor_jafung = $req->nomor_jafung;
+        $data->tanggal_jafung = $req->tanggal_jafung;
+        $data->file_jafung = $name_jafung;
+
+        $data->nomor_kariskarsu = $req->nomor_kariskarsu;
+        $data->file_kariskarsu = $name_kariskarsu;
+        $data->save();
+
+        Session::flash('success', 'Berhasil Di update');
+
+        return redirect('/pegawai/beranda');
+    }
 }

@@ -47,7 +47,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-      <a href="#"class="sidebar-toggle">BASIC DATA KEPEGAWAIAN ONLINE</a>
       
       @include('layouts.navbar')
     </nav>

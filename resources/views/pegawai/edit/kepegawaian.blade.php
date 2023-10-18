@@ -17,7 +17,8 @@
             
           <div class="active tab-pane" id="kependudukan">
             
-          <form class="form-horizontal">
+          <form class="form-horizontal" action="/pegawai/biodata/edit/kepegawaian" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="form-group">
               <label class="col-sm-3 control-label">Status Pegawai </label>
               <div class="col-sm-9">
@@ -33,19 +34,19 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Nomor</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="nomor_sk_cpns" value="{{$data->nomor_sk_cpns}}">
+                <input type="text" class="form-control" name="nomor_cpns" value="{{$data->nomor_cpns}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Tanggal </label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" name="tanggal_sk_cpns" value="{{$data->tanggal_sk_cpns}}">
+                <input type="date" class="form-control" name="tanggal_cpns" value="{{$data->tanggal_cpns}}">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File SK CPNS </label>
+              <label class="col-sm-3 control-label">File SK CPNS (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="file_sk_cpns">
+                <input type="file" class="form-control" name="file_cpns">
               </div>
             </div>
             <hr>
@@ -68,9 +69,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File SPMT </label>
+              <label class="col-sm-3 control-label">File SPMT (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="file_spmts">
+                <input type="file" class="form-control" name="file_spmt">
               </div>
             </div>
             <hr>
@@ -83,19 +84,19 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Nomor</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="nomor_sk_pns" value="{{$data->sk_pns}}">
+                <input type="text" class="form-control" name="nomor_pns" value="{{$data->nomor_pns}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Tanggal </label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" name="tanggal_sk_pns" value="{{$data->tanggal_spmt}}">
+                <input type="date" class="form-control" name="tanggal_pns" value="{{$data->tanggal_pns}}">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File SK PNS </label>
+              <label class="col-sm-3 control-label">File SK PNS (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="file_sk_pns">
+                <input type="file" class="form-control" name="file_pns">
               </div>
             </div>
             <hr>
@@ -108,19 +109,19 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Nomor</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="nomor_sk_pangkat" value="{{$data->nomor_sk_pangkat}}">
+                <input type="text" class="form-control" name="nomor_pangkat" value="{{$data->nomor_pangkat}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Tanggal </label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" name="tanggal_sk_pangkat" value="{{$data->tanggal_sk_pangkat}}">
+                <input type="date" class="form-control" name="tanggal_pangkat" value="{{$data->tanggal_pangkat}}">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File SK Pangkat Terakhir </label>
+              <label class="col-sm-3 control-label">File SK Pangkat Terakhir (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="file_sk_pangkat">
+                <input type="file" class="form-control" name="file_pangkat">
               </div>
             </div>
             <hr>
@@ -133,32 +134,39 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Nomor</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{$data->sk_cpns}}">
+                <input type="text" class="form-control" name="nomor_jafung" value="{{$data->nomor_jafung}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Tanggal </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{$data->sk_cpns}}">
+                <input type="date" class="form-control" name="tanggal_jafung" value="{{$data->tanggal_jafung}}">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File SK Jafung </label>
+              <label class="col-sm-3 control-label">File SK Jafung (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{$data->sk_cpns}}">
+                <input type="file" class="form-control" name="file_jafung" value="{{$data->file_jafung}}">
               </div>
             </div>
             <hr>
             <div class="form-group">
               <label class="col-sm-3 control-label">Nomor Karis/karsu </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{$data->sk_cpns}}">
+                <input type="text" class="form-control" name="nomor_kariskarsu" value="{{$data->nomor_kariskarsu}}">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label">File Karis/karsu </label>
+              <label class="col-sm-3 control-label">File Karis/karsu (PDF, Maks 2MB)</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="{{$data->sk_cpns}}">
+                <input type="file" class="form-control" name="file_kariskarsu" value="{{$data->file_kariskarsu}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-block bg-purple"><i class="fa fa-save"></i> SIMPAN</button>
+                <a href="/pegawai/beranda" class="btn btn-block btn-danger"><i class="fa fa-arrow-left"></i> KEMBALI</a>
               </div>
             </div>
           </form>
