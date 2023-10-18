@@ -61,9 +61,12 @@ class AdminController extends Controller
     }
     public function storePegawai(Request $req)
     {
+
         $check = M_pegawai::where('nip', $req->nip)->first();
         if ($check == null) {
-            M_pegawai::create($req->all());
+            $param = $req->all();
+            $param['unitkerja_id'] = Auth::user()->unitkerja_id;
+            M_pegawai::create($param);
             Session::flash('success', 'berhasil disimpan');
             return redirect('/admin/data/pegawai');
         } else {
