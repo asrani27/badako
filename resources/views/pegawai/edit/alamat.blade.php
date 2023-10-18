@@ -29,8 +29,37 @@
                   <div class="col-sm-10">
                     <select name="sesuai_ktp" required class="form-control">
                       <option value="">-pilih-</option>
-                      <option value="Y">Ya</option>
-                      <option value="T">Tidak</option>
+                      <option value="Y" {{$data->sesuai_ktp == 'Y' ? 'selected':''}}>Ya</option>
+                      <option value="T" {{$data->sesuai_ktp == 'T' ? 'selected':''}}>Tidak</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Provinsi</label>
+                  <div class="col-sm-10">
+                    <select id="provinsi" class="form-control form-control-sm" name="provinsi">
+                      <option value=""> Pilih Provinsi</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kota</label>
+                  <div class="col-sm-10">
+                    <select id="kota" class="form-control form-control-sm" name="kota">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kecamatan</label>
+                  <div class="col-sm-10">
+                    <select id="kecamatan" class="form-control form-control-sm" name="kecamatan">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kelurahan</label>
+                  <div class="col-sm-10">
+                    <select id="kelurahan" class="form-control form-control-sm" name="kelurahan">
                     </select>
                   </div>
                 </div>
@@ -53,37 +82,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Kelurahan</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kelurahan" required value="{{$data->kelurahan}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kecamatan" required value="{{$data->kecamatan}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Kota</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kota" required value="{{$data->kota}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Provinsi</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="provinsi" required value="{{$data->provinsi}}">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-sm-2 control-label">Kode POS</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="kodepos" required value="{{$data->kodepos}}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Telp</label>
+                  <label class="col-sm-2 control-label">No WhatsApp Aktif</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="telp" required value="{{$data->telp}}">
                   </div>
@@ -117,4 +122,134 @@
 @endsection
 @push('js')
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+$(document).ready(function(){
+  
+  data = {!!json_encode($data)!!}
+  
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.provinsi){
+        $("#provinsi").append('<option value="' + JSON.parse(response.data)[i].id + '" selected>' + JSON.parse(response.data)[i].name + '</option>');
+      }else{
+        $("#provinsi").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+      }
+    }
+  });
+
+  //kota
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kota){
+        $("#kota").append('<option value="' + JSON.parse(response.data)[i].id + '" selected>' + JSON.parse(response.data)[i].name + '</option>');
+      }else{
+        $("#kota").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+      }
+    }
+  });
+  //kecamatan
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kecamatan){
+        $("#kecamatan").append('<option value="' + JSON.parse(response.data)[i].id + '" selected>' + JSON.parse(response.data)[i].name + '</option>');
+      }else{
+        $("#kecamatan").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+      }
+    }
+  });
+
+  //kelurahan
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kelurahan){
+        $("#kelurahan").append('<option value="' + JSON.parse(response.data)[i].id + '" selected>' + JSON.parse(response.data)[i].name + '</option>');
+      }else{
+        $("#kelurahan").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+      }
+    }
+  });
+  //change provinsi
+  $("#provinsi").change(function(){
+  var id_prov = $("#provinsi").val(); 
+  console.log(id_prov)
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+id_prov+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    $("#kota").html('');
+    $("#kecamatan").html('');
+    $("#kelurahan").html('');
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      $("#kota").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+    }
+  });
+  })
+
+  //change kota
+  $("#kota").change(function(){
+  var id_kota = $("#kota").val(); 
+  console.log(id_kota)
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+id_kota+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    $("#kecamatan").html('');
+    $("#kelurahan").html('');
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      $("#kecamatan").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+    }
+  });
+  })
+
+
+  //change kota
+  $("#kecamatan").change(function(){
+  var id_kecamatan = $("#kecamatan").val(); 
+  console.log(id_kecamatan)
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+id_kecamatan+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    $("#kelurahan").html('');
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      $("#kelurahan").append('<option value="' + JSON.parse(response.data)[i].id + '">' + JSON.parse(response.data)[i].name + '</option>');
+    }
+  });
+  })
+})
+</script>
 @endpush

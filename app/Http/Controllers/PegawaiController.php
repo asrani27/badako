@@ -8,6 +8,7 @@ use App\Models\Pangkat;
 use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +17,7 @@ class PegawaiController extends Controller
     public function beranda()
     {
         $data = Auth::user()->pegawai;
+
         return view('pegawai.home', compact('data'));
     }
 
@@ -248,14 +250,16 @@ class PegawaiController extends Controller
     }
     public function updateAlamat(Request $req)
     {
+        //dd($req->all());
         $data = Auth::user()->pegawai;
+        $data->sesuai_ktp = $req->sesuai_ktp;
+        $data->provinsi = $req->provinsi;
+        $data->kota = $req->kota;
+        $data->kecamatan = $req->kecamatan;
+        $data->kelurahan = $req->kelurahan;
         $data->alamat = $req->alamat;
         $data->rt = $req->rt;
         $data->rw = $req->rw;
-        $data->kelurahan = $req->kelurahan;
-        $data->kecamatan = $req->kecamatan;
-        $data->kota = $req->kota;
-        $data->provinsi = $req->provinsi;
         $data->kodepos = $req->kodepos;
         $data->telp = $req->telp;
         $data->save();

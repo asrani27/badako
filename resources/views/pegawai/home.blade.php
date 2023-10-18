@@ -310,6 +310,30 @@
         <!-- /.box-header -->
         <div class="box-body">
           <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Provinsi </label>
+              <div class="col-sm-10">
+                <input id="provinsi" type="text" class="form-control" readonly value="{{$data->provinsi}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Kab/kota </label>
+              <div class="col-sm-10">
+                <input id="kota" type="text" class="form-control" readonly value="{{$data->kota}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Kecamatan </label>
+              <div class="col-sm-10">
+                <input id="kecamatan" type="text" class="form-control" readonly value="{{$data->kecamatan}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Kelurahan </label>
+              <div class="col-sm-10">
+                <input id="kelurahan" type="text" class="form-control" readonly value="{{$data->kelurahan}}">
+              </div>
+            </div>
               <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label text-right">Alamat</label>
                 <div class="col-sm-10">
@@ -325,31 +349,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">RW </label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->prodi}}">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Kelurahan </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->kelurahan}}">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Kecamatan </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->kecamatan}}">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Kab/kota </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->kota}}">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Provinsi </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->provinsi}}">
+                  <input type="text" class="form-control" readonly value="{{$data->rw}}">
                 </div>
               </div>
               <div class="form-group">
@@ -454,7 +454,69 @@
 </div>
 @endsection
 @push('js')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+$(document).ready(function(){
+  
+  data = {!!json_encode($data)!!}
+  
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.provinsi){
+        $("#provinsi").val(JSON.parse(response.data)[i].name);
+      }
+    }
+  });
 
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/regencies/'+data.provinsi+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kota){
+        $("#kota").val(JSON.parse(response.data)[i].name);
+      }
+    }
+  });
+
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/districts/'+data.kota+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kecamatan){
+        $("#kecamatan").val(JSON.parse(response.data)[i].name);
+      }
+    }
+  });
+
+  axios({
+    method: 'get',
+    url: 'http://www.emsifa.com/api-wilayah-indonesia/api/villages/'+data.kecamatan+'.json',
+    responseType: 'stream'
+  })
+  .then(function (response) {
+    for (var i = 0; i < JSON.parse(response.data).length; i++) 
+    {
+      if(JSON.parse(response.data)[i].id === data.kelurahan){
+        $("#kelurahan").val(JSON.parse(response.data)[i].name);
+      }
+    }
+  });
+})
+</script>
 
 <script>
   $(document).on('click', '.ubahfoto', function() {
