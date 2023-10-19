@@ -133,11 +133,7 @@ DASHBOARD ADMIN
           <th>NIP/Nama</th>
           <th>Tanggal</th>
         </tr>
-        <tr>
-            <td class="text-center">1</td>
-            <td>1997288381217123 <br/> Asrani</td>
-            <td>31 Desember 2023</td>
-        </tr>
+        
         
         </tbody>
       </table>
@@ -162,11 +158,7 @@ DASHBOARD ADMIN
           <th>NIP/Nama</th>
           <th>Tanggal</th>
         </tr>
-        <tr>
-            <td class="text-center">1</td>
-            <td>1997288381217123 <br/> Asrani</td>
-            <td>31 Desember 2023</td>
-        </tr>
+        
         
         </tbody>
       </table>
@@ -189,11 +181,6 @@ DASHBOARD ADMIN
         <th class="text-center">No</th>
         <th>NIP/Nama</th>
         <th>Tanggal</th>
-      </tr>
-      <tr>
-          <td class="text-center">1</td>
-          <td>1997288381217123 <br/> Asrani</td>
-          <td>31 Desember 2063</td>
       </tr>
       
       </tbody>
