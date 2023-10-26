@@ -19,7 +19,7 @@
             <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/profile">
                 @csrf
                 <div class="form-group">
-                  <label for="inputName" class="col-sm-2 control-label text-right">Nama beserta gelar</label>
+                  <label for="inputName" class="col-sm-2 control-label text-right">Nama</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
                   </div>
@@ -60,12 +60,22 @@
                 
                 @else
 
+                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">No Induk PPPK</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
+                  </div>
+                </div>
+                @else
                 <div class="form-group">
                   <label class="col-sm-2 control-label">NIP</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
                   </div>
                 </div>
+                
+                @endif
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Unit Kerja</label>
                   <div class="col-sm-10">
@@ -77,6 +87,22 @@
                     </select>
                   </div>
                 </div>
+
+                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Golongan</label>
+                  <div class="col-sm-10">
+                    <select name="pangkat_id" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        <option value="VI">VII</option>
+                        <option value="IX">IX</option>
+                        <option value="X">X</option>
+                        
+                    </select>
+                  </div>
+                </div>
+                @else
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Pangkat/Gol</label>
                   <div class="col-sm-10">
@@ -88,6 +114,7 @@
                     </select>
                   </div>
                 </div>
+                @endif
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nama Jabatan</label>
                   <div class="col-sm-10">
@@ -112,12 +139,16 @@
                     </select>
                   </div>
                 </div>
+
+                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+                @else
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Kelas Jabatan</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="kelas_jabatan" required value="{{$data->kelas_jabatan}}">
                   </div>
                 </div>
+                @endif
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenis Jabatan</label>
                   <div class="col-sm-10">
