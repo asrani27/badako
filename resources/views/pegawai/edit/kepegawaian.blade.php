@@ -17,6 +17,244 @@
             
           <div class="active tab-pane" id="kependudukan">
             
+          @if (Auth::user()->pegawai->status_pegawai == 'NON ASN')
+              
+          <form class="form-horizontal" action="/pegawai/biodata/edit/kepegawaian" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Status Pegawai </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" readonly value="{{$data->status_pegawai}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">SK NON ASN (Jika Ada)</label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor SK</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_nonasn" value="{{$data->nomor_nonasn}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal SK</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_nonasn" value="{{$data->tanggal_nonasn}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SK (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_nonasn">
+              </div>
+            </div>
+            
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Tanda Registrasi (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File STR (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Izin Praktek (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SIP (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-block bg-purple"><i class="fa fa-save"></i> SIMPAN</button>
+                <a href="/pegawai/beranda" class="btn btn-block btn-danger"><i class="fa fa-arrow-left"></i> KEMBALI</a>
+              </div>
+            </div>
+          </form>
+          @elseif (Auth::user()->pegawai->status_pegawai == 'PPPK')
+
+          <form class="form-horizontal" action="/pegawai/biodata/edit/kepegawaian/pppk" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Status Pegawai </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" readonly value="{{$data->status_pegawai}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">SK Pengangkatan </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_cpns" value="{{$data->nomor_cpns}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_cpns" value="{{$data->tanggal_cpns}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SK PPPK (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_cpns">
+              </div>
+            </div>
+            <hr>
+            
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Perjanjian Kerja </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File Surat Perjanjian Kerja (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">SPMT </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SPMT (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Tanda Registrasi (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File STR (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Izin Praktek (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SIP (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-block bg-purple"><i class="fa fa-save"></i> SIMPAN</button>
+                <a href="/pegawai/beranda" class="btn btn-block btn-danger"><i class="fa fa-arrow-left"></i> KEMBALI</a>
+              </div>
+            </div>
+          </form>
+          @else
           <form class="form-horizontal" action="/pegawai/biodata/edit/kepegawaian" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -162,6 +400,57 @@
                 <input type="file" class="form-control" name="file_kariskarsu" value="{{$data->file_kariskarsu}}">
               </div>
             </div>
+
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Tanda Registrasi (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File STR (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Izin Praktek (Jika Ada) </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_spmt" value="{{$data->nomor_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_spmt" value="{{$data->tanggal_spmt}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File SIP (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
             <div class="form-group">
               <label class="col-sm-3 control-label"></label>
               <div class="col-sm-9">
@@ -170,6 +459,7 @@
               </div>
             </div>
           </form>
+          @endif 
 
           </div>
           

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Image;
 use Storage;
+use App\Models\Nomor;
 use App\Models\Pangkat;
 use App\Models\UnitKerja;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class PegawaiController extends Controller
     public function beranda()
     {
         $data = Auth::user()->pegawai;
-
-        return view('pegawai.home', compact('data'));
+        $aduan = Nomor::first();
+        return view('pegawai.home', compact('data', 'aduan'));
     }
 
     public function ubahfoto(Request $req)
@@ -114,6 +115,7 @@ class PegawaiController extends Controller
         $data->nip = $req->nip;
         $data->pangkat_id = $req->pangkat_id;
         $data->jabatan = $req->jabatan;
+        $data->jenjang_jabatan = $req->jenjang_jabatan;
         $data->kelas_jabatan = $req->kelas_jabatan;
         $data->jenis_jabatan = $req->jenis_jabatan;
         $data->mkg = $req->mkg;

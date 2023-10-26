@@ -27,7 +27,7 @@ PEGAWAI
             <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="nip" value="{{$data->nip}}">
+              <input type="text" class="form-control" name="nip" value="{{$data->nip}}">
             </div>
           </div>
           <div class="form-group">

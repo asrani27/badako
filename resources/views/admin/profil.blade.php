@@ -27,49 +27,56 @@ PROFIL UNIT KERJA
             <label for="inputEmail3" class="col-sm-2 control-label">Nama Unit Kerja</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="nama" value="{{$data->nama}}">
+              <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Alamat Unit Kerja</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="alamat" value="{{$data->alamat}}">
+              <input type="text" class="form-control" name="alamat" value="{{$data->alamat}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">No Telp</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="telp" value="{{$data->telp}}">
+              <input type="text" class="form-control" name="telp" value="{{$data->telp}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Jumlah Penduduk</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="jumlah_penduduk" value="{{$data->jumlah_penduduk}}">
+              <input type="text" class="form-control" name="jumlah_penduduk" value="{{$data->jumlah_penduduk}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Jumlah Kelurahan</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="jumlah_kelurahan" value="{{$data->jumlah_kelurahan}}">
+              <input type="text" class="form-control" name="jumlah_kelurahan" value="{{$data->jumlah_kelurahan}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Jumlah RT</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="jumlah_rt" value="{{$data->jumlah_rt}}">
+              <input type="text" class="form-control" name="jumlah_rt" value="{{$data->jumlah_rt}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Jumlah KK</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="jumlah_kk" value="{{$data->jumlah_kk}}">
+              <input type="text" class="form-control" name="jumlah_kk" value="{{$data->jumlah_kk}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Upload Peta Wilayah Kerja</label>
+
+            <div class="col-sm-10">
+              <input type="file" class="form-control" name="file_peta">
             </div>
           </div>
         </div>

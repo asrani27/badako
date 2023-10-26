@@ -10,13 +10,21 @@ PEGAWAI
   <div class="col-xs-12">
     <a href="/superadmin/data/pegawai/add" class="btn btn-sm bg-purple"><i class="fa fa-user-plus"></i> Tambah</a>
     <a href="/superadmin/data/pegawai/sync" class="btn btn-sm bg-purple"><i class="fa fa-refresh"></i> Tarik Data Pegawai Dari TPP</a> 
-    <a href="/superadmin/data/pegawai/akun" class="btn btn-sm bg-purple"><i class="fa fa-key"></i> Buat Akun Pegawai</a> <br/><br/>
+    <a href="/superadmin/data/pegawai/akun" class="btn btn-sm bg-purple"><i class="fa fa-key"></i> Buat Akun Pegawai</a> 
+    
+    <br/><br/>
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Pegawai</h3>
 
         <div class="box-tools">
-          {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+          <div class="input-group input-group-sm hidden-xs" style="width: 250px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Cari NIP/Nama/Jabatan/Jenjang">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
       <!-- /.box-header -->

@@ -56,9 +56,13 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/superadmin/data/pegawai"><i class="fa fa-users"></i>  DATA PEGAWAI</a></li>
                 <li><a href="/superadmin/data/unitkerja"><i class="fa fa-th"></i>  DATA UNIT KERJA</a></li>
+                <li><a href="/superadmin/data/nomoraduan"><i class="fa fa-phone"></i>  NOMOR ADUAN</a></li>
                 
               </ul>
             </li>
+            <li><a href="/superadmin/bandingkan"><i class="fa fa-fw fa-th"></i> BANDINGKAN DATA <span class="sr-only">(current)</span></a></li>
+            <li><a href="/superadmin/data/mutasi"><i class="fa fa-fw fa-users"></i> MUTASI <span class="sr-only">(current)</span></a></li>
+            <li><a href="/superadmin/data/mutasi"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
           </ul>
           
         </div>

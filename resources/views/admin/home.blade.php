@@ -119,7 +119,7 @@ DASHBOARD ADMIN
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Yang Naik Pangkat Bulan Ini</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Yang Naik Pangkat Tahun Ini</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -144,7 +144,7 @@ DASHBOARD ADMIN
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Naik Gaji Berkala Bulan ini</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Naik Gaji Berkala Tahun ini</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -168,7 +168,7 @@ DASHBOARD ADMIN
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Pensiun Bulan ini</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Pensiun Tahun ini</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -185,6 +185,81 @@ DASHBOARD ADMIN
       
       </tbody>
     </table>
+    </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> STR Kadaluarsa tahun ini</h3>
+
+      <div class="box-tools">
+        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
+          <th class="text-center">No</th>
+          <th>NIP/Nama</th>
+          <th>Tanggal</th>
+        </tr>
+        
+        
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> SIP Kadaluarsa tahun ini</h3>
+
+      <div class="box-tools">
+        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
+          <th class="text-center">No</th>
+          <th>NIP/Nama</th>
+          <th>Tanggal</th>
+        </tr>
+        
+        
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum selesai mengisi data</h3>
+
+      <div class="box-tools">
+        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>NIP/Nama</th>
+          <th>Puskesmas</th>
+        </tr>
+        
+        
+        </tbody>
+      </table>
     </div>
     </div>
   </div>

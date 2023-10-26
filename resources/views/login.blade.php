@@ -64,7 +64,7 @@
     </nav> --}}
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper"  style="background-image: url('/assets/pxfuel.jpg'); background-size:cover;">
+  <div class="content-wrapper"  style="background-image: url('/logo/bg.jpg'); background-size:cover;">
     <div class="container">
       <!-- Content Header (Page header) -->
       <section class="content-header">
@@ -76,10 +76,10 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8">
-            <div class="text-center"><br/><br/><br/><br/><br/><br/>
+            <div class="text-center"><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
             
-            <div class="box box-warning" style="box-shadow: 2px 18px 18px 18px rgba(0,0,0,.2);border-top-color: #37517e;">
+            <div class="box box-warning" style="box-shadow: 20px 28px 18px 18px rgba(0,0,0,.2);border-top-color: #37517e;border-radius:20px">
               {{-- <div class="box-header with-border text-center">
                 <h3 class="box-title">BASIC DATA KEPEGAWAIAN ONLINE</h3>
       

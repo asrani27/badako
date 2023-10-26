@@ -1,6 +1,51 @@
 @extends('layouts.app')
 @push('css')
-    
+<style>
+  .btn-floating {
+      position: fixed;
+      right: 25px;
+      overflow: hidden;
+      width: 100px;
+      height: 50px;
+      border-radius: 100px;
+      border: 0;
+      z-index: 9999;
+      color: white;
+      transition: .2s;
+  }
+  
+  .btn-floating:hover {
+      width: auto;
+      padding: 0 20px;
+      cursor: pointer;
+  }
+  
+  .btn-floating span {
+      font-size: 16px;
+      margin-left: 5px;
+      transition: .2s;
+      line-height: 0px;
+      display: none;
+  }
+  
+  .btn-floating:hover span {
+      display: inline-block;
+  }
+  
+  .btn-floating:hover img {
+      margin-bottom: -3px;
+  }
+  
+  .btn-floating.whatsapp {
+      bottom: 25px;
+      background-color: #34af23;
+      border: 2px solid #fff;
+  }
+  
+  .btn-floating.whatsapp:hover {
+      background-color: #1f7a12;
+  }
+      </style>
 @endpush
 @section('content')
 <section class="content-header">
@@ -75,14 +120,14 @@
                 <input type="text" class="form-control" readonly value="{{$data->nama}}">
               </div>
             </div>
+            @if (Auth::user()->pegawai->status_pegawai == 'PNS' || Auth::user()->pegawai->status_pegawai == 'PPPK')
+                
             <div class="form-group">
               <label class="col-sm-2 control-label">NIP</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="{{$data->nip}}">
               </div>
             </div>
-            @if (Auth::user()->pegawai->status_pegawai == 'PNS' || Auth::user()->pegawai->status_pegawai == 'PKKK')
-                
             <div class="form-group">
               <label class="col-sm-2 control-label">Pangkat</label>
               <div class="col-sm-10">
@@ -96,9 +141,15 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Jabatan</label>
+              <label class="col-sm-2 control-label">Nama Jabatan</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="{{$data->jabatan}}" readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Jenjang Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$data->jenjang_jabatan}}" readonly >
               </div>
             </div>
             <div class="form-group">
@@ -113,34 +164,51 @@
                 <input type="text" class="form-control" value="{{$data->jenis_jabatan}}" readonly >
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" value="{{$data->mkg}}" readonly >
+
+              @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Masa Kerja (Sesuai SK Pengangkatan)</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" value="{{$data->mkg}}" readonly >
+                </div>
               </div>
-            </div>
+              @else
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" value="{{$data->mkg}}" readonly >
+                </div>
+              </div>
+              @endif
+
             @else
                 
             <div class="form-group">
-              <label class="col-sm-2 control-label">Jabatan</label>
+              <label class="col-sm-2 control-label">NIK</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
+                <input type="text" class="form-control" readonly value="{{$data->nik}}">
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Masa Kerja</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" readonly >
-              </div>
-            </div>
-            @endif
-
             <div class="form-group">
               <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="{{$data->unitkerja == null ? '': $data->unitkerja->nama}}">
               </div>
             </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Pekerjaan/Profesi</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$data->jabatan}}"readonly >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Masa Kerja</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$data->mkg}}" readonly >
+              </div>
+            </div>
+            @endif
+
             <div class="form-group">
               <label class="col-sm-2 control-label">Jenis Kelamin</label>
               <div class="col-sm-10">
@@ -163,6 +231,18 @@
               <label class="col-sm-2 control-label">Email</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="{{$data->email}}">
+              </div>
+            </div>  
+            <div class="form-group">
+              <label class="col-sm-2 control-label">No Rekening Bank Kalsel</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="rek" readonly value="{{$data->rek}}">
+              </div>
+            </div>  
+            <div class="form-group">
+              <label class="col-sm-2 control-label">File Buku Bank Kalsel</label>
+              <div class="col-sm-10">
+                <a href="/storage/{{Auth::user()->pegawai->nip}}/kependudukan/{{Auth::user()->pegawai->file_rek}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download File</a>
               </div>
             </div>  
         </form>
@@ -275,7 +355,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Tempat Pendidikan </label>
+                <label class="col-sm-2 control-label">Nama Institusi Pendidikan </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" readonly value="{{$data->tempat_pendidikan}}">
                 </div>
@@ -387,7 +467,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">File BPJS </label>
+              <label class="col-sm-2 control-label">File NPWP </label>
               <div class="col-sm-10">
                 <a href="/storage/{{Auth::user()->pegawai->nip}}/npwp/{{Auth::user()->pegawai->file_npwp}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download NPWP</a>
               </div>
@@ -410,8 +490,8 @@
           
           @if (Auth::user()->pegawai->status_pegawai == 'PNS')
               @include('pegawai.sk.pns')
-          @elseif (Auth::user()->pegawai->status_pegawai == 'PKKK')
-              @include('pegawai.sk.pkkk')
+          @elseif (Auth::user()->pegawai->status_pegawai == 'PPPK')
+              @include('pegawai.sk.pppk')
           @elseif (Auth::user()->pegawai->status_pegawai == 'NON ASN')
               @include('pegawai.sk.nonasn')
           @else
@@ -452,6 +532,13 @@
       </div>
   </div>
 </div>
+
+<a href="https://api.whatsapp.com/send?phone={{$aduan == null ? '0000': $aduan->nomor}}" target="_blank">
+  <button class="btn-floating whatsapp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png" width="30px" alt="whatsApp">ADUAN
+      <span>{{$aduan == null ? '0000': $aduan->nomor}}</span>
+  </button>
+</a>
 @endsection
 @push('js')
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -24,7 +24,7 @@
                     <select name="status_pegawai" class="form-control" required>
                       <option value="">-pilih-</option>
                       <option value="PNS" {{$data->status_pegawai == 'PNS' ? 'selected':''}}>PNS</option>
-                      <option value="PKKK" {{$data->status_pegawai == 'PKKK' ? 'selected':''}}>PKKK</option>
+                      <option value="PPPK" {{$data->status_pegawai == 'PPPK' ? 'selected':''}}>PPPK</option>
                       <option value="NON ASN" {{$data->status_pegawai == 'NON ASN' ? 'selected':''}}>NON ASN</option>
                     </select>
                   </div>

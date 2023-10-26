@@ -19,15 +19,62 @@
             <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/profile">
                 @csrf
                 <div class="form-group">
-                  <label for="inputName" class="col-sm-2 control-label text-right">Nama</label>
+                  <label for="inputName" class="col-sm-2 control-label text-right">Nama beserta gelar</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
                   </div>
                 </div>
+
+                @if (Auth::user()->pegawai->status_pegawai == 'NON ASN')
+                    
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">NIK</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Unit Kerja</label>
+                  <div class="col-sm-10">
+                    <select name="unitkerja_id" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        @foreach ($unitkerja as $item)
+                        <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Pekerjaan/Profesi</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="jabatan" required value="{{$data->jabatan}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Masa Kerja</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
+                  </div>
+                </div>
+                
+                @else
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">NIP</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Unit Kerja</label>
+                  <div class="col-sm-10">
+                    <select name="unitkerja_id" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        @foreach ($unitkerja as $item)
+                        <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                        @endforeach
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -42,9 +89,27 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Jabatan</label>
+                  <label class="col-sm-2 control-label">Nama Jabatan</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="jabatan" required value="{{$data->jabatan}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Jenjang Jabatan</label>
+                  <div class="col-sm-10">
+                    <select name="jenjang_jabatan" class="form-control" required>
+                      <option value="">-pilih-</option>
+                      <option value="PEMULA" {{$data->jenjang_jabatan == 'PEMULA' ? 'selected':''}}>PEMULA</option>
+                      <option value="TERAMPIL" {{$data->jenjang_jabatan == 'TERAMPIL' ? 'selected':''}}>TERAMPIL</option>
+                      <option value="MAHIR" {{$data->jenjang_jabatan == 'MAHIR' ? 'selected':''}}>MAHIR</option>
+                      <option value="PENYELIA" {{$data->jenjang_jabatan == 'PENYELIA' ? 'selected':''}}>PENYELIA</option>
+                      <option value="PELAKSANA" {{$data->jenjang_jabatan == 'PELAKSANA' ? 'selected':''}}>PELAKSANA</option>
+                      <option value="PELAKSANA LANJUTAN" {{$data->jenjang_jabatan == 'PELAKSANA LANJUTAN' ? 'selected':''}}>PELAKSANA LANJUTAN</option>
+                      <option value="AHLI PERTAMA" {{$data->jenjang_jabatan == 'AHLI PERTAMA' ? 'selected':''}}>AHLI PERTAMA</option>
+                      <option value="AHLI MUDA" {{$data->jenjang_jabatan == 'AHLI MUDA' ? 'selected':''}}>AHLI MUDA</option>
+                      <option value="AHLI MADYA" {{$data->jenjang_jabatan == 'AHLI MADYA' ? 'selected':''}}>AHLI MADYA</option>
+                      <option value="AHLI UTAMA" {{$data->jenjang_jabatan == 'AHLI UTAMA' ? 'selected':''}}>AHLI UTAMA</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -58,30 +123,33 @@
                   <div class="col-sm-10">
                     <select name="jenis_jabatan" class="form-control">
                       <option value="">-pilih-</option>
-                      <option value="PELAKSANA" {{$data->jenis_jabatan == 'PELAKSANA' ? 'selected':''}}>PELAKSANA</option>
-                      <option value="JFM" {{$data->jenis_jabatan == 'JFM' ? 'selected':''}}>JABATAN FUNGSIONAL MADYA</option>
                       <option value="JPT" {{$data->jenis_jabatan == 'JPT' ? 'selected':''}}>JPT</option>
+                      <option value="JA" {{$data->jenis_jabatan == 'JA' ? 'selected':''}}>JA</option>
+                      <option value="JFT" {{$data->jenis_jabatan == 'JFT' ? 'selected':''}}>JFT</option>
+                      <option value="JFU" {{$data->jenis_jabatan == 'JFU' ? 'selected':''}}>JFU</option>
                     </select>
                   </div>
                 </div>
+
+
+                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Masa Kerja (Sesuai SK Pengangkatan)</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
+                  </div>
+                </div>
+                @else
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
                   </div>
                 </div>
+                @endif
+
+                @endif
                 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Unit Kerja</label>
-                  <div class="col-sm-10">
-                    <select name="unitkerja_id" class="form-control" required>
-                        <option value="">-pilih-</option>
-                        @foreach ($unitkerja as $item)
-                        <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenis Kelamin</label>
                   <div class="col-sm-10">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Nomor;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
@@ -21,6 +22,11 @@ class SuperadminController extends Controller
         $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
         $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
         return view('superadmin.home', compact('pns', 'pkkk', 'nonasn'));
+    }
+
+    public function bandingkan()
+    {
+        return view('superadmin.bandingkan.index');
     }
     public function pegawai()
     {
@@ -113,6 +119,30 @@ class SuperadminController extends Controller
         return view('superadmin.pelanggan.index', compact('data'));
     }
 
+    public function nomor()
+    {
+        $data = Nomor::first();
+
+        return view('superadmin.nomor.edit', compact('data'));
+    }
+    public function updateNomor(Request $req)
+    {
+        $data = Nomor::first();
+        if ($data == null) {
+            $n = new Nomor;
+            $n->nomor = $req->nomor;
+            $n->save();
+            Session::flash('success', 'Berhasil Disimpan');
+            return back();
+        } else {
+            $data->update([
+                'nomor' => $req->nomor,
+            ]);
+
+            Session::flash('success', 'Berhasil Diupdate');
+            return back();
+        }
+    }
     public function profilPegawai($id)
     {
         $data = M_pegawai::find($id);
