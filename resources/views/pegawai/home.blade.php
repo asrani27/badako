@@ -122,12 +122,38 @@
             </div>
             @if (Auth::user()->pegawai->status_pegawai == 'PNS' || Auth::user()->pegawai->status_pegawai == 'PPPK')
                 
+              @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+                  
+              <div class="form-group">
+                <label class="col-sm-2 control-label">No Induk PPPK</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" readonly value="{{$data->nip}}">
+                </div>
+              </div>
+              @else
+                  
+              <div class="form-group">
+                <label class="col-sm-2 control-label">NIP</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" readonly value="{{$data->nip}}">
+                </div>
+              </div>
+              @endif
             <div class="form-group">
-              <label class="col-sm-2 control-label">NIP</label>
+              <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="{{$data->nip}}">
+                <input type="text" class="form-control" readonly value="{{$data->unitkerja == null ? '': $data->unitkerja->nama}}">
               </div>
             </div>
+            @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Golongan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$data->golongan == null ? '': $data->golongan}}" readonly >
+              </div>
+            </div>
+            @else
+
             <div class="form-group">
               <label class="col-sm-2 control-label">Pangkat</label>
               <div class="col-sm-10">
@@ -140,6 +166,9 @@
                 <input type="text" class="form-control" value="{{$data->pangkat == null ? '': $data->pangkat->golongan}}" readonly >
               </div>
             </div>
+            @endif
+
+
             <div class="form-group">
               <label class="col-sm-2 control-label">Nama Jabatan</label>
               <div class="col-sm-10">
@@ -152,12 +181,16 @@
                 <input type="text" class="form-control" value="{{$data->jenjang_jabatan}}" readonly >
               </div>
             </div>
+
+            @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
+            @else
             <div class="form-group">
               <label class="col-sm-2 control-label">Kelas Jabatan</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="{{$data->kelas_jabatan}}" readonly >
               </div>
             </div>
+            @endif
             <div class="form-group">
               <label class="col-sm-2 control-label">Jenis Jabatan</label>
               <div class="col-sm-10">
@@ -236,13 +269,13 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">No Rekening Bank Kalsel</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="rek" readonly value="{{$data->rek}}">
+                <input type="text" class="form-control" readonly value="{{$data->rekening}}">
               </div>
             </div>  
             <div class="form-group">
               <label class="col-sm-2 control-label">File Buku Bank Kalsel</label>
               <div class="col-sm-10">
-                <a href="/storage/{{Auth::user()->pegawai->nip}}/kependudukan/{{Auth::user()->pegawai->file_rek}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download File</a>
+                <a href="/storage/{{Auth::user()->pegawai->nip}}/rekening/{{Auth::user()->pegawai->file_rekening}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download File</a>
               </div>
             </div>  
         </form>

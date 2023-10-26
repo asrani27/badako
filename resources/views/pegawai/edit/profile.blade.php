@@ -16,7 +16,7 @@
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="profile">
-            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/profile">
+            <form class="form-horizontal" method="post" action="/pegawai/biodata/edit/profile" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label text-right">Nama</label>
@@ -92,11 +92,11 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Golongan</label>
                   <div class="col-sm-10">
-                    <select name="pangkat_id" class="form-control" required>
+                    <select name="golongan" class="form-control" required>
                         <option value="">-pilih-</option>
-                        <option value="VI">VII</option>
-                        <option value="IX">IX</option>
-                        <option value="X">X</option>
+                        <option value="VII" {{$data->golongan == 'VII' ? 'selected' :''}}>VII</option>
+                        <option value="IX" {{$data->golongan == 'IX' ? 'selected' :''}}>IX</option>
+                        <option value="X" {{$data->golongan == 'X' ? 'selected' :''}}>X</option>
                         
                     </select>
                   </div>
@@ -207,6 +207,18 @@
                   <label class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
                     <input type="email" class="form-control" name="email" value="{{$data->email}}" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Rekening Bank Kalsel</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="rekening" value="{{$data->rekening}}" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Upload Foto Buku rek Bank Kalsel</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" name="file_rekening" required>
                   </div>
                 </div>
                 <div class="form-group">

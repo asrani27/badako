@@ -110,10 +110,35 @@ class PegawaiController extends Controller
     }
     public function updateProfile(Request $req)
     {
+        $validator = Validator::make($req->all(), [
+            'file_rekening'  => 'mimes:pdf|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File harus scan PDF dan Maks 2MB');
+            return back();
+        }
+
+        $path = public_path('storage') . '/' . Auth::user()->pegawai->nip . '/rekening';
+
+        if ($req->file_rekening == null) {
+            $name_rekening = Auth::user()->pegawai->file_rekening;
+        } else {
+            $file_rekening = $req->file('file_rekening');
+            $extension_npwp = $req->file_rekening->getClientOriginalExtension();
+            $name_rekening = 'rekening' . uniqid() . '.' . $extension_npwp;
+            $file_rekening->move($path, $name_rekening);
+        }
+
         $data = Auth::user()->pegawai;
         $data->nama = $req->nama;
         $data->nip = $req->nip;
-        $data->pangkat_id = $req->pangkat_id;
+        if (Auth::user()->pegawai->status_pegawai == 'PPPK') {
+            $data->golongan = $req->golongan;
+        } else {
+            $data->pangkat_id = $req->pangkat_id;
+        }
         $data->jabatan = $req->jabatan;
         $data->jenjang_jabatan = $req->jenjang_jabatan;
         $data->kelas_jabatan = $req->kelas_jabatan;
@@ -124,6 +149,8 @@ class PegawaiController extends Controller
         $data->tempat_lahir = $req->tempat_lahir;
         $data->tanggal_lahir = $req->tanggal_lahir;
         $data->email = $req->email;
+        $data->rekening = $req->rekening;
+        $data->file_rekening = $name_rekening;
         $data->save();
 
         Session::flash('success', 'Berhasil Di update');
