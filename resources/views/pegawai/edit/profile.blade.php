@@ -218,7 +218,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Upload Foto Buku rek Bank Kalsel</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" name="file_rekening" required>
+                    <input type="file" class="form-control" name="file_rekening">
                   </div>
                 </div>
                 <div class="form-group">
