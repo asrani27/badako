@@ -21,9 +21,12 @@ class AdminController extends Controller
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
+        $limatahun = Carbon::now()->subyear(5)->format('Y');
 
         $naikpangkat = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->get();
         $naikberkala = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->get();
+        $str = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->get();
+        $sip = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->get();
 
         $pensiun = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->get()->map(function ($item) {
             if ($item->tanggal_lahir == null) {
@@ -48,7 +51,7 @@ class AdminController extends Controller
 
 
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun'));
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun', 'str', 'sip'));
     }
 
     public function profil()

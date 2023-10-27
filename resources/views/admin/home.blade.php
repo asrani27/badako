@@ -201,7 +201,9 @@ DASHBOARD ADMIN
         <th>NIP/Nama</th>
         <th>Tanggal</th>
       </tr>
-      
+      @php
+          $no=1;
+      @endphp
       @foreach ($pensiun as $item)
       <tr>
         <td>{{$no++}}</td>
@@ -234,6 +236,16 @@ DASHBOARD ADMIN
           <th>Tanggal</th>
         </tr>
         
+      @php
+      $no=1;
+      @endphp
+      @foreach ($str as $item)
+      <tr>
+        <td>{{$no++}}</td>
+        <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+      </tr>
+      @endforeach
         
         </tbody>
       </table>
@@ -258,7 +270,16 @@ DASHBOARD ADMIN
           <th>NIP/Nama</th>
           <th>Tanggal</th>
         </tr>
-        
+        @php
+      $no=1;
+      @endphp
+      @foreach ($sip as $item)
+      <tr>
+        <td>{{$no++}}</td>
+        <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+      </tr>
+      @endforeach
         
         </tbody>
       </table>
