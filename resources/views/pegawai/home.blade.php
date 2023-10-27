@@ -372,7 +372,7 @@
               <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label text-right">Jenjang</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" readonly value="{{$data->jenjang}}">
+                  <input type="text" class="form-control" readonly value="{{$data->jenjang_pendidikan}}">
                 </div>
               </div>
               <div class="form-group">
