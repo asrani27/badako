@@ -44,7 +44,7 @@ class AdminController extends Controller
                 $item->pensiun = 'T';
             }
             return $item;
-        });
+        })->where('pensiun', 'Y');
 
 
 
