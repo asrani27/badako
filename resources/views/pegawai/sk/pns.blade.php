@@ -138,4 +138,43 @@
         <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_kariskarsu}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Karis/Karsu</a>
       </div>
     </div>
+    <hr>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Nomor Karpeg </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" readonly value="{{$data->nomor_karpeg}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">File Karpeg </label>
+      <div class="col-sm-9">
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_karpeg}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Karis/Karsu</a>
+      </div>
+    </div>
+    <hr>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">SK Berkala</label>
+      <div class="col-sm-9">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Nomor</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" readonly value="{{$data->nomor_berkala}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Tanggal </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" readonly value="{{$data->tanggal_berkala}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">File SK berkala </label>
+      <div class="col-sm-9">
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_berkala}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Jafung</a>
+      </div>
+    </div>
+    <hr>
   </form>
