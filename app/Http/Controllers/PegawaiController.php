@@ -383,6 +383,7 @@ class PegawaiController extends Controller
             'file_pangkat'  => 'mimes:pdf|max:2048',
             'file_jafung'  => 'mimes:pdf|max:2048',
             'file_kariskarsu'  => 'mimes:pdf|max:2048',
+            'file_berkala'  => 'mimes:pdf|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -447,6 +448,24 @@ class PegawaiController extends Controller
             $file_kariskarsu->move($path, $name_kariskarsu);
         }
 
+        if ($req->file_berkala == null) {
+            $name_berkala = Auth::user()->pegawai->file_berkala;
+        } else {
+            $file_berkala = $req->file('file_berkala');
+            $extension_berkala = $req->file_berkala->getClientOriginalExtension();
+            $name_berkala = 'berkala' . uniqid() . '.' . $extension_berkala;
+            $file_berkala->move($path, $name_berkala);
+        }
+
+        if ($req->file_karpeg == null) {
+            $name_karpeg = Auth::user()->pegawai->file_karpeg;
+        } else {
+            $file_karpeg = $req->file('file_karpeg');
+            $extension_karpeg = $req->file_karpeg->getClientOriginalExtension();
+            $name_karpeg = 'karpeg' . uniqid() . '.' . $extension_karpeg;
+            $file_karpeg->move($path, $name_karpeg);
+        }
+
         $data = Auth::user()->pegawai;
         $data->nomor_cpns = $req->nomor_cpns;
         $data->tanggal_cpns = $req->tanggal_cpns;
@@ -468,8 +487,16 @@ class PegawaiController extends Controller
         $data->tanggal_jafung = $req->tanggal_jafung;
         $data->file_jafung = $name_jafung;
 
+        $data->nomor_berkala = $req->nomor_berkala;
+        $data->tanggal_berkala = $req->tanggal_berkala;
+        $data->file_berkala = $name_berkala;
+
         $data->nomor_kariskarsu = $req->nomor_kariskarsu;
         $data->file_kariskarsu = $name_kariskarsu;
+
+        $data->nomor_karpeg = $req->nomor_karpeg;
+        $data->file_karpeg = $name_karpeg;
+
         $data->save();
 
         Session::flash('success', 'Berhasil Di update');

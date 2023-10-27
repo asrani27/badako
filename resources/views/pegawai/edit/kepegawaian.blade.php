@@ -403,6 +403,19 @@
 
             <hr>
             <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor Karpeg </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_karpeg" value="{{$data->nomor_karpeg}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File Karpeg (PDF, Maks 2MB)</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_karpeg" value="{{$data->file_karpeg}}">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
               <label class="col-sm-3 control-label">Surat Tanda Registrasi (Jika Ada) </label>
               <div class="col-sm-9">
                 
@@ -449,6 +462,32 @@
               <label class="col-sm-3 control-label">File SIP (PDF, Maks 2MB) </label>
               <div class="col-sm-9">
                 <input type="file" class="form-control" name="file_spmt">
+              </div>
+            </div>
+            <hr>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Surat Berkala </label>
+              <div class="col-sm-9">
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Nomor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="nomor_berkala" value="{{$data->nomor_berkala}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Tanggal </label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="tanggal_berkala" value="{{$data->tanggal_berkala}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">File Berkala (PDF, Maks 2MB) </label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="file_berkala">
               </div>
             </div>
             <div class="form-group">
