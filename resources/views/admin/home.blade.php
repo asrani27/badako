@@ -199,7 +199,7 @@ DASHBOARD ADMIN
       <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
         <th class="text-center">No</th>
         <th>NIP/Nama</th>
-        <th>Tanggal Lahir / Usia</th>
+        <th>Tanggal Pensiun / Usia</th>
       </tr>
       @php
           $no=1;
