@@ -30,19 +30,21 @@ class AdminController extends Controller
                 $item->age = 0;
             } else {
                 $now = Carbon::now(); // Tanggal sekarang
-                $b_day = Carbon::parse();
+                $b_day = Carbon::parse($item->tanggal_lahir);
                 $item->age = $b_day->diffInYears($now);
             }
 
             if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
                 $item->pensiun = 'Y';
-            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 58) {
+            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+                $item->pensiun = 'Y';
+            } elseif ($item->age == 58) {
                 $item->pensiun = 'Y';
             } else {
                 $item->pensiun = 'T';
             }
             return $item;
-        })->where('pensiun', 'Y');
+        });
 
 
 
