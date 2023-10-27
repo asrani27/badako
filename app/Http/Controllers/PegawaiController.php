@@ -140,31 +140,48 @@ class PegawaiController extends Controller
         }
 
 
-        $data = Auth::user()->pegawai;
-        $data->nama = $req->nama;
-        $data->nip = $req->nip;
-        if (Auth::user()->pegawai->status_pegawai == 'PPPK') {
-            $data->golongan = $req->golongan;
+        if (Auth::user()->pegawai->status_pegawai == 'NON ASD') {
+            $data = Auth::user()->pegawai;
+            $data->nama = $req->nama;
+            $data->nip = $req->nip;
+            $data->unitkerja_id = $req->unitkerja_id;
+            $data->jabatan = $req->jabatan;
+            $data->mkg = $req->mkg;
+            $data->jkel = $req->jkel;
+            $data->tempat_lahir = $req->tempat_lahir;
+            $data->tanggal_lahir = $req->tanggal_lahir;
+            $data->email = $req->email;
+            $data->rekening = $req->rekening;
+            $data->file_rekening = $name_rekening;
+            $data->save();
         } else {
-            $data->pangkat_id = $req->pangkat_id;
+            $data = Auth::user()->pegawai;
+            $data->nama = $req->nama;
+            $data->nip = $req->nip;
+            if (Auth::user()->pegawai->status_pegawai == 'PPPK') {
+                $data->golongan = $req->golongan;
+            } else {
+                $data->pangkat_id = $req->pangkat_id;
+            }
+            if ($req->jenis_jabatan == 'JFT') {
+                $data->jenjang_jabatan = $req->jenjang_jabatan;
+            } else {
+                $data->jenjang_jabatan = null;
+            }
+            $data->jabatan = $req->jabatan;
+            $data->kelas_jabatan = $req->kelas_jabatan;
+            $data->jenis_jabatan = $req->jenis_jabatan;
+            $data->mkg = $req->mkg;
+            $data->unitkerja_id = $req->unitkerja_id;
+            $data->jkel = $req->jkel;
+            $data->tempat_lahir = $req->tempat_lahir;
+            $data->tanggal_lahir = $req->tanggal_lahir;
+            $data->email = $req->email;
+            $data->rekening = $req->rekening;
+            $data->file_rekening = $name_rekening;
+            $data->save();
         }
-        $data->jabatan = $req->jabatan;
-        if ($req->jenis_jabatan == 'JFT') {
-            $data->jenjang_jabatan = $req->jenjang_jabatan;
-        } else {
-            $data->jenjang_jabatan = null;
-        }
-        $data->kelas_jabatan = $req->kelas_jabatan;
-        $data->jenis_jabatan = $req->jenis_jabatan;
-        $data->mkg = $req->mkg;
-        $data->unitkerja_id = $req->unitkerja_id;
-        $data->jkel = $req->jkel;
-        $data->tempat_lahir = $req->tempat_lahir;
-        $data->tanggal_lahir = $req->tanggal_lahir;
-        $data->email = $req->email;
-        $data->rekening = $req->rekening;
-        $data->file_rekening = $name_rekening;
-        $data->save();
+
 
         Session::flash('success', 'Berhasil Di update');
 
