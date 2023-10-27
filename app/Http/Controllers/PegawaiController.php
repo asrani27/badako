@@ -264,7 +264,7 @@ class PegawaiController extends Controller
         }
 
         $data = Auth::user()->pegawai;
-        $data->jenjang = $req->jenjang;
+        $data->jenjang_pendidikan = $req->jenjang_pendidikan;
         $data->gelar = $req->gelar;
         $data->prodi = $req->prodi;
         $data->tempat_pendidikan = $req->tempat_pendidikan;

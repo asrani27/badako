@@ -21,7 +21,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenjang</label>
                   <div class="col-sm-10">
-                    <select name="jenjang" class="form-control">
+                    <select name="jenjang_pendidikan" class="form-control">
                       <option value="">-pilih-</option>
                       <option value="SD" {{$data->jenjang == 'SD' ? 'selected':''}}>SD sederajat</option>
                       <option value="SMP" {{$data->jenjang == 'SMP' ? 'selected':''}}>SMP sederajat</option>

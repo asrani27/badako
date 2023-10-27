@@ -153,7 +153,9 @@ class SuperadminController extends Controller
     {
         $data = M_pegawai::get();
         $role = Role::where('name', 'pegawai')->first();
+
         foreach ($data as $key => $item) {
+
             $check = User::where('username', $item->nip)->first();
             if ($check == null) {
                 //create akun
