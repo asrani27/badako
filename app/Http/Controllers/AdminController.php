@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\M_pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +18,12 @@ class AdminController extends Controller
         $pns = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->count();
         $pkkk = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pkkk')->count();
         $nonasn = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'non asn')->count();
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn'));
+
+        $tigatahun = Carbon::now()->subyear(3)->format('Y');
+
+        $naikpangkat = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->get();
+
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat'));
     }
 
     public function profil()
