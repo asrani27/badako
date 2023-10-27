@@ -25,49 +25,9 @@
                   </div>
                 </div>
 
-                @if (Auth::user()->pegawai->status_pegawai == 'NON ASN')
-                    
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">NIK</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Unit Kerja</label>
-                  <div class="col-sm-10">
-                    <select name="unitkerja_id" class="form-control" required>
-                        <option value="">-pilih-</option>
-                        @foreach ($unitkerja as $item)
-                        <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Pekerjaan/Profesi</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="jabatan" required value="{{$data->jabatan}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Masa Kerja</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
-                  </div>
-                </div>
                 
-                @else
 
-                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">No Induk PPPK</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nip" readonly value="{{$data->nip}}">
-                  </div>
-                </div>
-                @else
+                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">NIP</label>
                   <div class="col-sm-10">
@@ -75,7 +35,7 @@
                   </div>
                 </div>
                 
-                @endif
+                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Unit Kerja</label>
                   <div class="col-sm-10">
@@ -87,21 +47,7 @@
                     </select>
                   </div>
                 </div>
-
-                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Golongan</label>
-                  <div class="col-sm-10">
-                    <select name="golongan" class="form-control" required>
-                        <option value="">-pilih-</option>
-                        <option value="VII" {{$data->golongan == 'VII' ? 'selected' :''}}>VII</option>
-                        <option value="IX" {{$data->golongan == 'IX' ? 'selected' :''}}>IX</option>
-                        <option value="X" {{$data->golongan == 'X' ? 'selected' :''}}>X</option>
-                        
-                    </select>
-                  </div>
-                </div>
-                @else
+                
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Pangkat/Gol</label>
@@ -114,17 +60,30 @@
                     </select>
                   </div>
                 </div>
-                @endif
+                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nama Jabatan</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="jabatan" required value="{{$data->jabatan}}">
                   </div>
                 </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Jenis Jabatan</label>
+                  <div class="col-sm-10">
+                    <select id="jenis_jabatan" name="jenis_jabatan" class="form-control jenisjabatan">
+                      <option value="">-pilih-</option>
+                      <option value="JPT" {{$data->jenis_jabatan == 'JPT' ? 'selected':''}}>JPT</option>
+                      <option value="JA" {{$data->jenis_jabatan == 'JA' ? 'selected':''}}>JA</option>
+                      <option value="JFT" {{$data->jenis_jabatan == 'JFT' ? 'selected':''}}>JFT</option>
+                      <option value="JFU" {{$data->jenis_jabatan == 'JFU' ? 'selected':''}}>JFU</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenjang Jabatan</label>
                   <div class="col-sm-10">
-                    <select name="jenjang_jabatan" class="form-control" required>
+                    <select id="jenjang_jabatan" name="jenjang_jabatan" class="form-control" required>
                       <option value="">-pilih-</option>
                       <option value="PEMULA" {{$data->jenjang_jabatan == 'PEMULA' ? 'selected':''}}>PEMULA</option>
                       <option value="TERAMPIL" {{$data->jenjang_jabatan == 'TERAMPIL' ? 'selected':''}}>TERAMPIL</option>
@@ -140,46 +99,22 @@
                   </div>
                 </div>
 
-                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
-                @else
+                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Kelas Jabatan</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="kelas_jabatan" required value="{{$data->kelas_jabatan}}">
                   </div>
                 </div>
-                @endif
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Jenis Jabatan</label>
-                  <div class="col-sm-10">
-                    <select name="jenis_jabatan" class="form-control">
-                      <option value="">-pilih-</option>
-                      <option value="JPT" {{$data->jenis_jabatan == 'JPT' ? 'selected':''}}>JPT</option>
-                      <option value="JA" {{$data->jenis_jabatan == 'JA' ? 'selected':''}}>JA</option>
-                      <option value="JFT" {{$data->jenis_jabatan == 'JFT' ? 'selected':''}}>JFT</option>
-                      <option value="JFU" {{$data->jenis_jabatan == 'JFU' ? 'selected':''}}>JFU</option>
-                    </select>
-                  </div>
-                </div>
 
-
-                @if (Auth::user()->pegawai->status_pegawai == 'PPPK')
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Masa Kerja (Sesuai SK Pengangkatan)</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
-                  </div>
-                </div>
-                @else
+                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Masa Kerja Golongan (Sesuai SK Pangkat Terakhir)</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="mkg" required value="{{$data->mkg}}">
                   </div>
                 </div>
-                @endif
-
-                @endif
+                
                 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenis Kelamin</label>
@@ -244,6 +179,24 @@
 @endsection
 @push('js')
 <script>
+  $(document).ready(function() {
+    jenisJabatan = {!!json_encode($data->jenis_jabatan)!!}
+    if(jenisJabatan != 'JFT'){
+      $('#jenjang_jabatan').attr('disabled', 'disabled');
+    }else{
+      $('#jenjang_jabatan').removeAttr('disabled');
+    }
+});
 
-</script>
+
+  $('.jenisjabatan').change(function(){ 
+    var valJenis = $('#jenis_jabatan').find(":selected").val();
+    if(valJenis != 'JFT'){
+      $('#jenjang_jabatan').attr('disabled', 'disabled');
+    }else{
+      $('#jenjang_jabatan').removeAttr('disabled');
+    }
+    console.log(valJenis);
+  });
+  </script>
 @endpush

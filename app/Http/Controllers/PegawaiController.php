@@ -69,7 +69,15 @@ class PegawaiController extends Controller
         $data = Auth::user()->pegawai;
         $unitkerja = UnitKerja::get();
         $pangkat = Pangkat::get();
-        return view('pegawai.edit.profile', compact('data', 'unitkerja', 'pangkat'));
+        if ($data->status_pegawai == 'PNS') {
+            return view('pegawai.edit.pns.profile', compact('data', 'unitkerja', 'pangkat'));
+        }
+        if ($data->status_pegawai == 'PPPK') {
+            return view('pegawai.edit.pppk.profile', compact('data', 'unitkerja', 'pangkat'));
+        }
+        if ($data->status_pegawai == 'NON ASN') {
+            return view('pegawai.edit.nonasn.profile', compact('data', 'unitkerja', 'pangkat'));
+        }
     }
     public function editKepegawaian()
     {
@@ -131,6 +139,7 @@ class PegawaiController extends Controller
             $file_rekening->move($path, $name_rekening);
         }
 
+
         $data = Auth::user()->pegawai;
         $data->nama = $req->nama;
         $data->nip = $req->nip;
@@ -140,7 +149,11 @@ class PegawaiController extends Controller
             $data->pangkat_id = $req->pangkat_id;
         }
         $data->jabatan = $req->jabatan;
-        $data->jenjang_jabatan = $req->jenjang_jabatan;
+        if ($req->jenis_jabatan == 'JFT') {
+            $data->jenjang_jabatan = $req->jenjang_jabatan;
+        } else {
+            $data->jenjang_jabatan = null;
+        }
         $data->kelas_jabatan = $req->kelas_jabatan;
         $data->jenis_jabatan = $req->jenis_jabatan;
         $data->mkg = $req->mkg;
