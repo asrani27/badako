@@ -140,7 +140,7 @@ DASHBOARD ADMIN
             <tr>
               <td>{{$no++}}</td>
               <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-              <td>{{\Carbon\Carbon::parse($item->tanggal_pangkat)->format('d-m-Y')}}</td>
+              <td>{{\Carbon\Carbon::parse($item->tanggal_pangkat)->addYear(3)->format('d-m-Y')}}</td>
             </tr>
         @endforeach
         
@@ -174,7 +174,7 @@ DASHBOARD ADMIN
             <tr>
               <td>{{$no++}}</td>
               <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-              <td>{{\Carbon\Carbon::parse($item->tanggal_berkala)->format('d-m-Y')}}</td>
+              <td>{{\Carbon\Carbon::parse($item->tanggal_berkala)->addYear(2)->format('d-m-Y')}}</td>
             </tr>
         @endforeach
         
@@ -243,7 +243,7 @@ DASHBOARD ADMIN
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-        <td>{{\Carbon\Carbon::parse($item->tanggal_str)->format('d-m-Y')}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_str)->addYear(5)->format('d-m-Y')}}</td>
       </tr>
       @endforeach
         
@@ -277,7 +277,7 @@ DASHBOARD ADMIN
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-        <td>{{\Carbon\Carbon::parse($item->tanggal_sip)->format('d-m-Y')}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_sip)->addYear(5)->format('d-m-Y')}}</td>
       </tr>
       @endforeach
         
