@@ -199,7 +199,7 @@ DASHBOARD ADMIN
       <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
         <th class="text-center">No</th>
         <th>NIP/Nama</th>
-        <th>Tanggal</th>
+        <th>Tanggal Lahir / Usia</th>
       </tr>
       @php
           $no=1;
@@ -208,7 +208,8 @@ DASHBOARD ADMIN
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->addYear($item->age)->format('d-m-Y')}} <br/>
+          {{$item->age}} Tahun </td>
       </tr>
       @endforeach
       </tbody>
@@ -310,8 +311,8 @@ DASHBOARD ADMIN
         @foreach ($belumisi as $item)
         <tr>
           <td>{{$no++}}</td>
-          <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-          <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+          <td>{{$item->nama}}</td>
+          <td>{{$item->unit_kerja}}</td>
         </tr>
         @endforeach
         
