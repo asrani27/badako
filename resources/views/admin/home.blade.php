@@ -312,7 +312,7 @@ DASHBOARD ADMIN
         <tr>
           <td>{{$no++}}</td>
           <td>{{$item->nama}}</td>
-          <td>{{$item->unit_kerja}}</td>
+          <td>{{$item->unitkerja->nama}}</td>
         </tr>
         @endforeach
         
