@@ -202,6 +202,13 @@ DASHBOARD ADMIN
         <th>Tanggal</th>
       </tr>
       
+      @foreach ($pensiun as $item)
+      <tr>
+        <td>{{$no++}}</td>
+        <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+      </tr>
+      @endforeach
       </tbody>
     </table>
     </div>

@@ -25,7 +25,28 @@ class AdminController extends Controller
         $naikpangkat = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->get();
         $naikberkala = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->get();
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala'));
+        $pensiun = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->get()->map(function ($item) {
+            if ($item->tanggal_lahir == null) {
+                $item->age = 0;
+            } else {
+                $now = Carbon::now(); // Tanggal sekarang
+                $b_day = Carbon::parse();
+                $item->age = $b_day->diffInYears($now);
+            }
+
+            if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
+                $item->pensiun = 'Y';
+            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 58) {
+                $item->pensiun = 'Y';
+            } else {
+                $item->pensiun = 'T';
+            }
+            return $item;
+        })->where('pensiun', 'Y');
+
+
+
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun'));
     }
 
     public function profil()
