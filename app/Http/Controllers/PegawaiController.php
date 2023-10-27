@@ -466,6 +466,22 @@ class PegawaiController extends Controller
             $file_karpeg->move($path, $name_karpeg);
         }
 
+        if ($req->file_str == null) {
+            $name_str = Auth::user()->pegawai->file_str;
+        } else {
+            $file_str = $req->file('file_str');
+            $extension_str = $req->file_str->getClientOriginalExtension();
+            $name_str = 'str' . uniqid() . '.' . $extension_str;
+            $file_str->move($path, $name_str);
+        }
+        if ($req->file_sip == null) {
+            $name_sip = Auth::user()->pegawai->file_sip;
+        } else {
+            $file_sip = $req->file('file_sip');
+            $extension_sip = $req->file_sip->getClientOriginalExtension();
+            $name_sip = 'sip' . uniqid() . '.' . $extension_sip;
+            $file_sip->move($path, $name_sip);
+        }
         $data = Auth::user()->pegawai;
         $data->nomor_cpns = $req->nomor_cpns;
         $data->tanggal_cpns = $req->tanggal_cpns;
@@ -490,6 +506,14 @@ class PegawaiController extends Controller
         $data->nomor_berkala = $req->nomor_berkala;
         $data->tanggal_berkala = $req->tanggal_berkala;
         $data->file_berkala = $name_berkala;
+
+        $data->nomor_str = $req->nomor_str;
+        $data->tanggal_str = $req->tanggal_str;
+        $data->file_str = $name_str;
+
+        $data->nomor_sip = $req->nomor_sip;
+        $data->tanggal_sip = $req->tanggal_sip;
+        $data->file_sip = $name_sip;
 
         $data->nomor_kariskarsu = $req->nomor_kariskarsu;
         $data->file_kariskarsu = $name_kariskarsu;
