@@ -154,7 +154,7 @@
     <hr>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">SK Berkala</label>
+      <label class="col-sm-3 control-label">SK Berkala Terakhir</label>
       <div class="col-sm-9">
       </div>
     </div>
