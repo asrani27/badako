@@ -301,7 +301,7 @@ DASHBOARD ADMIN
         <tbody>
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
           <th class="text-center">No</th>
-          <th>NIP/Nama</th>
+          <th>Nama</th>
           <th>Puskesmas</th>
         </tr>
         
