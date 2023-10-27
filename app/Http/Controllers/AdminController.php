@@ -20,10 +20,12 @@ class AdminController extends Controller
         $nonasn = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'non asn')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
+        $duatahun = Carbon::now()->subyear(2)->format('Y');
 
         $naikpangkat = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->get();
+        $naikberkala = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->get();
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat'));
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala'));
     }
 
     public function profil()

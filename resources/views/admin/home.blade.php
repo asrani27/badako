@@ -167,6 +167,16 @@ DASHBOARD ADMIN
           <th>NIP/Nama</th>
           <th>Tanggal</th>
         </tr>
+        @php
+            $no=1;
+        @endphp
+        @foreach ($naikberkala as $item)
+            <tr>
+              <td>{{$no++}}</td>
+              <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+              <td>{{\Carbon\Carbon::parse($item->tanggal_berkala)->format('d-m-Y')}}</td>
+            </tr>
+        @endforeach
         
         
         </tbody>
