@@ -28,6 +28,7 @@ class AdminController extends Controller
         $str = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->get();
         $sip = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->get();
 
+        $belumisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('unit_kerja', null)->get();
         $pensiun = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->get()->map(function ($item) {
             if ($item->tanggal_lahir == null) {
                 $item->age = 0;
@@ -51,7 +52,7 @@ class AdminController extends Controller
 
 
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun', 'str', 'sip'));
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi'));
     }
 
     public function profil()

@@ -243,7 +243,7 @@ DASHBOARD ADMIN
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_str)->format('d-m-Y')}}</td>
       </tr>
       @endforeach
         
@@ -277,7 +277,7 @@ DASHBOARD ADMIN
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nip}}<br/>{{$item->nama}}</td>
-        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_sip)->format('d-m-Y')}}</td>
       </tr>
       @endforeach
         
@@ -304,6 +304,16 @@ DASHBOARD ADMIN
           <th>Puskesmas</th>
         </tr>
         
+        @php
+        $no=1;
+        @endphp
+        @foreach ($belumisi as $item)
+        <tr>
+          <td>{{$no++}}</td>
+          <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+          <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y')}}</td>
+        </tr>
+        @endforeach
         
         </tbody>
       </table>
