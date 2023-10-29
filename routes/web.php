@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('bandingkan', [SuperadminController::class, 'bandingkan']);
         Route::get('beranda', [SuperadminController::class, 'index']);
+        Route::get('beranda/filter', [SuperadminController::class, 'filter']);
         Route::get('/data/nomoraduan', [SuperadminController::class, 'nomor']);
         Route::post('/data/nomoraduan', [SuperadminController::class, 'updateNomor']);
         Route::get('/data/pegawai', [SuperadminController::class, 'pegawai']);
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/data/pegawai/delete/{id}', [AdminController::class, 'deletePegawai']);
         Route::get('/data/pegawai/profile/{id}', [AdminController::class, 'profilPegawai']);
         Route::get('/data/pegawai/akun', [AdminController::class, 'akunPegawai']);
+        Route::get('/data/pegawai/search', [AdminController::class, 'cariPegawai']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {

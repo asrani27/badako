@@ -18,6 +18,10 @@ class AdminController extends Controller
         $pns = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->count();
         $pkkk = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pkkk')->count();
         $nonasn = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'non asn')->count();
+        $tidakisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', null)->count();
+        $pj_struktural = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JPT')->count() + M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count();
+        $jfu = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JFU')->count();
+        $jft = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JFT')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
@@ -28,7 +32,7 @@ class AdminController extends Controller
         $str = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->get();
         $sip = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->get();
 
-        $belumisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('unit_kerja', null)->get();
+        $belumisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('unit_kerja', null)->paginate(10);
         $pensiun = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pns')->get()->map(function ($item) {
             if ($item->tanggal_lahir == null) {
                 $item->age = 0;
@@ -52,7 +56,7 @@ class AdminController extends Controller
 
 
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi'));
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jfu', 'jft'));
     }
 
     public function profil()
@@ -167,5 +171,19 @@ class AdminController extends Controller
 
         Session::flash('success', 'Akun Login berhasil dibuat, username : nip, password :nip');
         return back();
+    }
+
+    public function cariPegawai()
+    {
+        $keyword = request()->get('search');
+        $data = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('nama', 'LIKE', '%' . $keyword . '%')
+            ->orWhere(
+                function ($query) use ($keyword) {
+                    $query->where('unitkerja_id', Auth::user()->unitkerja_id)->where('nip', 'LIKE', '%' . $keyword . '%');
+                }
+            )
+            ->paginate(10);
+        request()->flash();
+        return view('admin.pegawai.index', compact('data'));
     }
 }

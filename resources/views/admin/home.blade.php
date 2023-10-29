@@ -84,7 +84,7 @@ DASHBOARD ADMIN
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI JABATAN STRUKTURAL</span>
-        <span class="info-box-number">0</span>
+        <span class="info-box-number">{{$pj_struktural}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -101,14 +101,48 @@ DASHBOARD ADMIN
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL</span>
-        <span class="info-box-number">0</span>
+        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL UMUM</span>
+        <span class="info-box-number">{{$jfu}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai Jabatan Fungsional
+             Total Pegawai Jabatan Fungsional Umum
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box bg-purple-gradient">
+      <span class="info-box-icon"><i class="fa fa-user"></i></span>
+  
+      <div class="info-box-content">
+        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL TERTENTU</span>
+        <span class="info-box-number">{{$jft}}</span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Pegawai Jabatan Fungsional Tertentu
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box bg-blue-gradient">
+      <span class="info-box-icon"><i class="fa fa-user"></i></span>
+  
+      <div class="info-box-content">
+        <span class="info-box-text">PEGAWAI BELUM ISI STATUS KEPEGAWAIAN</span>
+        <span class="info-box-number">{{$tidakisi}}</span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Pegawai Belum Isi Status Kepegawaian
             </span>
       </div>
     </div>
@@ -217,8 +251,9 @@ DASHBOARD ADMIN
     </div>
     </div>
   </div>
+</div>
 
-
+<div class="row">
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
@@ -304,13 +339,10 @@ DASHBOARD ADMIN
           <th>Nama</th>
           <th>Puskesmas</th>
         </tr>
-        
-        @php
-        $no=1;
-        @endphp
-        @foreach ($belumisi as $item)
+
+        @foreach ($belumisi as $key => $item)
         <tr>
-          <td>{{$no++}}</td>
+          <td>{{$belumisi->firstItem() + $key}}</td>
           <td>{{$item->nama}}</td>
           <td>{{$item->unitkerja->nama}}</td>
         </tr>
@@ -318,6 +350,7 @@ DASHBOARD ADMIN
         
         </tbody>
       </table>
+      {{$belumisi->links()}}
     </div>
     </div>
   </div>
@@ -369,7 +402,7 @@ DASHBOARD ADMIN
   <div class="col-md-6">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Jenis ASN</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Status Kepegawaian</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}

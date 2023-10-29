@@ -24,7 +24,7 @@ PEGAWAI
         @csrf
         <div class="box-body">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP/NIK</label>
 
             <div class="col-sm-10">
               <input type="emtextail" class="form-control" name="nip" placeholder="NIP">

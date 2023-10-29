@@ -6,6 +6,33 @@
 DASHBOARD
 @endsection
 @section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">UNIT KERJA</label>
+
+          <form method="get" action="/superadmin/beranda/filter">
+            @csrf
+          <div class="col-sm-9">
+              <select class="form-control" name="unitkerja">
+                <option value="">-TAMPIL SEMUA-</option>
+                @foreach ($unitkerja as $item)
+                <option value="{{$item->id}}" {{$item->id == old('unitkerja') ? 'selected':''}}>{{$item->nama}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i> FILTER DATA</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box bg-aqua-gradient">
@@ -84,7 +111,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI JABATAN STRUKTURAL</span>
-        <span class="info-box-number">0</span>
+        <span class="info-box-number">{{$pj_struktural}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -101,14 +128,48 @@ DASHBOARD
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL</span>
-        <span class="info-box-number">0</span>
+        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL UMUM</span>
+        <span class="info-box-number">{{$jfu}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai Jabatan Fungsional
+             Total Pegawai Jabatan Fungsional Umum
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box bg-purple-gradient">
+      <span class="info-box-icon"><i class="fa fa-user"></i></span>
+  
+      <div class="info-box-content">
+        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL TERTENTU</span>
+        <span class="info-box-number">{{$jft}}</span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Pegawai Jabatan Fungsional Tertentu
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box bg-blue-gradient">
+      <span class="info-box-icon"><i class="fa fa-user"></i></span>
+  
+      <div class="info-box-content">
+        <span class="info-box-text">PEGAWAI BELUM ISI STATUS KEPEGAWAIAN</span>
+        <span class="info-box-number">{{$tidakisi}}</span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Pegawai Belum Isi Status Kepegawaian
             </span>
       </div>
     </div>
@@ -131,12 +192,24 @@ DASHBOARD
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
+          <th>Unit kerja</th>
           <th>Tanggal</th>
         </tr>
-        
+        @php
+            $no=1;
+        @endphp
+        @foreach ($naikpangkat as $item)
+            <tr>
+              <td>{{$no++}}</td>
+              <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+              <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+              <td>{{\Carbon\Carbon::parse($item->tanggal_pangkat)->addYear(3)->format('d-m-Y')}}</td>
+            </tr>
+        @endforeach
         
         </tbody>
       </table>
+      {{$naikpangkat->links()}}
     </div>
     </div>
   </div>
@@ -156,12 +229,25 @@ DASHBOARD
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
+          <th>Unit Kerja</th>
           <th>Tanggal</th>
         </tr>
+        @php
+            $no=1;
+        @endphp
+        @foreach ($naikberkala as $item)
+            <tr>
+              <td>{{$no++}}</td>
+              <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+              <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+              <td>{{\Carbon\Carbon::parse($item->tanggal_berkala)->addYear(2)->format('d-m-Y')}}</td>
+            </tr>
+        @endforeach
         
         
         </tbody>
       </table>
+      {{$naikberkala->links()}}
     </div>
     </div>
   </div>
@@ -180,16 +266,29 @@ DASHBOARD
       <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
         <th class="text-center">No</th>
         <th>NIP/Nama</th>
-        <th>Tanggal</th>
+        <th>Unit Kerja</th>
+        <th>Tanggal Pensiun / Usia</th>
       </tr>
-      
+      @php
+          $no=1;
+      @endphp
+      @foreach ($pensiun as $item)
+      <tr>
+        <td>{{$no++}}</td>
+        <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+        <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_lahir)->addYear($item->age)->format('d-m-Y')}} <br/>
+          {{$item->age}} Tahun </td>
+      </tr>
+      @endforeach
       </tbody>
     </table>
     </div>
     </div>
   </div>
+</div>
 
-
+<div class="row">
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
@@ -205,9 +304,21 @@ DASHBOARD
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
+          <th>Unit Kerja</th>
           <th>Tanggal</th>
         </tr>
         
+      @php
+      $no=1;
+      @endphp
+      @foreach ($str as $item)
+      <tr>
+        <td>{{$no++}}</td>
+        <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+        <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        <td>{{\Carbon\Carbon::parse($item->tanggal_str)->addYear(5)->format('d-m-Y')}}</td>
+      </tr>
+      @endforeach
         
         </tbody>
       </table>
@@ -230,9 +341,20 @@ DASHBOARD
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #0954a9, #0785a9, #4db1a5, #2ba79f); color:#fff">
           <th class="text-center">No</th>
           <th>NIP/Nama</th>
+          <th>Unit Kerja</th>
           <th>Tanggal</th>
         </tr>
-        
+        @php
+        $no=1;
+        @endphp
+        @foreach ($sip as $item)
+        <tr>
+          <td>{{$no++}}</td>
+          <td>{{$item->nip}}<br/>{{$item->nama}}</td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+          <td>{{\Carbon\Carbon::parse($item->tanggal_sip)->addYear(5)->format('d-m-Y')}}</td>
+        </tr>
+        @endforeach
         
         </tbody>
       </table>
@@ -253,18 +375,25 @@ DASHBOARD
         <tbody>
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
           <th class="text-center">No</th>
-          <th>NIP/Nama</th>
-          <th>Puskesmas</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
         </tr>
-        
+
+        @foreach ($belumisi as $key => $item)
+        <tr>
+          <td>{{$belumisi->firstItem() + $key}}</td>
+          <td>{{$item->nama}}</td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        </tr>
+        @endforeach
         
         </tbody>
       </table>
+      {{$belumisi->withQueryString()->links()}}
     </div>
     </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-md-6">
     <div class="box">
@@ -312,7 +441,7 @@ DASHBOARD
   <div class="col-md-6">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Jenis ASN</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Status Kepegawaian</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -324,7 +453,6 @@ DASHBOARD
     </div>
   </div>
 </div>
-
 @endsection
 @push('js')
 <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>

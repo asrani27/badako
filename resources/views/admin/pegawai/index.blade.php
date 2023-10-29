@@ -15,10 +15,10 @@ PEGAWAI
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Pegawai</h3>
 
         <div class="box-tools">
-          <form method="post" action="/admin/data/pegawai/search">
+          <form method="get" action="/admin/data/pegawai/search">
           @csrf
           <div class="input-group input-group-sm hidden-xs" style="width: 250px;">
-            <input type="text" name="search" class="form-control pull-right" placeholder="Cari NIP/Nama">
+            <input type="text" name="search" class="form-control pull-right" value="{{old('search')}}" placeholder="Cari NIP/NIK/Nama" required>
 
             <div class="input-group-btn">
               <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -33,7 +33,7 @@ PEGAWAI
           <tbody>
           <tr style="background-color: #a8c4f1">
             <th class="text-center">NO</th>
-            <th>NIP</th>
+            <th>NIP/NIK</th>
             <th>NAMA</th>
             <th>STATUS PEGAWAI</th>
             <th>AKSI</th>
@@ -45,7 +45,7 @@ PEGAWAI
               <td>{{$item->nama}}</td>
               <td>{{$item->status_pegawai}}</td>
               <td>                  
-                <a href="/admin/data/pegawai/profile/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-user"></i> profile </a>
+                  <a href="/admin/data/pegawai/profile/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-user"></i> profile </a>
                   <a href="/admin/data/pegawai/edit/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
                   <a href="/admin/data/pegawai/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
@@ -64,81 +64,10 @@ PEGAWAI
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    {{$data->links()}}
+    {{$data->withQueryString()->links()}}
   </div>
 </div>
 @endsection
 @push('js')
-<script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
 
-<script>
-  window.onload = function() {
-  
-  var chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    
-    data: [{
-      type: "pie",
-      startAngle: 240,
-      yValueFormatString: "##0.00\"%\"",
-      indexLabel: "{label} {y}",
-      dataPoints: [
-        {y: 79.45, label: "SMA"},
-        {y: 7.31, label: "D3"},
-        {y: 7.06, label: "S1"},
-        {y: 4.91, label: "S2"},
-        {y: 1.26, label: "S3"}
-      ]
-    }]
-  });
-
-  var chart2 = new CanvasJS.Chart("chartContainer2", {
-    animationEnabled: true,
-    
-    data: [{
-      type: "pie",
-      startAngle: 240,
-			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 7.45, label: "Gol. I"},
-        {y: 7.31, label: "Gol. II"},
-        {y: 70.06, label: "Gol. III"},
-        {y: 40.91, label: "Gol. V"},
-        {y: 10.26, label: "Gol. V"}
-      ]
-    }]
-  });
-  var chart3 = new CanvasJS.Chart("chartContainer3", {
-    animationEnabled: true,
-    
-    data: [{
-      type: "pie",
-      startAngle: 240,
-			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "Laki-Laki"},
-        {y: 1567, label: "Perempuan"},
-      ]
-    }]
-  });
-  var chart4 = new CanvasJS.Chart("chartContainer4", {
-    animationEnabled: true,
-    
-    data: [{
-      type: "pie",
-      startAngle: 240,
-			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "PNS"},
-        {y: 1567, label: "PKKK"},
-        {y: 2602, label: "NON ASN"},
-      ]
-    }]
-  });
-  chart.render();
-  chart2.render();
-  chart3.render(); 
-  chart4.render();  
-  }
-</script>
 @endpush

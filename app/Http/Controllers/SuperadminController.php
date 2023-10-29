@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Nomor;
@@ -21,7 +22,183 @@ class SuperadminController extends Controller
         $pns = M_pegawai::where('status_pegawai', 'pns')->count();
         $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
         $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
-        return view('superadmin.home', compact('pns', 'pkkk', 'nonasn'));
+
+        $tidakisi = M_pegawai::where('status_pegawai', null)->count();
+        $pj_struktural = M_pegawai::where('status_pegawai', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
+        $jfu = M_pegawai::where('status_pegawai', 'JFU')->count();
+        $jft = M_pegawai::where('status_pegawai', 'JFT')->count();
+
+        $tigatahun = Carbon::now()->subyear(3)->format('Y');
+        $duatahun = Carbon::now()->subyear(2)->format('Y');
+        $limatahun = Carbon::now()->subyear(5)->format('Y');
+
+        $naikpangkat = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->paginate(10);
+        $naikberkala = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->paginate(10);
+        $str = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->paginate(10);
+        $sip = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
+
+        $belumisi = M_pegawai::where('unit_kerja', null)->paginate(10);
+        $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
+            if ($item->tanggal_lahir == null) {
+                $item->age = 0;
+            } else {
+                $now = Carbon::now(); // Tanggal sekarang
+                $b_day = Carbon::parse($item->tanggal_lahir);
+                $item->age = $b_day->diffInYears($now);
+            }
+
+            if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
+                $item->pensiun = 'Y';
+            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+                $item->pensiun = 'Y';
+            } elseif ($item->age == 58) {
+                $item->pensiun = 'Y';
+            } else {
+                $item->pensiun = 'T';
+            }
+            return $item;
+        })->where('pensiun', 'Y');
+        $unitkerja = UnitKerja::get();
+        return view('superadmin.home', compact(
+            'pns',
+            'pkkk',
+            'nonasn',
+            'tidakisi',
+            'pj_struktural',
+            'jfu',
+            'jft',
+            'naikpangkat',
+            'naikberkala',
+            'str',
+            'sip',
+            'belumisi',
+            'pensiun',
+            'unitkerja'
+        ));
+    }
+    public function filter()
+    {
+        $unitkerja_id = request()->get('unitkerja');
+        if ($unitkerja_id == null) {
+            $pns = M_pegawai::where('status_pegawai', 'pns')->count();
+            $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
+            $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
+
+            $tidakisi = M_pegawai::where('status_pegawai', null)->count();
+            $pj_struktural = M_pegawai::where('status_pegawai', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
+            $jfu = M_pegawai::where('status_pegawai', 'JFU')->count();
+            $jft = M_pegawai::where('status_pegawai', 'JFT')->count();
+
+            $tigatahun = Carbon::now()->subyear(3)->format('Y');
+            $duatahun = Carbon::now()->subyear(2)->format('Y');
+            $limatahun = Carbon::now()->subyear(5)->format('Y');
+
+            $naikpangkat = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->paginate(10);
+            $naikberkala = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->paginate(10);
+            $str = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->paginate(10);
+            $sip = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
+
+            $belumisi = M_pegawai::where('unit_kerja', null)->paginate(10);
+            $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
+                if ($item->tanggal_lahir == null) {
+                    $item->age = 0;
+                } else {
+                    $now = Carbon::now(); // Tanggal sekarang
+                    $b_day = Carbon::parse($item->tanggal_lahir);
+                    $item->age = $b_day->diffInYears($now);
+                }
+
+                if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
+                    $item->pensiun = 'Y';
+                } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+                    $item->pensiun = 'Y';
+                } elseif ($item->age == 58) {
+                    $item->pensiun = 'Y';
+                } else {
+                    $item->pensiun = 'T';
+                }
+                return $item;
+            })->where('pensiun', 'Y');
+            $unitkerja = UnitKerja::get();
+            request()->flash();
+            Session::flash('success', 'Berhasil Ditampilkan');
+            return view('superadmin.home', compact(
+                'pns',
+                'pkkk',
+                'nonasn',
+                'tidakisi',
+                'pj_struktural',
+                'jfu',
+                'jft',
+                'naikpangkat',
+                'naikberkala',
+                'str',
+                'sip',
+                'belumisi',
+                'pensiun',
+                'unitkerja'
+            ));
+        } else {
+
+            $pns = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->count();
+            $pkkk = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pkkk')->count();
+            $nonasn = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'non asn')->count();
+
+            $tidakisi = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', null)->count();
+            $pj_struktural = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'JPT')->count() + M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'JA')->count();
+            $jfu = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'JFU')->count();
+            $jft = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'JFT')->count();
+
+            $tigatahun = Carbon::now()->subyear(3)->format('Y');
+            $duatahun = Carbon::now()->subyear(2)->format('Y');
+            $limatahun = Carbon::now()->subyear(5)->format('Y');
+
+            $naikpangkat = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_pangkat', $tigatahun)->paginate(10);
+            $naikberkala = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_berkala', $duatahun)->paginate(10);
+            $str = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->paginate(10);
+            $sip = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
+
+            $belumisi = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('unit_kerja', null)->paginate(10);
+            $pensiun = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->get()->map(function ($item) {
+                if ($item->tanggal_lahir == null) {
+                    $item->age = 0;
+                } else {
+                    $now = Carbon::now(); // Tanggal sekarang
+                    $b_day = Carbon::parse($item->tanggal_lahir);
+                    $item->age = $b_day->diffInYears($now);
+                }
+
+                if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
+                    $item->pensiun = 'Y';
+                } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+                    $item->pensiun = 'Y';
+                } elseif ($item->age == 58) {
+                    $item->pensiun = 'Y';
+                } else {
+                    $item->pensiun = 'T';
+                }
+                return $item;
+            })->where('pensiun', 'Y');
+            $unitkerja = UnitKerja::get();
+            request()->flash();
+            Session::flash('success', 'Unit kerja ' . UnitKerja::find($unitkerja_id)->nama . ' Berhasil Ditampilkan');
+            return view('superadmin.home', compact(
+                'pns',
+                'pkkk',
+                'nonasn',
+                'tidakisi',
+                'pj_struktural',
+                'jfu',
+                'jft',
+                'naikpangkat',
+                'naikberkala',
+                'str',
+                'sip',
+                'belumisi',
+                'pensiun',
+                'unitkerja'
+            ));
+        }
     }
 
     public function bandingkan()
