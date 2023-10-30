@@ -180,7 +180,7 @@
 <script>
   $(document).ready(function() {
     jenisJabatan = {!!json_encode($data->jenis_jabatan)!!}
-    if(jenisJabatan != 'JFT'){
+    if(jenisJabatan != 'JF'){
       $('#jenjang_jabatan').attr('disabled', 'disabled');
     }else{
       $('#jenjang_jabatan').removeAttr('disabled');
@@ -190,7 +190,7 @@
 
   $('.jenisjabatan').change(function(){ 
     var valJenis = $('#jenis_jabatan').find(":selected").val();
-    if(valJenis != 'JFT'){
+    if(valJenis != 'JF'){
       $('#jenjang_jabatan').attr('disabled', 'disabled');
     }else{
       $('#jenjang_jabatan').removeAttr('disabled');
