@@ -75,8 +75,7 @@
                       <option value="">-pilih-</option>
                       <option value="JPT" {{$data->jenis_jabatan == 'JPT' ? 'selected':''}}>JPT</option>
                       <option value="JA" {{$data->jenis_jabatan == 'JA' ? 'selected':''}}>JA</option>
-                      <option value="JFT" {{$data->jenis_jabatan == 'JFT' ? 'selected':''}}>JFT</option>
-                      <option value="JFU" {{$data->jenis_jabatan == 'JFU' ? 'selected':''}}>JFU</option>
+                      <option value="JF" {{$data->jenis_jabatan == 'JF' ? 'selected':''}}>JF</option>
                     </select>
                   </div>
                 </div>
