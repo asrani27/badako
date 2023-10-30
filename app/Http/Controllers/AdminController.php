@@ -54,8 +54,6 @@ class AdminController extends Controller
             return $item;
         })->where('pensiun', 'Y');
 
-
-
         return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jfu', 'jft'));
     }
 

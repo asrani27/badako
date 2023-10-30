@@ -283,7 +283,6 @@ DASHBOARD
       @endforeach
       </tbody>
     </table>
-    {{$pensiun->links()}}
     </div>
     </div>
   </div>
