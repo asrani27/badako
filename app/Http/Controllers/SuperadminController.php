@@ -24,9 +24,10 @@ class SuperadminController extends Controller
         $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
 
         $tidakisi = M_pegawai::where('status_pegawai', null)->count();
-        $pj_struktural = M_pegawai::where('status_pegawai', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
-        $jfu = M_pegawai::where('status_pegawai', 'JFU')->count();
-        $jft = M_pegawai::where('status_pegawai', 'JFT')->count();
+
+        $pj_struktural = M_pegawai::where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
+        $jfu = M_pegawai::where('jenis_jabatan', 'JFU')->count();
+        $jft = M_pegawai::where('jenis_jabatan', 'JFT')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
@@ -79,15 +80,16 @@ class SuperadminController extends Controller
     public function filter()
     {
         $unitkerja_id = request()->get('unitkerja');
+
         if ($unitkerja_id == null) {
             $pns = M_pegawai::where('status_pegawai', 'pns')->count();
             $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
             $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
 
             $tidakisi = M_pegawai::where('status_pegawai', null)->count();
-            $pj_struktural = M_pegawai::where('status_pegawai', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
-            $jfu = M_pegawai::where('status_pegawai', 'JFU')->count();
-            $jft = M_pegawai::where('status_pegawai', 'JFT')->count();
+            $pj_struktural = M_pegawai::where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
+            $jfu = M_pegawai::where('jenis_jabatan', 'JFU')->count();
+            $jft = M_pegawai::where('jenis_jabatan', 'JFT')->count();
 
             $tigatahun = Carbon::now()->subyear(3)->format('Y');
             $duatahun = Carbon::now()->subyear(2)->format('Y');
