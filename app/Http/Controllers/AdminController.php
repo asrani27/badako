@@ -19,9 +19,9 @@ class AdminController extends Controller
         $pkkk = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'pkkk')->count();
         $nonasn = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'non asn')->count();
         $tidakisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', null)->count();
-        $pj_struktural = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JPT')->count() + M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count();
-        $jfu = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JFU')->count();
-        $jft = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JFT')->count();
+        $pj_struktural = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count();
+        $jfu = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JFU')->count();
+        $jft = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JFT')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
