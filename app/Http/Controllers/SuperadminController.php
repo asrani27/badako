@@ -39,7 +39,10 @@ class SuperadminController extends Controller
         $sip = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
 
         $belumisi = M_pegawai::where('unit_kerja', null)->paginate(10);
-        $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
+
+
+        $pensiun = M_pegawai::where('status_pegawai', 'pns')->paginate(10);
+        $pensiun->transform(function ($item) {
             if ($item->tanggal_lahir == null) {
                 $item->age = 0;
             } else {
@@ -50,7 +53,7 @@ class SuperadminController extends Controller
 
             if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
                 $item->pensiun = 'Y';
-            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+            } elseif ($item->jenis_jabatan == 'JFT' && $item->jenjang_jabatan == 'AHLI MADYA' && $item->age == 60) {
                 $item->pensiun = 'Y';
             } elseif ($item->age == 58) {
                 $item->pensiun = 'Y';
@@ -60,6 +63,7 @@ class SuperadminController extends Controller
             return $item;
         })->where('pensiun', 'Y');
         $unitkerja = UnitKerja::get();
+
         return view('superadmin.home', compact(
             'pns',
             'pkkk',
@@ -101,7 +105,8 @@ class SuperadminController extends Controller
             $sip = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
 
             $belumisi = M_pegawai::where('unit_kerja', null)->paginate(10);
-            $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
+            $pensiun = M_pegawai::where('status_pegawai', 'pns')->paginate(10);
+            $pensiun->transform(function ($item) {
                 if ($item->tanggal_lahir == null) {
                     $item->age = 0;
                 } else {
