@@ -20,8 +20,7 @@ class AdminController extends Controller
         $nonasn = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'non asn')->count();
         $tidakisi = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', null)->count();
         $pj_struktural = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count();
-        $jfu = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JFU')->count();
-        $jft = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JFT')->count();
+        $jf = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JF')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
@@ -54,7 +53,7 @@ class AdminController extends Controller
             return $item;
         })->where('pensiun', 'Y');
 
-        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jfu', 'jft'));
+        return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
     }
 
     public function profil()

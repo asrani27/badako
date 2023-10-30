@@ -374,6 +374,95 @@ class PegawaiController extends Controller
     }
 
 
+    public function updateKepegawaianPPPK(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'file_pengangkatan'  => 'mimes:pdf|max:2048',
+            'file_spmt'  => 'mimes:pdf|max:2048',
+            'file_spk'  => 'mimes:pdf|max:2048',
+            'file_str'  => 'mimes:pdf|max:2048',
+            'file_sip'  => 'mimes:pdf|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File harus PDF dan Maks 2MB');
+            return back();
+        }
+
+        $path = public_path('storage') . '/' . Auth::user()->pegawai->nip . '/kepegawaian';
+
+        if ($req->file_pengangkatan == null) {
+            $name_pengangkatan = Auth::user()->pegawai->file_pengangkatan;
+        } else {
+            $file_pengangkatan = $req->file('file_pengangkatan');
+            $extension_pengangkatan = $req->file_pengangkatan->getClientOriginalExtension();
+            $name_pengangkatan = 'pengangkatan' . uniqid() . '.' . $extension_pengangkatan;
+            $file_pengangkatan->move($path, $name_pengangkatan);
+        }
+
+        if ($req->file_spmt == null) {
+            $name_spmt = Auth::user()->pegawai->file_spmt;
+        } else {
+            $file_spmt = $req->file('file_spmt');
+            $extension_spmt = $req->file_spmt->getClientOriginalExtension();
+            $name_spmt = 'spmt' . uniqid() . '.' . $extension_spmt;
+            $file_spmt->move($path, $name_spmt);
+        }
+
+        if ($req->file_spk == null) {
+            $name_spk = Auth::user()->pegawai->file_spk;
+        } else {
+            $file_spk = $req->file('file_spk');
+            $extension_spk = $req->file_spk->getClientOriginalExtension();
+            $name_spk = 'spk' . uniqid() . '.' . $extension_spk;
+            $file_spk->move($path, $name_spk);
+        }
+
+        if ($req->file_str == null) {
+            $name_str = Auth::user()->pegawai->file_str;
+        } else {
+            $file_str = $req->file('file_str');
+            $extension_str = $req->file_str->getClientOriginalExtension();
+            $name_str = 'str' . uniqid() . '.' . $extension_str;
+            $file_str->move($path, $name_str);
+        }
+
+        if ($req->file_sip == null) {
+            $name_sip = Auth::user()->pegawai->file_sip;
+        } else {
+            $file_sip = $req->file('file_sip');
+            $extension_sip = $req->file_sip->getClientOriginalExtension();
+            $name_sip = 'sip' . uniqid() . '.' . $extension_sip;
+            $file_sip->move($path, $name_sip);
+        }
+
+        $data = Auth::user()->pegawai;
+        $data->nomor_pengangkatan = $req->nomor_pengangkatan;
+        $data->tanggal_pengangkatan = $req->tanggal_pengangkatan;
+        $data->file_pengangkatan = $name_pengangkatan;
+
+        $data->nomor_spmt = $req->nomor_spmt;
+        $data->tanggal_spmt = $req->tanggal_spmt;
+        $data->file_spmt = $name_spmt;
+
+        $data->nomor_spk = $req->nomor_spk;
+        $data->tanggal_spk = $req->tanggal_spk;
+        $data->file_spk = $name_spk;
+
+        $data->nomor_str = $req->nomor_str;
+        $data->tanggal_str = $req->tanggal_str;
+        $data->file_str = $name_str;
+
+        $data->nomor_sip = $req->nomor_sip;
+        $data->tanggal_sip = $req->tanggal_sip;
+        $data->file_sip = $name_sip;
+        $data->save();
+
+        Session::flash('success', 'Berhasil Di update');
+
+        return redirect('/pegawai/beranda');
+    }
     public function updateKepegawaian(Request $req)
     {
         $validator = Validator::make($req->all(), [

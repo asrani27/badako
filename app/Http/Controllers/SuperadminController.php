@@ -26,8 +26,8 @@ class SuperadminController extends Controller
         $tidakisi = M_pegawai::where('status_pegawai', null)->count();
 
         $pj_struktural = M_pegawai::where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
-        $jfu = M_pegawai::where('jenis_jabatan', 'JFU')->count();
-        $jft = M_pegawai::where('jenis_jabatan', 'JFT')->count();
+
+        $jf = M_pegawai::where('jenis_jabatan', 'JF')->count();
 
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
@@ -70,8 +70,7 @@ class SuperadminController extends Controller
             'nonasn',
             'tidakisi',
             'pj_struktural',
-            'jfu',
-            'jft',
+            'jf',
             'naikpangkat',
             'naikberkala',
             'str',
@@ -92,8 +91,7 @@ class SuperadminController extends Controller
 
             $tidakisi = M_pegawai::where('status_pegawai', null)->count();
             $pj_struktural = M_pegawai::where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('status_pegawai', 'JA')->count();
-            $jfu = M_pegawai::where('jenis_jabatan', 'JFU')->count();
-            $jft = M_pegawai::where('jenis_jabatan', 'JFT')->count();
+            $jfu = M_pegawai::where('jenis_jabatan', 'JF')->count();
 
             $tigatahun = Carbon::now()->subyear(3)->format('Y');
             $duatahun = Carbon::now()->subyear(2)->format('Y');
@@ -127,6 +125,9 @@ class SuperadminController extends Controller
                 return $item;
             })->where('pensiun', 'Y');
             $unitkerja = UnitKerja::get();
+
+            dd($jfu);
+
             request()->flash();
             Session::flash('success', 'Berhasil Ditampilkan');
             return view('superadmin.home', compact(
@@ -135,8 +136,7 @@ class SuperadminController extends Controller
                 'nonasn',
                 'tidakisi',
                 'pj_struktural',
-                'jfu',
-                'jft',
+                'jf',
                 'naikpangkat',
                 'naikberkala',
                 'str',

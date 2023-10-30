@@ -128,35 +128,19 @@ DASHBOARD
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL UMUM</span>
-        <span class="info-box-number">{{$jfu}}</span>
+        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL</span>
+        <span class="info-box-number">{{$jf}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai Jabatan Fungsional Umum
+             Total Pegawai Jabatan Fungsional
             </span>
       </div>
     </div>
   </div>
-  <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box bg-purple-gradient">
-      <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
-      <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL TERTENTU</span>
-        <span class="info-box-number">{{$jft}}</span>
-  
-        <div class="progress">
-          <div class="progress-bar" style="width: 100%"></div>
-        </div>
-        <span class="progress-description">
-             Total Pegawai Jabatan Fungsional Tertentu
-            </span>
-      </div>
-    </div>
-  </div>
   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box bg-blue-gradient">
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
