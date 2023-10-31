@@ -373,7 +373,65 @@ class PegawaiController extends Controller
         return redirect('/pegawai/beranda');
     }
 
+    public function updateKepegawaianNONASN(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'file_nonasn'  => 'mimes:pdf|max:2048',
+            'file_str'  => 'mimes:pdf|max:2048',
+            'file_sip'  => 'mimes:pdf|max:2048',
+        ]);
 
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File harus PDF dan Maks 2MB');
+            return back();
+        }
+        $path = public_path('storage') . '/' . Auth::user()->pegawai->nip . '/kepegawaian';
+
+        if ($req->file_nonasn == null) {
+            $name_nonasn = Auth::user()->pegawai->file_nonasn;
+        } else {
+            $file_nonasn = $req->file('file_nonasn');
+            $extension_nonasn = $req->file_nonasn->getClientOriginalExtension();
+            $name_nonasn = 'nonasn' . uniqid() . '.' . $extension_nonasn;
+            $file_nonasn->move($path, $name_nonasn);
+        }
+        if ($req->file_str == null) {
+            $name_str = Auth::user()->pegawai->file_str;
+        } else {
+            $file_str = $req->file('file_str');
+            $extension_str = $req->file_str->getClientOriginalExtension();
+            $name_str = 'str' . uniqid() . '.' . $extension_str;
+            $file_str->move($path, $name_str);
+        }
+
+        if ($req->file_sip == null) {
+            $name_sip = Auth::user()->pegawai->file_sip;
+        } else {
+            $file_sip = $req->file('file_sip');
+            $extension_sip = $req->file_sip->getClientOriginalExtension();
+            $name_sip = 'sip' . uniqid() . '.' . $extension_sip;
+            $file_sip->move($path, $name_sip);
+        }
+
+        $data = Auth::user()->pegawai;
+        $data->nomor_nonasn = $req->nomor_nonasn;
+        $data->tanggal_nonasn = $req->tanggal_nonasn;
+        $data->file_nonasn = $name_nonasn;
+
+        $data->nomor_str = $req->nomor_str;
+        $data->tanggal_str = $req->tanggal_str;
+        $data->file_str = $name_str;
+
+        $data->nomor_sip = $req->nomor_sip;
+        $data->tanggal_sip = $req->tanggal_sip;
+        $data->file_sip = $name_sip;
+        $data->save();
+
+        Session::flash('success', 'Berhasil Di update');
+
+        return redirect('/pegawai/beranda');
+    }
     public function updateKepegawaianPPPK(Request $req)
     {
         $validator = Validator::make($req->all(), [

@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('biodata/edit/kepegawaian', [PegawaiController::class, 'editKepegawaian']);
         Route::post('biodata/edit/kepegawaian', [PegawaiController::class, 'updateKepegawaian']);
         Route::post('biodata/edit/kepegawaian/pppk', [PegawaiController::class, 'updateKepegawaianPPPK']);
+        Route::post('biodata/edit/kepegawaian/nonasn', [PegawaiController::class, 'updateKepegawaianNONASN']);
         Route::post('biodata/edit/profile', [PegawaiController::class, 'updateProfile']);
         Route::post('biodata/edit/kependudukan', [PegawaiController::class, 'updateKependudukan']);
         Route::post('biodata/edit/bpjs', [PegawaiController::class, 'updateBPJS']);
