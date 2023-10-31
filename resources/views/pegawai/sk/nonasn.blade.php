@@ -15,13 +15,13 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Nomor SK </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" readonly>
+        <input type="text" class="form-control" value="{{$data->nomor_nonasn}}" readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Tanggal SK </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" readonly>
+        <input type="text" class="form-control" value="{{$data->tanggal_nonasn}}" readonly>
       </div>
     </div>
     <div class="form-group">
