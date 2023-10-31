@@ -12,6 +12,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SuperadminController;
 
@@ -40,6 +41,14 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/data/pegawai/edit/{id}', [SuperadminController::class, 'updatePegawai']);
         Route::get('/data/pegawai/delete/{id}', [SuperadminController::class, 'deletePegawai']);
         Route::get('/data/pegawai/profile/{id}', [SuperadminController::class, 'profilPegawai']);
+
+        Route::get('/penugasan', [PenugasanController::class, 'index']);
+        Route::get('/penugasan/add', [PenugasanController::class, 'create']);
+        Route::post('/penugasan/add', [PenugasanController::class, 'store']);
+        Route::get('/penugasan/edit/{id}', [PenugasanController::class, 'edit']);
+        Route::post('/penugasan/edit/{id}', [PenugasanController::class, 'update']);
+        Route::get('/penugasan/delete/{id}', [PenugasanController::class, 'delete']);
+        Route::get('/penugasan/word/{id}', [PenugasanController::class, 'word']);
 
         Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
         Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);

@@ -110,14 +110,14 @@ DASHBOARD
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI JABATAN STRUKTURAL</span>
+        <span class="info-box-text">PEGAWAI JABATAN ADMINISTRATOR</span>
         <span class="info-box-number">{{$pj_struktural}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai Jabatan Struktural
+             Total Pegawai Jabatan Administrator
             </span>
       </div>
     </div>

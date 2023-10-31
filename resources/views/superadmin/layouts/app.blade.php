@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="/assets/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/assets/bower_components/Ionicons/css/ionicons.min.css">
+
+  @stack('css')
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -28,7 +31,6 @@
   <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
   <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 
-  @stack('css')
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -61,8 +63,8 @@
               </ul>
             </li>
             <li><a href="/superadmin/bandingkan"><i class="fa fa-fw fa-th"></i> BANDINGKAN DATA <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/data/mutasi"><i class="fa fa-fw fa-users"></i> MUTASI <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/data/mutasi"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
+            <li><a href="/superadmin/mutasi"><i class="fa fa-fw fa-users"></i> MUTASI <span class="sr-only">(current)</span></a></li>
+            <li><a href="/superadmin/penugasan"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
           </ul>
           
         </div>
