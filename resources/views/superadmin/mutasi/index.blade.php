@@ -3,67 +3,71 @@
     
 @endpush
 @section('content-header')
-Bandingkan Data
+SK MUTASI
 @endsection
 @section('content')
 <div class="row">
   <div class="col-xs-12">
+    <a href="/superadmin/mutasi/add" class="btn btn-sm bg-purple"><i class="fa fa-user-plus"></i> Tambah</a>
     
+    <br/><br/>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-clipboard"></i> Bandingkan data</h3>
+        <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Mutasi</h3>
 
         <div class="box-tools">
-            
+          <div class="input-group input-group-sm hidden-xs" style="width: 250px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Cari NIP/Nama">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
       <!-- /.box-header -->
-
-      <form class="form-horizontal" action="/superadmin/bandingkandata" method="post">
-        @csrf
-      <div class="box-body">
-        
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
-            <div class="col-sm-10">
-                <select class="form-control">
-                    <option value="">-pilih-</option>
-                    <option value="BIDAN">BIDAN</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Jenjang Jabatan</label>
-            <div class="col-sm-10">
-                <select class="form-control">
-                    <option value="PEMULA" >PEMULA</option>
-                    <option value="TERAMPIL">TERAMPIL</option>
-                    <option value="MAHIR" >MAHIR</option>
-                    <option value="PENYELIA" >PENYELIA</option>
-                    <option value="PELAKSANA">PELAKSANA</option>
-                    <option value="PELAKSANA LANJUTAN">PELAKSANA LANJUTAN</option>
-                    <option value="AHLI PERTAMA">AHLI PERTAMA</option>
-                    <option value="AHLI MUDA">AHLI MUDA</option>
-                    <option value="AHLI MADYA">AHLI MADYA</option>
-                    <option value="AHLI UTAMA">AHLI UTAMA</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-sm btn-primary">TAMPILKAN</button>
-            </div>
-        </div>
+      <div class="box-body table-responsive table-bordered table-condensed">
+        <table class="table table-hover">
+          <tbody>
+          <tr style="background-color: #a8c4f1">
+            <th class="text-center">No</th>
+            <th>NOMOR SURAT</th>
+            <th>NIP</th>
+            <th>NAMA</th>
+            <th>JABATAN LAMA</th>
+            <th>JABATAN BARU</th>
+            <th>DITETAPKAN TANGGAL</th>
+            <th>Aksi</th>
+          </tr>
+          @foreach ($data as $key => $item)
+          <tr>
+              <td class="text-center">{{$data->firstItem() + $key}}</td>
+              <td>{{$item->nomor}}</td>
+              <td>{{$item->nip}}</td>
+              <td>{{$item->nama}}</td>
+              <td>{{$item->jabatan_lama}}, di {{$item->unitkerja_lama}}</td>
+              <td>{{$item->jabatan_baru}}, di {{$item->unitkerja_baru}}</td>
+              <td>{{\Carbon\Carbon::parse($item->ditetapkan)->format('d-m-Y')}}</td>
+              <td>                  
+                <a href="/superadmin/mutasi/word/{{$item->id}}" class="btn btn-xs btn-flat  btn-primary"><i class="fa fa-file-word-o"></i> Unduh</a>
+                  <a href="/superadmin/mutasi/edit/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
+                  <a href="/superadmin/mutasi/delete/{{$item->id}}"
+                      onclick="return confirm('Yakin ingin di hapus');"
+                      class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
+          </tr>
+          @endforeach
+          
+          </tbody>
+        </table>
       </div>
-      </form>
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    
+    {{$data->links()}}
   </div>
 </div>
 @endsection
 @push('js')
+
 
 @endpush

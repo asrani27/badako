@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
@@ -49,6 +50,14 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/penugasan/edit/{id}', [PenugasanController::class, 'update']);
         Route::get('/penugasan/delete/{id}', [PenugasanController::class, 'delete']);
         Route::get('/penugasan/word/{id}', [PenugasanController::class, 'word']);
+
+        Route::get('/mutasi', [MutasiController::class, 'index']);
+        Route::get('/mutasi/add', [MutasiController::class, 'create']);
+        Route::post('/mutasi/add', [MutasiController::class, 'store']);
+        Route::get('/mutasi/edit/{id}', [MutasiController::class, 'edit']);
+        Route::post('/mutasi/edit/{id}', [MutasiController::class, 'update']);
+        Route::get('/mutasi/delete/{id}', [MutasiController::class, 'delete']);
+        Route::get('/mutasi/word/{id}', [MutasiController::class, 'word']);
 
         Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
         Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);
