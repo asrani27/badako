@@ -23,16 +23,16 @@
                   <div class="col-sm-10">
                     <select name="jenjang_pendidikan" class="form-control">
                       <option value="">-pilih-</option>
-                      <option value="SD" {{$data->jenjang == 'SD' ? 'selected':''}}>SD sederajat</option>
-                      <option value="SMP" {{$data->jenjang == 'SMP' ? 'selected':''}}>SMP sederajat</option>
-                      <option value="SMA" {{$data->jenjang == 'SMA' ? 'selected':''}}>SMA sederajat</option>
-                      <option value="DI" {{$data->jenjang == 'DI' ? 'selected':''}}>D I</option>
-                      <option value="DII" {{$data->jenjang == 'DII' ? 'selected':''}}>D II</option>
-                      <option value="DIII" {{$data->jenjang == 'DIII' ? 'selected':''}}>D III</option>
-                      <option value="DIV" {{$data->jenjang == 'DIV' ? 'selected':''}}>D IV</option>
-                      <option value="SI" {{$data->jenjang == 'SI' ? 'selected':''}}>S I</option>
-                      <option value="SII" {{$data->jenjang == 'SII' ? 'selected':''}}>S II</option>
-                      <option value="SIII" {{$data->jenjang == 'SIII' ? 'selected':''}}>S III</option>
+                      <option value="SD" {{$data->jenjang_pendidikan == 'SD' ? 'selected':''}}>SD sederajat</option>
+                      <option value="SMP" {{$data->jenjang_pendidikan == 'SMP' ? 'selected':''}}>SMP sederajat</option>
+                      <option value="SMA" {{$data->jenjang_pendidikan == 'SMA' ? 'selected':''}}>SMA sederajat</option>
+                      <option value="DI" {{$data->jenjang_pendidikan == 'DI' ? 'selected':''}}>D I</option>
+                      <option value="DII" {{$data->jenjang_pendidikan == 'DII' ? 'selected':''}}>D II</option>
+                      <option value="DIII" {{$data->jenjang_pendidikan == 'DIII' ? 'selected':''}}>D III</option>
+                      <option value="DIV" {{$data->jenjang_pendidikan == 'DIV' ? 'selected':''}}>D IV</option>
+                      <option value="SI" {{$data->jenjang_pendidikan == 'SI' ? 'selected':''}}>S I</option>
+                      <option value="SII" {{$data->jenjang_pendidikan == 'SII' ? 'selected':''}}>S II</option>
+                      <option value="SIII" {{$data->jenjang_pendidikan == 'SIII' ? 'selected':''}}>S III</option>
                     </select>
                   </div>
                 </div>

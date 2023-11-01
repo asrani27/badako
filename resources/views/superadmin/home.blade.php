@@ -57,7 +57,7 @@ DASHBOARD
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI PKKK</span>
+        <span class="info-box-text">PEGAWAI PPPK</span>
         <span class="info-box-number">{{$pkkk}}</span>
   
         <div class="progress">

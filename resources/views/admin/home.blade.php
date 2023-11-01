@@ -30,7 +30,7 @@ DASHBOARD ADMIN
       <span class="info-box-icon"><i class="fa fa-user"></i></span>
   
       <div class="info-box-content">
-        <span class="info-box-text">PEGAWAI PKKK</span>
+        <span class="info-box-text">PEGAWAI PPPK</span>
         <span class="info-box-number">{{$pkkk}}</span>
   
         <div class="progress">
@@ -324,13 +324,13 @@ DASHBOARD ADMIN
           <th>Puskesmas</th>
         </tr>
 
-        @foreach ($belumisi as $key => $item)
+        {{-- @foreach ($belumisi as $key => $item)
         <tr>
           <td>{{$belumisi->firstItem() + $key}}</td>
           <td>{{$item->nama}}</td>
           <td>{{$item->unitkerja->nama}}</td>
         </tr>
-        @endforeach
+        @endforeach --}}
         
         </tbody>
       </table>
