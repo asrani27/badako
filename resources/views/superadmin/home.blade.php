@@ -129,7 +129,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PEGAWAI JABATAN FUNGSIONAL</span>
-        <span class="info-box-number">{{$jf}}</span>
+        <span class="info-box-number">{{$jfu}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
