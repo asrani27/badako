@@ -163,7 +163,7 @@ class PegawaiController extends Controller
             } else {
                 $data->pangkat_id = $req->pangkat_id;
             }
-            if ($req->jenis_jabatan == 'JFT') {
+            if ($req->jenis_jabatan == 'JF') {
                 $data->jenjang_jabatan = $req->jenjang_jabatan;
             } else {
                 $data->jenjang_jabatan = null;
