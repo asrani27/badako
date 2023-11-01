@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/pegawai/resetpass/{id}', [SuperadminController::class, 'resetPassPegawai']);
         Route::get('/data/pegawai/sync', [SuperadminController::class, 'syncPegawai']);
         Route::get('/data/pegawai/add', [SuperadminController::class, 'addPegawai']);
+        Route::get('/data/pegawai/search', [SuperadminController::class, 'cariPegawai']);
         Route::post('/data/pegawai/add', [SuperadminController::class, 'storePegawai']);
         Route::get('/data/pegawai/edit/{id}', [SuperadminController::class, 'editPegawai']);
         Route::post('/data/pegawai/edit/{id}', [SuperadminController::class, 'updatePegawai']);

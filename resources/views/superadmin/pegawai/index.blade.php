@@ -18,13 +18,16 @@ PEGAWAI
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Pegawai</h3>
 
         <div class="box-tools">
+          <form method="get" action="/superadmin/data/pegawai/search">
+          @csrf
           <div class="input-group input-group-sm hidden-xs" style="width: 250px;">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="Cari NIP/Nama/Jabatan/Jenjang">
+            <input type="text" name="search" class="form-control pull-right" value="{{old('search')}}" placeholder="Cari NIP/Nama">
 
             <div class="input-group-btn">
               <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </div>
           </div>
+        </form>
         </div>
       </div>
       <!-- /.box-header -->

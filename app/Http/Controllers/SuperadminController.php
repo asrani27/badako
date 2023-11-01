@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Validator;
 class SuperadminController extends Controller
 {
 
+    public function cariPegawai()
+    {
+        $keyword = request()->get('search');
+        $data = M_pegawai::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('superadmin.pegawai.index', compact('data'));
+    }
+
     public function index()
     {
         $pns = M_pegawai::where('status_pegawai', 'pns')->count();
@@ -125,8 +133,6 @@ class SuperadminController extends Controller
                 return $item;
             })->where('pensiun', 'Y');
             $unitkerja = UnitKerja::get();
-
-            dd($jfu);
 
             request()->flash();
             Session::flash('success', 'Berhasil Ditampilkan');
