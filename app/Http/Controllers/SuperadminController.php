@@ -214,7 +214,17 @@ class SuperadminController extends Controller
 
     public function bandingkan()
     {
-        return view('superadmin.bandingkan.index');
+        $unitkerja = UnitKerja::get();
+        $uk = $unitkerja->map(function ($item) {
+            $item->pns = $item->pegawai->where('status_pegawai', 'PNS')->count();
+            $item->pppk = $item->pegawai->where('status_pegawai', 'PPPK')->count();
+            $item->nonasn = $item->pegawai->where('status_pegawai', 'NON ASN')->count();
+            $item->null = $item->pegawai->where('status_pegawai', null)->count();
+            $item->totalpegawai = $item->pegawai->count();
+            return $item;
+        });
+
+        return view('superadmin.bandingkan.index', compact('uk'));
     }
     public function pegawai()
     {

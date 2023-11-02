@@ -19,44 +19,42 @@ Bandingkan Data
       </div>
       <!-- /.box-header -->
 
-      <form class="form-horizontal" action="/superadmin/bandingkandata" method="post">
-        @csrf
+      
       <div class="box-body">
-        
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
-            <div class="col-sm-10">
-                <select class="form-control">
-                    <option value="">-pilih-</option>
-                    <option value="BIDAN">BIDAN</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Jenjang Jabatan</label>
-            <div class="col-sm-10">
-                <select class="form-control">
-                    <option value="PEMULA" >PEMULA</option>
-                    <option value="TERAMPIL">TERAMPIL</option>
-                    <option value="MAHIR" >MAHIR</option>
-                    <option value="PENYELIA" >PENYELIA</option>
-                    <option value="PELAKSANA">PELAKSANA</option>
-                    <option value="PELAKSANA LANJUTAN">PELAKSANA LANJUTAN</option>
-                    <option value="AHLI PERTAMA">AHLI PERTAMA</option>
-                    <option value="AHLI MUDA">AHLI MUDA</option>
-                    <option value="AHLI MADYA">AHLI MADYA</option>
-                    <option value="AHLI UTAMA">AHLI UTAMA</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-sm btn-primary">TAMPILKAN</button>
-            </div>
-        </div>
+        <table class="table table-hover">
+          <tbody>
+          <tr style="background-color: #a8c4f1">
+            <th class="text-center">No</th>
+            <th>UNIT KERJA</th>
+            <th>JUMLAH PENDUDUK</th>
+            <th>JUMLAH KELURAHAN</th>
+            <th>JUMLAH RT</th>
+            <th>JUMLAH KK</th>
+            <th>TOTAL PEGAWAI</th>
+            <th>PNS</th>
+            <th>PPPK</th>
+            <th>NON ASN</th>
+          </tr>
+          @foreach ($uk as $key => $item)
+          <tr>
+              <td class="text-center">{{$key+1}}</td>
+              <td>{{$item->nama}}</td>
+              <td>{{$item->jumlah_penduduk}}</td>
+              <td>{{$item->jumlah_kelurahan}}</td>
+              <td>{{$item->jumlah_rt}}</td>
+              <td>{{$item->jumlah_kk}}</td>
+              <td>{{$item->totalpegawai}}</td>
+              <td>{{$item->pns}}</td>
+              <td>{{$item->pppk}}</td>
+              <td>{{$item->nonasn}}</td>
+              
+          </tr>
+          @endforeach
+          
+          </tbody>
+        </table>
       </div>
-      </form>
+      
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
