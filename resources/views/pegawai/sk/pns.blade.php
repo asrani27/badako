@@ -173,7 +173,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">File SK berkala </label>
       <div class="col-sm-9">
-        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_berkala}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Jafung</a>
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_berkala}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download SK Berkala</a>
       </div>
     </div>
     <hr> 
@@ -198,7 +198,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">File SK STR </label>
       <div class="col-sm-9">
-        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_str}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Jafung</a>
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_str}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download STR</a>
       </div>
     </div> 
     <hr>
@@ -223,7 +223,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">File SIP </label>
       <div class="col-sm-9">
-        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_sip}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Jafung</a>
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_sip}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download SIP</a>
       </div>
     </div>
   </form>
