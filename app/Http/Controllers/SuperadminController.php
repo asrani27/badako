@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Nomor;
+use App\Models\Pangkat;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
@@ -73,7 +74,147 @@ class SuperadminController extends Controller
         $unitkerja = UnitKerja::get();
 
         $jumlahpegawai = M_pegawai::count();
+
+        $sd = M_pegawai::where('jenjang_pendidikan', 'SD')->count();
+        $smp = M_pegawai::where('jenjang_pendidikan', 'SMP')->count();
+        $sma = M_pegawai::where('jenjang_pendidikan', 'SMA')->count();
+        $d1 = M_pegawai::where('jenjang_pendidikan', 'DI')->count();
+        $d2 = M_pegawai::where('jenjang_pendidikan', 'DII')->count();
+        $d3 = M_pegawai::where('jenjang_pendidikan', 'DIII')->count();
+        $d4 = M_pegawai::where('jenjang_pendidikan', 'DIV')->count();
+        $s1 = M_pegawai::where('jenjang_pendidikan', 'SI')->count();
+        $s2 = M_pegawai::where('jenjang_pendidikan', 'SII')->count();
+        $s3 = M_pegawai::where('jenjang_pendidikan', 'SIII')->count();
+        $grafik1 = [
+            [
+                'label' => 'SD',
+                'x' => 0,
+                'y' => $sd,
+            ],
+            [
+                'label' => 'SMP',
+                'x' => 0,
+                'y' => $smp,
+            ],
+            [
+                'label' => 'SMA',
+                'x' => 0,
+                'y' => $sma,
+            ],
+            [
+                'label' => 'DI',
+                'x' => 0,
+                'y' => $d1,
+            ],
+            [
+                'label' => 'DII',
+                'x' => 0,
+                'y' => $d2,
+            ],
+            [
+                'label' => 'DIII',
+                'x' => 0,
+                'y' => $d3,
+            ],
+            [
+                'label' => 'DIV',
+                'x' => 0,
+                'y' => $d4,
+            ],
+            [
+                'label' => 'SI',
+                'x' => 0,
+                'y' => $s1,
+            ],
+            [
+                'label' => 'SII',
+                'x' => 0,
+                'y' => $s2,
+            ],
+            [
+                'label' => 'SIII',
+                'x' => 0,
+                'y' => $s3,
+            ],
+        ];
+
+        $grafik2 = collect(Pangkat::get()->toArray())->map(function ($item) {
+            $data['label'] = $item['golongan'];
+            $data['x'] = 0;
+            $data['y'] = M_pegawai::where('pangkat_id', $item['id'])->count();
+            return $data;
+        })->toArray();
+        $grafik3 = [
+            [
+                'label' => 'VII',
+                'x' => 0,
+                'y' => M_pegawai::where('golongan', 'VII')->count(),
+            ],
+            [
+                'label' => 'IX',
+                'x' => 0,
+                'y' => M_pegawai::where('golongan', 'IX')->count(),
+            ],
+            [
+                'label' => 'X',
+                'x' => 0,
+                'y' => M_pegawai::where('golongan', 'X')->count(),
+            ],
+        ];
+        $grafik4 = [
+            [
+                'label' => 'Laki-Laki',
+                'x' => 0,
+                'y' => M_pegawai::where('jkel', 'L')->count(),
+            ],
+            [
+                'label' => 'Perempuan',
+                'x' => 0,
+                'y' => M_pegawai::where('jkel', 'P')->count(),
+            ],
+        ];
+        $grafik5 = [
+            [
+                'label' => 'PNS',
+                'x' => 0,
+                'y' => M_pegawai::where('status_pegawai', 'PNS')->count(),
+            ],
+            [
+                'label' => 'PPPK',
+                'x' => 0,
+                'y' => M_pegawai::where('status_pegawai', 'PPPK')->count(),
+            ],
+            [
+                'label' => 'NON ASN',
+                'x' => 0,
+                'y' => M_pegawai::where('status_pegawai', 'NON ASN')->count(),
+            ],
+        ];
+        $grafik6 = [
+            [
+                'label' => 'JPT',
+                'x' => 0,
+                'y' => M_pegawai::where('jenis_jabatan', 'JPT')->count(),
+            ],
+            [
+                'label' => 'JA',
+                'x' => 0,
+                'y' => M_pegawai::where('status_pegawai', 'JA')->count(),
+            ],
+            [
+                'label' => 'JF',
+                'x' => 0,
+                'y' => M_pegawai::where('status_pegawai', 'JF')->count(),
+            ],
+        ];
+
         return view('superadmin.home', compact(
+            'grafik1',
+            'grafik2',
+            'grafik3',
+            'grafik4',
+            'grafik5',
+            'grafik6',
             'pns',
             'jumlahpegawai',
             'pkkk',

@@ -395,6 +395,8 @@ DASHBOARD
     </div>
   </div>
 </div>
+
+
 <div class="row">
   <div class="col-md-6">
     <div class="box">
@@ -414,7 +416,7 @@ DASHBOARD
   <div class="col-md-6">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Golongan</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Golongan PNS</h3>
 
       <div class="box-tools">
         {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -422,6 +424,20 @@ DASHBOARD
     </div>
     <div class="box-body">
       <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Golongan PPPK</h3>
+
+      <div class="box-tools">
+        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+      </div>
+    </div>
+    <div class="box-body">
+      <div id="chartContainer5" style="height: 300px; width: 100%;"></div>
     </div>
     </div>
   </div>
@@ -445,11 +461,23 @@ DASHBOARD
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Status Kepegawaian</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
       <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Jenis Jabatan</h3>
+
+      <div class="box-tools">
+      </div>
+    </div>
+    <div class="box-body">
+      <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
     </div>
     </div>
   </div>
@@ -461,24 +489,20 @@ DASHBOARD
 <script>
   window.onload = function() {
   
+  grafikpendidikan = {!!json_encode($grafik1)!!}
+  console.log(grafikpendidikan)
   var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
     
     data: [{
       type: "pie",
       startAngle: 240,
-      yValueFormatString: "##0.00\"%\"",
       indexLabel: "{label} {y}",
-      dataPoints: [
-        {y: 79.45, label: "SMA"},
-        {y: 7.31, label: "D3"},
-        {y: 7.06, label: "S1"},
-        {y: 4.91, label: "S2"},
-        {y: 1.26, label: "S3"}
-      ]
+      dataPoints: grafikpendidikan
     }]
   });
 
+  grafikpns = {!!json_encode($grafik2)!!}
   var chart2 = new CanvasJS.Chart("chartContainer2", {
     animationEnabled: true,
     
@@ -486,15 +510,11 @@ DASHBOARD
       type: "pie",
       startAngle: 240,
 			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 7.45, label: "Gol. I"},
-        {y: 7.31, label: "Gol. II"},
-        {y: 70.06, label: "Gol. III"},
-        {y: 40.91, label: "Gol. V"},
-        {y: 10.26, label: "Gol. V"}
-      ]
+      dataPoints: grafikpns
     }]
   });
+
+  grafikjkel = {!!json_encode($grafik4)!!}
   var chart3 = new CanvasJS.Chart("chartContainer3", {
     animationEnabled: true,
     
@@ -502,12 +522,11 @@ DASHBOARD
       type: "pie",
       startAngle: 240,
 			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "Laki-Laki"},
-        {y: 1567, label: "Perempuan"},
-      ]
+      dataPoints: grafikjkel
     }]
   });
+
+  grafikstatus = {!!json_encode($grafik5)!!}
   var chart4 = new CanvasJS.Chart("chartContainer4", {
     animationEnabled: true,
     
@@ -515,17 +534,42 @@ DASHBOARD
       type: "pie",
       startAngle: 240,
 			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "PNS"},
-        {y: 1567, label: "PKKK"},
-        {y: 2602, label: "NON ASN"},
-      ]
+      dataPoints: grafikstatus
     }]
   });
+
+  grafikpppk = {!!json_encode($grafik3)!!}
+  console.log(grafikpppk)
+  var chart5 = new CanvasJS.Chart("chartContainer5", {
+    animationEnabled: true,
+    
+    data: [{
+      type: "pie",
+      startAngle: 240,
+			legendText: "{indexLabel}",
+      dataPoints: grafikpppk
+    }]
+  });
+  grafikjabatan = {!!json_encode($grafik6)!!}
+  console.log(grafikjabatan)
+  var chart5 = new CanvasJS.Chart("chartContainer6", {
+    animationEnabled: true,
+    
+    data: [{
+      type: "pie",
+      startAngle: 240,
+			legendText: "{indexLabel}",
+      dataPoints: grafikjabatan
+    }]
+  });
+
+
   chart.render();
   chart2.render();
   chart3.render(); 
   chart4.render();  
+  chart5.render();  
+  chart6.render(); 
   }
 </script>
 @endpush
