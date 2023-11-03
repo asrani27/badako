@@ -141,8 +141,53 @@ class AdminController extends Controller
                 'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('golongan', 'X')->count(),
             ],
         ];
-
-        return view('admin.home', compact('grafik1', 'grafik2', 'grafik3', 'pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
+        $grafik4 = [
+            [
+                'label' => 'Laki-Laki',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jkel', 'L')->count(),
+            ],
+            [
+                'label' => 'Perempuan',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jkel', 'P')->count(),
+            ],
+        ];
+        $grafik5 = [
+            [
+                'label' => 'PNS',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'PNS')->count(),
+            ],
+            [
+                'label' => 'PPPK',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'PPPK')->count(),
+            ],
+            [
+                'label' => 'NON ASN',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'NON ASN')->count(),
+            ],
+        ];
+        $grafik6 = [
+            [
+                'label' => 'JPT',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JPT')->count(),
+            ],
+            [
+                'label' => 'JA',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count(),
+            ],
+            [
+                'label' => 'JF',
+                'x' => 0,
+                'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JF')->count(),
+            ],
+        ];
+        return view('admin.home', compact('grafik1', 'grafik2', 'grafik3', 'grafik4', 'grafik5',  'grafik6', 'pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
     }
 
     public function profil()

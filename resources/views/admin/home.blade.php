@@ -403,11 +403,23 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Status Kepegawaian</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
       <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Jenis Jabatan</h3>
+
+      <div class="box-tools">
+      </div>
+    </div>
+    <div class="box-body">
+      <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
     </div>
     </div>
   </div>
@@ -444,6 +456,8 @@ DASHBOARD ADMIN
       dataPoints: grafikpns
     }]
   });
+
+  grafikjkel = {!!json_encode($grafik4)!!}
   var chart3 = new CanvasJS.Chart("chartContainer3", {
     animationEnabled: true,
     
@@ -451,12 +465,11 @@ DASHBOARD ADMIN
       type: "pie",
       startAngle: 240,
 			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "Laki-Laki"},
-        {y: 1567, label: "Perempuan"},
-      ]
+      dataPoints: grafikjkel
     }]
   });
+
+  grafikstatus = {!!json_encode($grafik5)!!}
   var chart4 = new CanvasJS.Chart("chartContainer4", {
     animationEnabled: true,
     
@@ -464,11 +477,7 @@ DASHBOARD ADMIN
       type: "pie",
       startAngle: 240,
 			legendText: "{indexLabel}",
-      dataPoints: [
-        {y: 2134, label: "PNS"},
-        {y: 1567, label: "PKKK"},
-        {y: 2602, label: "NON ASN"},
-      ]
+      dataPoints: grafikstatus
     }]
   });
 
@@ -484,12 +493,26 @@ DASHBOARD ADMIN
       dataPoints: grafikpppk
     }]
   });
+  grafikjabatan = {!!json_encode($grafik6)!!}
+  console.log(grafikjabatan)
+  var chart5 = new CanvasJS.Chart("chartContainer6", {
+    animationEnabled: true,
+    
+    data: [{
+      type: "pie",
+      startAngle: 240,
+			legendText: "{indexLabel}",
+      dataPoints: grafikjabatan
+    }]
+  });
+
 
   chart.render();
   chart2.render();
   chart3.render(); 
   chart4.render();  
-  chart5.render(); 
+  chart5.render();  
+  chart6.render(); 
   }
 </script>
 @endpush
