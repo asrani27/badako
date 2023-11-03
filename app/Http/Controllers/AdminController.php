@@ -41,17 +41,18 @@ class AdminController extends Controller
                 $item->age = $b_day->diffInYears($now);
             }
 
-            if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
-                $item->pensiun = 'Y';
-            } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
-                $item->pensiun = 'Y';
-            } elseif ($item->age == 58) {
-                $item->pensiun = 'Y';
-            } else {
-                $item->pensiun = 'T';
-            }
+            // if ($item->jenis_jabatan == 'JPT' && $item->age == 60) {
+            //     $item->pensiun = 'Y';
+            // } elseif ($item->jenis_jabatan == 'JFT' || $item->jenjang_jabatan == 'AHLI MADYA' || $item->age == 60) {
+            //     $item->pensiun = 'Y';
+            // } elseif ($item->age == 58) {
+            //     $item->pensiun = 'Y';
+            // } else {
+            //     $item->pensiun = 'T';
+            // }
             return $item;
-        })->where('pensiun', 'Y');
+        })->where('age', 58);
+
 
         return view('admin.home', compact('pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
     }
