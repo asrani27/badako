@@ -72,8 +72,10 @@ class SuperadminController extends Controller
 
         $unitkerja = UnitKerja::get();
 
+        $jumlahpegawai = M_pegawai::count();
         return view('superadmin.home', compact(
             'pns',
+            'jumlahpegawai',
             'pkkk',
             'nonasn',
             'tidakisi',
