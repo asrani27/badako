@@ -473,6 +473,7 @@ DASHBOARD ADMIN
   });
 
   grafikpppk = {!!json_encode($grafik3)!!}
+  console.log(grafikpppk)
   var chart5 = new CanvasJS.Chart("chartContainer5", {
     animationEnabled: true,
     
@@ -483,6 +484,7 @@ DASHBOARD ADMIN
       dataPoints: grafikpppk
     }]
   });
+
   chart.render();
   chart2.render();
   chart3.render(); 
