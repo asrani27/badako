@@ -148,7 +148,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">File Karpeg </label>
       <div class="col-sm-9">
-        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_karpeg}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Karis/Karsu</a>
+        <a href="/storage/{{Auth::user()->pegawai->nip}}/kepegawaian/{{Auth::user()->pegawai->file_karpeg}}" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-download"></i> Download Karpeg</a>
       </div>
     </div>
     <hr>
