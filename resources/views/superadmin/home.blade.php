@@ -527,6 +527,7 @@ DASHBOARD
   });
 
   grafikstatus = {!!json_encode($grafik5)!!}
+  console.log(grafikstatus)
   var chart4 = new CanvasJS.Chart("chartContainer4", {
     animationEnabled: true,
     
@@ -552,7 +553,7 @@ DASHBOARD
   });
   grafikjabatan = {!!json_encode($grafik6)!!}
   console.log(grafikjabatan)
-  var chart5 = new CanvasJS.Chart("chartContainer6", {
+  var chart6 = new CanvasJS.Chart("chartContainer6", {
     animationEnabled: true,
     
     data: [{

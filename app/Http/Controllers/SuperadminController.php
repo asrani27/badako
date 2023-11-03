@@ -190,6 +190,7 @@ class SuperadminController extends Controller
                 'y' => M_pegawai::where('status_pegawai', 'NON ASN')->count(),
             ],
         ];
+
         $grafik6 = [
             [
                 'label' => 'JPT',
