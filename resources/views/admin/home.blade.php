@@ -131,6 +131,24 @@ DASHBOARD ADMIN
       </div>
     </div>
   </div>
+
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box bg-red-gradient">
+      <span class="info-box-icon"><i class="fa fa-users"></i></span>
+  
+      <div class="info-box-content">
+        <span class="info-box-text">JUMLAH PEGAWAI</span>
+        <span class="info-box-number">{{$jumlahpegawai}}</span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Pegawai 
+            </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="row">

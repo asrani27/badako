@@ -23,6 +23,9 @@ class AdminController extends Controller
         $pj_struktural = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JPT')->count() + M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JA')->count();
         $jf = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('jenis_jabatan', 'JF')->count();
 
+
+        $jumlahpegawai = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->count();
+
         $tigatahun = Carbon::now()->subyear(3)->format('Y');
         $duatahun = Carbon::now()->subyear(2)->format('Y');
         $limatahun = Carbon::now()->subyear(5)->format('Y');
@@ -187,7 +190,7 @@ class AdminController extends Controller
                 'y' => M_pegawai::where('unitkerja_id', Auth::user()->unitkerja_id)->where('status_pegawai', 'JF')->count(),
             ],
         ];
-        return view('admin.home', compact('grafik1', 'grafik2', 'grafik3', 'grafik4', 'grafik5',  'grafik6', 'pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
+        return view('admin.home', compact('grafik1', 'grafik2', 'grafik3', 'grafik4', 'grafik5',  'grafik6', 'jumlahpegawai', 'pns', 'pkkk', 'nonasn', 'naikpangkat', 'tidakisi', 'naikberkala', 'pensiun', 'str', 'sip', 'belumisi', 'pj_struktural', 'jf'));
     }
 
     public function profil()
