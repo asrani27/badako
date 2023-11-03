@@ -64,7 +64,7 @@ DASHBOARD
           <div class="progress-bar" style="width: 100%"></div>
         </div>
         <span class="progress-description">
-             Total Pegawai PKKK
+             Total Pegawai PPPK
             </span>
       </div>
     </div>
