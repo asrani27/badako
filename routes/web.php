@@ -6,6 +6,7 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\KadisController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MutasiController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
+use App\Http\Controllers\SPMTController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SuperadminController;
 
@@ -52,6 +54,12 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/penugasan/delete/{id}', [PenugasanController::class, 'delete']);
         Route::get('/penugasan/word/{id}', [PenugasanController::class, 'word']);
 
+        Route::get('/kadis', [KadisController::class, 'index']);
+        Route::get('/kadis/add', [KadisController::class, 'create']);
+        Route::post('/kadis/add', [KadisController::class, 'store']);
+        Route::get('/kadis/aktifkan/{id}', [KadisController::class, 'aktifkan']);
+        Route::get('/kadis/delete/{id}', [KadisController::class, 'delete']);
+
         Route::get('/mutasi', [MutasiController::class, 'index']);
         Route::get('/mutasi/add', [MutasiController::class, 'create']);
         Route::post('/mutasi/add', [MutasiController::class, 'store']);
@@ -59,6 +67,14 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/mutasi/edit/{id}', [MutasiController::class, 'update']);
         Route::get('/mutasi/delete/{id}', [MutasiController::class, 'delete']);
         Route::get('/mutasi/word/{id}', [MutasiController::class, 'word']);
+
+        Route::get('/spmt', [SPMTController::class, 'index']);
+        Route::get('/spmt/add', [SPMTController::class, 'create']);
+        Route::post('/spmt/add', [SPMTController::class, 'store']);
+        Route::get('/spmt/edit/{id}', [SPMTController::class, 'edit']);
+        Route::post('/spmt/edit/{id}', [SPMTController::class, 'update']);
+        Route::get('/spmt/delete/{id}', [SPMTController::class, 'delete']);
+        Route::get('/spmt/word/{id}', [SPMTController::class, 'word']);
 
         Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
         Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);
