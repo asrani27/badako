@@ -4,18 +4,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SPMTController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KadisController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MutasiController;
+use App\Http\Controllers\BerkalaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
-use App\Http\Controllers\SPMTController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SuperadminController;
 
@@ -75,6 +76,14 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/spmt/edit/{id}', [SPMTController::class, 'update']);
         Route::get('/spmt/delete/{id}', [SPMTController::class, 'delete']);
         Route::get('/spmt/word/{id}', [SPMTController::class, 'word']);
+
+        Route::get('/berkala', [BerkalaController::class, 'index']);
+        Route::get('/berkala/add', [BerkalaController::class, 'create']);
+        Route::post('/berkala/add', [BerkalaController::class, 'store']);
+        Route::get('/berkala/edit/{id}', [BerkalaController::class, 'edit']);
+        Route::post('/berkala/edit/{id}', [BerkalaController::class, 'update']);
+        Route::get('/berkala/delete/{id}', [BerkalaController::class, 'delete']);
+        Route::get('/berkala/word/{id}', [BerkalaController::class, 'word']);
 
         Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
         Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);
