@@ -41,10 +41,11 @@ class PenugasanController extends Controller
     }
     public function edit($id)
     {
+        $kadis = Kadis::where('is_aktif', 1)->first();
         $data = Penugasan::find($id);
         $pegawai = M_pegawai::get();
         $unitkerja = UnitKerja::get();
-        return view('superadmin.penugasan.edit', compact('pegawai', 'data', 'unitkerja'));
+        return view('superadmin.penugasan.edit', compact('pegawai', 'data', 'unitkerja', 'kadis'));
     }
     public function update(Request $req, $id)
     {
