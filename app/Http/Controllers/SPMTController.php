@@ -21,7 +21,7 @@ class SPMTController extends Controller
     public function search()
     {
         $keyword = request()->get('search');
-        $data = SPMT::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        $data = SPMT::where('nama1', 'LIKE', '%' . $keyword . '%')->orWhere('nip1', 'LIKE', '%' . $keyword . '%')->paginate(10);
         request()->flash();
         return view('superadmin.spmt.index', compact('data'));
     }
