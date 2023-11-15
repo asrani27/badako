@@ -81,6 +81,8 @@ class PenugasanController extends Controller
             'sebagai' => $data->sebagai,
             'hari' => Carbon::parse($data->tanggal)->translatedFormat('l'),
             'tanggal' => Carbon::parse($data->tanggal)->translatedFormat('d F Y'),
+            'harisampai' => Carbon::parse($data->sampai)->translatedFormat('l'),
+            'sampai' => Carbon::parse($data->sampai)->translatedFormat('d F Y'),
             'tempat' => $data->tempat,
             'ditetapkan' => Carbon::parse($data->ditetapkan)->translatedFormat('d F Y'),
 
