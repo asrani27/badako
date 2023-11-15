@@ -1,11 +1,75 @@
 @extends('superadmin.layouts.app')
 @push('css')
-    
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
 @endpush
 @section('content-header')
 Bandingkan Data
 @endsection
 @section('content')
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <form method="post" action="/superadmin/bandingkan/data">
+        @csrf
+        <label>Kelurahan</label>
+        <select class="form-control select2" name="unitkerja_id[]" multiple="multiple" data-placeholder="Select a State"
+                style="width: 100%;">
+                @foreach ($uk as $item)
+                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                @endforeach
+        </select>
+        <br/>
+        <br/>
+        <button type="submit" class="btn btn-md btn-primary btn-block">TAMPILKAN</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    @foreach ($data as $key => $item)
+    <div class="col-md-4">
+  
+    <div class="box">
+    <div class="box-body">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td>NAMA</td>
+            <td>: {{$item->nama}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH PENDUDUK</td>
+            <td>: {{$item->jumlah_penduduk}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH KELURAHAN</td>
+            <td>: {{$item->jumlah_kelurahan}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH RT</td>
+            <td>: {{$item->jumlah_rt}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH KK</td>
+            <td>: {{$item->jumlah_kk}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH PEGAWAI</td>
+            <td>: {{$item->jumlah_pegawai}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+
 <div class="row">
   <div class="col-xs-12">
     
@@ -64,4 +128,12 @@ Bandingkan Data
 @endsection
 @push('js')
 
+<!-- Select2 -->
+<script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 @endpush
