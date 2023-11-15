@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Kadis;
 use App\Models\Mutasi;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
@@ -19,9 +20,11 @@ class MutasiController extends Controller
     }
     public function create()
     {
+
+        $kadis = Kadis::where('is_aktif', 1)->first();
         $pegawai = M_pegawai::get();
         $unitkerja = UnitKerja::get();
-        return view('superadmin.mutasi.create', compact('pegawai', 'unitkerja'));
+        return view('superadmin.mutasi.create', compact('pegawai', 'unitkerja', 'kadis'));
     }
     public function store(Request $req)
     {
@@ -78,6 +81,10 @@ class MutasiController extends Controller
             'jabatan_baru' => $data->jabatan_baru,
             'unitkerja_baru' => $data->unitkerja_baru,
             'ditetapkan' => Carbon::parse($data->ditetapkan)->translatedFormat('d F Y'),
+
+            'namakadis' => $data->namakadis,
+            'pangkatkadis' => $data->pangkatkadis,
+            'nipkadis' => $data->nipkadis,
         ]);
 
         $file = 'mutasi_' . $data->nip . '_' . $data->nama . '.docx';

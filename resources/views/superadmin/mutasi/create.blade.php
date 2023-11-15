@@ -13,7 +13,7 @@ MUTASI PEGAWAI
     <br/><br/>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-clipboard"></i> Tambah Mutas</h3>
+        <h3 class="box-title"><i class="fa fa-clipboard"></i> Tambah Mutasi</h3>
 
         <div class="box-tools">
           {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -90,6 +90,34 @@ MUTASI PEGAWAI
             </div>
           </div>
           
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Kepala Dinas :</label>
+
+            <div class="col-sm-10">
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nipkadis" value="{{$kadis->nip}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Nama </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="namakadis" value="{{$kadis->nama}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Pangkat </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="pangkatkadis" value="{{$kadis->pangkat}}" readonly>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

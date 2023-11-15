@@ -58,10 +58,23 @@ PENUGASAN PEGAWAI
             </div>
           </div>
           <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Sampai Tanggal</label>
+
+            <div class="col-sm-10">
+              <input type="date" class="form-control" name="sampai" value="{{$data->sampai}}">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Tempat Di</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="tempat" placeholder="tempat tugas" value="{{$data->tempat}}">
+              <select name="tempat" class="form-control select2">
+                <option value="">-pilih-</option>
+                @foreach ($unitkerja as $item)
+                <option value="{{$item->nama}}" {{$data->tempat == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+                @endforeach
+              </select>
+              
             </div>
           </div>
           <div class="form-group">
@@ -72,6 +85,34 @@ PENUGASAN PEGAWAI
             </div>
           </div>
           
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Kepala Dinas :</label>
+
+            <div class="col-sm-10">
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nipkadis" value="{{$data->nipkadis}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Nama </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="namakadis" value="{{$data->namakadis}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Pangkat </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="pangkatkadis" value="{{$data->pangkatkadis}}" readonly>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

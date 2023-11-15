@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Kadis;
 use App\Models\M_pegawai;
 use App\Models\Penugasan;
+use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -19,7 +21,9 @@ class PenugasanController extends Controller
     public function create()
     {
         $pegawai = M_pegawai::get();
-        return view('superadmin.penugasan.create', compact('pegawai'));
+        $unitkerja = UnitKerja::get();
+        $kadis = Kadis::where('is_aktif', 1)->first();
+        return view('superadmin.penugasan.create', compact('pegawai', 'unitkerja', 'kadis'));
     }
     public function store(Request $req)
     {
@@ -39,7 +43,8 @@ class PenugasanController extends Controller
     {
         $data = Penugasan::find($id);
         $pegawai = M_pegawai::get();
-        return view('superadmin.penugasan.edit', compact('pegawai', 'data'));
+        $unitkerja = UnitKerja::get();
+        return view('superadmin.penugasan.edit', compact('pegawai', 'data', 'unitkerja'));
     }
     public function update(Request $req, $id)
     {
@@ -77,6 +82,10 @@ class PenugasanController extends Controller
             'tanggal' => Carbon::parse($data->tanggal)->translatedFormat('d F Y'),
             'tempat' => $data->tempat,
             'ditetapkan' => Carbon::parse($data->ditetapkan)->translatedFormat('d F Y'),
+
+            'namakadis' => $data->namakadis,
+            'pangkatkadis' => $data->pangkatkadis,
+            'nipkadis' => $data->nipkadis,
         ]);
 
         $file = 'penugasan_' . $data->nip . '_' . $data->nama . '.docx';

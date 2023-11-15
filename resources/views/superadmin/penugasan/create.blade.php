@@ -58,10 +58,23 @@ PENUGASAN PEGAWAI
             </div>
           </div>
           <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Sampai Tanggal</label>
+
+            <div class="col-sm-10">
+              <input type="date" class="form-control" name="sampai">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Tempat Di</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="tempat" placeholder="tempat tugas">
+              <select name="tempat" class="form-control select2">
+                <option value="">-pilih-</option>
+                @foreach ($unitkerja as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
+              </select>
+              
             </div>
           </div>
           <div class="form-group">
@@ -71,7 +84,34 @@ PENUGASAN PEGAWAI
               <input type="date" class="form-control" name="ditetapkan">
             </div>
           </div>
-          
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Kepala Dinas :</label>
+
+            <div class="col-sm-10">
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nipkadis" value="{{$kadis->nip}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Nama </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="namakadis" value="{{$kadis->nama}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Pangkat </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="pangkatkadis" value="{{$kadis->pangkat}}" readonly>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
