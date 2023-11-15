@@ -18,6 +18,13 @@ class SPMTController extends Controller
         $data = SPMT::orderBy('id')->paginate(10);
         return view('superadmin.spmt.index', compact('data'));
     }
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = SPMT::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('superadmin.spmt.index', compact('data'));
+    }
     public function create()
     {
         $kadis = Kadis::where('is_aktif', 1)->first();

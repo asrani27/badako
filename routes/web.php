@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/pegawai/profile/{id}', [SuperadminController::class, 'profilPegawai']);
 
         Route::get('/penugasan', [PenugasanController::class, 'index']);
+        Route::get('/penugasan/search', [PenugasanController::class, 'search']);
         Route::get('/penugasan/add', [PenugasanController::class, 'create']);
         Route::post('/penugasan/add', [PenugasanController::class, 'store']);
         Route::get('/penugasan/edit/{id}', [PenugasanController::class, 'edit']);
@@ -63,6 +64,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/kadis/delete/{id}', [KadisController::class, 'delete']);
 
         Route::get('/mutasi', [MutasiController::class, 'index']);
+        Route::get('/mutasi/search', [MutasiController::class, 'search']);
         Route::get('/mutasi/add', [MutasiController::class, 'create']);
         Route::post('/mutasi/add', [MutasiController::class, 'store']);
         Route::get('/mutasi/edit/{id}', [MutasiController::class, 'edit']);
@@ -72,6 +74,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
         Route::get('/spmt', [SPMTController::class, 'index']);
         Route::get('/spmt/add', [SPMTController::class, 'create']);
+        Route::get('/spmt/search', [SPMTController::class, 'search']);
         Route::post('/spmt/add', [SPMTController::class, 'store']);
         Route::get('/spmt/edit/{id}', [SPMTController::class, 'edit']);
         Route::post('/spmt/edit/{id}', [SPMTController::class, 'update']);
@@ -80,6 +83,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
         Route::get('/berkala', [BerkalaController::class, 'index']);
         Route::get('/berkala/add', [BerkalaController::class, 'create']);
+        Route::get('/berkala/search', [BerkalaController::class, 'search']);
         Route::post('/berkala/add', [BerkalaController::class, 'store']);
         Route::get('/berkala/edit/{id}', [BerkalaController::class, 'edit']);
         Route::post('/berkala/edit/{id}', [BerkalaController::class, 'update']);

@@ -18,6 +18,13 @@ class PenugasanController extends Controller
         $data = Penugasan::orderBy('id')->paginate(10);
         return view('superadmin.penugasan.index', compact('data'));
     }
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = Penugasan::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('superadmin.penugasan.index', compact('data'));
+    }
     public function create()
     {
         $pegawai = M_pegawai::get();

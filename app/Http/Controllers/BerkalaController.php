@@ -18,6 +18,13 @@ class BerkalaController extends Controller
         $data = Berkala::orderBy('id')->paginate(10);
         return view('superadmin.berkala.index', compact('data'));
     }
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = Berkala::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('superadmin.berkala.index', compact('data'));
+    }
     public function create()
     {
         $kadis = Kadis::where('is_aktif', 1)->first();

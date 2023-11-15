@@ -59,6 +59,14 @@ class MutasiController extends Controller
         Session::flash('success', 'berhasil di simpan');
         return redirect('/superadmin/mutasi');
     }
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = Mutasi::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('superadmin.mutasi.index', compact('data'));
+    }
+
     public function delete($id)
     {
         $data = Mutasi::find($id)->delete();
