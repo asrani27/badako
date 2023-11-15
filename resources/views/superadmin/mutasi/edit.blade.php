@@ -93,6 +93,8 @@ MUTASI PEGAWAI
             </div>
           </div>
           
+          
+
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Kepala Dinas :</label>
 
@@ -100,6 +102,30 @@ MUTASI PEGAWAI
               
             </div>
           </div>
+          @if ($data->nipkadis == null)
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nipkadis" value="{{$kadis->nip}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Nama </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="namakadis" value="{{$kadis->nama}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Pangkat </label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="pangkatkadis" value="{{$kadis->pangkat}}" readonly>
+            </div>
+          </div>
+          @else
+              
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">NIP </label>
 
@@ -121,6 +147,8 @@ MUTASI PEGAWAI
               <input type="text" class="form-control" name="pangkatkadis" value="{{$data->pangkatkadis}}" readonly>
             </div>
           </div>
+          @endif
+
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
