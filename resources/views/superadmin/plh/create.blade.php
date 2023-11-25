@@ -41,14 +41,6 @@ PLH PEGAWAI
                 @endforeach
               </select>
             </div>
-            {{-- <div class="col-sm-10">
-                <select name="pegawai_id" class="form-control select2">
-                  <option value="">-pilih-</option>
-                  @foreach ($pegawai as $item)
-                  <option value="{{$item->id}}">{{$item->nip}} - {{$item->nama}}</option>
-                  @endforeach
-                </select>
-            </div> --}}
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Nomor</label>

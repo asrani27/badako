@@ -64,8 +64,8 @@ class PLHController extends Controller
         $param['nama'] = $pegawai->nama;
         $param['jabatan']   = $pegawai->jabatan;
         $param['unitkerja'] = $pegawai->unitkerja == null ? null : $pegawai->unitkerja->nama;
-
-        plh::find($id)->update($param);
+        //dd($param);
+        PLH::find($id)->update($param);
         Session::flash('success', 'berhasil di simpan');
         return redirect('/superadmin/plh');
     }
