@@ -17,6 +17,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
+use App\Http\Controllers\PLHController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SuperadminController;
 
@@ -31,6 +32,9 @@ Route::get('lupa-password', [LupaPasswordController::class, 'index']);
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('bandingkan', [SuperadminController::class, 'bandingkan']);
+        Route::get('bandingkan/data', function () {
+            return redirect('/superadmin/bandingkan');
+        });
         Route::post('bandingkan/data', [SuperadminController::class, 'bandingkanData']);
         Route::get('beranda', [SuperadminController::class, 'index']);
         Route::get('beranda/filter', [SuperadminController::class, 'filter']);
@@ -56,6 +60,15 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/penugasan/edit/{id}', [PenugasanController::class, 'update']);
         Route::get('/penugasan/delete/{id}', [PenugasanController::class, 'delete']);
         Route::get('/penugasan/word/{id}', [PenugasanController::class, 'word']);
+
+        Route::get('/plh', [PLHController::class, 'index']);
+        Route::get('/plh/search', [PLHController::class, 'search']);
+        Route::get('/plh/add', [PLHController::class, 'create']);
+        Route::post('/plh/add', [PLHController::class, 'store']);
+        Route::get('/plh/edit/{id}', [PLHController::class, 'edit']);
+        Route::post('/plh/edit/{id}', [PLHController::class, 'update']);
+        Route::get('/plh/delete/{id}', [PLHController::class, 'delete']);
+        Route::get('/plh/word/{id}', [PLHController::class, 'word']);
 
         Route::get('/kadis', [KadisController::class, 'index']);
         Route::get('/kadis/add', [KadisController::class, 'create']);
