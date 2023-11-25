@@ -61,6 +61,18 @@ Bandingkan Data
             <td>JUMLAH PEGAWAI</td>
             <td>: {{$item->jumlah_pegawai}}</td>
           </tr>
+          <tr>
+            <td>JUMLAH PERAWAT</td>
+            <td>: {{$item->jumlah_perawat}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH BIDAN</td>
+            <td>: {{$item->jumlah_bidan}}</td>
+          </tr>
+          <tr>
+            <td>JUMLAH DOKTER</td>
+            <td>: {{$item->jumlah_dokter}}</td>
+          </tr>
         </tbody>
       </table>
     </div>

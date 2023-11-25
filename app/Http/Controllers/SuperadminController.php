@@ -383,6 +383,9 @@ class SuperadminController extends Controller
         $unitkerja_id = UnitKerja::whereIn('id', $id)->get();
         $data = $unitkerja_id->map(function ($item) {
             $item->jumlah_pegawai = M_pegawai::where('unitkerja_id', $item->id)->count();
+            $item->jumlah_perawat = M_pegawai::where('unitkerja_id', $item->id)->where('jabatan', 'LIKE', '%perawat%')->count();
+            $item->jumlah_bidan = M_pegawai::where('unitkerja_id', $item->id)->where('jabatan', 'LIKE', '%bidan%')->count();
+            $item->jumlah_dokter = M_pegawai::where('unitkerja_id', $item->id)->where('jabatan', 'LIKE', '%dokter%')->count();
             return $item;
         });
 
@@ -396,6 +399,7 @@ class SuperadminController extends Controller
             return $item;
         });
         $req->flash();
+        //dd($data);
         return view('superadmin.bandingkan.index', compact('uk', 'data'));
     }
 
