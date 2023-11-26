@@ -365,10 +365,111 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum selesai mengisi data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum isi status pegawai</h3>
 
       <div class="box-tools">
-        <a href="/superadmin/belumisi" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+        
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($belumisi as $key => $item)
+        <tr>
+          <td>{{$belumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$belumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> ASN Yang belum selesai isi Data</h3>
+
+      <div class="box-tools">
+        <a href="/superadmin/belumisi/asn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($belumisi as $key => $item)
+        <tr>
+          <td>{{$belumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$belumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> PPPK Yang belum selesai isi Data</h3>
+
+      <div class="box-tools">
+        <a href="/superadmin/belumisi/pppk" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($belumisi as $key => $item)
+        <tr>
+          <td>{{$belumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$belumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> NON ASN Yang belum selesai isi Data</h3>
+
+      <div class="box-tools">
+        <a href="/superadmin/belumisi/nonasn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
       </div>
     </div>
     <div class="box-body no-padding">
@@ -395,7 +496,6 @@ DASHBOARD
     </div>
   </div>
 </div>
-
 
 <div class="row">
   <div class="col-md-6">
