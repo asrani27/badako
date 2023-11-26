@@ -91,14 +91,15 @@
                   <div class="col-sm-6">
 
                     <div class="description-block border-right">
-                      <img src="/logo/pemko.png" width="80px" >
-                      <h1 style="font-family: Arial, Helvetica, sans-serif"><strong>BADAKO</strong></h1>
-                      <span style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight:bold">BASIC DATA KEPEGAWAIAN ONLINE <br/> DINAS KESEHATAN <br/> KOTA BANJARMASIN</span>
+                      <br/>
+                      <img src="/logo/logo.jpeg" width="60%" >
+                      {{-- <h1 style="font-family: Arial, Helvetica, sans-serif"><strong>BADAKO</strong></h1>
+                      <span style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight:bold">BASIC DATA KEPEGAWAIAN ONLINE <br/> DINAS KESEHATAN <br/> KOTA BANJARMASIN</span> --}}
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="box-body">
-                      <h1 class="text-center" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">LOGIN</h1>
+                      <h1 class="text-center" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"><i>LOGIN</i></h1>
                       
                       
                       <div class="form-group">
