@@ -91,30 +91,6 @@ DETAIL PEGAWAI
           </div>
 
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label {{$data->jenis_jabatan == null ? 'text-red':''}}">jenis_jabatan</label>
-
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="nama" value="{{$data->jenis_jabatan}}">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label {{$data->jenjang_jabatan == null ? 'text-red':''}}">jenjang_jabatan</label>
-
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="nama" value="{{$data->jenjang_jabatan}}">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label {{$data->kelas_jabatan == null ? 'text-red':''}}">kelas_jabatan</label>
-
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="nama" value="{{$data->kelas_jabatan}}">
-            </div>
-          </div>
-
-          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label {{$data->mkg == null ? 'text-red':''}}">mkg</label>
 
             <div class="col-sm-10">
