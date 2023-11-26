@@ -52,6 +52,18 @@ class SuperadminController extends Controller
         } else {
         }
     }
+    public function storebelumpppk($i)
+    {
+        if (BelumIsi::where('nip', $i->nip)->first() == null) {
+            $n = new BelumIsi;
+            $n->nip = $i->nip;
+            $n->nama = $i->nama;
+            $n->unitkerja = $i->unitkerja == null ? null : $i->unitkerja->nama;
+            $n->status_pegawai = 'PPPK';
+            $n->save();
+        } else {
+        }
+    }
 
     public function asnbelumisi()
     {
@@ -212,11 +224,169 @@ class SuperadminController extends Controller
         Session::flash('success', 'berhasil di generate');
         return back();
     }
+    public function pppkbelumisi()
+    {
+        BelumIsi::where('status_pegawai', 'PPPK')->get()->map->delete();
+        $pns = M_pegawai::where('status_pegawai', 'PPPK')->get();
+        foreach ($pns as $i) {
+            if ($i->nip == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->nama == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->jkel == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tempat_lahir == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tanggal_lahir == null) {
+                $this->storebelumpppk($i);
+            }
+
+            if ($i->email == null) {
+                $this->storebelumpppk($i);
+            }
+
+            if ($i->pangkat_id == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->jabatan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->jenis_jabatan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->jenjang_jabatan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kelas_jabatan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->mkg == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->rekening == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_rekening == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->nik == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->agama == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kewarganegaraan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_ktp == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_kk == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->no_bpjs == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kelas_bpjs == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_bpjs == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->jenjang_pendidikan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->gelar == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->prodi == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tempat_pendidikan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tahun_lulus == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_ijazah == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_transkrip == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->provinsi == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kota == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kecamatan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kelurahan == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->rt == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->rw == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->alamat == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->kodepos == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->telp == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->no_npwp == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_npwp == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->nomor_cpns == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tanggal_cpns == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_cpns == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->nomor_spmt == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tanggal_spmt == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_spmt == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->nomor_pns == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->tanggal_pns == null) {
+                $this->storebelumpppk($i);
+            }
+            if ($i->file_pns == null) {
+                $this->storebelumpppk($i);
+            }
+        }
+        Session::flash('success', 'berhasil di generate');
+        return back();
+    }
 
     public function nonasnbelumisi()
     {
-        BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
-        $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
+        BelumIsi::where('status_pegawai', 'NON ASN')->get()->map->delete();
+        $pns = M_pegawai::where('status_pegawai', 'NON ASN')->get();
         foreach ($pns as $i) {
 
             if ($i->nip == null) {
