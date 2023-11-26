@@ -901,7 +901,7 @@ class SuperadminController extends Controller
             ));
         } else {
 
-            $namaunitkerja = UnitKerja::find($unitkerja_id);
+            $namaunitkerja = UnitKerja::find($unitkerja_id)->nama;
             $pnsbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'PNS')->paginate(10);
             $pppkbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'PPPK')->paginate(10);
             $nonasnbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'NON ASN')->paginate(10);
