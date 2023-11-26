@@ -32,10 +32,10 @@ Route::get('lupa-password', [LupaPasswordController::class, 'index']);
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('bandingkan', [SuperadminController::class, 'bandingkan']);
-        Route::get('bandingkan/data', function () {
-            return redirect('/superadmin/bandingkan');
-        });
-        Route::post('bandingkan/data', [SuperadminController::class, 'bandingkanData']);
+        // Route::get('bandingkan/data', function () {
+        //     return redirect('/superadmin/bandingkan');
+        // });
+        Route::get('bandingkan/data', [SuperadminController::class, 'bandingkanData']);
         Route::get('beranda', [SuperadminController::class, 'index']);
         Route::get('beranda/filter', [SuperadminController::class, 'filter']);
         Route::get('/data/nomoraduan', [SuperadminController::class, 'nomor']);
