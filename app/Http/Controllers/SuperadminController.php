@@ -689,12 +689,13 @@ class SuperadminController extends Controller
     }
     public function filter()
     {
-        $pnsbelumisi = BelumIsi::where('status_pegawai', 'PNS')->paginate(10);
-        $pppkbelumisi = BelumIsi::where('status_pegawai', 'PPPK')->paginate(10);
-        $nonasnbelumisi = BelumIsi::where('status_pegawai', 'NON ASN')->paginate(10);
         $unitkerja_id = request()->get('unitkerja');
 
         if ($unitkerja_id == null) {
+
+            $pnsbelumisi = BelumIsi::where('status_pegawai', 'PNS')->paginate(10);
+            $pppkbelumisi = BelumIsi::where('status_pegawai', 'PPPK')->paginate(10);
+            $nonasnbelumisi = BelumIsi::where('status_pegawai', 'NON ASN')->paginate(10);
             $pns = M_pegawai::where('status_pegawai', 'pns')->count();
             $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
             $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
@@ -900,9 +901,10 @@ class SuperadminController extends Controller
             ));
         } else {
 
-            $pnsbelumisi = BelumIsi::where('status_pegawai', 'PNS')->paginate(10);
-            $pppkbelumisi = BelumIsi::where('status_pegawai', 'PPPK')->paginate(10);
-            $nonasnbelumisi = BelumIsi::where('status_pegawai', 'NON ASN')->paginate(10);
+            $namaunitkerja = UnitKerja::find($unitkerja_id);
+            $pnsbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'PNS')->paginate(10);
+            $pppkbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'PPPK')->paginate(10);
+            $nonasnbelumisi = BelumIsi::where('unitkerja', $namaunitkerja)->where('status_pegawai', 'NON ASN')->paginate(10);
 
             $pns = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pns')->count();
             $pkkk = M_pegawai::where('unitkerja_id', $unitkerja_id)->where('status_pegawai', 'pkkk')->count();
