@@ -42,7 +42,7 @@
     <nav class="navbar navbar-static-top" style="box-shadow: 0px 4px 30px;">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand" style="padding:5px 15px"><b><img src="/logo/logo3.png" width="130px"></b></a>
+          <a href="#" class="navbar-brand" style="padding:5px 15px"><b><img src="/logo/logo4.png" width="130px"></b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
