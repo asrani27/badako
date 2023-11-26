@@ -92,7 +92,7 @@
 
                     <div class="description-block border-right">
                       <br/>
-                      <img src="/logo/logo.jpeg" width="60%" >
+                      <img src="/logo/logo5.png" width="60%" >
                       {{-- <h1 style="font-family: Arial, Helvetica, sans-serif"><strong>BADAKO</strong></h1>
                       <span style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight:bold">BASIC DATA KEPEGAWAIAN ONLINE <br/> DINAS KESEHATAN <br/> KOTA BANJARMASIN</span> --}}
                     </div>
