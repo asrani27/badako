@@ -28,12 +28,7 @@ Bandingkan Data
         </select>
         <br/>
         <label>Jabatan</label>
-        <select name="jabatan" class="form-control" required>
-          <option value="">-pilih-</option>
-          <option value="perawat" {{old('jabatan') == 'perawat' ? 'selected':''}}>PERAWAT</option>
-          <option value="bidan" {{old('jabatan') == 'bidan' ? 'selected':''}}>BIDAN</option>
-          <option value="dokter" {{old('jabatan') == 'dokter' ? 'selected':''}}>DOKTER</option>
-        </select>
+        <input type="text" class="form-control" name="jabatan" value="{{old('jabatan')}}">
         <br/>
         <br/>
         <button type="submit" class="btn btn-md btn-primary btn-block">SEARCH</button>
@@ -64,13 +59,37 @@ Bandingkan Data
           <tr style="background-color: #a8c4f1">
             <th class="text-center">No</th>
             <th>UNIT KERJA</th>
-            <th>JUMLAH</th>
+            <th>BANDING DATA</th>
           </tr>
           @foreach ($data as $key => $item)
           <tr>
               <td class="text-center">{{$key+1}}</td>
               <td>{{$item->nama}}</td>
-              <td>{{$item->jumlah}}</td>
+              <td>
+                <table>
+                <tr>
+                  <td>Jumlah Penduduk</td>
+                  <td>: {{$item->jumlah_penduduk}}</td>
+                </tr>
+                <tr>
+                  <td>Jumlah KK</td>
+                  <td>: {{$item->jumlah_kk}}</td>
+                </tr>
+                <tr>
+                  <td>Jumlah RT</td>
+                  <td>: {{$item->jumlah_rt}}</td>
+                </tr>
+                <tr>
+                  <td>Jumlah RW</td>
+                  <td>: {{$item->jumlah_rw}}</td>
+                </tr>
+                <tr>
+                  <td>Jumlah {{old('jabatan')}}</td>
+                  <td>: {{$item->jumlah}} Orang</td>
+                </tr>
+                </table>
+              </td>
+              
           </tr>
           @endforeach
           

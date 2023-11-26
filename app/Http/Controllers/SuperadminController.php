@@ -384,6 +384,7 @@ class SuperadminController extends Controller
         //$unitkerja_id = UnitKerja::whereIn('id', $id)->get();
         $data = $unitkerja->map(function ($item) use ($jenjang, $jabatan) {
             $item->jumlah = M_pegawai::where('unitkerja_id', $item->id)->where('jenjang_jabatan', $jenjang)->where('jabatan', 'LIKE', '%' . $jabatan . '%')->count();
+            $item->totalpegawai = $item->pegawai->count();
             return $item;
         });
 
