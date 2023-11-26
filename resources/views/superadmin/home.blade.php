@@ -402,7 +402,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> ASN Yang belum selesai isi Data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> PNS Yang belum selesai isi Data</h3>
 
       <div class="box-tools">
         <a href="/superadmin/belumisi/asn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
@@ -417,17 +417,17 @@ DASHBOARD
           <th>Unit Kerja</th>
         </tr>
 
-        @foreach ($belumisi as $key => $item)
+        @foreach ($pnsbelumisi as $key => $item)
         <tr>
-          <td>{{$belumisi->firstItem() + $key}}</td>
-          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
-          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+          <td>{{$pnsbelumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
         </tr>
         @endforeach
         
         </tbody>
       </table>
-      {{$belumisi->withQueryString()->links()}}
+      {{$pnsbelumisi->withQueryString()->links()}}
     </div>
     </div>
   </div>
@@ -449,17 +449,17 @@ DASHBOARD
           <th>Unit Kerja</th>
         </tr>
 
-        @foreach ($belumisi as $key => $item)
+        @foreach ($pppkbelumisi as $key => $item)
         <tr>
-          <td>{{$belumisi->firstItem() + $key}}</td>
-          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
-          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+          <td>{{$pppkbelumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
         </tr>
         @endforeach
         
         </tbody>
       </table>
-      {{$belumisi->withQueryString()->links()}}
+      {{$pppkbelumisi->withQueryString()->links()}}
     </div>
     </div>
   </div>
@@ -481,17 +481,17 @@ DASHBOARD
           <th>Unit Kerja</th>
         </tr>
 
-        @foreach ($belumisi as $key => $item)
+        @foreach ($nonasnbelumisi as $key => $item)
         <tr>
-          <td>{{$belumisi->firstItem() + $key}}</td>
-          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
-          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
+          <td>{{$nonasnbelumisi->firstItem() + $key}}</td>
+          <td><a href="/superadmin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
         </tr>
         @endforeach
         
         </tbody>
       </table>
-      {{$belumisi->withQueryString()->links()}}
+      {{$nonasnbelumisi->withQueryString()->links()}}
     </div>
     </div>
   </div>

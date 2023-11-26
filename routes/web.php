@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('belumisi/asn', [SuperadminController::class, 'asnbelumisi']);
         Route::get('belumisi/pppk', [SuperadminController::class, 'pppkbelumisi']);
         Route::get('belumisi/nonasn', [SuperadminController::class, 'nonasnbelumisi']);
-        Route::get('detail/{id}', [SuperadminController::class, 'detail']);
+        Route::get('detail/{nip}', [SuperadminController::class, 'detail']);
         // Route::get('bandingkan/data', function () {
         //     return redirect('/superadmin/bandingkan');
         // });

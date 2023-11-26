@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Nomor;
 use App\Models\Pangkat;
+use App\Models\BelumIsi;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
@@ -26,14 +27,187 @@ class SuperadminController extends Controller
         return view('superadmin.pegawai.index', compact('data'));
     }
 
-    public function belumisi()
+    public function storebelum($i)
     {
-        $pns = M_pegawai::where('status_pegawai', null)->get();
+        if (BelumIsi::where('nip', $i->nip)->first() == null) {
+            $n = new BelumIsi;
+            $n->nip = $i->nip;
+            $n->nama = $i->nama;
+            $n->unitkerja = $i->unitkerja == null ? null : $i->unitkerja->nama;
+            $n->status_pegawai = 'PNS';
+            $n->save();
+        } else {
+        }
     }
 
-    public function detail($id)
+    public function asnbelumisi()
     {
-        $data = M_pegawai::find($id);
+        BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
+        $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
+        foreach ($pns as $i) {
+            if ($i->foto == null) {
+                $this->storebelum($i);
+            }
+            if ($i->nip == null) {
+                $this->storebelum($i);
+            }
+            if ($i->nama == null) {
+                $this->storebelum($i);
+            }
+            if ($i->jkel == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tempat_lahir == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tanggal_lahir == null) {
+                $this->storebelum($i);
+            }
+
+            if ($i->email == null) {
+                $this->storebelum($i);
+            }
+
+            if ($i->pangkat_id == null) {
+                $this->storebelum($i);
+            }
+            if ($i->jabatan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->jenis_jabatan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->jenjang_jabatan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kelas_jabatan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->mkg == null) {
+                $this->storebelum($i);
+            }
+            if ($i->rekening == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_rekening == null) {
+                $this->storebelum($i);
+            }
+            if ($i->nik == null) {
+                $this->storebelum($i);
+            }
+            if ($i->agama == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kewarganegaraan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_ktp == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_kk == null) {
+                $this->storebelum($i);
+            }
+            if ($i->no_bpjs == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kelas_bpjs == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_bpjs == null) {
+                $this->storebelum($i);
+            }
+            if ($i->jenjang_pendidikan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->gelar == null) {
+                $this->storebelum($i);
+            }
+            if ($i->prodi == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tempat_pendidikan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tahun_lulus == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_ijazah == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_transkrip == null) {
+                $this->storebelum($i);
+            }
+            if ($i->provinsi == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kota == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kecamatan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kelurahan == null) {
+                $this->storebelum($i);
+            }
+            if ($i->rt == null) {
+                $this->storebelum($i);
+            }
+            if ($i->rw == null) {
+                $this->storebelum($i);
+            }
+            if ($i->alamat == null) {
+                $this->storebelum($i);
+            }
+            if ($i->kodepos == null) {
+                $this->storebelum($i);
+            }
+            if ($i->telp == null) {
+                $this->storebelum($i);
+            }
+            if ($i->no_npwp == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_npwp == null) {
+                $this->storebelum($i);
+            }
+            if ($i->nomor_cpns == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tanggal_cpns == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_cpns == null) {
+                $this->storebelum($i);
+            }
+
+
+            if ($i->nomor_spmt == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tanggal_spmt == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_spmt == null) {
+                $this->storebelum($i);
+            }
+
+            if ($i->nomor_pns == null) {
+                $this->storebelum($i);
+            }
+            if ($i->tanggal_pns == null) {
+                $this->storebelum($i);
+            }
+            if ($i->file_pns == null) {
+                $this->storebelum($i);
+            }
+        }
+        Session::flash('success', 'berhasil di generate');
+        return back();
+    }
+
+    public function detail($nip)
+    {
+        $data = M_pegawai::where('nip', $nip)->first();
         return view('superadmin.detail', compact('data'));
     }
 
@@ -60,6 +234,9 @@ class SuperadminController extends Controller
 
         $belumisi = M_pegawai::where('status_pegawai', null)->paginate(10);
 
+        $pnsbelumisi = BelumIsi::where('status_pegawai', 'PNS')->paginate(10);
+        $pppkbelumisi = BelumIsi::where('status_pegawai', 'PPPK')->paginate(10);
+        $nonasnbelumisi = BelumIsi::where('status_pegawai', 'NON ASN')->paginate(10);
 
         $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
             if ($item->tanggal_lahir == null) {
@@ -241,6 +418,9 @@ class SuperadminController extends Controller
             'belumisi',
             'pensiun',
             'unitkerja',
+            'pnsbelumisi',
+            'pppkbelumisi',
+            'nonasnbelumisi'
         ));
     }
     public function filter()
