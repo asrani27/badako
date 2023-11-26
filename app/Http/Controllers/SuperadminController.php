@@ -40,14 +40,25 @@ class SuperadminController extends Controller
         }
     }
 
+    public function storebelumnon($i)
+    {
+        if (BelumIsi::where('nip', $i->nip)->first() == null) {
+            $n = new BelumIsi;
+            $n->nip = $i->nip;
+            $n->nama = $i->nama;
+            $n->unitkerja = $i->unitkerja == null ? null : $i->unitkerja->nama;
+            $n->status_pegawai = 'NON ASN';
+            $n->save();
+        } else {
+        }
+    }
+
     public function asnbelumisi()
     {
         BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
         $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
         foreach ($pns as $i) {
-            if ($i->foto == null) {
-                $this->storebelum($i);
-            }
+
             if ($i->nip == null) {
                 $this->storebelum($i);
             }
@@ -179,8 +190,6 @@ class SuperadminController extends Controller
             if ($i->file_cpns == null) {
                 $this->storebelum($i);
             }
-
-
             if ($i->nomor_spmt == null) {
                 $this->storebelum($i);
             }
@@ -190,7 +199,6 @@ class SuperadminController extends Controller
             if ($i->file_spmt == null) {
                 $this->storebelum($i);
             }
-
             if ($i->nomor_pns == null) {
                 $this->storebelum($i);
             }
@@ -199,6 +207,151 @@ class SuperadminController extends Controller
             }
             if ($i->file_pns == null) {
                 $this->storebelum($i);
+            }
+        }
+        Session::flash('success', 'berhasil di generate');
+        return back();
+    }
+
+    public function nonasnbelumisi()
+    {
+        BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
+        $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
+        foreach ($pns as $i) {
+
+            if ($i->nip == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->nama == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->jkel == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tempat_lahir == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tanggal_lahir == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->email == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->jabatan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->mkg == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->rekening == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_rekening == null) {
+                $this->storebelumnon($i);
+            }
+
+            if ($i->agama == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kewarganegaraan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_ktp == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_kk == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->no_bpjs == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kelas_bpjs == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_bpjs == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->jenjang_pendidikan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->gelar == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->prodi == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tempat_pendidikan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tahun_lulus == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_ijazah == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_transkrip == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->provinsi == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kota == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kecamatan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kelurahan == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->rt == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->rw == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->alamat == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->kodepos == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->telp == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->no_npwp == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_npwp == null) {
+                $this->storebelumnon($i);
+            }
+
+            if ($i->nomor_nonasn == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tanggal_nonasn == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_nonasn == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->nomor_str == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tanggal_str == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_str == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->nomor_sip == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->tanggal_sip == null) {
+                $this->storebelumnon($i);
+            }
+            if ($i->file_sip == null) {
+                $this->storebelumnon($i);
             }
         }
         Session::flash('success', 'berhasil di generate');

@@ -383,7 +383,7 @@ DASHBOARD
         @foreach ($belumisi as $key => $item)
         <tr>
           <td>{{$belumisi->firstItem() + $key}}</td>
-          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td><a href="/superadmin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
           <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
         </tr>
         @endforeach
