@@ -106,6 +106,7 @@ DETAIL PEGAWAI
             </div>
           </div>
 
+          @if ($data->jenis_jabatan == 'JF')
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label {{$data->jenjang_jabatan == null ? 'text-red':''}}">jenjang_jabatan</label>
 
@@ -113,6 +114,7 @@ DETAIL PEGAWAI
               <input type="text" class="form-control" name="nama" value="{{$data->jenjang_jabatan}}">
             </div>
           </div>
+          @endif
 
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label {{$data->kelas_jabatan == null ? 'text-red':''}}">kelas_jabatan</label>
@@ -396,7 +398,7 @@ DETAIL PEGAWAI
             </div>
           </div>
 
-
+          @if ($data->jenis_jabatan == 'JF')
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label {{$data->nomor_jafung == null ? 'text-red':''}}">nomor_jafung</label>
             <div class="col-sm-10">
@@ -415,6 +417,8 @@ DETAIL PEGAWAI
               <input type="text" class="form-control" name="nama" value="{{$data->file_jafung}}">
             </div>
           </div>
+          @endif
+          
 
 
           <div class="form-group">
@@ -464,7 +468,8 @@ DETAIL PEGAWAI
             </div>
           </div>
 
-          {{-- <div class="form-group">
+          @if ($data->jenis_jabatan == 'JF')
+          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label {{$data->nomor_str == null ? 'text-red':''}}">nomor_str</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="nama" value="{{$data->nomor_str}}">
@@ -500,7 +505,9 @@ DETAIL PEGAWAI
             <div class="col-sm-10">
               <input type="text" class="form-control" name="nama" value="{{$data->file_sip}}">
             </div>
-          </div> --}}
+          </div>  
+          @endif
+          
 
 
         </div>
