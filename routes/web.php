@@ -158,6 +158,10 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
+        Route::get('belumisi/asn', [AdminController::class, 'asnbelumisi']);
+        Route::get('belumisi/pppk', [AdminController::class, 'pppkbelumisi']);
+        Route::get('belumisi/nonasn', [AdminController::class, 'nonasnbelumisi']);
+        Route::get('detail/{nip}', [AdminController::class, 'detail']);
         Route::get('beranda', [AdminController::class, 'beranda']);
         Route::get('profil', [AdminController::class, 'profil']);
         Route::post('profil', [AdminController::class, 'updateProfil']);

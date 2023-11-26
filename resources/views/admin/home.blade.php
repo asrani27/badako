@@ -158,7 +158,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Yang Naik Pangkat Tahun Ini</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body no-padding">
@@ -192,7 +192,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Naik Gaji Berkala Tahun ini</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body no-padding">
@@ -226,7 +226,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Pensiun Tahun ini</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body no-padding">
@@ -262,7 +262,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> STR Kadaluarsa tahun ini</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body no-padding">
@@ -297,7 +297,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> SIP Kadaluarsa tahun ini</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body no-padding">
@@ -327,10 +327,10 @@ DASHBOARD ADMIN
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum selesai mengisi data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum isi status pegawai ({{$belumisi->total()}})</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        
       </div>
     </div>
     <div class="box-body no-padding">
@@ -339,24 +339,125 @@ DASHBOARD ADMIN
           <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
           <th class="text-center">No</th>
           <th>Nama</th>
-          <th>Puskesmas</th>
+          <th>Unit Kerja</th>
         </tr>
 
-        {{-- @foreach ($belumisi as $key => $item)
+        @foreach ($belumisi as $key => $item)
         <tr>
           <td>{{$belumisi->firstItem() + $key}}</td>
-          <td>{{$item->nama}}</td>
-          <td>{{$item->unitkerja->nama}}</td>
+          <td><a href="/admin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
         </tr>
-        @endforeach --}}
+        @endforeach
         
         </tbody>
       </table>
-      {{$belumisi->links()}}
+      {{$belumisi->withQueryString()->links()}}
     </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> PNS Yang belum selesai isi Data ({{$pnsbelumisi->total()}})</h3>
+
+      <div class="box-tools">
+        <a href="/admin/belumisi/asn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($pnsbelumisi as $key => $item)
+        <tr>
+          <td>{{$pnsbelumisi->firstItem() + $key}}</td>
+          <td><a href="/admin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$pnsbelumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> PPPK Yang belum selesai isi Data ({{$pppkbelumisi->total()}})</h3>
+
+      <div class="box-tools">
+        <a href="/admin/belumisi/pppk" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($pppkbelumisi as $key => $item)
+        <tr>
+          <td>{{$pppkbelumisi->firstItem() + $key}}</td>
+          <td><a href="/admin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$pppkbelumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"><i class="fa fa-users"></i> NON ASN Yang belum selesai isi Data ({{$nonasnbelumisi->total()}})</h3>
+
+      <div class="box-tools">
+        <a href="/admin/belumisi/nonasn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr style="background-color:#2969b0 !important;background-image:linear-gradient(to right , #a90911, #a90766, #a2b14d, #def671); color:#fff">
+          <th class="text-center">No</th>
+          <th>Nama</th>
+          <th>Unit Kerja</th>
+        </tr>
+
+        @foreach ($nonasnbelumisi as $key => $item)
+        <tr>
+          <td>{{$nonasnbelumisi->firstItem() + $key}}</td>
+          <td><a href="/admin/detail/{{$item->nip}}"><span class="text-blue">{{$item->nama}}</span></a></td>
+          <td>{{$item->unitkerja}}</td>
+        </tr>
+        @endforeach
+        
+        </tbody>
+      </table>
+      {{$nonasnbelumisi->withQueryString()->links()}}
+    </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-6">
     <div class="box">
@@ -364,7 +465,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Pendidikan</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
@@ -379,7 +480,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Golongan PNS</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
@@ -393,7 +494,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Golongan PPPK</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
@@ -407,7 +508,7 @@ DASHBOARD ADMIN
       <h3 class="box-title"><i class="fa fa-users"></i> Pegawai Berdasarkan Jenis Kelamin</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
       </div>
     </div>
     <div class="box-body">
