@@ -70,7 +70,6 @@ class SuperadminController extends Controller
         BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
         $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
         foreach ($pns as $i) {
-
             if ($i->nip == null) {
                 $this->storebelum($i);
             }
