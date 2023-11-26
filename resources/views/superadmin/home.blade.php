@@ -365,7 +365,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum isi status pegawai</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum isi status pegawai ({{$belumisi->getTotal()}})</h3>
 
       <div class="box-tools">
         
@@ -402,7 +402,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> PNS Yang belum selesai isi Data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> PNS Yang belum selesai isi Data ({{$pnsbelumisi->getTotal()}})</h3>
 
       <div class="box-tools">
         <a href="/superadmin/belumisi/asn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
@@ -434,7 +434,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> PPPK Yang belum selesai isi Data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> PPPK Yang belum selesai isi Data ({{$pppkbelumisi->getTotal()}})</h3>
 
       <div class="box-tools">
         <a href="/superadmin/belumisi/pppk" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
@@ -466,7 +466,7 @@ DASHBOARD
   <div class="col-md-4">
     <div class="box">
     <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-users"></i> NON ASN Yang belum selesai isi Data</h3>
+      <h3 class="box-title"><i class="fa fa-users"></i> NON ASN Yang belum selesai isi Data ({{$nonasnbelumisi->getTotal()}})</h3>
 
       <div class="box-tools">
         <a href="/superadmin/belumisi/nonasn" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
