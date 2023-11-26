@@ -368,7 +368,7 @@ DASHBOARD
       <h3 class="box-title"><i class="fa fa-users"></i> Nama-nama belum selesai mengisi data</h3>
 
       <div class="box-tools">
-        {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+        <a href="/superadmin/belumisi" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-refresh"></i> Check</a>
       </div>
     </div>
     <div class="box-body no-padding">
@@ -383,7 +383,7 @@ DASHBOARD
         @foreach ($belumisi as $key => $item)
         <tr>
           <td>{{$belumisi->firstItem() + $key}}</td>
-          <td>{{$item->nama}}</td>
+          <td><a href="/superadmin/detail/{{$item->id}}"><span class="text-blue">{{$item->nama}}</span></a></td>
           <td>{{$item->unitkerja == null ? '-': $item->unitkerja->nama}}</td>
         </tr>
         @endforeach

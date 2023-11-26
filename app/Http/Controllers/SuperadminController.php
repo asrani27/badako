@@ -26,6 +26,17 @@ class SuperadminController extends Controller
         return view('superadmin.pegawai.index', compact('data'));
     }
 
+    public function belumisi()
+    {
+        $pns = M_pegawai::where('status_pegawai', null)->get();
+    }
+
+    public function detail($id)
+    {
+        $data = M_pegawai::find($id);
+        return view('superadmin.detail', compact('data'));
+    }
+
     public function index()
     {
         $pns = M_pegawai::where('status_pegawai', 'pns')->count();
@@ -47,7 +58,7 @@ class SuperadminController extends Controller
         $str = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_str', $limatahun)->paginate(10);
         $sip = M_pegawai::where('status_pegawai', 'pns')->whereYear('tanggal_sip', $limatahun)->paginate(10);
 
-        $belumisi = M_pegawai::where('unit_kerja', null)->paginate(10);
+        $belumisi = M_pegawai::where('status_pegawai', null)->paginate(10);
 
 
         $pensiun = M_pegawai::where('status_pegawai', 'pns')->get()->map(function ($item) {
