@@ -472,7 +472,15 @@ class SuperadminController extends Controller
     public function detail($nip)
     {
         $data = M_pegawai::where('nip', $nip)->first();
-        return view('superadmin.detail', compact('data'));
+        if ($data->status_pegawai == 'PNS') {
+            return view('superadmin.detailpns', compact('data'));
+        }
+        if ($data->status_pegawai == 'PPPK') {
+            return view('superadmin.detailpppk', compact('data'));
+        }
+        if ($data->status_pegawai == 'NON ASN') {
+            return view('superadmin.detailnonasn', compact('data'));
+        }
     }
 
     public function index()
