@@ -70,154 +70,333 @@ class SuperadminController extends Controller
         BelumIsi::where('status_pegawai', 'PNS')->get()->map->delete();
         $pns = M_pegawai::where('status_pegawai', 'PNS')->get();
         foreach ($pns as $i) {
-            if ($i->nip == null) {
+            if ($i->jenis_jabatan == 'null') {
                 $this->storebelum($i);
-            }
-            if ($i->nama == null) {
-                $this->storebelum($i);
-            }
-            if ($i->jkel == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tempat_lahir == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tanggal_lahir == null) {
-                $this->storebelum($i);
-            }
+            } elseif ($i->jenis_jabatan == 'JF') {
+                if ($i->nip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nama == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jkel == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tempat_lahir == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_lahir == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->email == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->pangkat_id == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenis_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenjang_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelas_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->mkg == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rekening == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_rekening == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nik == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->agama == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kewarganegaraan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_ktp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_kk == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->no_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelas_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenjang_pendidikan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->gelar == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->prodi == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tempat_pendidikan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tahun_lulus == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_ijazah == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_transkrip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->provinsi == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kota == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kecamatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelurahan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rw == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->alamat == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kodepos == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->telp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->no_npwp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_npwp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_cpns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_cpns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_cpns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_jafung == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_jafung == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_jafung == null) {
+                    $this->storebelum($i);
+                }
 
-            if ($i->email == null) {
-                $this->storebelum($i);
-            }
+                if ($i->nomor_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_pns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_pns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_pns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_str == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_str == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_str == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_sip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_sip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_sip == null) {
+                    $this->storebelum($i);
+                }
+            } else {
+                if ($i->nip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nama == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jkel == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tempat_lahir == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_lahir == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->email == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->pangkat_id == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenis_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenjang_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelas_jabatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->mkg == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rekening == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_rekening == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nik == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->agama == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kewarganegaraan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_ktp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_kk == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->no_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelas_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_bpjs == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->jenjang_pendidikan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->gelar == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->prodi == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tempat_pendidikan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tahun_lulus == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_ijazah == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_transkrip == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->provinsi == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kota == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kecamatan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kelurahan == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->rw == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->alamat == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->kodepos == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->telp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->no_npwp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_npwp == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_cpns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_cpns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_cpns == null) {
+                    $this->storebelum($i);
+                }
 
-            if ($i->pangkat_id == null) {
-                $this->storebelum($i);
-            }
-            if ($i->jabatan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->jenis_jabatan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->jenjang_jabatan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kelas_jabatan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->mkg == null) {
-                $this->storebelum($i);
-            }
-            if ($i->rekening == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_rekening == null) {
-                $this->storebelum($i);
-            }
-            if ($i->nik == null) {
-                $this->storebelum($i);
-            }
-            if ($i->agama == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kewarganegaraan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_ktp == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_kk == null) {
-                $this->storebelum($i);
-            }
-            if ($i->no_bpjs == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kelas_bpjs == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_bpjs == null) {
-                $this->storebelum($i);
-            }
-            if ($i->jenjang_pendidikan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->gelar == null) {
-                $this->storebelum($i);
-            }
-            if ($i->prodi == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tempat_pendidikan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tahun_lulus == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_ijazah == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_transkrip == null) {
-                $this->storebelum($i);
-            }
-            if ($i->provinsi == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kota == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kecamatan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kelurahan == null) {
-                $this->storebelum($i);
-            }
-            if ($i->rt == null) {
-                $this->storebelum($i);
-            }
-            if ($i->rw == null) {
-                $this->storebelum($i);
-            }
-            if ($i->alamat == null) {
-                $this->storebelum($i);
-            }
-            if ($i->kodepos == null) {
-                $this->storebelum($i);
-            }
-            if ($i->telp == null) {
-                $this->storebelum($i);
-            }
-            if ($i->no_npwp == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_npwp == null) {
-                $this->storebelum($i);
-            }
-            if ($i->nomor_cpns == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tanggal_cpns == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_cpns == null) {
-                $this->storebelum($i);
-            }
-            if ($i->nomor_spmt == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tanggal_spmt == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_spmt == null) {
-                $this->storebelum($i);
-            }
-            if ($i->nomor_pns == null) {
-                $this->storebelum($i);
-            }
-            if ($i->tanggal_pns == null) {
-                $this->storebelum($i);
-            }
-            if ($i->file_pns == null) {
-                $this->storebelum($i);
+                if ($i->nomor_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_spmt == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->nomor_pns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->tanggal_pns == null) {
+                    $this->storebelum($i);
+                }
+                if ($i->file_pns == null) {
+                    $this->storebelum($i);
+                }
             }
         }
         Session::flash('success', 'berhasil di generate');
