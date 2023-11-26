@@ -465,24 +465,6 @@ class SuperadminController extends Controller
             if ($i->file_nonasn == null) {
                 $this->storebelumnon($i);
             }
-            if ($i->nomor_str == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->tanggal_str == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->file_str == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->nomor_sip == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->tanggal_sip == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->file_sip == null) {
-                $this->storebelumnon($i);
-            }
         }
         Session::flash('success', 'berhasil di generate');
         return back();
