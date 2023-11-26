@@ -30,6 +30,15 @@ Bandingkan Data
         <label>Jabatan</label>
         <input type="text" class="form-control" name="jabatan" value="{{old('jabatan')}}">
         <br/>
+        <label>Unit Kerja</label>
+        
+        <select class="form-control select2" name="unitkerja_id[]" multiple="multiple" data-placeholder="Select a State"
+                style="width: 100%;">
+                @foreach ($uk as $item)
+                    <option value="{{$item->id}}" {{$oldunitkerja->contains($item->id) == true ? 'selected':''}}>{{$item->nama}}</option>
+                @endforeach
+        </select>
+        <br/>
         <br/>
         <button type="submit" class="btn btn-md btn-primary btn-block">SEARCH</button>
       </form>

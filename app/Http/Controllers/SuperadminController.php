@@ -1307,38 +1307,37 @@ class SuperadminController extends Controller
             return $item;
         });
         $data = [];
-        return view('superadmin.bandingkan.index', compact('uk', 'data'));
+        $oldunitkerja = null;
+        return view('superadmin.bandingkan.index', compact('uk', 'data', 'oldunitkerja'));
     }
 
     public function bandingkanData()
     {
-        // $id = array();
-        // foreach ($req->unitkerja_id as $key => $item) {
-        //     array_push($id, (int)$item);
-        // }
+        $id = array();
+        foreach (request()->get('unitkerja_id') as $key => $item) {
+            array_push($id, (int)$item);
+        }
+
+        $oldunitkerja = collect($id);
+
+
         $jenjang = request()->get('jenjang_jabatan');
         $jabatan = request()->get('jabatan');
 
-        $unitkerja = UnitKerja::get();
-        //$unitkerja_id = UnitKerja::whereIn('id', $id)->get();
+        $unitkerja = UnitKerja::whereIn('id', $id)->get();
+
         $data = $unitkerja->map(function ($item) use ($jenjang, $jabatan) {
             $item->jumlah = M_pegawai::where('unitkerja_id', $item->id)->where('jenjang_jabatan', $jenjang)->where('jabatan', 'LIKE', '%' . $jabatan . '%')->count();
             $item->totalpegawai = $item->pegawai->count();
             return $item;
         });
 
-        // $unitkerja = UnitKerja::get();
-        // $uk = $unitkerja->map(function ($item) {
-        //     $item->pns = $item->pegawai->where('status_pegawai', 'PNS')->count();
-        //     $item->pppk = $item->pegawai->where('status_pegawai', 'PPPK')->count();
-        //     $item->nonasn = $item->pegawai->where('status_pegawai', 'NON ASN')->count();
-        //     $item->null = $item->pegawai->where('status_pegawai', null)->count();
-        //     $item->totalpegawai = $item->pegawai->count();
-        //     return $item;
-        // });
+        $uk = UnitKerja::get();
+
         request()->flash();
+
         //dd($data);
-        return view('superadmin.bandingkan.index', compact('data'));
+        return view('superadmin.bandingkan.index', compact('data', 'uk', 'oldunitkerja'));
     }
 
     public function pegawai()
