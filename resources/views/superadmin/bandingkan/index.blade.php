@@ -34,9 +34,15 @@ Bandingkan Data
         
         <select class="form-control select2" name="unitkerja_id[]" multiple="multiple" data-placeholder="Select a State"
                 style="width: 100%;">
-                @foreach ($uk as $item)
-                    <option value="{{$item->id}}" {{$oldunitkerja->contains($item->id) == true ? 'selected':''}}>{{$item->nama}}</option>
-                @endforeach
+                @if ($oldunitkerja == null)
+                  @foreach ($uk as $item)
+                  <option value="{{$item->id}}">{{$item->nama}}</option>
+                  @endforeach
+                @else
+                  @foreach ($uk as $item)
+                  <option value="{{$item->id}}" {{$oldunitkerja->contains($item->id) == true ? 'selected':''}}>{{$item->nama}}</option>
+                  @endforeach 
+                @endif
         </select>
         <br/>
         <br/>
