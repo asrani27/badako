@@ -32,6 +32,13 @@ PENUGASAN PEGAWAI
             </div>
           </div>
           <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Untuk memenuhi kebutuhan</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="kebutuhan" placeholder="Dokter Umum">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Cari NIP/Nama</label>
 
             <div class="col-sm-10">

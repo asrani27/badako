@@ -71,8 +71,8 @@ class PenugasanController extends Controller
     public function delete($id)
     {
         $data = Penugasan::find($id)->delete();
-        return back();
         Session::flash('success', 'berhasil di hapus');
+        return back();
     }
     public function word($id)
     {
@@ -81,6 +81,7 @@ class PenugasanController extends Controller
         $word = new TemplateProcessor(public_path() . '/word/penugasan.docx');
         $word->setValues([
             'nomor' => $data->nomor,
+            'kebutuhan' => $data->kebutuhan,
             'nip' => $data->nip,
             'nama' => $data->nama,
             'jabatan' => $data->jabatan,
