@@ -643,16 +643,6 @@ class AdminController extends Controller
             if ($i->file_npwp == null) {
                 $this->storebelumnon($i);
             }
-
-            if ($i->nomor_nonasn == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->tanggal_nonasn == null) {
-                $this->storebelumnon($i);
-            }
-            if ($i->file_nonasn == null) {
-                $this->storebelumnon($i);
-            }
         }
         Session::flash('success', 'berhasil di generate');
         return back();
