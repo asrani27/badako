@@ -248,20 +248,7 @@ class SuperadminController extends Controller
             if ($i->email == null) {
                 $this->storebelumpppk($i);
             }
-
-            if ($i->pangkat_id == null) {
-                $this->storebelumpppk($i);
-            }
             if ($i->jabatan == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->jenis_jabatan == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->jenjang_jabatan == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->kelas_jabatan == null) {
                 $this->storebelumpppk($i);
             }
             if ($i->mkg == null) {
@@ -349,33 +336,6 @@ class SuperadminController extends Controller
                 $this->storebelumpppk($i);
             }
             if ($i->file_npwp == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->nomor_cpns == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->tanggal_cpns == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->file_cpns == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->nomor_spmt == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->tanggal_spmt == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->file_spmt == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->nomor_pns == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->tanggal_pns == null) {
-                $this->storebelumpppk($i);
-            }
-            if ($i->file_pns == null) {
                 $this->storebelumpppk($i);
             }
         }
