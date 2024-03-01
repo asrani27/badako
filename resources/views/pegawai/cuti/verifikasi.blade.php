@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-<link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+<link rel="stylesheet" type="text/css" href="https://keith-wood.name/css/jquery.signature.css">
 
 <style>
     .kbw-signature { width: 200px; height: 120px;}
@@ -163,8 +163,8 @@
 @endsection
 @push('js')
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://keith-wood.name/js/jquery.signature.js"></script>
 <script>
   $(document).on('click', '.modal-verifikasi', function() {
     $('#cuti_id').val($(this).data('id'));
