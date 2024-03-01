@@ -3,9 +3,21 @@
 use App\Models\Uraian;
 use App\Models\JenisRfk;
 use App\Models\M_indikator;
+use App\Models\M_pegawai;
 use App\Models\T_capaian;
 use Illuminate\Support\Facades\Auth;
 
+
+function checkPegawai($nip)
+{
+    $check = M_pegawai::where('nip', $nip)->first()->nama;
+    return $check;
+}
+function dataPegawai($nip)
+{
+    $check = M_pegawai::where('nip', $nip)->first();
+    return $check;
+}
 function checkCapaian($skpd_id, $tahun, $kode, $jenis)
 {
     $check = T_capaian::where('skpd_id', $skpd_id)->where('tahun', $tahun)->where('kode', $kode)->where('jenis', $jenis)->first();

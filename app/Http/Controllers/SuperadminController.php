@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Cuti;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Nomor;
@@ -1483,5 +1484,30 @@ class SuperadminController extends Controller
 
         Session::flash('success', 'Akun Login berhasil dibuat, username : nip, password :nip');
         return back();
+    }
+
+    public function cuti()
+    {
+        $data = Cuti::paginate(20);
+        return view('superadmin.cuti.index', compact('data'));
+    }
+    public function verifikasiCuti($id)
+    {
+        Cuti::find($id)->update([
+            'umpeg' => 'disetujui',
+        ]);
+        Session::flash('success', 'Berhasil di validasi');
+        return back();
+    }
+    public function cutiDelete($id)
+    {
+        $data = Cuti::find($id)->delete();
+        Session::flash('success', 'Berhasil di hapus');
+        return back();
+    }
+    public function cutiPdf()
+    {
+        $data = Cuti::paginate(20);
+        return view('superadmin.cuti.index', compact('data'));
     }
 }

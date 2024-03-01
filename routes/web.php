@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PLHController;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\CutiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SPMTController;
 use App\Http\Controllers\AdminController;
@@ -17,8 +19,8 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
-use App\Http\Controllers\PLHController;
 use App\Http\Controllers\UnitKerjaController;
+use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -56,6 +58,11 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/pegawai/delete/{id}', [SuperadminController::class, 'deletePegawai']);
         Route::get('/data/pegawai/profile/{id}', [SuperadminController::class, 'profilPegawai']);
 
+        Route::get('/cuti', [SuperadminController::class, 'cuti']);
+        Route::get('/cuti/pdf/{id}', [SuperadminController::class, 'cutiPdf']);
+        Route::get('/cuti/delete/{id}', [SuperadminController::class, 'cutiDelete']);
+        Route::get('cuti/teruskan/{id}', [SuperadminController::class, 'verifikasiCuti']);
+
         Route::get('/penugasan', [PenugasanController::class, 'index']);
         Route::get('/penugasan/search', [PenugasanController::class, 'search']);
         Route::get('/penugasan/add', [PenugasanController::class, 'create']);
@@ -79,6 +86,13 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/kadis/add', [KadisController::class, 'store']);
         Route::get('/kadis/aktifkan/{id}', [KadisController::class, 'aktifkan']);
         Route::get('/kadis/delete/{id}', [KadisController::class, 'delete']);
+
+
+        Route::get('/sekretaris', [SekretarisController::class, 'index']);
+        Route::get('/sekretaris/add', [SekretarisController::class, 'create']);
+        Route::post('/sekretaris/add', [SekretarisController::class, 'store']);
+        Route::get('/sekretaris/aktifkan/{id}', [SekretarisController::class, 'aktifkan']);
+        Route::get('/sekretaris/delete/{id}', [SekretarisController::class, 'delete']);
 
         Route::get('/mutasi', [MutasiController::class, 'index']);
         Route::get('/mutasi/search', [MutasiController::class, 'search']);
@@ -131,6 +145,18 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
 Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
     Route::prefix('pegawai')->group(function () {
+        Route::get('cuti', [CutiController::class, 'index']);
+        Route::get('cuti/add', [CutiController::class, 'create']);
+        Route::get('cuti/setujui/{id}', [CutiController::class, 'setujui']);
+        Route::get('cuti/pdf/{id}', [CutiController::class, 'pdf']);
+        Route::get('cuti/tolak/{id}', [CutiController::class, 'tolak']);
+        Route::get('cuti/kadis/setujui/{id}', [CutiController::class, 'kadisSetujui']);
+        Route::get('cuti/kadis/tolak/{id}', [CutiController::class, 'kadisTolak']);
+        Route::get('cuti/verifikasi', [CutiController::class, 'verifikasi']);
+        Route::get('cuti/teruskan/{id}', [CutiController::class, 'verifikasiSekretaris']);
+        Route::post('cuti/verifikasi/atasanlangsungsetuju', [CutiController::class, 'verifAtasanLangsungSetuju']);
+        Route::get('cuti/delete/{id}', [CutiController::class, 'delete']);
+        Route::post('cuti/add', [CutiController::class, 'store']);
         Route::get('beranda', [PegawaiController::class, 'beranda']);
         Route::post('ubahfoto', [PegawaiController::class, 'ubahfoto']);
         Route::get('biodata/edit', [PegawaiController::class, 'edit']);

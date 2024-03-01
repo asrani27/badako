@@ -62,13 +62,21 @@
                 
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  INPUT SURAT <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/superadmin/cuti"><i class="fa fa-fw fa-users"></i> CUTI <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/mutasi"><i class="fa fa-fw fa-users"></i> MUTASI <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/spmt"><i class="fa fa-fw fa-users"></i> SPMT <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/berkala"><i class="fa fa-fw fa-users"></i> BERKALA <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/penugasan"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
+                
+              </ul>
+            </li>
             <li><a href="/superadmin/bandingkan"><i class="fa fa-fw fa-th"></i> BANDINGKAN DATA <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/mutasi"><i class="fa fa-fw fa-users"></i> MUTASI <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/spmt"><i class="fa fa-fw fa-users"></i> SPMT <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/berkala"><i class="fa fa-fw fa-users"></i> BERKALA <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/penugasan"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
             <li><a href="/superadmin/plh"><i class="fa fa-fw fa-users"></i> PLH <span class="sr-only">(current)</span></a></li>
             <li><a href="/superadmin/kadis"><i class="fa fa-fw fa-user"></i> KEPALA DINAS <span class="sr-only">(current)</span></a></li>
+            <li><a href="/superadmin/sekretaris"><i class="fa fa-fw fa-user"></i> SEKRETARIS <span class="sr-only">(current)</span></a></li>
           </ul>
           
         </div>

@@ -73,6 +73,9 @@
         </div>
         <!-- /.box-body -->
       </div>
+
+      <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a><br/>
+      <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold"><i class="fa fa-file"></i>  VERIFIKASI CUTI</a><br/>
       <!-- /.box -->
       
     </div>
