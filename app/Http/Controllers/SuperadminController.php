@@ -1505,9 +1505,19 @@ class SuperadminController extends Controller
         Session::flash('success', 'Berhasil di hapus');
         return back();
     }
-    public function cutiPdf()
+    public function cutiPdf($id)
     {
-        $data = Cuti::paginate(20);
-        return view('superadmin.cuti.index', compact('data'));
+        $url = env('APP_URL') . '/check/verifikasi/digital/cuti/' . $id;
+
+        $nip = Cuti::find($id)->nip;
+        $qrcode = base64_encode(QrCode::format('svg')->size(600)->errorCorrection('H')->generate($url));
+
+        $customPaper = array(0, 0, 610, 1160);
+
+        $kadis = Kadis::where('is_aktif', 1)->first();
+        $sisaCuti = 12 - Cuti::where('nip', $nip)->where('jenis_cuti_id', 1)->sum('lama');
+        $cuti = Cuti::find($id);
+        $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti'))->setPaper($customPaper);
+        return $pdf->download(M_pegawai::where('nip')->first()->nama . '_cuti.pdf');
     }
 }
