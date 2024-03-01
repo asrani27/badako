@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Cuti;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Kadis;
 use App\Models\Nomor;
 use App\Models\Pangkat;
 use App\Models\BelumIsi;
@@ -16,6 +17,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+use PDF;
 
 class SuperadminController extends Controller
 {
@@ -1518,6 +1522,6 @@ class SuperadminController extends Controller
         $sisaCuti = 12 - Cuti::where('nip', $nip)->where('jenis_cuti_id', 1)->sum('lama');
         $cuti = Cuti::find($id);
         $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti'))->setPaper($customPaper);
-        return $pdf->download(M_pegawai::where('nip')->first()->nama . '_cuti.pdf');
+        return $pdf->download(M_pegawai::where('nip', $nip)->first()->nama . '_cuti.pdf');
     }
 }

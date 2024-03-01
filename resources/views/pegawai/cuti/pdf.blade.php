@@ -243,10 +243,10 @@
 				<td class="auto-style7" style="width: 155px">TIDAK DISETUJUI****</td>
 			</tr>
 			<tr class="auto-style2" style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
-				<td class="auto-style8" style="width: 148px; text-align:center">{{$cuti->status == 1 ? 'V':''}}</td>
+				<td class="auto-style8" style="width: 148px; text-align:center">{{$cuti->verifikasi_atasan == "disetujui" ? 'V':''}}</td>
 				<td class="auto-style7" style="width: 182px">&nbsp;</td>
 				<td class="auto-style8" style="width: 163px">&nbsp;</td>
-				<td class="auto-style7" style="width: 155px">{{$cuti->status == 2 ? 'V':''}}</td>
+				<td class="auto-style7" style="width: 155px; text-align:center">{{$cuti->verifikasi_atasan == "ditolak" ? 'V':''}}</td>
 			</tr>
 			<tr class="auto-style2" style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style8" style="width: 148px; text-align:center">{{$cuti->status == 1 ? 'V':''}}</td>
@@ -275,10 +275,10 @@
 				<td class="auto-style7" style="width: 155px">TIDAK DISETUJUI****</td>
 			</tr>
 			<tr class="auto-style2">
-				<td class="auto-style8" style="width: 148px">&nbsp;</td>
+				<td class="auto-style8" style="width: 148px; text-align:center">{{$cuti->verifikasi_kadis == "disetujui" ? 'V':''}}</td>
 				<td class="auto-style7" style="width: 182px">&nbsp;</td>
 				<td class="auto-style8" style="width: 163px">&nbsp;</td>
-				<td class="auto-style7" style="width: 155px">&nbsp;</td>
+				<td class="auto-style7" style="width: 155px; text-align:center">{{$cuti->verifikasi_kadis == "ditolak" ? 'V':''}}</td>
 			</tr>
 		</table>		
 
