@@ -92,7 +92,7 @@
                 class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
               @endif
 
-				    @if ($cuti->verifikasi_kadis != null)
+				    @if ($item->verifikasi_kadis != null)
         
               <a href="/pegawai/cuti/pdf/{{$item->id}}" class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-file"></i> PDF</a>
             @endif
