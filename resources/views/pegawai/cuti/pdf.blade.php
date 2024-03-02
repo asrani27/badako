@@ -295,7 +295,9 @@
 				<td style="width: 163px">&nbsp;</td>
 				<td style="width: 195px" align="center">Kepala Dinas Kesehatan
 				<br/>
+				@if ($cuti->verifikasi_kadis != null)
 				<img src="data:image/png;base64, {!! $qrcode !!}" width="80" height="80">
+				@endif
 				<br/>
 				{{$kadis->nama}}<br/>
 				NIP.{{$kadis->nip}}
