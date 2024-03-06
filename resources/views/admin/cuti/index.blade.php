@@ -52,7 +52,7 @@
                 <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                 <td>Puskesmas&nbsp;&nbsp;
                 </td>
-                <td>: Admin Puskes</td>
+                <td>: Admin {{\App\Models\UnitKerja::where('kode', $item->kode_unitkerja)->first()->nama}}</td>
               </tr>
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
