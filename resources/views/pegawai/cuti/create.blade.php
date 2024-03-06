@@ -50,6 +50,13 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label text-right">UNIT KERJA</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" readonly="" value="{{Auth::user()->pegawai->unitkerja->nama}}" name="nama">
+              <input type="hidden" class="form-control" readonly="" value="{{Auth::user()->pegawai->unitkerja->kode}}" name="kode_unitkerja">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">TANGGAL MULAI</label>
             <div class="col-sm-10">
               <input type="date" class="form-control" name="mulai">

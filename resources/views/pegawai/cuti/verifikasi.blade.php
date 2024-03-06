@@ -51,6 +51,22 @@
             <td>{{$item->lama}} Hari</td>
             <td>
               <table border="0">
+                @if ($item->kode_unitkerja == '170032' || $item->kode_unitkerja == '170031' || $item->kode_unitkerja == '170030' || $item->kode_unitkerja == '170029')
+                    
+                @else
+                  @if ($item->verifikasi_unitkerja == 'disetujui')
+                  <tr style="color: green">
+                  @else    
+                  <tr>
+                  @endif
+                    <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
+                    <td>Puskesmas&nbsp;&nbsp;
+                    </td>
+                    <td>: Admin Puskesmas</td>
+                  </tr>
+                @endif
+                
+
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
@@ -93,6 +109,8 @@
               </table>
             </td>
             <td>
+              
+
               @if ($item->verifikasi_atasan != null && $item->umpeg != null && $item->verifikasi_sekretaris == null)
               
               <a href="/pegawai/cuti/teruskan/{{$item->id}}"

@@ -43,6 +43,20 @@
             <td>{{$item->lama}} Hari</td>
             <td>
               <table border="0">
+                @if ($item->kode_unitkerja == '170032' || $item->kode_unitkerja == '170031' || $item->kode_unitkerja == '170030' || $item->kode_unitkerja == '170029')
+                    
+                @else
+                  @if ($item->verifikasi_unitkerja == 'disetujui')
+                  <tr style="color: green">
+                  @else    
+                  <tr>
+                  @endif
+                    <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
+                    <td>Puskesmas&nbsp;&nbsp;
+                    </td>
+                    <td>: Admin {{\App\Models\UnitKerja::where('kode', $item->kode_unitkerja)->first()->nama}}</td>
+                  </tr>
+                @endif
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    

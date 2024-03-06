@@ -60,8 +60,8 @@
                 
               </ul>
             </li>
-            {{-- <li><a href="/admin/kunjungan"><i class="fa fa-fw fa-list"></i> DATA KUNJUNGAN PASIEN <span class="sr-only"></span></a></li> --}}
-            {{-- <li><a href="/gantipass"><i class="fa fa-fw fa-dashboard"></i> GANTI PASS<span class="sr-only">(current)</span></a></li> --}}
+            <li><a href="/admin/cuti"><i class="fa fa-fw fa-file"></i> CUTI <span class="sr-only"></span></a></li>
+            
           </ul>
           
         </div>

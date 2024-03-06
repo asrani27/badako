@@ -87,21 +87,21 @@
 			</tr>
 			<tr style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style6" style="width: 85px">Nama</td>
-				<td class="auto-style1" style="width: 282px">{{dataPegawai($cuti->nip)->nama}}</td>
+				<td class="auto-style1" style="width: 282px">{{$cuti->nama}}</td>
 				<td class="auto-style6" style="width: 101px">NIP</td>
 				<td class="auto-style1" style="width: 180px">{{$cuti->nip}}</td>
 			</tr>
 			<tr style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style6" style="width: 85px">Jabatan</td>
 				<td class="auto-style1" style="width: 282px">
-                    {{dataPegawai($cuti->nip)->jabatan}}
+                    {{$cuti->jabatan}}
 				</td>
 				<td class="auto-style6" style="width: 101px">Masa Kerja</td>
 				<td class="auto-style1" style="width: 180px">{{dataPegawai($cuti->nip)->mkg}}</td>
 			</tr>
 			<tr style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style6" style="width: 85px">Unit Kerja</td>
-				<td class="auto-style1" style="width: 282px">{{dataPegawai($cuti->nip)->unit_kerja}}</td>
+				<td class="auto-style1" style="width: 282px">{{$cuti->unit_kerja}}</td>
 				<td class="auto-style1" style="width: 101px">&nbsp;</td>
 				<td class="auto-style1" style="width: 180px">&nbsp;</td>
 			</tr>
@@ -144,7 +144,7 @@
 			</tr>
 			<tr>
 		<span class="auto-style2">
-				<td class="auto-style6" style="width: 665px">-</td>
+				<td class="auto-style6" style="width: 665px">{{$cuti->alasan}}</td>
 				</span>
 		<span class="auto-style2"></span>
 		<span class="auto-style2"></span>
@@ -215,7 +215,7 @@
 				MENJALANKAN CUTI</td>
 			</tr>
 			<tr class="auto-style2" style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
-				<td class="auto-style6" rowspan="2" style="width: 335px">&nbsp;</td>
+				<td class="auto-style6" rowspan="2" style="width: 335px">{{$cuti->alamat}}</td>
 				<td class="auto-style6" style="width: 163px">TELEPON</td>
 				<td class="auto-style1" style="width: 155px">{{$cuti->telp}}</td>
 			</tr>

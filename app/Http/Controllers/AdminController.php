@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Cuti;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Pangkat;
@@ -958,5 +959,21 @@ class AdminController extends Controller
             ->paginate(10);
         request()->flash();
         return view('admin.pegawai.index', compact('data'));
+    }
+
+    public function cuti()
+    {
+        $data = Cuti::where('kode_unitkerja', Auth::user()->username)->get();
+        //dd(Auth::user()->username);
+        return view('admin.cuti.index', compact('data'));
+    }
+
+    public function cutiSetujui($id)
+    {
+        Cuti::find($id)->update([
+            'verifikasi_unitkerja' => 'disetujui'
+        ]);
+        Session::flash('success', 'berhasil');
+        return back();
     }
 }

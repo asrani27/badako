@@ -1521,6 +1521,7 @@ class SuperadminController extends Controller
         $kadis = Kadis::where('is_aktif', 1)->first();
         $sisaCuti = 12 - Cuti::where('nip', $nip)->where('jenis_cuti_id', 1)->sum('lama');
         $cuti = Cuti::find($id);
+
         $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti'))->setPaper($customPaper);
         return $pdf->download(M_pegawai::where('nip', $nip)->first()->nama . '_cuti.pdf');
     }

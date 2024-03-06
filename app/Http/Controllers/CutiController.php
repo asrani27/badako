@@ -73,7 +73,12 @@ class CutiController extends Controller
     {
         $jenis = JenisCuti::get();
         $pegawai = M_pegawai::get();
-        return view('pegawai.cuti.create', compact('jenis', 'pegawai'));
+        if (auth::user()->pegawai->unitkerja == null) {
+            Session::flash('warning', 'tidak memiliki unitkerja, harap isi unitkerja terlebih dahulu');
+            return back();
+        } else {
+            return view('pegawai.cuti.create', compact('jenis', 'pegawai'));
+        }
     }
     public function delete($id)
     {
@@ -116,6 +121,7 @@ class CutiController extends Controller
     public function store(Request $req)
     {
         //tanda tangan digital
+
         $folderPath = public_path('storage/ttd/');
 
         $image_parts = explode(";base64,", $req->signed);
@@ -150,11 +156,16 @@ class CutiController extends Controller
             return $value;
         });
 
+        $pegawai = dataPegawai($req->nip);
         $lama = count($collection->diff(['Sunday']));
         $kadis = Kadis::where('is_aktif', 1)->first()->nip;
         $sekretaris = Sekretaris::where('is_aktif', 1)->first()->nip;
         $cuti = new Cuti;
         $cuti->nip = $req->nip;
+        $cuti->nama = $pegawai->nama;
+        $cuti->kode_unitkerja = $req->kode_unitkerja;
+        $cuti->unit_kerja = $pegawai->unitkerja == null ? null : $pegawai->unitkerja->nama;
+        $cuti->jabatan = $pegawai->jabatan;
         $cuti->mulai = $mulai;
         $cuti->sampai = $sampai;
         $cuti->jenis_cuti_id = $req->jenis_id;
