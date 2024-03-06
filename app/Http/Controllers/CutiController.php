@@ -26,14 +26,17 @@ class CutiController extends Controller
     }
     public function verifikasi()
     {
-        $kadis = Kadis::first()->nip;
-        if (Auth::user()->pegawai->nip == $kadis) {
-            $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
-            return view('pegawai.cuti.kadis', compact('data'));
-        } else {
-            $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
-            return view('pegawai.cuti.verifikasi', compact('data'));
-        }
+        //$kadis = Kadis::first()->nip;
+        // if (Auth::user()->pegawai->nip == $kadis) {
+        //     $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
+        //     return view('pegawai.cuti.kadis', compact('data'));
+        // } else {
+        //     $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
+        //     return view('pegawai.cuti.verifikasi', compact('data'));
+        // }
+
+        $data = Cuti::get();
+        return view('pegawai.cuti.verifikasi', compact('data'));
     }
 
     public function verifAtasanLangsungSetuju(Request $req)
