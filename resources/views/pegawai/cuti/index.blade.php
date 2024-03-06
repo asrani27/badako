@@ -55,7 +55,7 @@
                     <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                     <td>Puskesmas&nbsp;&nbsp;
                     </td>
-                    <td>: Admin Puskesmas</td>
+                    <td>: Admin {{\App\Models\UnitKerja::where('kode', $item->kode_unitkerja)->first()->nama}}</td>
                   </tr>
                 @endif
                 
