@@ -150,6 +150,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('cuti/setujui/{id}', [CutiController::class, 'setujui']);
         Route::get('cuti/pdf/{id}', [CutiController::class, 'pdf']);
         Route::get('cuti/tolak/{id}', [CutiController::class, 'tolak']);
+
         Route::get('cuti/kadis/setujui/{id}', [CutiController::class, 'kadisSetujui']);
         Route::get('cuti/kadis/tolak/{id}', [CutiController::class, 'kadisTolak']);
         Route::get('cuti/verifikasi', [CutiController::class, 'verifikasi']);
@@ -160,6 +161,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('beranda', [PegawaiController::class, 'beranda']);
         Route::post('ubahfoto', [PegawaiController::class, 'ubahfoto']);
         Route::get('biodata/edit', [PegawaiController::class, 'edit']);
+        Route::get('biodata/edit/cuti', [PegawaiController::class, 'editCuti']);
         Route::get('biodata/edit/status', [PegawaiController::class, 'editStatus']);
         Route::get('biodata/edit/profile', [PegawaiController::class, 'editProfile']);
         Route::get('biodata/edit/kependudukan', [PegawaiController::class, 'editKependudukan']);
@@ -168,6 +170,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('biodata/edit/alamat', [PegawaiController::class, 'editAlamat']);
         Route::get('biodata/edit/npwp', [PegawaiController::class, 'editNPWP']);
         Route::get('biodata/edit/kepegawaian', [PegawaiController::class, 'editKepegawaian']);
+        Route::post('biodata/edit/cuti', [PegawaiController::class, 'updateCuti']);
         Route::post('biodata/edit/kepegawaian', [PegawaiController::class, 'updateKepegawaian']);
         Route::post('biodata/edit/kepegawaian/pppk', [PegawaiController::class, 'updateKepegawaianPPPK']);
         Route::post('biodata/edit/kepegawaian/nonasn', [PegawaiController::class, 'updateKepegawaianNONASN']);

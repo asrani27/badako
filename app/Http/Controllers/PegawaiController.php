@@ -84,6 +84,11 @@ class PegawaiController extends Controller
         $data = Auth::user()->pegawai;
         return view('pegawai.edit.kepegawaian', compact('data'));
     }
+    public function editCuti()
+    {
+        $data = Auth::user()->pegawai;
+        return view('pegawai.edit.cuti', compact('data'));
+    }
     public function editStatus()
     {
         $data = Auth::user()->pegawai;
@@ -301,6 +306,18 @@ class PegawaiController extends Controller
         $data->tahun_lulus = $req->tahun_lulus;
         $data->file_ijazah = $name_ijazah;
         $data->file_transkrip = $name_transkrip;
+        $data->save();
+
+        Session::flash('success', 'Berhasil Di update');
+
+        return redirect('/pegawai/beranda');
+    }
+    
+    public function updateCuti(Request $req)
+    {
+        $data = Auth::user()->pegawai;
+        $data->sisacuti_2023 = $req->sisacuti_2023;
+        $data->sisacuti_2024 = $req->sisacuti_2024;
         $data->save();
 
         Session::flash('success', 'Berhasil Di update');
