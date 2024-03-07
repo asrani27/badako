@@ -312,7 +312,7 @@ class PegawaiController extends Controller
 
         return redirect('/pegawai/beranda');
     }
-    
+
     public function updateCuti(Request $req)
     {
         $data = Auth::user()->pegawai;
