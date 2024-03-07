@@ -70,11 +70,33 @@
                 <li><a href="/superadmin/spmt"><i class="fa fa-fw fa-users"></i> SPMT <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/berkala"><i class="fa fa-fw fa-users"></i> BERKALA <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/penugasan"><i class="fa fa-fw fa-users"></i> PENUGASAN <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/plh"><i class="fa fa-fw fa-users"></i> PLH <span class="sr-only">(current)</span></a></li>
+                
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  SURAT USULAN <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/superadmin/usulan1"><i class="fa fa-fw fa-file"></i> PENGANGKATAN CPNS JADI PNS <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan2"><i class="fa fa-fw fa-file"></i> PEMBUATAN KARPEG <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan3"><i class="fa fa-fw fa-file"></i> PEMBUATAN KARIS DAN KARSU <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan4"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN BUP 58/60 TAHUN <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan5"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN JANDA/DUDA/YATIM <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan6"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN APS - MK 20th, Usia 50th  <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan7"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN APS - uzur/sakit  <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan8"><i class="fa fa-fw fa-file"></i> PERMOHONAN PERCERAIAN ASN <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan9"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN PANGKAT JFU <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan10"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN PANGKAT JFT <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan11"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN PANGKAT JF <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan12"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN BERKALA <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan13"><i class="fa fa-fw fa-file"></i> PERMOHONAN SATYA LENCANA <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan14"><i class="fa fa-fw fa-file"></i> PERMOHONAN TUGAS BELAJAR MANDIRI <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan15"><i class="fa fa-fw fa-file"></i> SURAT PERJANJIAN KONTRAK <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan16"><i class="fa fa-fw fa-file"></i> SURAT KETERANGAN KERJA <span class="sr-only">(current)</span></a></li>
                 
               </ul>
             </li>
             <li><a href="/superadmin/bandingkan"><i class="fa fa-fw fa-th"></i> BANDINGKAN DATA <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/plh"><i class="fa fa-fw fa-users"></i> PLH <span class="sr-only">(current)</span></a></li>
             <li><a href="/superadmin/kadis"><i class="fa fa-fw fa-user"></i> KEPALA DINAS <span class="sr-only">(current)</span></a></li>
             <li><a href="/superadmin/sekretaris"><i class="fa fa-fw fa-user"></i> SEKRETARIS <span class="sr-only">(current)</span></a></li>
           </ul>

@@ -22,6 +22,7 @@ use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
+use App\Http\Controllers\UsulanController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -140,6 +141,9 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('akun/delete/{id}', [AkunController::class, 'delete']);
         Route::get('timeline/{id}', [SuperadminController::class, 'timeline']);
         Route::get('permohonan/delete/{id}', [SuperadminController::class, 'deletePermohonan']);
+
+
+        Route::get('usulan1', [UsulanController::class, 'usulan1']);
     });
 });
 
