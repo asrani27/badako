@@ -144,6 +144,21 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
 
         Route::get('usulan1', [UsulanController::class, 'usulan1']);
+        Route::get('usulan2', [UsulanController::class, 'usulan2']);
+        Route::get('usulan3', [UsulanController::class, 'usulan3']);
+        Route::get('usulan4', [UsulanController::class, 'usulan4']);
+        Route::get('usulan5', [UsulanController::class, 'usulan5']);
+        Route::get('usulan6', [UsulanController::class, 'usulan6']);
+        Route::get('usulan7', [UsulanController::class, 'usulan7']);
+        Route::get('usulan8', [UsulanController::class, 'usulan8']);
+        Route::get('usulan9', [UsulanController::class, 'usulan9']);
+        Route::get('usulan10', [UsulanController::class, 'usulan10']);
+        Route::get('usulan11', [UsulanController::class, 'usulan11']);
+        Route::get('usulan12', [UsulanController::class, 'usulan12']);
+        Route::get('usulan13', [UsulanController::class, 'usulan13']);
+        Route::get('usulan14', [UsulanController::class, 'usulan14']);
+        Route::get('usulan15', [UsulanController::class, 'usulan15']);
+        Route::get('usulan16', [UsulanController::class, 'usulan16']);
     });
 });
 
