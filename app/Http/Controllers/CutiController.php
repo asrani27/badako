@@ -200,8 +200,9 @@ class CutiController extends Controller
 
         $kadis = Kadis::where('is_aktif', 1)->first();
         $sisaCuti = 12 - Cuti::where('nip', Auth::user()->pegawai->nip)->where('jenis_cuti_id', 1)->sum('lama');
+        $cutiN1 = M_pegawai::where('nip', $nip)->first() == null ? null :  M_pegawai::where('nip', $nip)->first()->sisacuti_2023;
         $cuti = Cuti::find($id);
-        $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti'))->setPaper($customPaper);
+        $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti', 'cutiN1'))->setPaper($customPaper);
         return $pdf->download(Auth::user()->pegawai->nama . '_cuti.pdf');
     }
 }
