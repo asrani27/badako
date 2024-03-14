@@ -137,6 +137,17 @@
 </script>
 
 <script type="text/javascript">
+var can = document.getElementById('sig');
+var ctx = can.getContext('2d');
+
+
+can.addEventListener( 'touchstart', onTouchStart, false);
+
+function onTouchStart(e) {
+ ctx.fillRect(0,0,300,300);   
+    
+}
+
   var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
   $('#clear').click(function(e) {
       e.preventDefault();
@@ -144,4 +155,5 @@
       $("#signature64").val('');
   });
 </script>
+
 @endpush
