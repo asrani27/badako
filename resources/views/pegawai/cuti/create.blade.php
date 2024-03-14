@@ -103,6 +103,8 @@
             <div class="col-sm-10">
               
               <div id="sig" ></div>
+              <canvas id="canvas1" width="500" height="500">
+              </canvas>
               <br/>
               <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
               <textarea id="signature64" class="kbw-signature" name="signed" style="display: none"></textarea>
@@ -137,7 +139,7 @@
 </script>
 
 <script type="text/javascript">
-var can = document.getElementById('sig');
+var can = document.getElementById('canvas1');
 var ctx = can.getContext('2d');
 
 
