@@ -141,7 +141,7 @@ var can = document.getElementById('sig');
 var ctx = can.getContext('2d');
 
 
-can.addEventListener( 'touchstart', onTouchStart, false);
+can.addEventListener('touchstart', onTouchStart, false);
 
 function onTouchStart(e) {
  ctx.fillRect(0,0,300,300);   
