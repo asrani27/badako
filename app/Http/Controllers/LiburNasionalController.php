@@ -13,7 +13,7 @@ class LiburNasionalController extends Controller
 
         return view('superadmin.liburnasional.index', compact('data'));
     }
-    public function create()
+    public function add()
     {
         return view('superadmin.liburnasional.create');
     }
