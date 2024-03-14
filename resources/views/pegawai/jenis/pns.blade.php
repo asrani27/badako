@@ -4,7 +4,7 @@
           <h3 class="box-title">Cuti</h3>
 
           <div class="box-tools pull-right">
-            <a href="/pegawai/biodata/edit/cuti" class="btn btn-xs bg-blue"><i class="fa fa-edit"></i> Edit Cuti</a>
+            {{-- <a href="/pegawai/biodata/edit/cuti" class="btn btn-xs bg-blue"><i class="fa fa-edit"></i> Edit Cuti</a> --}}
           </div>
         </div>
         <!-- /.box-header -->
@@ -13,13 +13,13 @@
             <div class="form-group">
               <label for="inputName" class="col-sm-2 control-label text-right">Sisa Cuti 2023</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="{{$data->sisacuti_2023}}">
+                <input type="text" class="form-control" readonly value="{{$data->sisacuti_2023}}" readonly>
               </div>
             </div>
             <div class="form-group">
               <label for="inputName" class="col-sm-2 control-label text-right">Sisa Cuti 2024</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="{{$data->sisacuti_2024}}">
+                <input type="text" class="form-control" readonly value="{{$data->sisacuti_2024}}" readonly>
               </div>
             </div>
           </form>
