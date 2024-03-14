@@ -31,7 +31,7 @@ LIBUR NASIONAL
           <tr>
               <td class="text-center">{{$data->firstItem() + $key}}</td>
               <td>{{$item->tanggal}}</td>
-              <td>{{$item->keterangan}}</td>
+              <td>{{$item->deskripsi}}</td>
               <td>                  
                 {{-- <a href="/superadmin/data/liburnasional/profile/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-user"></i> profile </a> --}}
                   <a href="/superadmin/data/liburnasional/edit/{{$item->id}}" class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
