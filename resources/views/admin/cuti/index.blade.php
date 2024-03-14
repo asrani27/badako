@@ -119,6 +119,8 @@
         </table>
       </div>
       <!-- /.box-body -->
+
+      {{$data->links()}}
     </div>
     <!-- /.box -->
     </div>

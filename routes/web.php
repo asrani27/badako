@@ -17,6 +17,7 @@ use App\Http\Controllers\BerkalaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
+use App\Http\Controllers\LiburNasionalController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
@@ -131,6 +132,13 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/unitkerja/edit/{id}', [UnitKerjaController::class, 'edit']);
         Route::post('/data/unitkerja/edit/{id}', [UnitKerjaController::class, 'update']);
         Route::get('/data/unitkerja/delete/{id}', [UnitKerjaController::class, 'delete']);
+
+        Route::get('/data/liburnasional', [LiburNasionalController::class, 'index']);
+    Route::get('/data/liburnasional/add', [LiburNasionalController::class, 'add']);
+        Route::post('/data/liburnasional/add', [LiburNasionalController::class, 'store']);
+        Route::get('/data/liburnasional/edit/{id}', [LiburNasionalController::class, 'edit']);
+        Route::post('/data/liburnasional/edit/{id}', [LiburNasionalController::class, 'update']);
+        Route::get('/data/liburnasional/delete/{id}', [LiburNasionalController::class, 'delete']);
 
         Route::get('role', [RoleController::class, 'index']);
         Route::get('akun', [AkunController::class, 'index']);

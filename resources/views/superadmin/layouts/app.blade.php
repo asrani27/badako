@@ -59,6 +59,7 @@
                 <li><a href="/superadmin/data/pegawai"><i class="fa fa-users"></i>  DATA PEGAWAI</a></li>
                 <li><a href="/superadmin/data/unitkerja"><i class="fa fa-th"></i>  DATA UNIT KERJA</a></li>
                 <li><a href="/superadmin/data/nomoraduan"><i class="fa fa-phone"></i>  NOMOR ADUAN</a></li>
+                <li><a href="/superadmin/data/liburnasional"><i class="fa fa-calendar"></i>  LIBUR NASIONAL</a></li>
                 
               </ul>
             </li>
