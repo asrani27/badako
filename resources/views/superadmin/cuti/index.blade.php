@@ -122,8 +122,8 @@
         </table>
       </div>
       <!-- /.box-body -->
-      {{$data->links()}}
     </div>
+    {{$data->links()}}
     <!-- /.box -->
     </div>
     <!-- /.col -->
