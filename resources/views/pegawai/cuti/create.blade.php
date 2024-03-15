@@ -2,15 +2,29 @@
 @push('css')
 <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
   
-<link rel="stylesheet" type="text/css" href="/assets/signature/css/jquery.signature.css">
 
 <style>
-    .kbw-signature { width: 200px; height: 120px;}
-    #sig canvas{
-        width: 100% !important;
-        height: auto;
-    }
+  .wrapper-pad {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.signature-pad {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:300px;
+  height:200px;
+  background-color: white;
+  border: 2px solid black;
+}
 </style>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 @endpush
 @section('content')
 <section class="content-header">
@@ -102,12 +116,10 @@
             <label for="inputName" class="col-sm-2 control-label text-right">Tanda Tangan</label>
             <div class="col-sm-10">
               
-              <div id="sig" ></div>
-              <canvas id="canvas1" width="500" height="500">
-              </canvas>
-              <br/>
-              <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-              <textarea id="signature64" class="kbw-signature" name="signed" style="display: none"></textarea>
+              <div class="wrapper-pad">
+                <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
+                <input type="hidden" id="signed" name="signed">
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -129,7 +141,7 @@
 @push('js')
  
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/assets/signature/js/jquery.signature.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 <script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script>
    $(function () {
@@ -139,23 +151,27 @@
 </script>
 
 <script type="text/javascript">
-var can = document.getElementById('canvas1');
-var ctx = can.getContext('2d');
-
-
-can.addEventListener('touchstart', onTouchStart, false);
-
-function onTouchStart(e) {
- ctx.fillRect(0,0,300,300);   
-    
+const signed = document.querySelector("#signed");
+var canvas = document.getElementById('signature-pad');
+function resizeCanvas() {
+    var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+    canvas.getContext("2d").scale(ratio, ratio);
 }
 
-  var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
-  $('#clear').click(function(e) {
-      e.preventDefault();
-      sig.signature('clear');
-      $("#signature64").val('');
-  });
+window.onresize = resizeCanvas;
+resizeCanvas();
+
+var signaturePad = new SignaturePad(canvas, {
+  backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+});
+
+signaturePad.addEventListener("endStroke", () => {
+  var ttd = signaturePad.toDataURL();
+  signed.value = ttd;
+  console.log("Signature started");
+});
 </script>
 
 @endpush
