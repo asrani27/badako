@@ -3,11 +3,25 @@
 <link rel="stylesheet" type="text/css" href="/assets/signature/css/jquery.signature.css">
 
 <style>
-    .kbw-signature { width: 200px; height: 120px;}
-    #sig canvas{
-        width: 100% !important;
-        height: auto;
-    }
+  .wrapper-pad {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.signature-pad {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:300px;
+  height:200px;
+  background-color: white;
+  border: 2px solid black;
+}
 </style>
 @endpush
 @section('content')
@@ -119,9 +133,9 @@
               @endif  
 
               @if ($item->verifikasi_atasan == null)
-                  
-              <a href="#"
-                class="btn btn-xs btn-flat btn-success modal-verifikasi" data-id="{{$item->id}}">Setujui</a>
+            
+              <a href="/pegawai/cuti/setujuiatasan/{{$item->id}}"
+                class="btn btn-xs btn-flat btn-success" data-id="{{$item->id}}">Setujui</a>
         <a href="/pegawai/cuti/tolak/{{$item->id}}"
                 onclick="return confirm('Yakin ingin di tolak');"
                 class="btn btn-xs btn-flat  btn-danger">Tolak</a>
@@ -144,44 +158,11 @@
 </div>
 </section>
 
-<div class="modal fade" id="modal-verifikasi">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <form method="post" action="/pegawai/cuti/verifikasi/atasanlangsungsetuju" enctype="multipart/form-data">
-              @csrf
-              
-              <div class="modal-header bg-success">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Tanda Tangan</h4>
-              </div>
-
-              <div class="modal-body">
-                  <div class="form-group text-center">
-                    
-                    <div id="sig"></div>
-                    <br/>
-                    <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                    <textarea id="signature64" class="kbw-signature" name="signed" style="display: none"></textarea>
-                  </div>
-                  
-                      <input type="hidden" class="form-control" name="cuti_id" id="cuti_id"/>
-                 
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i>
-                      Kirim</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</div>
 @endsection
 @push('js')
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 <script type="text/javascript" src="/assets/signature/js/jquery.signature.js"></script>
 <script>
   $(document).on('click', '.modal-verifikasi', function() {
@@ -191,11 +172,26 @@
   </script>
 
 <script type="text/javascript">
-  var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
-  $('#clear').click(function(e) {
-      e.preventDefault();
-      sig.signature('clear');
-      $("#signature64").val('');
+  const signed = document.querySelector("#signed");
+  var canvas = document.getElementById('signature-pad');
+  function resizeCanvas() {
+      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+  }
+  
+  window.onresize = resizeCanvas;
+  resizeCanvas();
+  
+  var signaturePad = new SignaturePad(canvas, {
+    backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
   });
-</script>
+  
+  signaturePad.addEventListener("endStroke", () => {
+    var ttd = signaturePad.toDataURL();
+    signed.value = ttd;
+    console.log("Signature started");
+  });
+  </script>
 @endpush

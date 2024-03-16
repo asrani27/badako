@@ -134,7 +134,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/unitkerja/delete/{id}', [UnitKerjaController::class, 'delete']);
 
         Route::get('/data/liburnasional', [LiburNasionalController::class, 'index']);
-    Route::get('/data/liburnasional/add', [LiburNasionalController::class, 'add']);
+        Route::get('/data/liburnasional/add', [LiburNasionalController::class, 'add']);
         Route::post('/data/liburnasional/add', [LiburNasionalController::class, 'store']);
         Route::get('/data/liburnasional/edit/{id}', [LiburNasionalController::class, 'edit']);
         Route::post('/data/liburnasional/edit/{id}', [LiburNasionalController::class, 'update']);
@@ -179,6 +179,8 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('cuti/tolak/{id}', [CutiController::class, 'tolak']);
 
         Route::get('cuti/kadis/setujui/{id}', [CutiController::class, 'kadisSetujui']);
+        Route::get('cuti/setujuiatasan/{id}', [CutiController::class, 'atasanSetujui']);
+        Route::post('cuti/setujuiatasan/{id}', [CutiController::class, 'verifAtasanLangsungSetuju']);
         Route::get('cuti/kadis/tolak/{id}', [CutiController::class, 'kadisTolak']);
         Route::get('cuti/verifikasi', [CutiController::class, 'verifikasi']);
         Route::get('cuti/teruskan/{id}', [CutiController::class, 'verifikasiSekretaris']);

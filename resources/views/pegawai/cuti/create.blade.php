@@ -120,6 +120,7 @@
                 <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
                 <input type="hidden" id="signed" name="signed">
               </div>
+              <button type="button" id="clear" class="btn btn-danger">Clear Signature</button>
             </div>
           </div>
           <div class="form-group">
@@ -133,7 +134,7 @@
       </div>
     </div>
     <!-- /.col -->
-</div>
+  </div>
 </section>
 
 
@@ -149,7 +150,14 @@
     $('.select2').select2()
    });
 </script>
+<script type="text/javascript">
 
+  $('#clear').click(function(e) {
+      const canvas = document.querySelector("canvas");
+      const signaturePad = new SignaturePad(canvas);
+      signaturePad.clear();
+  });
+</script>
 <script type="text/javascript">
 const signed = document.querySelector("#signed");
 var canvas = document.getElementById('signature-pad');

@@ -24,6 +24,12 @@ class CutiController extends Controller
         $data = Cuti::where('nip', Auth::user()->pegawai->nip)->get();
         return view('pegawai.cuti.index', compact('data'));
     }
+
+    public function atasanSetujui($id)
+    {
+        $data = Cuti::find($id);
+        return view('pegawai.cuti.ttd', compact('data'));
+    }
     public function verifikasi()
     {
         $kadis = Kadis::first()->nip;
@@ -44,7 +50,7 @@ class CutiController extends Controller
         return view('pegawai.cuti.verifikasi', compact('data'));
     }
 
-    public function verifAtasanLangsungSetuju(Request $req)
+    public function verifAtasanLangsungSetuju(Request $req, $id)
     {
         //tanda tangan digital
         $folderPath = public_path('storage/ttd/');
@@ -61,12 +67,12 @@ class CutiController extends Controller
 
         file_put_contents($filename, $image_base64);
         //----------------//
-        $cuti = Cuti::find($req->cuti_id)->update([
+        $cuti = Cuti::find($id)->update([
             'verifikasi_atasan' => 'disetujui',
             'ttd_atasan' => $filename,
         ]);
         Session::flash('success', 'berhasil');
-        return back();
+        return redirect('/pegawai/cuti/verifikasi');
     }
 
     public function verifikasiSekretaris($id)
