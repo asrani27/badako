@@ -3,7 +3,7 @@
     
 @endpush
 @section('content-header')
-PEGAWAI
+Libur Nasional
 @endsection
 @section('content')
 <div class="row">
@@ -12,7 +12,7 @@ PEGAWAI
     <br/><br/>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-clipboard"></i> Edit Pegawai</h3>
+        <h3 class="box-title"><i class="fa fa-clipboard"></i> Edit libur Nasional</h3>
 
         <div class="box-tools">
           {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
@@ -20,21 +20,21 @@ PEGAWAI
       </div>
       <!-- /.box-header -->
       
-      <form class="form-horizontal" action="/superadmin/data/pegawai/edit/{{$data->id}}" method="post">
+      <form class="form-horizontal" action="/superadmin/data/liburnasional/edit/{{$data->id}}" method="post">
         @csrf
         <div class="box-body">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
+            <label for="inputEmail3" class="col-sm-2 control-label">Tanggal</label>
 
             <div class="col-sm-10">
-              <input type="emtextail" class="form-control" name="nip" value="{{$data->nip}}">
+              <input type="date" class="form-control" name="tanggal" placeholder="tanggal" value="{{$data->tanggal}}">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Nama</label>
+            <label for="inputPassword3" class="col-sm-2 control-label">Keterangan</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
+              <input type="text" class="form-control" name="deskripsi" placeholder="keterangan" value="{{$data->deksripsi}}">
             </div>
           </div>
           

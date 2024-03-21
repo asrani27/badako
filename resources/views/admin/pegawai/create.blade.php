@@ -38,6 +38,20 @@ PEGAWAI
             </div>
           </div>
           
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2023</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sisacuti_2023" value="0" onkeypress="return hanyaAngka(event)" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2024</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sisacuti_2024" value="0" onkeypress="return hanyaAngka(event)" required>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -55,4 +69,13 @@ PEGAWAI
 @endsection
 @push('js')
 
+<script>
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
+</script>
 @endpush

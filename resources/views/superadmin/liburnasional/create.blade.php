@@ -34,7 +34,7 @@ Libur Nasional
             <label for="inputPassword3" class="col-sm-2 control-label">Keterangan</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="keterangan" placeholder="keterangan">
+              <input type="text" class="form-control" name="deskripsi" placeholder="keterangan">
             </div>
           </div>
           

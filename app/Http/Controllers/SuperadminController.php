@@ -1417,7 +1417,9 @@ class SuperadminController extends Controller
         }
         M_pegawai::find($id)->update([
             'nip' => $req->nip,
-            'nama' => $req->nama
+            'nama' => $req->nama,
+            'sisacuti_2023' => $req->sisacuti_2023,
+            'sisacuti_2024' => $req->sisacuti_2024,
         ]);
 
         Session::flash('success', 'Berhasil Di update');

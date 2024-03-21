@@ -879,6 +879,8 @@ class AdminController extends Controller
         if ($check == null) {
             $param = $req->all();
             $param['unitkerja_id'] = Auth::user()->unitkerja_id;
+            $param['sisacuti_2023'] = $req->sisacuti_2023;
+            $param['sisacuti_2024'] = $req->sisacuti_2024;
             M_pegawai::create($param);
             Session::flash('success', 'berhasil disimpan');
             return redirect('/admin/data/pegawai');
@@ -908,7 +910,9 @@ class AdminController extends Controller
 
         M_pegawai::find($id)->update([
             'nip' => $req->nip,
-            'nama' => $req->nama
+            'nama' => $req->nama,
+            'sisacuti_2023' => $req->sisacuti_2023,
+            'sisacuti_2024' => $req->sisacuti_2024,
         ]);
 
         Session::flash('success', 'Berhasil Di update');
@@ -963,7 +967,7 @@ class AdminController extends Controller
 
     public function cuti()
     {
-        $data = Cuti::where('kode_unitkerja', Auth::user()->username)->get();
+        $data = Cuti::where('kode_unitkerja', Auth::user()->username)->paginate(15);
         //dd(Auth::user()->username);
         return view('admin.cuti.index', compact('data'));
     }

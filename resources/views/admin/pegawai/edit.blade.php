@@ -37,6 +37,20 @@ PEGAWAI
               <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
             </div>
           </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2023</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sisacuti_2023" value="{{$data->sisacuti_2023}}" onkeypress="return hanyaAngka(event)"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2024</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sisacuti_2024" value="{{$data->sisacuti_2024}}" onkeypress="return hanyaAngka(event)"/>
+            </div>
+          </div>
           
         </div>
         <!-- /.box-body -->
@@ -55,4 +69,13 @@ PEGAWAI
 @endsection
 @push('js')
 
+<script>
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
+</script>
 @endpush

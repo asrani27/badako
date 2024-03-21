@@ -38,7 +38,6 @@ class CutiController extends Controller
             $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
             return view('pegawai.cuti.kadis', compact('data'));
         } elseif (Auth::user()->pegawai->nip == $sekretaris) {
-
             $data = Cuti::where('sekretaris', Auth::user()->pegawai->nip)->get();
             return view('pegawai.cuti.verifikasi', compact('data'));
         } else {
@@ -46,7 +45,7 @@ class CutiController extends Controller
             return view('pegawai.cuti.verifikasi', compact('data'));
         }
 
-        $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
+        //$data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
         return view('pegawai.cuti.verifikasi', compact('data'));
     }
 
@@ -85,6 +84,8 @@ class CutiController extends Controller
     }
     public function create()
     {
+        Session::flash('info', 'Fitur Cuti Dalam pengembangan');
+        return back();
         $jenis = JenisCuti::get();
         $pegawai = M_pegawai::get();
         if (auth::user()->pegawai->unitkerja == null) {
@@ -171,7 +172,12 @@ class CutiController extends Controller
         });
 
         $pegawai = dataPegawai($req->nip);
-        $lama = count($collection->diff(['Sunday']));
+        if (Auth::user()->pegawai->unitkerja->kode == '170029' || Auth::user()->pegawai->unitkerja->kode == '170030' || Auth::user()->pegawai->unitkerja->kode == '170032') {
+            $lama = count($collection->diff(['Sunday']));
+        } else {
+            $lama = count($collection->diff(['Sunday', 'Saturday']));
+        }
+
         $kadis = Kadis::where('is_aktif', 1)->first()->nip;
         $sekretaris = Sekretaris::where('is_aktif', 1)->first()->nip;
         $cuti = new Cuti;
@@ -186,7 +192,11 @@ class CutiController extends Controller
         $cuti->alasan = $req->alasan;
         $cuti->alamat = $req->alamat;
         $cuti->telp = $req->telp;
-        $cuti->lama = $lama;
+        if ($req->jenis_id == 1) {
+            $cuti->lama = $lama;
+        } else {
+            $cuti->lama = count($dates);
+        }
         $cuti->atasan_langsung = $req->atasan_langsung;
         $cuti->kepala_dinas = $kadis;
         $cuti->sekretaris = $sekretaris;
