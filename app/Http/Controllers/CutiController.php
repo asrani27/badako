@@ -84,8 +84,7 @@ class CutiController extends Controller
     }
     public function create()
     {
-        Session::flash('info', 'Fitur Cuti Dalam pengembangan');
-        return back();
+
         $jenis = JenisCuti::get();
         $pegawai = M_pegawai::get();
         if (auth::user()->pegawai->unitkerja == null) {
