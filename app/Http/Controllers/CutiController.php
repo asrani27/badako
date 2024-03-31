@@ -172,11 +172,10 @@ class CutiController extends Controller
 
         $pegawai = dataPegawai($req->nip);
         if (Auth::user()->pegawai->unitkerja->kode == '170029' || Auth::user()->pegawai->unitkerja->kode == '170030' || Auth::user()->pegawai->unitkerja->kode == '170032') {
-            $lama = count($collection->diff(['Sunday']));
-        } else {
             $lama = count($collection->diff(['Sunday', 'Saturday']));
+        } else {
+            $lama = count($collection->diff(['Sunday']));
         }
-
         $kadis = Kadis::where('is_aktif', 1)->first()->nip;
         $sekretaris = Sekretaris::where('is_aktif', 1)->first()->nip;
         $cuti = new Cuti;
