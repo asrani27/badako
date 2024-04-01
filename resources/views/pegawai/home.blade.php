@@ -74,8 +74,11 @@
         <!-- /.box-body -->
       </div>
 
-      <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a><br/>
-      <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a><br/>
+      <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a>
+      <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a><br/>
+      <a href="/pegawai/pengangkatan" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN PENGANGKATAN CPNS</a>
+      <a href="/pegawai/karpeg" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARTU PEGAWAI</a>
+      <a href="/pegawai/kariskarsu" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARIS/KARSU</a>
       <!-- /.box -->
       
     </div>

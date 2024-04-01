@@ -19,12 +19,15 @@ use App\Http\Controllers\BerkalaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
+use App\Http\Controllers\KarisKarsuController;
+use App\Http\Controllers\KarpegController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\LiburNasionalController;
+use App\Http\Controllers\PengangkatanController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -173,6 +176,10 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
 Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
     Route::prefix('pegawai')->group(function () {
+        Route::get('pengangkatan', [PengangkatanController::class, 'index']);
+        Route::get('karpeg', [KarpegController::class, 'index']);
+        Route::get('kariskarsu', [KarisKarsuController::class, 'index']);
+
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/add', [CutiController::class, 'create']);
         Route::get('cuti/setujui/{id}', [CutiController::class, 'setujui']);
