@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/pegawai/profile/{id}', [SuperadminController::class, 'profilPegawai']);
 
         Route::get('/cuti', [SuperadminController::class, 'cuti']);
-        Route::get('/cuti/lama', [SuperadminController::class, 'cutiLama']);
+        Route::post('/cuti/lama', [SuperadminController::class, 'cutiLama']);
         Route::get('/cuti/pdf/{id}', [SuperadminController::class, 'cutiPdf']);
         Route::get('/cuti/delete/{id}', [SuperadminController::class, 'cutiDelete']);
         Route::get('cuti/teruskan/{id}', [SuperadminController::class, 'verifikasiCuti']);
