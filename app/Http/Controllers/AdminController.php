@@ -980,4 +980,11 @@ class AdminController extends Controller
         Session::flash('success', 'berhasil');
         return back();
     }
+    public function cariCuti()
+    {
+        $keyword = request()->get('search');
+        $data = Cuti::where('kode_unitkerja', Auth::user()->username)->where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
+        return view('admin.cuti.index', compact('data'));
+    }
 }

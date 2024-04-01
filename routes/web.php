@@ -226,6 +226,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('cuti', [AdminController::class, 'cuti']);
+        Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
         Route::get('cuti/teruskan/{id}', [AdminController::class, 'cutiSetujui']);
         Route::get('belumisi/asn', [AdminController::class, 'asnbelumisi']);
         Route::get('belumisi/pppk', [AdminController::class, 'pppkbelumisi']);
