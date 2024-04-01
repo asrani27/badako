@@ -51,7 +51,9 @@
               s/d
               {{\Carbon\Carbon::parse($item->sampai)->format('d M Y')}}
             </td>
-            <td>{{$item->lama}} Hari</td>
+            <td>{{$item->lama}} Hari
+              <a href="#" class="btn btn-xs btn-success modal-edit" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
+            </td>
             <td>
               <table border="0">
                 @if ($item->kode_unitkerja == '170032' || $item->kode_unitkerja == '170031' || $item->kode_unitkerja == '170030' || $item->kode_unitkerja == '170029')
@@ -141,8 +143,41 @@
 </div>
 </section>
 
+<div class="modal fade" id="modal-edit">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form role="form" method="post" action="/superadmin/cuti/lama" enctype="multipart/form-data">
+              @csrf
+              
+              <div class="modal-header" style="background-color:#37517e; color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Lama Cuti</h4>
+              </div>
 
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Lama</label>
+                      <input type="text" class="form-control" id="lama" name="lama" required>
+                      <input type="hidden" class="form-control" id="cuti_id" name="cuti_id" required>
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-send"></i>Kirim</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 @endsection
 @push('js')
-
+<script>
+  $(document).on('click', '.modal-edit', function() {
+     $('#cuti_id').val($(this).data('id'));
+     $('#lama').val($(this).data('lama'));
+     $("#modal-edit").modal();
+  });
+</script>
 @endpush
