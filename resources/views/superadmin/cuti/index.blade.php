@@ -15,7 +15,18 @@
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Cuti</h3>
 
+        
         <div class="box-tools">
+          <form method="get" action="/superadmin/cuti/search">
+          @csrf
+          <div class="input-group input-group-sm hidden-xs" style="width: 250px;">
+            <input type="text" name="search" class="form-control pull-right" value="{{old('search')}}" placeholder="Cari NIP/NIK/Nama" required>
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+          </form>
         </div>
       </div>
       <!-- /.box-header -->

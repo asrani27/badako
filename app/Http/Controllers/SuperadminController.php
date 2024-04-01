@@ -1494,7 +1494,14 @@ class SuperadminController extends Controller
 
     public function cuti()
     {
-        $data = Cuti::paginate(20);
+        $data = Cuti::orderBy('id', 'DESC')->paginate(10);
+        return view('superadmin.cuti.index', compact('data'));
+    }
+    public function cariCuti()
+    {
+        $keyword = request()->get('search');
+        $data = Cuti::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
+        request()->flash();
         return view('superadmin.cuti.index', compact('data'));
     }
     public function verifikasiCuti($id)
