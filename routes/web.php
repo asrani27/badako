@@ -11,19 +11,20 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KadisController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PiketController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MutasiController;
+use App\Http\Controllers\UsulanController;
 use App\Http\Controllers\BerkalaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
-use App\Http\Controllers\LiburNasionalController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
-use App\Http\Controllers\UsulanController;
+use App\Http\Controllers\LiburNasionalController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -235,6 +236,13 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/data/pegawai/profile/{id}', [AdminController::class, 'profilPegawai']);
         Route::get('/data/pegawai/akun', [AdminController::class, 'akunPegawai']);
         Route::get('/data/pegawai/search', [AdminController::class, 'cariPegawai']);
+
+        Route::get('/piket', [PiketController::class, 'index']);
+        Route::post('/piket/add', [PiketController::class, 'store']);
+        Route::get('/piket/add', [PiketController::class, 'create']);
+        Route::get('/piket/edit/{id}', [PiketController::class, 'edit']);
+        Route::post('/piket/edit/{id}', [PiketController::class, 'update']);
+        Route::get('/piket/delete/{id}', [PiketController::class, 'delete']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {

@@ -60,6 +60,14 @@
                 
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  DATA CUTI <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/admin/cuti"><i class="fa fa-users"></i>  PENGAJUAN CUTI</a></li>
+                <li><a href="/admin/piket"><i class="fa fa-users"></i>  PIKET</a></li>
+                
+              </ul>
+            </li>
             <li><a href="/admin/cuti"><i class="fa fa-fw fa-file"></i> CUTI <span class="sr-only"></span></a></li>
             
           </ul>
