@@ -12,7 +12,7 @@ class PiketController extends Controller
 {
     public function index()
     {
-        $data = Piket::orderBy('id', 'DESC')->paginate(15);
+        $data = Piket::where('unitkerja_id', Auth::user()->unitkerja->id)->orderBy('id', 'DESC')->paginate(15);
         return view('admin.piket.index', compact('data'));
     }
     public function create()
@@ -24,6 +24,7 @@ class PiketController extends Controller
     {
         $param = $req->all();
         $param['nama'] = M_pegawai::where('nip', $req->nip)->first()->nama;
+        $param['unitkerja_id'] = Auth::user()->unitkerja->id;
         Piket::create($param);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/admin/piket');
@@ -38,6 +39,7 @@ class PiketController extends Controller
     {
         $param = $req->all();
         $param['nama'] = M_pegawai::where('nip', $req->nip)->first()->nama;
+        $param['unitkerja_id'] = Auth::user()->unitkerja->id;
         Piket::find($id)->update($param);
         Session::flash('success', 'Berhasil diupdate');
         return redirect('/admin/piket');
