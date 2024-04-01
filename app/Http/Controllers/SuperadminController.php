@@ -1504,6 +1504,15 @@ class SuperadminController extends Controller
         request()->flash();
         return view('superadmin.cuti.index', compact('data'));
     }
+
+    public function cutiLama(Request $req)
+    {
+        Cuti::find($req->cuti_id)->update([
+            'lama' => $req->lama,
+        ]);
+        Session::flash('success', 'Berhasil di update');
+        return back();
+    }
     public function verifikasiCuti($id)
     {
         Cuti::find($id)->update([

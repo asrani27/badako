@@ -158,7 +158,7 @@
               <div class="modal-body">
                   <div class="form-group">
                       <label>Lama</label>
-                      <input type="text" class="form-control" id="lama" name="lama" required>
+                      <input type="text" class="form-control" id="lama" name="lama" required onkeypress="return hanyaAngka(event)">
                       <input type="hidden" class="form-control" id="cuti_id" name="cuti_id" required>
                   </div>
                   
@@ -179,5 +179,15 @@
      $('#lama').val($(this).data('lama'));
      $("#modal-edit").modal();
   });
+</script>
+
+<script>
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
 </script>
 @endpush
