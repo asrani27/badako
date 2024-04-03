@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengangkatanCPNS;
 use Illuminate\Http\Request;
 
 class UsulanController extends Controller
 {
     public function usulan1()
     {
-        return view('superadmin.usulan1.index');
+        $data = PengangkatanCPNS::where('verifikasi_atasan_isi', 'setuju')->where('verifikasi_unitkerja_isi', 'setuju')->paginate(10);
+        return view('superadmin.usulan1.index', compact('data'));
     }
     public function usulan2()
     {

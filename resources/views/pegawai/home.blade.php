@@ -75,7 +75,21 @@
       </div>
 
       <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a>
-      <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a><br/>
+      <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a>
+      <a href="/pegawai/cpns/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS</a>
+
+      @if (\App\Models\Sekretaris::where('nip', Auth::user()->username)->first() != null)
+      <a href="/pegawai/cpns/sekretaris" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG SEKRETARIS</a><br/>
+      @else
+      <br/>
+      @endif
+      @if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
+      <a href="/pegawai/cpns/kadis" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG KADIS</a><br/>
+      @else
+      <br/>
+      @endif
+
+
       <a href="/pegawai/pengangkatan" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN PENGANGKATAN CPNS</a>
       <a href="/pegawai/karpeg" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARTU PEGAWAI</a>
       <a href="/pegawai/kariskarsu" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARIS/KARSU</a>

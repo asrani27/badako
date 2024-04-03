@@ -28,6 +28,8 @@ use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\LiburNasionalController;
 use App\Http\Controllers\PengangkatanController;
+use App\Http\Controllers\PengangkatanCpnsFileController;
+use App\Models\PengangkatanCpnsFile;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -158,6 +160,11 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
 
         Route::get('usulan1', [UsulanController::class, 'usulan1']);
+
+        Route::get('usulan1/setuju/{id}', [PengangkatanController::class, 'dinkesSetuju']);
+        Route::get('usulan1/tolak/{id}', [PengangkatanController::class, 'dinkesMenolak']);
+        Route::get('usulan1/delete/{id}', [PengangkatanController::class, 'dinkesDelete']);
+
         Route::get('usulan2', [UsulanController::class, 'usulan2']);
         Route::get('usulan3', [UsulanController::class, 'usulan3']);
         Route::get('usulan4', [UsulanController::class, 'usulan4']);
@@ -178,7 +185,17 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
 Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
     Route::prefix('pegawai')->group(function () {
-        Route::get('pengangkatan', [PengangkatanController::class, 'index']);
+        Route::get('pengangkatan', [PengangkatanController::class, 'pegawai']);
+        Route::get('pengangkatan/add', [PengangkatanController::class, 'addPengangkatan']);
+        Route::post('pengangkatan/add', [PengangkatanController::class, 'storePengangkatan']);
+        Route::get('pengangkatan/delete/{id}', [PengangkatanController::class, 'deletePengangkatan']);
+        Route::post('pengangkatan/upload', [PengangkatanCpnsFileController::class, 'upload']);
+
+        Route::get('pengangkatan/surat1/{id}', [PengangkatanController::class, 'surat1']);
+        Route::get('pengangkatan/surat2/{id}', [PengangkatanController::class, 'surat2']);
+        Route::get('pengangkatan/surat3/{id}', [PengangkatanController::class, 'surat3']);
+        Route::get('pengangkatan/surat4/{id}', [PengangkatanController::class, 'surat4']);
+
         Route::get('karpeg', [KarpegController::class, 'index']);
         Route::get('kariskarsu', [KarisKarsuController::class, 'index']);
 
@@ -193,6 +210,19 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::post('cuti/setujuiatasan/{id}', [CutiController::class, 'verifAtasanLangsungSetuju']);
         Route::get('cuti/kadis/tolak/{id}', [CutiController::class, 'kadisTolak']);
         Route::get('cuti/verifikasi', [CutiController::class, 'verifikasi']);
+
+        Route::get('cpns/verifikasi', [PengangkatanController::class, 'verifikasiCpns']);
+        Route::get('cpns/verifikasi/setuju/{id}', [PengangkatanController::class, 'atasanSetuju']);
+        Route::get('cpns/verifikasi/tolak/{id}', [PengangkatanController::class, 'atasanMenolak']);
+
+        Route::get('cpns/sekretaris', [PengangkatanController::class, 'verifikasiSekretaris']);
+        Route::get('cpns/sekretaris/setuju/{id}', [PengangkatanController::class, 'sekretarisSetuju']);
+        Route::get('cpns/sekretaris/tolak/{id}', [PengangkatanController::class, 'sekretarisMenolak']);
+
+        Route::get('cpns/kadis', [PengangkatanController::class, 'verifikasiKadis']);
+        Route::get('cpns/kadis/setuju/{id}', [PengangkatanController::class, 'KadisSetuju']);
+        Route::get('cpns/kadis/tolak/{id}', [PengangkatanController::class, 'KadisMenolak']);
+
         Route::get('cuti/teruskan/{id}', [CutiController::class, 'verifikasiSekretaris']);
         Route::post('cuti/verifikasi/atasanlangsungsetuju', [CutiController::class, 'verifAtasanLangsungSetuju']);
         Route::get('cuti/delete/{id}', [CutiController::class, 'delete']);
@@ -226,6 +256,9 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
+        Route::get('pengangkatan', [PengangkatanController::class, 'admin']);
+        Route::get('pengangkatan/teruskan/{id}', [PengangkatanController::class, 'verifikasi_admin']);
+
         Route::get('cuti', [AdminController::class, 'cuti']);
         Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
         Route::get('cuti/teruskan/{id}', [AdminController::class, 'cutiSetujui']);

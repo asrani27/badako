@@ -1,20 +1,19 @@
-@extends('superadmin.layouts.app')
+@extends('admin.layouts.app')
 @push('css')
     
 @endpush
-@section('content-header')
-SURAT PERMOHONAN
-@endsection
 @section('content')
-<div class="row">
-  <div class="col-xs-12">
-    <a href="/superadmin/usulan1" class="btn btn-sm bg-purple"><i class="fa fa-user-plus"></i> Tambah Data</a><br/><br/>
+<section class="content-header">
+  <h1>PERMOHONAN CPNS JADI PNS</h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Pengangkatan CPNS jadi PNS</h3>
 
         <div class="box-tools">
-          {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
         </div>
       </div>
       <!-- /.box-header -->
@@ -102,20 +101,23 @@ SURAT PERMOHONAN
             </td>
             
             <td>
+              @if ($item->verifikasi_unitkerja_isi == null)
               
-
-              @if ($item->verifikasi_dinkes_isi == null)
-            
-              <a href="/superadmin/usulan1/setuju/{{$item->id}}"
-                class="btn btn-xs btn-success" data-id="{{$item->id}}">Setujui</a>
-              <a href="/superadmin/usulan1/tolak/{{$item->id}}"
-                onclick="return confirm('Yakin ingin di tolak');"
-                class="btn btn-xs  btn-danger">Tolak</a>
-                  
+              <a href="/admin/pengangkatan/teruskan/{{$item->id}}"
+                onclick="return confirm('validasi Data');"
+                class="btn btn-xs btn-flat  btn-success">verifikasi</a>
+              @else    
               @endif
-              <a href="/superadmin/usulan1/delete/{{$item->id}}"
+
+              @if ($item->verifikasi_atasan_isi == null)
+              <a href="/admin/pengangkatan/delete/{{$item->id}}"
                 onclick="return confirm('Yakin ingin di hapus');"
-                class="btn btn-xs  btn-danger"><i class="fa fa-trash"></i></a>
+                class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
+              @endif
+
+				    @if ($item->verifikasi_kadis_isi != null)
+              <a href="/admin/pengangkatan/pdf/{{$item->id}}" class="btn btn-xs  btn-primary"><i class="fa fa-file"></i> 1. Surat Pengantar</a>
+            @endif
             </td>
             
           </tr>
@@ -127,10 +129,48 @@ SURAT PERMOHONAN
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    
+    </div>
+    <!-- /.col -->
+</div>
+</section>
+
+<div class="modal fade" id="modal-file">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form role="form" method="post" action="/pegawai/ubahfoto" enctype="multipart/form-data">
+              @csrf
+              
+              <div class="modal-header" style="background-color:#37517e; color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Upload File</h4>
+              </div>
+
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Keterangan</label>
+                      <input type="text" class="form-control" name="nama" required>
+                  </div>
+                  <div class="form-group">
+                      <label>File</label>
+                      <input type="file" class="form-control" name="file" required>
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-send"></i>Kirim</button>
+              </div>
+          </form>
+      </div>
   </div>
 </div>
 @endsection
 @push('js')
-
+<script>
+  $(document).on('click', '.modal-file', function() {
+    $('#cuti_id').val($(this).data('id'));
+     $("#modal-file").modal();
+  });
+</script>
 @endpush
