@@ -190,6 +190,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::post('pengangkatan/add', [PengangkatanController::class, 'storePengangkatan']);
         Route::get('pengangkatan/delete/{id}', [PengangkatanController::class, 'deletePengangkatan']);
         Route::post('pengangkatan/upload', [PengangkatanCpnsFileController::class, 'upload']);
+        Route::get('pengangkatan/deletefile/{id}', [PengangkatanCpnsFileController::class, 'deleteFile']);
 
         Route::get('pengangkatan/surat1/{id}', [PengangkatanController::class, 'surat1']);
         Route::get('pengangkatan/surat2/{id}', [PengangkatanController::class, 'surat2']);

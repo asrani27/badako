@@ -40,7 +40,9 @@
             <td>   
               <ul>   
               @foreach ($item->file as $key2=> $item2)
-                 <li> <a href="/storage/{{$item->nip}}/permohonan_cpns/{{$item2->file}}" target="_blank" style="color: blue">{{$item2->nama}}</a></li>
+                 <li> <a href="/storage/{{$item->nip}}/permohonan_cpns/{{$item2->file}}" target="_blank" style="color: blue">{{$item2->nama}}</a>
+                  <a href="/pegawai/pengangkatan/deletefile/{{$item2->id}}" class="btn btn-xs btn-danger"onclick="return confirm('Yakin ingin di hapus');"><i class="fa fa-trash"></i> </a>
+                </li>
               @endforeach        
               </ul>
               <button type="button" class="btn btn-xs bg-purple modal-file" data-id="{{$item->id}}">+ Upload</button>

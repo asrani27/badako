@@ -39,4 +39,11 @@ class PengangkatanCpnsFileController extends Controller
         Session::flash('success', 'Berhasil disimpan');
         return back();
     }
+
+    public function deleteFile($id)
+    {
+        PengangkatanCpnsFile::find($id)->delete();
+        Session::flash('success', 'Berhasil dihapus');
+        return back();
+    }
 }
