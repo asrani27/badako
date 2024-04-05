@@ -36,7 +36,7 @@
           <h3 class="box-title">Tanda Tangan</h3>
         </div>
         <div class="box-body">
-          <form class="form-horizontal" action="/pegawai/cuti/setujuiatasan/685" method="post">
+          <form class="form-horizontal" action="/pegawai/cuti/setujuiatasan/{{$data->id}}" method="post">
             @csrf
             <div class="form-group">
               <div class="col-sm-12">

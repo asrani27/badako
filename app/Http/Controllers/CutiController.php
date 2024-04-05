@@ -66,6 +66,7 @@ class CutiController extends Controller
 
         file_put_contents($filename, $image_base64);
         //----------------//
+
         $cuti = Cuti::find($id)->update([
             'verifikasi_atasan' => 'disetujui',
             'ttd_atasan' => $filename,
