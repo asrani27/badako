@@ -85,12 +85,14 @@
               </table>
             </td>
             <td>
+              @if ($item->verifikasi_kadis == null)
               <a href="/pegawai/cuti/kadis/setujui/{{$item->id}}"
                 onclick="return confirm('Yakin ingin di setujui');"
                 class="btn btn-xs btn-flat  btn-success">Setujui</a>
-            <a href="/pegawai/cuti/kadis/tolak/{{$item->id}}"
+              <a href="/pegawai/cuti/kadis/tolak/{{$item->id}}"
                 onclick="return confirm('Yakin ingin di tolak');"
                 class="btn btn-xs btn-flat  btn-danger">Tolak</a>
+              @endif
             </td>
             
           </tr>
