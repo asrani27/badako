@@ -211,6 +211,8 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::post('cuti/setujuiatasan/{id}', [CutiController::class, 'verifAtasanLangsungSetuju']);
         Route::get('cuti/kadis/tolak/{id}', [CutiController::class, 'kadisTolak']);
         Route::get('cuti/verifikasi', [CutiController::class, 'verifikasi']);
+        Route::get('cuti/verifikasi_kadis', [CutiController::class, 'verifikasi_kadis']);
+        Route::get('cuti/verifikasi_sekretaris', [CutiController::class, 'verifikasi_sekretaris']);
 
         Route::get('cpns/verifikasi', [PengangkatanController::class, 'verifikasiCpns']);
         Route::get('cpns/verifikasi/setuju/{id}', [PengangkatanController::class, 'atasanSetuju']);

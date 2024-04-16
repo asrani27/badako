@@ -30,23 +30,33 @@ class CutiController extends Controller
         $data = Cuti::find($id);
         return view('pegawai.cuti.ttd', compact('data'));
     }
+    public function verifikasi_kadis()
+    {
+        $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
+        return view('pegawai.cuti.kadis', compact('data'));
+    }
+    public function verifikasi_sekretaris()
+    {
+        $data = Cuti::where('sekretaris', Auth::user()->pegawai->nip)->get();
+        return view('pegawai.cuti.verifikasi', compact('data'));
+    }
     public function verifikasi()
     {
         $kadis = Kadis::first()->nip;
         $sekretaris = Sekretaris::first()->nip;
-        if (Auth::user()->pegawai->nip == $kadis) {
-            $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
-            return view('pegawai.cuti.kadis', compact('data'));
-        } elseif (Auth::user()->pegawai->nip == $sekretaris) {
-            $data = Cuti::where('sekretaris', Auth::user()->pegawai->nip)->get();
-            return view('pegawai.cuti.verifikasi', compact('data'));
-        } else {
-            $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
-            return view('pegawai.cuti.verifikasi', compact('data'));
-        }
+        // if (Auth::user()->pegawai->nip == $kadis) {
+        //     $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
+        //     return view('pegawai.cuti.kadis', compact('data'));
+        // } elseif (Auth::user()->pegawai->nip == $sekretaris) {
+        //     $data = Cuti::where('sekretaris', Auth::user()->pegawai->nip)->get();
+        //     return view('pegawai.cuti.verifikasi', compact('data'));
+        // } else {
+        $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
+        return view('pegawai.cuti.verifikasi', compact('data'));
+        //}
 
         //$data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
-        return view('pegawai.cuti.verifikasi', compact('data'));
+        //return view('pegawai.cuti.verifikasi', compact('data'));
     }
 
     public function verifAtasanLangsungSetuju(Request $req, $id)
