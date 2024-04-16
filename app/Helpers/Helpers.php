@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 function checkPegawai($nip)
 {
-    $check = M_pegawai::where('nip', $nip)->first()->nama;
+    if (M_pegawai::where('nip', $nip)->first() == null) {
+        $check = null;
+    } else {
+        $check = M_pegawai::where('nip', $nip)->first()->nama;
+    }
     return $check;
 }
 function dataPegawai($nip)
