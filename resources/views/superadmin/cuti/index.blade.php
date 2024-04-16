@@ -9,8 +9,31 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      
-    <a href="/superadmin/beranda" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a> <br/><br/>
+      <div class="col-md-1">
+        
+      <a href="/superadmin/beranda" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a>
+      </div>
+      <form method="get" action="/superadmin/cuti/filter">
+      <div class="col-md-2">
+        @csrf
+        <select class="form-control" name="kode_unitkerja">
+          <option value="">Semua Unit Kerja</option>
+          @foreach ($unitkerja as $item)
+              <option value="{{$item->kode}}" {{old('kode_unitkerja') == $item->kode ? 'selected':''}}>{{$item->nama}}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col-md-2">
+        <input type="date" class="form-control" name="tanggal" value="{{old('tanggal')}}" required>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-sm btn-primary" value="cari" name="button"><i class="fa fa-search"></i></button>
+        <button type="submit" class="btn btn-sm btn-primary" value="cetak" name="button"><i class="fa fa-file-excel-o"></i></button>
+      </div>
+      </form>
+    
+    
+    <br/><br/>
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Cuti</h3>
@@ -44,8 +67,8 @@
           </tr>
           @foreach ($data as $key => $item)
           <tr>
-            <td>{{$key + 1}}</td>
-            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}</td>
+            <td>{{$data->firstItem() + $key}}</td>
+            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->unit_kerja}}</td>
             <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
             <td>{{\Carbon\Carbon::parse($item->mulai)->format('d M Y')}}
               s/d

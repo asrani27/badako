@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\Cuti;
 use App\Models\Role;
@@ -13,13 +14,14 @@ use App\Models\BelumIsi;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
+use App\Exports\CutiExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
-use PDF;
 
 class SuperadminController extends Controller
 {
@@ -1492,10 +1494,34 @@ class SuperadminController extends Controller
         return back();
     }
 
+    public function cutiFilter()
+    {
+        $unitkerja = request()->get('kode_unitkerja');
+        $tanggal = request()->get('tanggal');
+        $button = request()->get('button');
+        if ($button == 'cari') {
+            if ($unitkerja == null) {
+                $data = Cuti::where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal)->orderBy('umpeg', 'ASC')->paginate(10);
+                $unitkerja = UnitKerja::get();
+                request()->flash();
+                return view('superadmin.cuti.index', compact('data', 'unitkerja'));
+            } else {
+                $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal)->orderBy('umpeg', 'ASC')->paginate(10);
+                $unitkerja = UnitKerja::get();
+                request()->flash();
+                return view('superadmin.cuti.index', compact('data', 'unitkerja'));
+            }
+        } else {
+            $filename = 'Cuti_' . Carbon::now()->format('d-m-Y-H-i-s') . '.xlsx';
+            return Excel::download(new CutiExport($unitkerja, $tanggal), $filename);
+        }
+        dd($unitkerja, $tanggal, $button);
+    }
     public function cuti()
     {
-        $data = Cuti::orderBy('id', 'DESC')->paginate(10);
-        return view('superadmin.cuti.index', compact('data'));
+        $data = Cuti::orderBy('umpeg', 'ASC')->paginate(10);
+        $unitkerja = UnitKerja::get();
+        return view('superadmin.cuti.index', compact('data', 'unitkerja'));
     }
     public function cariCuti()
     {

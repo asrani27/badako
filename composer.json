@@ -15,10 +15,11 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.2",
         "phpoffice/phpspreadsheet": "^1.28",
-        "simplesoftwareio/simple-qrcode": "^4.2",
-        "phpoffice/phpword": "^1.0"
+        "phpoffice/phpword": "^1.0",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
