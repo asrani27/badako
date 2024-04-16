@@ -16,7 +16,7 @@ class CutiExport implements FromView, ShouldAutoSize
     private $kode;
     private $tanggal;
 
-    public function __construct(String $kode, String $tanggal)
+    public function __construct($kode, String $tanggal)
     {
         $this->kode = $kode;
         $this->tanggal = $tanggal;
