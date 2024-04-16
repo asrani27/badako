@@ -33,7 +33,7 @@
           </tr>
           @foreach ($data as $key => $item)
           <tr>
-            <td>{{$key + 1}}</td>
+            <td>{{$data->firstItem() + $key}}</td>
             <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->unit_kerja}}</td>
             <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
             <td>{{\Carbon\Carbon::parse($item->mulai)->format('d M Y')}}
