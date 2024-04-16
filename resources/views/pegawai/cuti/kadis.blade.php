@@ -34,7 +34,7 @@
           @foreach ($data as $key => $item)
           <tr>
             <td>{{$key + 1}}</td>
-            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}</td>
+            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->unit_kerja}}</td>
             <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
             <td>{{\Carbon\Carbon::parse($item->mulai)->format('d M Y')}}
               s/d
@@ -43,6 +43,17 @@
             <td>{{$item->lama}} Hari</td>
             <td>
               <table border="0">
+
+                {{-- @if ($item->verifikasi_unitkerja == 'disetujui')
+                <tr style="color: green">
+                @else    
+                <tr>
+                @endif
+                  <td><i class="fa fa-circle"></i></td>
+                  <td>Puskesmas </td>
+                  <td>: Admin Puskes</td>
+                </tr> --}}
+
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
@@ -103,6 +114,7 @@
       </div>
       <!-- /.box-body -->
     </div>
+    {{$data->links()}}
     <!-- /.box -->
     </div>
     <!-- /.col -->

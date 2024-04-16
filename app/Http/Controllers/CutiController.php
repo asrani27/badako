@@ -32,7 +32,7 @@ class CutiController extends Controller
     }
     public function verifikasi_kadis()
     {
-        $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->get();
+        $data = Cuti::where('kepala_dinas', Auth::user()->pegawai->nip)->where('verifikasi_atasan', 'disetujui')->where('umpeg', 'disetujui')->where('verifikasi_sekretaris', 'disetujui')->orderBy('verifikasi_kadis', 'ASC')->paginate(20);
         return view('pegawai.cuti.kadis', compact('data'));
     }
     public function verifikasi_sekretaris()
