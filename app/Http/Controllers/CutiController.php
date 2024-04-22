@@ -51,7 +51,7 @@ class CutiController extends Controller
         //     $data = Cuti::where('sekretaris', Auth::user()->pegawai->nip)->get();
         //     return view('pegawai.cuti.verifikasi', compact('data'));
         // } else {
-        $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->get();
+        $data = Cuti::where('atasan_langsung', Auth::user()->pegawai->nip)->paginate(15);
         return view('pegawai.cuti.verifikasi', compact('data'));
         //}
 
