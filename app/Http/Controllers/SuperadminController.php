@@ -1528,7 +1528,8 @@ class SuperadminController extends Controller
         $keyword = request()->get('search');
         $data = Cuti::where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
         request()->flash();
-        return view('superadmin.cuti.index', compact('data'));
+        $unitkerja = UnitKerja::get();
+        return view('superadmin.cuti.index', compact('data', 'unitkerja'));
     }
 
     public function cutiLama(Request $req)
