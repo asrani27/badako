@@ -43,6 +43,7 @@ UNIT KERJA
                       @if ($item->user != null)
                           
     <a href="/superadmin/data/unitkerja/resetpass/{{$item->id}}" class="btn btn-xs bg-purple"><i class="fa fa-lock"></i> Reset Password</a>
+    <a href="/superadmin/data/unitkerja/export/{{$item->id}}" class="btn btn-xs bg-purple" target="_blank"><i class="fa fa-file"></i> Export Excel</a>
                       @endif
               </td>
           </tr>

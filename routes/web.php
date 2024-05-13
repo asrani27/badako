@@ -134,6 +134,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
         Route::get('/data/unitkerja/kode', [UnitKerjaController::class, 'kode']);
         Route::get('/data/unitkerja/resetpass/{id}', [UnitKerjaController::class, 'resetPass']);
+        Route::get('/data/unitkerja/export/{id}', [UnitKerjaController::class, 'export']);
         Route::get('/data/unitkerja/akun', [UnitKerjaController::class, 'akun']);
         Route::get('/data/unitkerja', [UnitKerjaController::class, 'index']);
         Route::get('/data/unitkerja/add', [UnitKerjaController::class, 'add']);

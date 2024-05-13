@@ -29,6 +29,7 @@
             <th>TGL DI AJUKAN</th>
             <th>MULAI CUTI </th>
             <th>LAMA</th>
+            <th>BUKTI DUKUNG</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
           </tr>
@@ -42,6 +43,9 @@
               {{\Carbon\Carbon::parse($item->sampai)->format('d M Y')}}
             </td>
             <td>{{$item->lama}} Hari</td>
+            <td>
+              <a href="#" class="btn btn-xs btn-primary">+ Bukti Dukung</a>
+            </td>
             <td>
               <table border="0">
                 @if ($item->kode_unitkerja == '170032' || $item->kode_unitkerja == '170031' || $item->kode_unitkerja == '170030' || $item->kode_unitkerja == '170029')

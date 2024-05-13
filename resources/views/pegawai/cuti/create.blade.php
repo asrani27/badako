@@ -38,7 +38,7 @@
         <h3 class="box-title">Formulir Pengajuan Cuti</h3>
       </div>
       <div class="box-body">
-        <form class="form-horizontal" action="/pegawai/cuti/add" method="post">
+        <form class="form-horizontal" action="/pegawai/cuti/add" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">ATASAN LANGSUNG</label>
@@ -111,6 +111,13 @@
               <input type="text" class="form-control" name="telp" required>
             </div>
           </div>
+
+          {{-- <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label text-right">BUKTI DUKUNG (optional)</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" name="file">
+            </div>
+          </div> --}}
 
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">Tanda Tangan</label>
