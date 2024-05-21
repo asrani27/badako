@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/data/pegawai', [SuperadminController::class, 'pegawai']);
         Route::get('/data/pegawai/akun', [SuperadminController::class, 'akunPegawai']);
         Route::get('/data/pegawai/resetpass/{id}', [SuperadminController::class, 'resetPassPegawai']);
+        Route::get('/data/pegawai/createuser/{id}', [SuperadminController::class, 'buatAkun']);
         Route::get('/data/pegawai/sync', [SuperadminController::class, 'syncPegawai']);
         Route::get('/data/pegawai/add', [SuperadminController::class, 'addPegawai']);
         Route::get('/data/pegawai/search', [SuperadminController::class, 'cariPegawai']);

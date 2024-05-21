@@ -1493,6 +1493,29 @@ class SuperadminController extends Controller
         Session::flash('success', 'Akun Login berhasil dibuat, username : nip, password :nip');
         return back();
     }
+    public function buatAkun($id)
+    {
+        $data = M_pegawai::find($id);
+        $role = Role::where('name', 'pegawai')->first();
+        $check = User::where('username', $data->nip)->first();
+        if ($check == null) {
+            //create akun
+            $n = new User;
+            $n->name = $data->nama;
+            $n->username = $data->nip;
+            $n->password = bcrypt($data->nip);
+            $n->pegawai_id = $data->id;
+            $n->save();
+            $n->roles()->attach($role);
+
+            Session::flash('success', 'Akun Login berhasil dibuat, username : nip, password :nip');
+            return back();
+        } else {
+            Session::flash('error', 'NIP/NIK sudah ada');
+            return back();
+        }
+    }
+
 
     public function cutiFilter()
     {

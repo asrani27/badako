@@ -59,6 +59,12 @@ PEGAWAI
                           
     <a href="/superadmin/data/pegawai/resetpass/{{$item->id}}" class="btn btn-xs bg-purple"><i class="fa fa-lock"></i> Reset Password</a>
                       @endif
+
+
+                      @if ($item->user == null)
+                          
+          <a href="/superadmin/data/pegawai/createuser/{{$item->id}}" class="btn btn-xs bg-purple"><i class="fa fa-key"></i> Buat Akun</a>
+                      @endif
               </td>
           </tr>
           @endforeach
