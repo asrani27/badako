@@ -85,7 +85,7 @@
                   @if ($item->verifikasi_unitkerja == 'disetujui')
                   <tr style="color: green">
                   @else    
-                  <tr>
+                  <tr style="color: red">
                   @endif
                     <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                     <td>Puskesmas&nbsp;&nbsp;
@@ -96,7 +96,7 @@
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
-                <tr>
+                <tr style="color: red">
                 @endif
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
@@ -107,7 +107,7 @@
                 @if ($item->umpeg == 'disetujui')
                 <tr style="color: green">
                 @else    
-                <tr>
+                <tr style="color: red">
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Umpeg </td>
@@ -117,7 +117,7 @@
                 @if ($item->verifikasi_sekretaris == 'disetujui')
                 <tr style="color: green">
                 @else    
-                <tr>
+                <tr style="color: red">
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
@@ -126,7 +126,7 @@
                 @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
                 @else    
-                <tr>
+                <tr style="color: red">
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
