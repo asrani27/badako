@@ -1538,11 +1538,11 @@ class SuperadminController extends Controller
             $filename = 'Cuti_' . Carbon::now()->format('d-m-Y-H-i-s') . '.xlsx';
             return Excel::download(new CutiExport($unitkerja, $tanggal), $filename);
         }
-        dd($unitkerja, $tanggal, $button);
     }
     public function cuti()
     {
-        $data = Cuti::orderBy('umpeg', 'ASC')->paginate(10);
+        $data = Cuti::orderBy('umpeg', 'ASC')->where('verifikasi_atasan', 'disetujui')->paginate(10);
+
         $unitkerja = UnitKerja::get();
         return view('superadmin.cuti.index', compact('data', 'unitkerja'));
     }

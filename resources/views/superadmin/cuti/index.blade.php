@@ -92,7 +92,14 @@
                     <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                     <td>Puskesmas&nbsp;&nbsp;
                     </td>
-                    <td>: Admin {{\App\Models\UnitKerja::where('kode', $item->kode_unitkerja)->first()->nama}}</td>
+                    <td>: Admin {{\App\Models\UnitKerja::where('kode', $item->kode_unitkerja)->first()->nama}}
+                    
+                    
+                  @if ($item->verifikasi_unitkerja == 'ditolak')
+                  <a href="/superadmin/cuti/batal/{{$item->id}}" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                  @endif
+                    
+                    </td>
                   </tr>
                 @endif
                 @if ($item->verifikasi_atasan == 'disetujui')
@@ -105,7 +112,10 @@
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
                   </td>
-                  <td>: {{checkPegawai($item->atasan_langsung)}}</td>
+                  <td>: {{checkPegawai($item->atasan_langsung)}}
+                  
+                  
+                  </td>
                 </tr>
 
                 @if ($item->umpeg == 'disetujui')
@@ -117,7 +127,14 @@
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Umpeg </td>
-                  <td>: Administrator</td>
+                  <td>: Administrator
+
+                    
+                  
+                    @if ($item->umpeg == 'disetujui')
+                    <a href="/superadmin/cuti/batal/{{$item->id}}"  onclick="return confirm('yakin di batalkan');"><i class="fa fa-times text-red"></i></a>
+                    @endif
+                  </td>
                 </tr>
 
                 @if ($item->verifikasi_sekretaris == 'disetujui')
@@ -129,7 +146,13 @@
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
-                  <td>: {{checkPegawai($item->sekretaris)}}</td>
+                  <td>: {{checkPegawai($item->sekretaris)}}
+                  
+                  
+                    @if ($item->verifikasi_sekretaris == 'disetujui')
+                    <a href="/superadmin/cuti/batal/{{$item->id}}"  onclick="return confirm('yakin di batalkan');"><i class="fa fa-times text-red"></i></a>
+                    @endif
+                  </td>
                 </tr>
                 @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
@@ -140,7 +163,14 @@
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
-                  <td>: {{checkPegawai($item->kepala_dinas)}}</td>
+                  <td>: {{checkPegawai($item->kepala_dinas)}}
+                  
+                  
+
+                    @if ($item->verifikasi_kadis == 'disetujui')
+                    <a href="/superadmin/cuti/batal/{{$item->id}}"  onclick="return confirm('yakin di batalkan');"><i class="fa fa-times text-red"></i></a>
+                    @endif
+                  </td>
                 </tr>
               </table>
             </td>
