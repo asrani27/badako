@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/cuti/filter', [SuperadminController::class, 'cutiFilter']);
         Route::post('/cuti/lama', [SuperadminController::class, 'cutiLama']);
         Route::get('/cuti/pdf/{id}', [SuperadminController::class, 'cutiPdf']);
+        Route::get('/cuti/batal/{id}', [SuperadminController::class, 'cutiBatal']);
         Route::get('/cuti/delete/{id}', [SuperadminController::class, 'cutiDelete']);
         Route::get('cuti/teruskan/{id}', [SuperadminController::class, 'verifikasiCuti']);
         Route::get('/cuti/search', [SuperadminController::class, 'cariCuti']);
