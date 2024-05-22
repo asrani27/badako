@@ -84,8 +84,10 @@
                 @else
                   @if ($item->verifikasi_unitkerja == 'disetujui')
                   <tr style="color: green">
-                  @else    
+                  @elseif($item->verifikasi_unitkerja == 'ditolak')    
                   <tr style="color: red">
+                  @else
+                  <tr>
                   @endif
                     <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                     <td>Puskesmas&nbsp;&nbsp;
@@ -95,8 +97,10 @@
                 @endif
                 @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
-                @else    
+                @elseif($item->verifikasi_atasan == 'ditolak')    
                 <tr style="color: red">
+                @else
+                <tr>
                 @endif
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
@@ -106,8 +110,10 @@
 
                 @if ($item->umpeg == 'disetujui')
                 <tr style="color: green">
-                @else    
+                @elseif($item->umpeg == 'ditolak')    
                 <tr style="color: red">
+                @else
+                <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Umpeg </td>
@@ -116,8 +122,10 @@
 
                 @if ($item->verifikasi_sekretaris == 'disetujui')
                 <tr style="color: green">
-                @else    
+                @elseif($item->verifikasi_sekretaris == 'ditolak')    
                 <tr style="color: red">
+                @else
+                <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
@@ -125,8 +133,10 @@
                 </tr>
                 @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
-                @else    
+                @elseif($item->verifikasi_kadis == 'ditolak')    
                 <tr style="color: red">
+                @else
+                <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
