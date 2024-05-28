@@ -1521,6 +1521,7 @@ class SuperadminController extends Controller
     {
         $unitkerja = request()->get('kode_unitkerja');
         $tanggal = request()->get('tanggal');
+        $tanggal2 = request()->get('tanggal2');
         $button = request()->get('button');
         if ($button == 'cari') {
             if ($unitkerja == null) {
@@ -1529,7 +1530,7 @@ class SuperadminController extends Controller
                 request()->flash();
                 return view('superadmin.cuti.index', compact('data', 'unitkerja'));
             } else {
-                $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal)->orderBy('umpeg', 'ASC')->paginate(10);
+                $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10);
                 $unitkerja = UnitKerja::get();
                 request()->flash();
                 return view('superadmin.cuti.index', compact('data', 'unitkerja'));

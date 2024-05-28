@@ -26,6 +26,9 @@
       <div class="col-md-2">
         <input type="date" class="form-control" name="tanggal" value="{{old('tanggal')}}" required>
       </div>
+      <div class="col-md-2">
+        <input type="date" class="form-control" name="tanggal2" value="{{old('tanggal2')}}" required>
+      </div>
       <div class="col-md-1">
         <button type="submit" class="btn btn-sm btn-primary" value="cari" name="button"><i class="fa fa-search"></i></button>
         <button type="submit" class="btn btn-sm btn-primary" value="cetak" name="button"><i class="fa fa-file-excel-o"></i></button>
