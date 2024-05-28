@@ -1537,7 +1537,7 @@ class SuperadminController extends Controller
             }
         } else {
             $filename = 'Cuti_' . Carbon::now()->format('d-m-Y-H-i-s') . '.xlsx';
-            return Excel::download(new CutiExport($unitkerja, $tanggal), $filename);
+            return Excel::download(new CutiExport($unitkerja, $tanggal,  $tanggal2), $filename);
         }
     }
     public function cuti()
