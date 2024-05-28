@@ -9,12 +9,13 @@ use App\Models\Kadis;
 use Carbon\CarbonPeriod;
 use App\Models\JenisCuti;
 use App\Models\M_pegawai;
+use App\Models\Sekretaris;
 use Illuminate\Http\Request;
 use App\Models\LiburNasional;
-use App\Models\Sekretaris;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CutiController extends Controller
@@ -25,6 +26,39 @@ class CutiController extends Controller
         return view('pegawai.cuti.index', compact('data'));
     }
 
+    public function buktidukung($id)
+    {
+        $data = Cuti::find($id);
+        return view('pegawai.cuti.upload', compact('data'));
+    }
+
+
+    public function upload(Request $req, $id)
+    {
+        $validator = Validator::make($req->all(), [
+            'file'  => 'mimes:pdf|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            $req->flash();
+            Session::flash('error', 'File harus scan PDF dan Maks 2MB');
+            return back();
+        }
+
+        $path = public_path('storage') . '/' . Auth::user()->pegawai->nip . '/bukti_dukung';
+
+        $file = $req->file('file');
+        $extension = $req->file->getClientOriginalExtension();
+        $filename = str_replace(' ', '_', $req->nama) . uniqid() . '.' . $extension;
+        $file->move($path, $filename);
+
+        $new = Cuti::find($id)->update([
+            'bukti' => $filename,
+        ]);
+
+        Session::flash('success', 'Berhasil disimpan');
+        return redirect('/pegawai/cuti');
+    }
     public function atasanSetujui($id)
     {
         $data = Cuti::find($id);

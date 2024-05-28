@@ -207,6 +207,8 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/add', [CutiController::class, 'create']);
         Route::get('cuti/setujui/{id}', [CutiController::class, 'setujui']);
+        Route::get('cuti/buktidukung/{id}', [CutiController::class, 'buktidukung']);
+        Route::post('cuti/buktidukung/{id}', [CutiController::class, 'upload']);
         Route::get('cuti/pdf/{id}', [CutiController::class, 'pdf']);
         Route::get('cuti/tolak/{id}', [CutiController::class, 'tolak']);
 

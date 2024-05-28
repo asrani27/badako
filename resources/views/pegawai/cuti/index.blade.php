@@ -44,7 +44,9 @@
             </td>
             <td>{{$item->lama}} Hari</td>
             <td>
-              <a href="#" class="btn btn-xs btn-primary">+ Bukti Dukung</a>
+
+              <a href="/storage/{{$item->nip}}/bukti_dukung/{{$item->bukti}}" target="_blank" style="color: black">{{$item->bukti}}</a> <br/>
+              <a href="/pegawai/cuti/buktidukung/{{$item->id}}" class="btn btn-xs btn-primary">+ Bukti Dukung</a>
             </td>
             <td>
               <table border="0">
