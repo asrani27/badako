@@ -1525,12 +1525,12 @@ class SuperadminController extends Controller
         $button = request()->get('button');
         if ($button == 'cari') {
             if ($unitkerja == null) {
-                $data = Cuti::where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10);
+                $data = Cuti::where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10)->withQueryString();
                 $unitkerja = UnitKerja::get();
                 request()->flash();
                 return view('superadmin.cuti.index', compact('data', 'unitkerja'));
             } else {
-                $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10);
+                $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10)->withQueryString();
                 $unitkerja = UnitKerja::get();
                 request()->flash();
                 return view('superadmin.cuti.index', compact('data', 'unitkerja'));
