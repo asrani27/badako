@@ -19,6 +19,11 @@ class KadisController extends Controller
         $pegawai = M_pegawai::get();
         return view('superadmin.kadis.create', compact('pegawai'));
     }
+    public function edit($id)
+    {
+        $data = Kadis::find($id);
+        return view('superadmin.kadis.edit', compact('data'));
+    }
     public function aktifkan($id)
     {
         $kadis = Kadis::where('is_aktif', 1)->first();
@@ -44,15 +49,20 @@ class KadisController extends Controller
     {
         $pegawai = M_pegawai::find($req->pegawai_id);
 
-        $param['nip']  = $pegawai->nip;
-        $param['nama'] = $pegawai->nama;
-        $param['pangkat'] = $pegawai->pangkat == null ? null : $pegawai->pangkat->nama . ', ' . $pegawai->pangkat->golongan;
+        Kadis::create($req->all());
 
-        Kadis::create($param);
         Session::flash('success', 'berhasil di simpan');
         return redirect('/superadmin/kadis');
     }
 
+    public function update(Request $req, $id)
+    {
+
+        Kadis::find($id)->update($req->all());
+
+        Session::flash('success', 'berhasil di update');
+        return redirect('/superadmin/kadis');
+    }
     public function delete($id)
     {
         $data = Kadis::find($id)->delete();

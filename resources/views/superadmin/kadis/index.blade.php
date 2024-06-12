@@ -26,6 +26,7 @@ KEPALA DINAS
             <th>NIP</th>
             <th>NAMA</th>
             <th>PANGKAT</th>
+            <th>Jenis</th>
             <th>Aktif?</th>
             <th>Aksi</th>
           </tr>
@@ -35,6 +36,7 @@ KEPALA DINAS
               <td>{{$item->nip}}</td>
               <td>{{$item->nama}}</td>
               <td>{{$item->pangkat}}</td>
+              <td>{{$item->jenis}}</td>
               <td>
 
                 @if ($item->is_aktif == null)
@@ -44,11 +46,13 @@ KEPALA DINAS
                 @else
                     
                   <a href=#
-                    class="btn btn-xs btn-flat  btn-success"><i class="fa fa-check"></i></a>
+                    class="btn btn-xs btn-flat  btn-success"><i class="fa fa-check-circle"></i> Aktif</a>
                 @endif
               </td>
               <td>                  
                 
+                <a href="/superadmin/kadis/edit/{{$item->id}}"
+                  class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
                   <a href="/superadmin/kadis/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
                       class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>

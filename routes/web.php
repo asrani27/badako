@@ -99,6 +99,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('/kadis/add', [KadisController::class, 'store']);
         Route::get('/kadis/aktifkan/{id}', [KadisController::class, 'aktifkan']);
         Route::get('/kadis/delete/{id}', [KadisController::class, 'delete']);
+        Route::get('/kadis/edit/{id}', [KadisController::class, 'edit']);
+        Route::post('/kadis/edit/{id}', [KadisController::class, 'update']);
 
 
         Route::get('/sekretaris', [SekretarisController::class, 'index']);

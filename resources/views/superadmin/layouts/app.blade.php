@@ -98,8 +98,14 @@
               </ul>
             </li>
             <li><a href="/superadmin/bandingkan"><i class="fa fa-fw fa-th"></i> BANDINGKAN DATA <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/kadis"><i class="fa fa-fw fa-user"></i> KEPALA DINAS <span class="sr-only">(current)</span></a></li>
-            <li><a href="/superadmin/sekretaris"><i class="fa fa-fw fa-user"></i> SEKRETARIS <span class="sr-only">(current)</span></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>  TTD USER <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+
+                <li><a href="/superadmin/kadis"><i class="fa fa-fw fa-user"></i> KEPALA DINAS <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/sekretaris"><i class="fa fa-fw fa-user"></i> SEKRETARIS <span class="sr-only">(current)</span></a></li>
+              </ul>
+            </li>
           </ul>
           
         </div>
