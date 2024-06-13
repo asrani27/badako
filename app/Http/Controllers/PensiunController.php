@@ -45,12 +45,30 @@ class PensiunController extends Controller
 
     public function store(Request $req)
     {
+        //tanda tangan digital
+
+        $folderPath = public_path('storage/ttd/');
+
+        $image_parts = explode(";base64,", $req->signed);
+
+        $image_type_aux = explode("image/", $image_parts[0]);
+
+        $image_type = $image_type_aux[1];
+
+        $image_base64 = base64_decode($image_parts[1]);
+
+        $filename = $folderPath . uniqid() . '.' . $image_type;
+
+        file_put_contents($filename, $image_base64);
+        //----------------//
+
         $kadis = Kadis::where('is_aktif', 1)->first();
         $sek = Sekretaris::where('is_aktif', 1)->first();
 
         $param = $req->all();
         $param['kadis'] = $kadis->nip;
         $param['sekretaris'] = $sek->nip;
+        $param['ttd'] = $filename;
 
         Pensiun::create($param);
 

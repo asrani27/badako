@@ -7,31 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <table width="100%">
-        <tr>
-            <td width="20%"></td>
-            <td style="text-align: center">
-                <strong style="font-size: 16px">PEMERINTAH KOTA BANJARMASIN</strong><br/>
-                <strong style="font-size: 24px">DINAS KESEHATAN</strong><br/>
-                Jl.Pramuka Komp.Tirta Dharma Telp.(0511) 4281348<br/>
-                BANJARMASIN
-            </td>
-            <td width="20%">Kode Pos 70249</td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr></td>
-        </tr>
-    </table>
 
     <table width="100%" border=0>
         <tr>
-            <td width="15%">Nomor</td>
-            <td>: 813.3/               -Sekr/Diskes.</td>
+            <td width="45%"></td>
+            <td></td>
             <td rowspan="10" valign="top">
                 Banjarmasin, {{\Carbon\Carbon::now()->translatedFormat('d F Y')}} <br/> <br/>
                 Kepada Yth.<br/> <br/>
-                Walikota Banjarmasin<br/>
-                cq.Kepala Badan Kepegawaian<br/>
+                &nbsp;&nbsp;Walikota Banjarmasin<br/>
+                &nbsp;&nbsp;cq.Kepala Badan Kepegawaian<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daerah & Diklat Kota<br/>
 	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banjarmasin<br/>
                 di  -<br/>
@@ -40,58 +25,90 @@
             </td>
         </tr>
         <tr>
-            <td>Lampiran</td>
-            <td>: 1 (satu) berkas</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Perihal</td>
-            <td>: Usul Pengangkatan CPNS ke PNS</td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
 
     <table width="100%" border=0>
         <tr>
             <td width="15%"></td>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bersama ini disampaikan Usulan Pengangkatan dari Calon Pegawai Negeri Sipil (CPNS) menjadi Pegawai Negeri Sipil (PNS), atas  : <br/><br/></td>
+            <td colspan="2">
+                Dengan Hormat,<br/>
+                1. Yang bertanda Tangan di bawah ini : <br/>
+            </td>
             
         </tr>
-        {{-- <tr>
+        <tr>
             <td></td>
-            <td width="15%">Nama/NIP</td>
-            <td>: {{$data->nama}} / {{$data->nip}} </td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Nama</td>
+            <td>: {{$data->nama}} </td>
         </tr>
         <tr>
             <td></td>
-            <td>Pank/Gol</td>
-            <td>: {{$data->pangkat->nama}} / {{$data->pangkat->golongan}}  </td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. NIP</td>
+            <td>: {{$data->nip}} </td>
         </tr>
         <tr>
             <td></td>
-            <td>Jabatan</td>
-            <td>: {{$data->jabatan}}</td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Tanggal Lahir</td>
+            <td>: {{\Carbon\Carbon::parse($data->tgl_lahir)->format('d M Y')}} </td>
         </tr>
         <tr>
             <td></td>
-            <td valign="top">Unit Kerja</td>
-            <td>: {{$data->unitkerja->nama}} <br/>
-                Dinas Kesehatan Kota Banjarmasin<br/><br/>
-            </td>
-        </tr> --}}
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Pangkat/Golongan</td>
+            <td>: {{$data->pangkat}} / {{$data->golongan}} </td>
+        </tr>
         <tr>
             <td></td>
-            <td colspan="2">Usulan tersebut disampaikan berhubung yang bersangkutan telah memenuhi persyaratan dan kecakapan dengan masa kerja 1 (satu) tahun atau lebih, sebagai kelengkapan dilampirkan masing – masing 1 (Satu) rangkap sebagai berikut  :<br/><br/></td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Jabatan</td>
+            <td>: {{$data->jabatan}} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Unit Organisasi</td>
+            <td>: {{$data->unit_kerja}} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Alamat Rumah Sekarang</td>
+            <td>: {{$data->alamat_sekarang}} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Alamat Rumah Setelah Pensiun</td>
+            <td>: {{$data->alamat_pensiun}} </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td width="40%"> &nbsp;&nbsp;&nbsp; a. Tanggal TMT Pensiun</td>
+            <td>: {{\Carbon\Carbon::parse($data->tmt_pensiun)->format('d-m-Y')}} </td>
+        </tr>
+        <br/>
+        <br/>
+        <tr>
+            <td></td>
+            <td colspan="2">2. Sebagai bahan administrasi saya lampirkan  :<br/></td>
             
         </tr>
         <tr>
             <td></td>
             <td colspan="2">
-                1.	Photocopy SK.CPNS<br/>
-                2.	Photocopy SPMT<br/>
-                3.	Photocopy SKP`2022 (April-Desember 2022) dan SKP 2023 (Jan-Feb 2023)<br/>
-                4.	Photocopy STTPL<br/>
-                5.	Photocopy Ijazah<br/>
-                6.	Asli dan Photocopy Hasil Pengujian Kesehatan Jasmani dan Rohani<br/>
-                7.	Pas Foto Latar Belakang Merah, Berkemeja Putih<br/>
+                &nbsp;&nbsp;&nbsp; a.	Salinan SK Pangkat Pertama (CPNS) dan PNS<br/>
+                &nbsp;&nbsp;&nbsp; b.	Salinan Sah SK Pangkat Terakhir <br/>
+                &nbsp;&nbsp;&nbsp; c.	Salinan Sah Kartu Pegawai<br/>
+                &nbsp;&nbsp;&nbsp; d.	Salinan Sah SKP<br/>
+                &nbsp;&nbsp;&nbsp; e.	Salinan Akta Nikah<br/>
+                &nbsp;&nbsp;&nbsp; f.	Salinan Kartu Keluarga<br/>
+                &nbsp;&nbsp;&nbsp; g.	07 ( Tujuh)  lembar pas photo ukuran 4 x 6 cm<br/>
+                &nbsp;&nbsp;&nbsp; h.	3 (tiga ) lembar pas photo ukuran 3 x 4 cm<br/>
+                &nbsp;&nbsp;&nbsp; i.	Surat Pernyataan Tidak Pernah Dijatuhi Hukuman Disiplin Tingkat Sedang/Berat<br/>
+                &nbsp;&nbsp;&nbsp; j.	Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan Yang Telah Berkekuatan Hukum Tetap<br/><br/>
 
             </td>
             
@@ -99,19 +116,22 @@
         <tr>
             <td></td>
             <td colspan="2">
-                Demikian kami sampaikan, atas pertimbangan dan proses selanjutnya diucapkan terima kasih<br/><br/>
+                3.	Demikian surat permohonan ini disampaikan  sebagai bahan pertimbangan dan proses selanjutnya, atas bantuan dan pertimbangan Bapak diucapkan terima kasih<br/><br/>
             </td>
         </tr>
     </table>
     <table width="100%">
         <tr>
             <td></td>
-            <td width="50%"></td>
-            <td>Kepala Dinas,<br/><br/><br/><br/><br/>
+            <td width="50%">Mengetahui,,<br/>{{$data->mengetahui}}
+                <br/><br/><br/><br/>
+            
+            
+            </td>
+            <td>Hormat Saya,<br/><br/><br/><br/><br/>
 
-                Dr.M.Ramadhan, SE.,ME.,Ak.,CA.<br/>
-                Pembina Utama Muda<br/>
-                NIP. 19691208 199803 1 003
+                
+                {{$data->nama}}
 
             </td>
         </tr>
