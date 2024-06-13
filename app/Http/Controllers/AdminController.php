@@ -7,6 +7,7 @@ use App\Models\Cuti;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Pangkat;
+use App\Models\Pensiun;
 use App\Models\BelumIsi;
 use App\Models\M_pegawai;
 use Illuminate\Http\Request;
@@ -965,11 +966,27 @@ class AdminController extends Controller
         return view('admin.pegawai.index', compact('data'));
     }
 
+    public function pensiun()
+    {
+        $data = Pensiun::where('kode_unitkerja', Auth::user()->username)->paginate(15);
+        //dd(Auth::user()->username);
+        return view('admin.pensiun.index', compact('data'));
+    }
+
+
     public function cuti()
     {
         $data = Cuti::where('kode_unitkerja', Auth::user()->username)->paginate(15);
         //dd(Auth::user()->username);
         return view('admin.cuti.index', compact('data'));
+    }
+    public function pensiunSetujui($id)
+    {
+        Pensiun::find($id)->update([
+            'verifikasi_unitkerja' => 'disetujui'
+        ]);
+        Session::flash('success', 'berhasil');
+        return back();
     }
 
     public function cutiSetujui($id)

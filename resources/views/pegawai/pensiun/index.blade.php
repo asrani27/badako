@@ -25,35 +25,33 @@
           <tbody>
           <tr style="background-color: #a8c4f1">
             <th class="text-center">NO</th>
+            <th>JENIS</th>
             <th>NIP/NAMA</th>
-            <th>TGL DI AJUKAN</th>
-            <th>JENIS PENSIUN</th>
-            <th>FILE UPLOAD</th>
+            <th>SURAT-SURAT</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
           </tr>
           @foreach ($data as $key => $item)
+
           <tr>
             <td style="text-align: center">{{$key + 1}}</td>
-            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat->nama}} / {{$item->pangkat->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unitkerja->nama}}</td>
+            <td style="text-align: left">{{$item->jenis}} <br/> Tanggal Pengajuan : {{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
+            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat}} / {{$item->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unit_kerja}}</td>
           
-            <td>{{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
-            <td>   
-              <ul>   
-              @foreach ($item->file as $key2=> $item2)
-                 <li> <a href="/storage/{{$item->nip}}/permohonan_cpns/{{$item2->file}}" target="_blank" style="color: blue">{{$item2->nama}}</a>
-                  <a href="/pegawai/pensiun/deletefile/{{$item2->id}}" class="btn btn-xs btn-danger"onclick="return confirm('Yakin ingin di hapus');"><i class="fa fa-trash"></i> </a>
-                </li>
-              @endforeach        
+            <td>
+              <ul>
+                <li><a href="/pensiun/surat/{{$item->id}}/permohonan" class="text-blue" target="_blank">Surat Pemohonan Yg bersangkutan</a></li>
+                <li><a href="/pensiun/surat/{{$item->id}}/pidana" class="text-blue" target="_blank">Surat Pernyataan Tidak Pidana</a></li>
+                <li><a href="/pensiun/surat/{{$item->id}}/hukuman" class="text-blue" target="_blank">Surat Pernyataan Tidak Kena Hukuman</a></li>
+                <li><a href="/pensiun/surat/{{$item->id}}/skpd" class="text-blue" target="_blank">Surat Pemohonan SKPD</a></li>
               </ul>
-              <button type="button" class="btn btn-xs bg-purple modal-file" data-id="{{$item->id}}">+ Upload</button>
             </td>
             <td>
               <table>
                 @if ($item->verifikasi_unitkerja == '170032' || $item->verifikasi_unitkerja == '170031' || $item->verifikasi_unitkerja == '170030' || $item->verifikasi_unitkerja == '170029')
                       
                   @else
-                    @if ($item->verifikasi_unitkerja_isi == 'setuju')
+                    @if ($item->verifikasi_unitkerja == 'disetujui')
                       <tr style="color: green">
                     @else    
                       <tr>
@@ -61,11 +59,11 @@
                       <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                       <td>Puskesmas&nbsp;&nbsp;
                       </td>
-                      <td>: Admin {{$item->unitkerja->nama}}</td>
+                      <td>: Admin {{$item->unit_kerja}}</td>
                     </tr>
                 @endif
 
-                @if ($item->verifikasi_atasan_isi == 'setuju')
+                @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -73,10 +71,10 @@
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
                   </td>
-                  <td>: {{checkPegawai($item->verifikasi_atasan)}}</td>
+                  <td>: {{checkPegawai($item->atasan_langsung)}}</td>
                 </tr>
 
-                @if ($item->verifikasi_dinkes_isi == 'setuju')
+                @if ($item->verifikasi_umpeg == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -86,41 +84,34 @@
                   <td>: Dinas Kesehatan</td>
                 </tr>
 
-                @if ($item->verifikasi_sekretaris_isi == 'setuju')
+                @if ($item->verifikasi_sekretaris == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
-                  <td>: {{checkPegawai($item->verifikasi_sekretaris)}}</td>
+                  <td>: {{checkPegawai($item->sekretaris)}}</td>
                 </tr>
-                @if ($item->verifikasi_kadis_isi == 'setuju')
+                @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
-                  <td>: {{checkPegawai($item->verifikasi_kadis)}}</td>
+                  <td>: {{checkPegawai($item->kadis)}}</td>
                 </tr>
               </table>
             </td>
             
             <td>
-              @if ($item->verifikasi_atasan_isi == null)
+              @if ($item->verifikasi_atasan == null)
               <a href="/pegawai/pensiun/delete/{{$item->id}}"
                 onclick="return confirm('Yakin ingin di hapus');"
                 class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
               @endif
-
-				    @if ($item->verifikasi_kadis_isi != null)
-        
-              <a href="/pegawai/pensiun/surat1/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 1. Surat Pengantar</a><br/>
-              <a href="/pegawai/pensiun/surat2/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 2. Surat Ujikes</a><br/>
-              <a href="/pegawai/pensiun/surat3/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 3. Nota Usul</a><br/>
-              <a href="/pegawai/pensiun/surat4/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 4. Surat Pernyataan</a>
-            @endif
+              
             </td>
             
           </tr>

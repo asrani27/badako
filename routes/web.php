@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\PengangkatanCpnsFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PLHController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\CutiController;
@@ -12,24 +14,24 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KadisController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PiketController;
+use App\Http\Controllers\KarpegController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\UsulanController;
 use App\Http\Controllers\BerkalaController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PensiunController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\GantiPassController;
-use App\Http\Controllers\KarisKarsuController;
-use App\Http\Controllers\KarpegController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\UnitKerjaController;
+use App\Http\Controllers\KarisKarsuController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
-use App\Http\Controllers\LiburNasionalController;
 use App\Http\Controllers\PengangkatanController;
+use App\Http\Controllers\LiburNasionalController;
 use App\Http\Controllers\PengangkatanCpnsFileController;
-use App\Models\PengangkatanCpnsFile;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -174,6 +176,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('usulan2', [UsulanController::class, 'usulan2']);
         Route::get('usulan3', [UsulanController::class, 'usulan3']);
         Route::get('usulan4', [UsulanController::class, 'usulan4']);
+        Route::get('pensiun/teruskan/{id}', [UsulanController::class, 'verifikasi_dinkes']);
+
         Route::get('usulan5', [UsulanController::class, 'usulan5']);
         Route::get('usulan6', [UsulanController::class, 'usulan6']);
         Route::get('usulan7', [UsulanController::class, 'usulan7']);
@@ -205,6 +209,23 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
 
         Route::get('karpeg', [KarpegController::class, 'index']);
         Route::get('kariskarsu', [KarisKarsuController::class, 'index']);
+
+        Route::get('pensiun', [PensiunController::class, 'index']);
+        Route::get('pensiun/add', [PensiunController::class, 'create']);
+        Route::post('pensiun/add', [PensiunController::class, 'store']);
+        Route::get('pensiun/edit/{id}', [PensiunController::class, 'edit']);
+        Route::post('pensiun/edit/{id}', [PensiunController::class, 'update']);
+        Route::get('pensiun/delete/{id}', [PensiunController::class, 'delete']);
+        Route::get('surat/{id}/permohonan', [PensiunController::class, 'permohonan']);
+        Route::get('surat/{id}/pidana', [PensiunController::class, 'pidana']);
+        Route::get('surat/{id}/hukuman', [PensiunController::class, 'hukuman']);
+        Route::get('surat/{id}/skpd', [PensiunController::class, 'skpd']);
+        Route::get('pensiun/verifikasi', [PensiunController::class, 'verifikasi']);
+        Route::get('pensiun/teruskan/{id}', [PensiunController::class, 'verifikasi_atasan']);
+        Route::get('pensiun/verifikasi_sekretaris', [PensiunController::class, 'verifikasi_sekretaris']);
+        Route::get('pensiun/verifikasi_sekretaris/{id}', [PensiunController::class, 'verifikasiSekretaris']);
+        Route::get('pensiun/verifikasi_kadis', [PensiunController::class, 'verifikasi_kadis']);
+        Route::get('pensiun/verifikasi_kadis/{id}', [PensiunController::class, 'verifikasiKadis']);
 
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/add', [CutiController::class, 'create']);
@@ -270,8 +291,13 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('pengangkatan', [PengangkatanController::class, 'admin']);
         Route::get('pengangkatan/teruskan/{id}', [PengangkatanController::class, 'verifikasi_admin']);
 
+        Route::get('pensiun', [AdminController::class, 'pensiun']);
+
         Route::get('cuti', [AdminController::class, 'cuti']);
         Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
+
+        Route::get('pensiun/teruskan/{id}', [AdminController::class, 'pensiunSetujui']);
+
         Route::get('cuti/teruskan/{id}', [AdminController::class, 'cutiSetujui']);
         Route::get('belumisi/asn', [AdminController::class, 'asnbelumisi']);
         Route::get('belumisi/pppk', [AdminController::class, 'pppkbelumisi']);
@@ -300,6 +326,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {
+
+    Route::get('/pensiun/surat/{id}/permohonan', [PDFController::class, 'pensiun_permohonan']);
+    Route::get('/pensiun/surat/{id}/pidana', [PDFController::class, 'pensiun_pidana']);
+    Route::get('/pensiun/surat/{id}/hukuman', [PDFController::class, 'pensiun_hukuman']);
+    Route::get('/pensiun/surat/{id}/skpd', [PDFController::class, 'pensiun_skpd']);
+
     Route::get('/logout', [LogoutController::class, 'logout']);
 
     Route::get('gantipass', [GantiPassController::class, 'index']);

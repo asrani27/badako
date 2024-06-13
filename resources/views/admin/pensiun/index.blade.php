@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @push('css')
     
 @endpush
@@ -106,12 +106,22 @@
             </td>
             
             <td>
-              @if ($item->verifikasi_atasan == null)
-              <a href="/pegawai/pensiun/teruskan/{{$item->id}}"
+              
+              @if ($item->verifikasi_unitkerja == null)
+              
+              <a href="/admin/pensiun/teruskan/{{$item->id}}"
                 onclick="return confirm('validasi Data');"
                 class="btn btn-xs btn-flat  btn-success">verifikasi</a>
+              @else    
               @endif
-              
+
+				    @if ($item->verifikasi_kadis_isi != null)
+        
+              <a href="/pegawai/pensiun/surat1/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 1. Surat Pengantar</a><br/>
+              <a href="/pegawai/pensiun/surat2/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 2. Surat Ujikes</a><br/>
+              <a href="/pegawai/pensiun/surat3/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 3. Nota Usul</a><br/>
+              <a href="/pegawai/pensiun/surat4/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 4. Surat Pernyataan</a>
+            @endif
             </td>
             
           </tr>

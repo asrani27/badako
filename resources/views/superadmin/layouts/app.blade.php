@@ -81,10 +81,10 @@
                 <li><a href="/superadmin/usulan1"><i class="fa fa-fw fa-file"></i> PENGANGKATAN CPNS JADI PNS <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/usulan2"><i class="fa fa-fw fa-file"></i> PEMBUATAN KARPEG <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/usulan3"><i class="fa fa-fw fa-file"></i> PEMBUATAN KARIS DAN KARSU <span class="sr-only">(current)</span></a></li>
-                <li><a href="/superadmin/usulan4"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN BUP 58/60 TAHUN <span class="sr-only">(current)</span></a></li>
-                <li><a href="/superadmin/usulan5"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN JANDA/DUDA/YATIM <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan4"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN<span class="sr-only">(current)</span></a></li>
+                {{-- <li><a href="/superadmin/usulan5"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN JANDA/DUDA/YATIM <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/usulan6"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN APS - MK 20th, Usia 50th  <span class="sr-only">(current)</span></a></li>
-                <li><a href="/superadmin/usulan7"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN APS - uzur/sakit  <span class="sr-only">(current)</span></a></li>
+                <li><a href="/superadmin/usulan7"><i class="fa fa-fw fa-file"></i> PERMOHONAN PENSIUN APS - uzur/sakit  <span class="sr-only">(current)</span></a></li> --}}
                 <li><a href="/superadmin/usulan8"><i class="fa fa-fw fa-file"></i> PERMOHONAN PERCERAIAN ASN <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/usulan9"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN PANGKAT JFU <span class="sr-only">(current)</span></a></li>
                 <li><a href="/superadmin/usulan10"><i class="fa fa-fw fa-file"></i> PERMOHONAN KENAIKAN PANGKAT JFT <span class="sr-only">(current)</span></a></li>

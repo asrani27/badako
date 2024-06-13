@@ -76,25 +76,34 @@
 
       <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a>
       <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a>
+
       @if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
       <a href="/pegawai/cuti/verifikasi_kadis" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG KADIS</a>
       @endif
       @if (\App\Models\Sekretaris::where('nip', Auth::user()->username)->first() != null)
       <a href="/pegawai/cuti/verifikasi_sekretaris" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG SEKRETARIS</a>
       @endif
+
       <a href="/pegawai/cpns/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS</a>
 
       @if (\App\Models\Sekretaris::where('nip', Auth::user()->username)->first() != null)
-      <a href="/pegawai/cpns/sekretaris" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG SEKRETARIS</a><br/>
+      <a href="/pegawai/cpns/sekretaris" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG SEKRETARIS</a>
       @else
-      <br/>
       @endif
       @if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
-      <a href="/pegawai/cpns/kadis" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG KADIS</a><br/>
+      <a href="/pegawai/cpns/kadis" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CPNS SBG KADIS</a>
       @else
-      <br/>
       @endif
 
+      <a href="/pegawai/pensiun/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI PENSIUN SBG ATASAN</a>
+      @if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
+      <a href="/pegawai/pensiun/verifikasi_kadis" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI PENSIUN SBG KADIS</a><br/>
+      @endif
+      @if (\App\Models\Sekretaris::where('nip', Auth::user()->username)->first() != null)
+      <a href="/pegawai/pensiun/verifikasi_sekretaris" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI PENSIUN SBG SEKRETARIS</a><br/>
+      @endif
+
+      <br/>
 
       <a href="/pegawai/pengangkatan" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN PENGANGKATAN CPNS</a>
       <a href="/pegawai/karpeg" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARTU PEGAWAI</a>

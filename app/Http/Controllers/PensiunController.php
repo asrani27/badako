@@ -2,165 +2,102 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kadis;
 use App\Models\Pensiun;
+use App\Models\M_pegawai;
+use App\Models\UnitKerja;
+use App\Models\Sekretaris;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PensiunController extends Controller
 {
     public function index()
     {
-        $data = Pensiun::get();
-        return view('pegawai.pensiun.index', comapct('data'));
+        $data = Pensiun::where('nip', Auth::user()->username)->get();
+        return view('pegawai.pensiun.index', compact('data'));
     }
-    public function pegawai()
+
+    public function create()
     {
-        if (Auth::user()->pegawai->status_pegawai == null) {
-            Session::flash('info', 'harap isi status pegawai terlebih dahulu');
-            return back();
+
+        $check = Pensiun::where('nip', Auth::user()->username)->first();
+        if ($check == null) {
+            $pegawai = M_pegawai::get();
+            $data  = Auth::user()->pegawai;
+            $kadis = Kadis::where('is_aktif', 1)->first();
+            $sek = Sekretaris::where('is_aktif', 1)->first();
+            return view('pegawai.pensiun.create', compact('data', 'pegawai', 'kadis', 'sek'));
         } else {
-            $data = PengangkatanCPNS::where('nip', Auth::user()->username)->get();
-            return view('pegawai.pengangkatan.index', compact('data'));
+            Session::flash('info', 'anda telah mengajukan pensiun');
+            return back();
         }
     }
 
-    public function addPengangkatan()
+    public function delete($id)
     {
-        $data = Auth::user()->pegawai;
-        if ($data->status_pegawai == 'PNS') {
-            Session::flash('info', 'Hanya untuk CPNS');
-            return back();
-        } else {
-            $pegawai = M_pegawai::where('unitkerja_id', $data->unitkerja_id)->get();
-            return view('pegawai.pengangkatan.create', compact('data', 'pegawai'));
-        }
-    }
-    public function deletePengangkatan($id)
-    {
-        PengangkatanCPNS::find($id)->delete();
+        $data = Pensiun::find($id)->delete();
+
         Session::flash('success', 'berhasil di hapus');
         return back();
     }
-    public function storePengangkatan(Request $req)
+
+    public function store(Request $req)
     {
+        $kadis = Kadis::where('is_aktif', 1)->first();
+        $sek = Sekretaris::where('is_aktif', 1)->first();
+
         $param = $req->all();
-        $param['verifikasi_unitkerja'] = UnitKerja::find($req->unitkerja_id)->kode;
-        $param['verifikasi_kadis'] = Kadis::where('is_aktif', 1)->first()->nip;
-        $param['verifikasi_sekretaris'] = Sekretaris::where('is_aktif', 1)->first()->nip;
-        $param['verifikasi_atasan'] = $req->atasan_langsung;
-        $param['verifikasi_dinkes'] = 'DINKES';
-        $param['unit_kerja_id'] = $req->unitkerja_id;
-        $param['pangkat_id'] = $req->pangkat_id;
+        $param['kadis'] = $kadis->nip;
+        $param['sekretaris'] = $sek->nip;
 
-        PengangkatanCPNS::create($param);
+        Pensiun::create($param);
 
         Session::flash('success', 'berhasil disimpan');
-        return redirect('/pegawai/pengangkatan');
+        return redirect('/pegawai/pensiun');
     }
 
-    //--------------------------------------------------------//
-    public function admin()
+    public function verifikasi()
     {
-        $data = PengangkatanCPNS::where('verifikasi_unitkerja', Auth::user()->unitkerja->kode)->paginate(10);
-        return view('admin.pengangkatan.index', compact('data'));
+        $data = Pensiun::where('atasan_langsung', Auth::user()->pegawai->nip)->where('verifikasi_unitkerja', 'disetujui')->paginate(15);
+        return view('pegawai.pensiun.verifikasi', compact('data'));
     }
-    public function verifikasi_admin($id)
+    public function verifikasi_sekretaris()
     {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_unitkerja_isi' => 'setuju'
+        $data = Pensiun::where('verifikasi_umpeg', 'disetujui')->paginate(15);
+        return view('pegawai.pensiun.verifikasisekretaris', compact('data'));
+    }
+    public function verifikasiSekretaris($id)
+    {
+        Pensiun::find($id)->update([
+            'verifikasi_sekretaris' => 'disetujui'
         ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    //-----------------------------------------------------//
-    public function verifikasiCpns()
-    {
-        $data = PengangkatanCPNS::where('verifikasi_atasan', Auth::user()->username)->where('verifikasi_unitkerja_isi', 'setuju')->paginate(10);
-
-        // $datasekretaris = PengangkatanCPNS::where('verifikasi_atasan_isi', 'setuju')->where('verifikasi_unitkerja_isi', 'setuju')->where('verifikasi_dinkes_isi', 'setuju')->paginate(10);
-        return view('pegawai.pengangkatan.verifikasi', compact('data'));
-    }
-    public function verifikasiSekretaris()
-    {
-        $data = PengangkatanCPNS::where('verifikasi_atasan_isi', 'setuju')->where('verifikasi_unitkerja_isi', 'setuju')->where('verifikasi_dinkes_isi', 'setuju')->paginate(10);
-        return view('pegawai.pengangkatan.verifikasisekretaris', compact('data'));
-    }
-    public function verifikasiKadis()
-    {
-        $data = PengangkatanCPNS::where('verifikasi_atasan_isi', 'setuju')->where('verifikasi_unitkerja_isi', 'setuju')->where('verifikasi_dinkes_isi', 'setuju')->where('verifikasi_sekretaris_isi', 'setuju')->paginate(10);
-        return view('pegawai.pengangkatan.verifikasikadis', compact('data'));
-    }
-    public function atasanSetuju($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_atasan_isi' => 'setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    public function atasanMenolak($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_atasan_isi' => 'tidak setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
+        Session::flash('success', 'berhasil');
         return back();
     }
 
-    public function sekretarisSetuju($id)
+    public function verifikasi_kadis()
     {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_sekretaris_isi' => 'setuju'
+        $data = Pensiun::where('verifikasi_umpeg', 'disetujui')->paginate(15);
+        return view('pegawai.pensiun.verifikasikadis', compact('data'));
+    }
+    public function verifikasiKadis($id)
+    {
+        Pensiun::find($id)->update([
+            'verifikasi_kadis' => 'disetujui'
         ]);
-        Session::flash('success', 'berhasil disimpan');
+        Session::flash('success', 'berhasil');
         return back();
     }
-    public function sekretarisMenolak($id)
+    public function verifikasi_atasan($id)
     {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_sekretaris_isi' => 'tidak setuju'
+        Pensiun::find($id)->update([
+            'verifikasi_atasan' => 'disetujui'
         ]);
-        Session::flash('success', 'berhasil disimpan');
+        Session::flash('success', 'berhasil');
         return back();
     }
-    public function kadisSetuju($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_kadis_isi' => 'setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    public function kadisMenolak($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_kadis_isi' => 'tidak setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    public function dinkesSetuju($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_dinkes_isi' => 'setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    public function dinkesMenolak($id)
-    {
-        PengangkatanCPNS::find($id)->update([
-            'verifikasi_dinkes_isi' => 'tidak setuju'
-        ]);
-        Session::flash('success', 'berhasil disimpan');
-        return back();
-    }
-    public function dinkesDelete($id)
-    {
-        PengangkatanCPNS::find($id)->delete();
-        Session::flash('success', 'berhasil dihapus');
-        return back();
-    }
-
     public function surat1($id)
     {
         $url = env('APP_URL') . '/check/verifikasi/digital/pengangkatancpns/' . $id;

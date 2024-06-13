@@ -48,7 +48,7 @@ class PengangkatanController extends Controller
         Session::flash('success', 'berhasil di hapus');
         return back();
     }
-    public function storePengangkatan(Request $req)
+    public function store(Request $req)
     {
         $param = $req->all();
         $param['verifikasi_unitkerja'] = UnitKerja::find($req->unitkerja_id)->kode;

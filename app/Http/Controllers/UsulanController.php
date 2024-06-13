@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PengangkatanCPNS;
+use App\Models\Pensiun;
 use Illuminate\Http\Request;
+use App\Models\PengangkatanCPNS;
+use Illuminate\Support\Facades\Session;
 
 class UsulanController extends Controller
 {
@@ -20,10 +22,24 @@ class UsulanController extends Controller
     {
         return view('superadmin.usulan3.index');
     }
+
+    //----------------------------------------------------
     public function usulan4()
     {
-        return view('superadmin.usulan4.index');
+        $data = Pensiun::where('verifikasi_atasan', 'disetujui')->paginate(15);
+        return view('superadmin.usulan4.index', compact('data'));
     }
+
+    public function  verifikasi_dinkes($id)
+    {
+        Pensiun::find($id)->update([
+            'verifikasi_umpeg' => 'disetujui'
+        ]);
+        Session::flash('success', 'berhasil');
+        return back();
+    }
+    //----------------------------------------------------
+
     public function usulan5()
     {
         return view('superadmin.usulan5.index');

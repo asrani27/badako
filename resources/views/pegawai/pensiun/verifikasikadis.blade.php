@@ -46,25 +46,33 @@
           <tbody>
           <tr style="background-color: #a8c4f1">
             <th class="text-center">NO</th>
+            <th>JENIS</th>
             <th>NIP/NAMA</th>
-            <th>TGL DI AJUKAN</th>
-            <th>FILE UPLOAD</th>
+            <th>SURAT-SURAT</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
           </tr>
           @foreach ($data as $key => $item)
+
           <tr>
             <td style="text-align: center">{{$key + 1}}</td>
-            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat->nama}} / {{$item->pangkat->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unitkerja->nama}}</td>
+            <td style="text-align: left">{{$item->jenis}} <br/> Tanggal Pengajuan : {{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
+            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat}} / {{$item->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unit_kerja}}</td>
           
-            <td>{{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
-            <td>File</td>
+            <td>
+              <ul>
+                <li><a href="/pegawai/surat/{{$item->id}}/permohonan" class="text-blue" target="_blank">Surat Pemohonan Yg bersangkutan</a></li>
+                <li><a href="/pegawai/surat/{{$item->id}}/pidana" class="text-blue" target="_blank">Surat Pernyataan Tidak Pidana</a></li>
+                <li><a href="/pegawai/surat/{{$item->id}}/hukuman" class="text-blue" target="_blank">Surat Pernyataan Tidak Kena Hukuman</a></li>
+                <li><a href="/pegawai/surat/{{$item->id}}/skpd" class="text-blue" target="_blank">Surat Pemohonan SKPD</a></li>
+              </ul>
+            </td>
             <td>
               <table>
                 @if ($item->verifikasi_unitkerja == '170032' || $item->verifikasi_unitkerja == '170031' || $item->verifikasi_unitkerja == '170030' || $item->verifikasi_unitkerja == '170029')
                       
                   @else
-                    @if ($item->verifikasi_unitkerja_isi == 'setuju')
+                    @if ($item->verifikasi_unitkerja == 'disetujui')
                       <tr style="color: green">
                     @else    
                       <tr>
@@ -72,11 +80,11 @@
                       <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                       <td>Puskesmas&nbsp;&nbsp;
                       </td>
-                      <td>: Admin {{$item->unitkerja->nama}}</td>
+                      <td>: Admin {{$item->unit_kerja}}</td>
                     </tr>
                 @endif
 
-                @if ($item->verifikasi_atasan_isi == 'setuju')
+                @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -84,10 +92,10 @@
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
                   </td>
-                  <td>: {{checkPegawai($item->verifikasi_atasan)}}</td>
+                  <td>: {{checkPegawai($item->atasan_langsung)}}</td>
                 </tr>
 
-                @if ($item->verifikasi_dinkes_isi == 'setuju')
+                @if ($item->verifikasi_umpeg == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -97,36 +105,32 @@
                   <td>: Dinas Kesehatan</td>
                 </tr>
 
-                @if ($item->verifikasi_sekretaris_isi == 'setuju')
+                @if ($item->verifikasi_sekretaris == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
-                  <td>: {{checkPegawai($item->verifikasi_sekretaris)}}</td>
+                  <td>: {{checkPegawai($item->sekretaris)}}</td>
                 </tr>
-                @if ($item->verifikasi_kadis_isi == 'setuju')
+                @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
-                  <td>: {{checkPegawai($item->verifikasi_kadis)}}</td>
+                  <td>: {{checkPegawai($item->kadis)}}</td>
                 </tr>
               </table>
             </td>
             
             <td>
-              @if ($item->verifikasi_kadis_isi == null)
-              <a href="/pegawai/cpns/kadis/setuju/{{$item->id}}"
-                onclick="return confirm('Yakin ingin di hapus');"
-                class="btn btn-xs  btn-success">SETUJU</a>
-
-              <a href="/pegawai/cpns/kadis/tolak/{{$item->id}}"
-                onclick="return confirm('Yakin ingin di hapus');"
-                class="btn btn-xs  btn-danger">TIDAK SETUJU</a>
+              @if ($item->verifikasi_kadis == null)
+              <a href="/pegawai/pensiun/verifikasi_kadis/{{$item->id}}"
+                onclick="return confirm('validasi Data');"
+                class="btn btn-xs btn-flat  btn-success">verifikasi</a>
               @endif
               
             </td>
