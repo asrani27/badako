@@ -21,7 +21,7 @@ class PDFController extends Controller
         $kadis = Kadis::where('nip', $data->kadis)->first();
 
         $pdf = PDF::loadView('pegawai.pensiun.pdf_permohonan', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
-        return $pdf->stream(Auth::user()->pegawai->nama . '_surat_permohonan.pdf');
+        return $pdf->stream($data->nama . '_surat_permohonan.pdf');
     }
     public function pensiun_pidana($id)
     {
@@ -32,7 +32,7 @@ class PDFController extends Controller
         $kadis = Kadis::where('nip', $data->kadis)->first();
 
         $pdf = PDF::loadView('pegawai.pensiun.pdf_pidana', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
-        return $pdf->stream(Auth::user()->pegawai->nama . '_surat_tdk_pidana.pdf');
+        return $pdf->stream($data->nama . '_surat_tdk_pidana.pdf');
     }
     public function pensiun_hukuman($id)
     {
@@ -43,7 +43,7 @@ class PDFController extends Controller
         $kadis = Kadis::where('nip', $data->kadis)->first();
 
         $pdf = PDF::loadView('pegawai.pensiun.pdf_hukuman', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
-        return $pdf->stream(Auth::user()->pegawai->nama . '_surat_tdk_hukuman.pdf');
+        return $pdf->stream($data->nama . '_surat_tdk_hukuman.pdf');
     }
     public function pensiun_skpd($id)
     {
@@ -54,6 +54,6 @@ class PDFController extends Controller
         $kadis = Kadis::where('nip', $data->kadis)->first();
 
         $pdf = PDF::loadView('pegawai.pensiun.pdf_skpd', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
-        return $pdf->stream(Auth::user()->pegawai->nama . '_surat_skpd.pdf');
+        return $pdf->stream($data->nama . '_surat_skpd.pdf');
     }
 }
