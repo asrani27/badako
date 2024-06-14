@@ -15,7 +15,7 @@ class PenugasanController extends Controller
 {
     public function index()
     {
-        $data = Penugasan::orderBy('id')->paginate(10);
+        $data = Penugasan::orderBy('id', 'DESC')->paginate(10);
         return view('superadmin.penugasan.index', compact('data'));
     }
     public function search()
