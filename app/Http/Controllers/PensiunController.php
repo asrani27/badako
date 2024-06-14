@@ -21,7 +21,6 @@ class PensiunController extends Controller
 
     public function create()
     {
-
         $check = Pensiun::where('nip', Auth::user()->username)->first();
         if ($check == null) {
             $pegawai = M_pegawai::get();

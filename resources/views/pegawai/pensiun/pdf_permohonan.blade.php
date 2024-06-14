@@ -128,9 +128,9 @@
             
             
             </td>
-            <td>Hormat Saya,<br/><br/><br/><br/><br/>
+            <td>Hormat Saya,<br/><br/>
 
-                
+                <img src="{{$data->ttd}}" width="80px" height="50px"><br/><br/>
                 {{$data->nama}}
 
             </td>
