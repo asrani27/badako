@@ -293,7 +293,11 @@
 				<td style="width: 108px">&nbsp;</td>
 				<td style="width: 182px">&nbsp;</td>
 				<td style="width: 163px">&nbsp;</td>
-				<td style="width: 195px" align="center">Kepala Dinas Kesehatan
+				<td style="width: 195px" align="center">
+					@if ($kadis->jenis != 'definitif')
+						Plh. &nbsp;&nbsp;
+					@endif
+					Kepala Dinas Kesehatan
 				<br/>
 				@if ($cuti->verifikasi_kadis != null)
 				<img src="data:image/png;base64, {!! $qrcode !!}" width="80" height="80">
