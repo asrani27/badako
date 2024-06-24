@@ -295,7 +295,7 @@
 				<td style="width: 163px">&nbsp;</td>
 				<td style="width: 195px" align="center">
 					@if ($kadis->jenis != 'definitif')
-						Plh. &nbsp;&nbsp;
+						Plh. 
 					@endif
 					Kepala Dinas Kesehatan
 				<br/>

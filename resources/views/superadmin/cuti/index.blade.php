@@ -191,7 +191,7 @@
               <a href="/superadmin/cuti/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
                       class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
-              <a href="/superadmin/cuti/pdf/{{$item->id}}" class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-file"></i> PDF</a>
+              <a href="/superadmin/cuti/pdf/{{$item->id}}" class="btn btn-xs btn-flat  btn-danger" target="_blank"><i class="fa fa-file"></i> PDF</a>
             </td>
             
           </tr>
