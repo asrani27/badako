@@ -257,7 +257,10 @@ class CutiController extends Controller
 
         $customPaper = array(0, 0, 610, 1160);
 
-        $kadis = Kadis::where('is_aktif', 1)->first();
+        $checkKadis = Cuti::find($id);
+
+        $kadis = Kadis::where('nip', $checkKadis->kepala_dinas)->first();
+
         $sisaCuti = 12 - Cuti::where('nip', Auth::user()->pegawai->nip)->where('jenis_cuti_id', 1)->sum('lama');
         $cutiN1 = M_pegawai::where('nip', Auth::user()->pegawai->nip)->first() == null ? null :  M_pegawai::where('nip', Auth::user()->pegawai->nip)->first()->sisacuti_2023;
         $cuti = Cuti::find($id);
