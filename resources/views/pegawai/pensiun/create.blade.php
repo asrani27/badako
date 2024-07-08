@@ -96,17 +96,17 @@
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">PANGKAT / GOL</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" name="pangkat" value="{{$data->pangkat->nama}}">
+              <input type="text" class="form-control" name="pangkat" value="{{$data->pangkat == null ? "": $data->pangkat->nama}}">
             </div>
             <div class="col-sm-5">
-              <input type="text" class="form-control" name="golongan" value="{{$data->pangkat->golongan}}">
+              <input type="text" class="form-control" name="golongan" value="{{$data->pangkat == null ? "": $data->pangkat->golongan}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">UNIT KERJA</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control"  value="{{$data->unitkerja->nama}}" name="unit_kerja">
-              <input type="hidden" class="form-control"  value="{{$data->unitkerja->kode}}" name="kode_unitkerja">
+              <input type="text" class="form-control"  value="{{$data->unitkerja == null ? "": $data->unitkerja->nama}}" name="unit_kerja">
+              <input type="hidden" class="form-control"  value="{{$data->unitkerja == null ? "": $data->unitkerja->kode}}" name="kode_unitkerja">
             </div>
           </div>
           <div class="form-group">

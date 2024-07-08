@@ -9,14 +9,17 @@
 <body>
     <table width="100%">
         <tr>
-            <td width="20%"></td>
+            <td width="20%">
+                <img src="http://4.bp.blogspot.com/-VzfWlC-3IYQ/T6u3HQL6i4I/AAAAAAAABWc/JW8NDkz4D4k/s1600/LOGO_BANJARMASIN.JPG"
+						height="100px" width="80px">
+                    </td>
             <td style="text-align: center">
                 <strong style="font-size: 16px">PEMERINTAH KOTA BANJARMASIN</strong><br/>
                 <strong style="font-size: 24px">DINAS KESEHATAN</strong><br/>
                 Jl.Pramuka Komp.Tirta Dharma Telp.(0511) 4281348<br/>
                 BANJARMASIN
             </td>
-            <td width="20%">Kode Pos 70249</td>
+            <td width="20%"></td>
         </tr>
         <tr>
             <td colspan="3"><hr></td>

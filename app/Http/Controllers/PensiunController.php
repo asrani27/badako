@@ -25,6 +25,7 @@ class PensiunController extends Controller
         if ($check == null) {
             $pegawai = M_pegawai::get();
             $data  = Auth::user()->pegawai;
+
             $kadis = Kadis::where('is_aktif', 1)->first();
             $sek = Sekretaris::where('is_aktif', 1)->first();
             return view('pegawai.pensiun.create', compact('data', 'pegawai', 'kadis', 'sek'));

@@ -31,7 +31,7 @@ class PDFController extends Controller
         $data = Pensiun::find($id);
         $kadis = Kadis::where('nip', $data->kadis)->first();
 
-        $pdf = PDF::loadView('pegawai.pensiun.pdf_pidana', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pegawai.pensiun.pdf_pidana', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
         return $pdf->stream($data->nama . '_surat_tdk_pidana.pdf');
     }
     public function pensiun_hukuman($id)
@@ -55,5 +55,13 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('pegawai.pensiun.pdf_skpd', compact('data', 'qrcode', 'kadis'))->setPaper($customPaper);
         return $pdf->stream($data->nama . '_surat_skpd.pdf');
+    }
+    public function pensiun_penerima($id)
+    {
+        $data = Pensiun::find($id);
+        $kadis = Kadis::where('nip', $data->kadis)->first();
+        $customPaper = array(0, 0, 1000, 760);
+        $pdf = PDF::setOption(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pegawai.pensiun.pdf_penerima', compact('data', 'kadis'))->setPaper($customPaper);
+        return $pdf->stream($data->nama . '_surat_perorangan.pdf');
     }
 }

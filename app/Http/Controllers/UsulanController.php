@@ -38,6 +38,16 @@ class UsulanController extends Controller
         Session::flash('success', 'berhasil');
         return back();
     }
+
+    public function pensiun_ditolak($id)
+    {
+        Pensiun::find($id)->update([
+            'verifikasi_umpeg' => 'ditolak'
+        ]);
+        Session::flash('info', 'ditolak');
+        return back();
+    }
+
     //----------------------------------------------------
 
     public function usulan5()

@@ -176,7 +176,9 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('usulan2', [UsulanController::class, 'usulan2']);
         Route::get('usulan3', [UsulanController::class, 'usulan3']);
         Route::get('usulan4', [UsulanController::class, 'usulan4']);
+
         Route::get('pensiun/teruskan/{id}', [UsulanController::class, 'verifikasi_dinkes']);
+        Route::get('pensiun/tolak/{id}', [UsulanController::class, 'pensiun_ditolak']);
 
         Route::get('usulan5', [UsulanController::class, 'usulan5']);
         Route::get('usulan6', [UsulanController::class, 'usulan6']);
@@ -331,6 +333,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], functi
     Route::get('/pensiun/surat/{id}/pidana', [PDFController::class, 'pensiun_pidana']);
     Route::get('/pensiun/surat/{id}/hukuman', [PDFController::class, 'pensiun_hukuman']);
     Route::get('/pensiun/surat/{id}/skpd', [PDFController::class, 'pensiun_skpd']);
+    Route::get('/pensiun/surat/{id}/penerima', [PDFController::class, 'pensiun_penerima']);
 
     Route::get('/logout', [LogoutController::class, 'logout']);
 

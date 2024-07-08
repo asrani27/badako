@@ -126,7 +126,13 @@ class CutiController extends Controller
             Session::flash('warning', 'tidak memiliki unitkerja, harap isi unitkerja terlebih dahulu');
             return back();
         } else {
-            return view('pegawai.cuti.create', compact('jenis', 'pegawai'));
+            $self = Auth::user()->pegawai;
+            $sisacuti = collect([
+                '2023' => $self->sisacuti_2023,
+                '2024' => $self->sisacuti_2024,
+            ]);
+
+            return view('pegawai.cuti.create', compact('jenis', 'pegawai', 'sisacuti'));
         }
     }
     public function delete($id)
@@ -171,6 +177,12 @@ class CutiController extends Controller
     {
         //tanda tangan digital
 
+        if ($req->sisa_cuti == '2023') {
+            $sisacuti = Auth::user()->pegawai->sisacuti_2023;
+        } else {
+            $sisacuti = Auth::user()->pegawai->sisacuti_2024;
+        }
+
         $folderPath = public_path('storage/ttd/');
 
         $image_parts = explode(";base64,", $req->signed);
@@ -210,6 +222,11 @@ class CutiController extends Controller
             $lama = count($collection->diff(['Sunday', 'Saturday']));
         } else {
             $lama = count($collection->diff(['Sunday']));
+        }
+        if ($lama > $sisacuti) {
+
+            Session::flash('info', 'sisa cuti anda tidak mencukupi');
+            return back();
         }
         $kadis = Kadis::where('is_aktif', 1)->first()->nip;
         $sekretaris = Sekretaris::where('is_aktif', 1)->first()->nip;

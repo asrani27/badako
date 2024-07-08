@@ -74,7 +74,7 @@
         <!-- /.box-body -->
       </div>
 
-      <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a>
+      {{-- <a href="/pegawai/cuti" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN CUTI</a>
       <a href="/pegawai/cuti/verifikasi" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  VERIFIKASI CUTI SBG ATASAN</a>
 
       @if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
@@ -108,7 +108,7 @@
       <a href="/pegawai/pengangkatan" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN PENGANGKATAN CPNS</a>
       <a href="/pegawai/karpeg" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARTU PEGAWAI</a>
       <a href="/pegawai/kariskarsu" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PERMOHONAN KARIS/KARSU</a>
-      <a href="/pegawai/pensiun" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN PENSIUN</a>
+      <a href="/pegawai/pensiun" class="btn btn-block btn-primary text-bold" style="text-align: left"><i class="fa fa-file"></i>  PENGAJUAN PENSIUN</a> --}}
       <!-- /.box -->
       
     </div>

@@ -41,7 +41,8 @@ SURAT PERMOHONAN
                   <li><a href="/pensiun/surat/{{$item->id}}/permohonan" class="text-blue" target="_blank">Surat Pemohonan Yg bersangkutan</a></li>
                   <li><a href="/pensiun/surat/{{$item->id}}/pidana" class="text-blue" target="_blank">Surat Pernyataan Tidak Pidana</a></li>
                   <li><a href="/pensiun/surat/{{$item->id}}/hukuman" class="text-blue" target="_blank">Surat Pernyataan Tidak Kena Hukuman</a></li>
-                  <li><a href="/pensiun/surat/{{$item->id}}/skpd" class="text-blue" target="_blank">Surat Pemohonan SKPD</a></li>
+                  <li><a href="/pensiun/surat/{{$item->id}}/skpd" class="text-blue" target="_blank">Surat Pemohonan SKPD</a> &nbsp; <a href="" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a></li>
+                  <li><a href="/pensiun/surat/{{$item->id}}/penerima" class="text-blue" target="_blank">Data Perorangan Penerima Pensiun</a>&nbsp; <a href="" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a></li>
                 </ul>
               </td>
               <td>
@@ -51,6 +52,8 @@ SURAT PERMOHONAN
                   @else
                   @if ($item->verifikasi_unitkerja == 'disetujui')
                   <tr style="color: green">
+                    @elseif($item->verifikasi_unitkerja == 'ditolak')
+                  <tr style="color: red">
                     @else
                   <tr>
                     @endif
@@ -63,6 +66,8 @@ SURAT PERMOHONAN
 
                   @if ($item->verifikasi_atasan == 'disetujui')
                   <tr style="color: green">
+                    @elseif($item->verifikasi_atasan == 'ditolak')
+                  <tr style="color: red">
                     @else
                   <tr>
                     @endif
@@ -74,8 +79,10 @@ SURAT PERMOHONAN
 
                   @if ($item->verifikasi_umpeg == 'disetujui')
                   <tr style="color: green">
-                    @else
-                  <tr>
+                    @elseif($item->verifikasi_umpeg == 'ditolak')
+                    <tr style="color: red">
+                      @else
+                    <tr>
                     @endif
                     <td><i class="fa fa-circle"></i></td>
                     <td>Superadmin</td>
@@ -84,6 +91,8 @@ SURAT PERMOHONAN
 
                   @if ($item->verifikasi_sekretaris == 'disetujui')
                   <tr style="color: green">
+                    @elseif($item->verifikasi_sekretaris == 'ditolak')
+                  <tr style="color: red">
                     @else
                   <tr>
                     @endif
@@ -93,6 +102,8 @@ SURAT PERMOHONAN
                   </tr>
                   @if ($item->verifikasi_kadis == 'disetujui')
                   <tr style="color: green">
+                    @elseif($item->verifikasi_kadis == 'ditolak')
+                  <tr style="color: red">
                     @else
                   <tr>
                     @endif
@@ -107,7 +118,8 @@ SURAT PERMOHONAN
 
                 @if ($item->verifikasi_umpeg == null)
 
-                <a href="/superadmin/pensiun/teruskan/{{$item->id}}" onclick="return confirm('validasi Data');" class="btn btn-xs btn-flat  btn-success">verifikasi</a>
+                <a href="/superadmin/pensiun/tolak/{{$item->id}}" onclick="return confirm('Yakin di tolak?');" class="btn btn-xs  btn-danger">tolak</a>
+                <a href="/superadmin/pensiun/teruskan/{{$item->id}}" onclick="return confirm('validasi Data');" class="btn btn-xs  btn-success">verifikasi</a>
                 @else
                 @endif
 
