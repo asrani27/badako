@@ -218,6 +218,13 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('pensiun/edit/{id}', [PensiunController::class, 'edit']);
         Route::post('pensiun/edit/{id}', [PensiunController::class, 'update']);
         Route::get('pensiun/delete/{id}', [PensiunController::class, 'delete']);
+
+        Route::get('pensiun/surat/{id}/isipasangan', [PensiunController::class, 'isipasangan']);
+        Route::post('pensiun/surat/{id}/isipasangan', [PensiunController::class, 'store_pasangan']);
+        Route::post('pensiun/surat/{id}/anak1', [PensiunController::class, 'store_anak1']);
+        Route::post('pensiun/surat/{id}/anak2', [PensiunController::class, 'store_anak2']);
+        Route::post('pensiun/surat/{id}/anak3', [PensiunController::class, 'store_anak3']);
+
         Route::get('surat/{id}/permohonan', [PensiunController::class, 'permohonan']);
         Route::get('surat/{id}/pidana', [PensiunController::class, 'pidana']);
         Route::get('surat/{id}/hukuman', [PensiunController::class, 'hukuman']);

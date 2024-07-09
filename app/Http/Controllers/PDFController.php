@@ -60,7 +60,7 @@ class PDFController extends Controller
     {
         $data = Pensiun::find($id);
         $kadis = Kadis::where('nip', $data->kadis)->first();
-        $customPaper = array(0, 0, 1000, 760);
+        $customPaper = array(0, 0, 1000, 800);
         $pdf = PDF::setOption(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pegawai.pensiun.pdf_penerima', compact('data', 'kadis'))->setPaper($customPaper);
         return $pdf->stream($data->nama . '_surat_perorangan.pdf');
     }

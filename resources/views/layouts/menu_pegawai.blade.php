@@ -5,7 +5,7 @@
 <li class="{{ (request()->is('pegawai/pengangkatan')) ? 'active' : '' }}"><a href="/pegawai/pengangkatan"><i class="fa fa-paper-plane"></i> <span><i>Pengangkatan CPNS</i></span></a></li>
 <li class="{{ (request()->is('pegawai/karpeg')) ? 'active' : '' }}"><a href="/pegawai/karpeg"><i class="fa fa-paper-plane"></i> <span><i>Karpeg</i></span></a></li>
 <li class="{{ (request()->is('pegawai/kariskarsu')) ? 'active' : '' }}"><a href="/pegawai/kariskarsu"><i class="fa fa-paper-plane"></i> <span><i>Karis/Karsu</i></span></a></li>
-<li class="{{ (request()->is('pegawai/pensiun')) ? 'active' : '' }}"><a href="/pegawai/pensiun"><i class="fa fa-paper-plane"></i> <span><i>Pensiun</i></span></a></li>
+<li class="{{ (request()->is('pegawai/pensiun*')) ? 'active' : '' }}"><a href="/pegawai/pensiun"><i class="fa fa-paper-plane"></i> <span><i>Pensiun</i></span></a></li>
 
 <li class="header">MENU VERIFIKASI</li>
 <li class="{{ (request()->is('pegawai/cuti/verifikasi')) ? 'active' : '' }}"><a href="/pegawai/cuti/verifikasi"><i class="fa fa-edit"></i> <span><i>Verif Cuti Sbg Atasan</i></span>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Svg\Tag\Rect;
 use App\Models\Kadis;
 use App\Models\Pensiun;
+use App\Models\Pasangan;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
 use App\Models\Sekretaris;
@@ -47,19 +49,19 @@ class PensiunController extends Controller
     {
         //tanda tangan digital
 
-        $folderPath = public_path('storage/ttd/');
+        // $folderPath = public_path('storage/ttd/');
 
-        $image_parts = explode(";base64,", $req->signed);
+        // $image_parts = explode(";base64,", $req->signed);
 
-        $image_type_aux = explode("image/", $image_parts[0]);
+        // $image_type_aux = explode("image/", $image_parts[0]);
 
-        $image_type = $image_type_aux[1];
+        // $image_type = $image_type_aux[1];
 
-        $image_base64 = base64_decode($image_parts[1]);
+        // $image_base64 = base64_decode($image_parts[1]);
 
-        $filename = $folderPath . uniqid() . '.' . $image_type;
+        // $filename = $folderPath . uniqid() . '.' . $image_type;
 
-        file_put_contents($filename, $image_base64);
+        // file_put_contents($filename, $image_base64);
         //----------------//
 
         $kadis = Kadis::where('is_aktif', 1)->first();
@@ -68,7 +70,7 @@ class PensiunController extends Controller
         $param = $req->all();
         $param['kadis'] = $kadis->nip;
         $param['sekretaris'] = $sek->nip;
-        $param['ttd'] = $filename;
+        // $param['ttd'] = $filename;
 
         Pensiun::create($param);
 
@@ -115,6 +117,39 @@ class PensiunController extends Controller
         ]);
         Session::flash('success', 'berhasil');
         return back();
+    }
+    public function isipasangan($id)
+    {
+        $data = Pasangan::where('pensiun_id', $id)->first();
+        return view('pegawai.pensiun.isi_pasangan', compact('id', 'data'));
+    }
+    public function store_pasangan(Request $req, $id)
+    {
+        $check = Pasangan::where('pensiun_id', $id)->first();
+        if ($check == null) {
+            $n = new Pasangan;
+            $n->nama = $req->nama;
+            $n->tempat_lahir = $req->tempat_lahir;
+            $n->tanggal_lahir = $req->tanggal_lahir;
+            $n->tanggal_kawin = $req->tanggal_kawin;
+            $n->keterangan = $req->keterangan;
+            $n->pensiun_id = $id;
+            $n->save();
+            Session::flash('success', 'berhasil disimpan');
+            return back();
+        } else {
+            $u = $check;
+            $u->nama = $req->nama;
+            $u->tempat_lahir = $req->tempat_lahir;
+            $u->tanggal_lahir = $req->tanggal_lahir;
+            $u->tanggal_kawin = $req->tanggal_kawin;
+            $u->keterangan = $req->keterangan;
+            $u->pensiun_id = $id;
+            $u->save();
+            Session::flash('success', 'berhasil diupdate');
+            return back();
+        }
+        return view('pegawai.pensiun.isi_pasangan', compact('id'));
     }
     public function surat1($id)
     {

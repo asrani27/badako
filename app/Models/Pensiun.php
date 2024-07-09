@@ -10,4 +10,12 @@ class Pensiun extends Model
     use HasFactory;
     protected $table = 'pensiun';
     protected $guarded = ['id'];
+    public function pasangan()
+    {
+        return $this->hasMany(Pasangan::class, 'pensiun_id');
+    }
+    public function anak()
+    {
+        return $this->hasMany(Anak::class, 'pensiun_id');
+    }
 }

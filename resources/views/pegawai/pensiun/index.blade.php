@@ -44,6 +44,9 @@
                 <li><a href="/pensiun/surat/{{$item->id}}/pidana" class="text-blue" target="_blank">Surat Pernyataan Tidak Pidana</a></li>
                 <li><a href="/pensiun/surat/{{$item->id}}/hukuman" class="text-blue" target="_blank">Surat Pernyataan Tidak Kena Hukuman</a></li>
                 <li><a href="/pensiun/surat/{{$item->id}}/skpd" class="text-blue" target="_blank">Surat Pemohonan SKPD</a></li>
+                <li><a href="/pensiun/surat/{{$item->id}}/penerima" class="text-blue" target="_blank">Data Perorangan Penerima Pensiun</a>&nbsp; </li>
+                <a href="/pegawai/pensiun/surat/{{$item->id}}/isipasangan" class="btn btn-xs btn-success"><i class="fa fa-edit"></i>Isi Data Pasangan</a></br>
+                
               </ul>
             </td>
             <td>
