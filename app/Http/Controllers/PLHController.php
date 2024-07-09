@@ -15,7 +15,7 @@ class PLHController extends Controller
 {
     public function index()
     {
-        $data = PLH::orderBy('id')->paginate(10);
+        $data = PLH::orderBy('id', 'DESC')->paginate(10);
         return view('superadmin.plh.index', compact('data'));
     }
     public function search()
