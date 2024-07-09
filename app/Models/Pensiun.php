@@ -12,7 +12,7 @@ class Pensiun extends Model
     protected $guarded = ['id'];
     public function pasangan()
     {
-        return $this->hasMany(Pasangan::class, 'pensiun_id');
+        return $this->hasOne(Pasangan::class, 'pensiun_id');
     }
     public function anak()
     {

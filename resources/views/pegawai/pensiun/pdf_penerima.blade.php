@@ -139,11 +139,11 @@
                             <td>KETERANGAN</td>
                         </tr>
                         <tr>
-                            <td>1<br/><br/><br/><br/><br/><br/></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>1</td>
+                            <td>{{$data->pasangan == null ? '': $data->pasangan->nama}}</td>
+                            <td>{{$data->pasangan == null ? '': $data->pasangan->tempat_lahir . ','. \Carbon\Carbon::parse($data->pasangan->tanggal_lahir)->format('d M Y')}}</td>
+                            <td>{{$data->pasangan == null ? '': \Carbon\Carbon::parse($data->pasangan->tanggal_kawin)->format('d M Y')}}</td>
+                            <td>{{$data->pasangan == null ? '': $data->pasangan->keterangan}}</td>
                         </tr>
                     </table>
                 </td>
