@@ -84,18 +84,23 @@
         </tr>
         <tr>
             <td></td>
-            <td width="15%">Nama/NIP</td>
-            <td>: {{$data->nama}} / {{$data->nip}} </td>
+            <td width="15%">Nama</td>
+            <td>: {{$data->nama}} </td>
         </tr>
         <tr>
             <td></td>
-            <td>Pank/Gol</td>
+            <td width="15%">NIP</td>
+            <td>: {{$data->nip}} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Pankat/Gol</td>
             <td>: {{$data->pangkat}} / {{$data->golongan}}  </td>
         </tr>
         <tr>
             <td></td>
             <td>Jabatan</td>
-            <td>: {{$data->jabatan}}</td>
+            <td>: {{ucwords(strtolower($data->jabatan))}}</td>
         </tr>
         <tr>
             <td></td>

@@ -92,7 +92,7 @@
         <tr>
             <td></td>
             <td width="30%"> &nbsp;&nbsp;&nbsp; Jabatan</td>
-            <td>: {{$data->jabatan}}</td>
+            <td>: {{ucwords(strtolower($data->jabatan))}}</td>
         </tr>
         <tr>
             <td></td>

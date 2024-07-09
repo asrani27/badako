@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;C. TEMPAT/TGL.LAHIR</td>
-                <td>: {{\Carbon\Carbon::parse($data->tgl_lahir)->format('d-m-Y')}}</td>
+                <td>: {{\Carbon\Carbon::parse($data->tgl_lahir)->translatedFormat('d F Y')}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;D. JABATAN/PEKERJAAN</td>
@@ -141,8 +141,8 @@
                         <tr>
                             <td>1</td>
                             <td>{{$data->pasangan == null ? '': $data->pasangan->nama}}</td>
-                            <td>{{$data->pasangan == null ? '': $data->pasangan->tempat_lahir . ','. \Carbon\Carbon::parse($data->pasangan->tanggal_lahir)->format('d M Y')}}</td>
-                            <td>{{$data->pasangan == null ? '': \Carbon\Carbon::parse($data->pasangan->tanggal_kawin)->format('d M Y')}}</td>
+                            <td>{{$data->pasangan == null ? '': $data->pasangan->tempat_lahir . ','. \Carbon\Carbon::parse($data->pasangan->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                            <td>{{$data->pasangan == null ? '': \Carbon\Carbon::parse($data->pasangan->tanggal_kawin)->translatedFormat('d F Y')}}</td>
                             <td>{{$data->pasangan == null ? '': $data->pasangan->keterangan}}</td>
                         </tr>
                     </table>
