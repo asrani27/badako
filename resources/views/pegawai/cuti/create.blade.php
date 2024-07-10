@@ -44,9 +44,9 @@
             <label for="inputName" class="col-sm-2 control-label text-right">ATASAN LANGSUNG</label>
             <div class="col-sm-10">
               <select class="form-control select2" name="atasan_langsung" required>
-                <option value="">-</option>
+                <option value="" selected>-</option>
                 @foreach ($pegawai as $item)
-                    <option value="{{$item->nip}}">{{$item->nip}} - {{$item->nama}}</option>
+                    <option value="{{$item->nip}}" {{old('atasan_langsung') == $item->nip ? 'selected':''}}>{{$item->nip}} - {{$item->nama}}</option>
                 @endforeach
               </select>
             </div>
@@ -73,13 +73,13 @@
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">TANGGAL MULAI</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" name="mulai">
+              <input type="date" class="form-control" name="mulai" value="{{old('mulai')}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">TANGGAL SELESAI</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" name="sampai">
+              <input type="date" class="form-control" name="sampai" value="{{old('sampai')}}">
             </div>
           </div>
           <div class="form-group">
@@ -88,7 +88,7 @@
               <select class="form-control" name="jenis_id" required>
                 <option value="">-</option>
                 @foreach ($jenis as $item)
-                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                    <option value="{{$item->id}}" {{old('jenis_id') == $item->id ? 'selected':''}}>{{$item->nama}}</option>
                 @endforeach
               </select>
             </div>
@@ -96,30 +96,31 @@
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">SISA CUTI</label>
             <div class="col-sm-10">
-              <select class="form-control" name="sisa_cuti" required>
+              <select class="form-control" name="sisa_cuti">
                 <option value="">-</option>
                 @foreach ($sisacuti as $key => $item)
-                    <option value="{{$key}}">{{$key}}, Sisa : {{$item}}</option>
+                    <option value="{{$key}}" {{old('sisa_cuti') == $key ? 'selected':''}}>{{$key}}, Sisa : {{$item}}</option>
                 @endforeach
               </select>
+              Catatan : Hanya untuk cuti Tahunan
             </div>
           </div>
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">ALASAN CUTI</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="alasan" required>
+              <input type="text" class="form-control" name="alasan" value="{{old('alasan')}}" required>
             </div>
           </div>
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">ALAMAT SELAMA CUTI</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="alamat" required>
+              <input type="text" class="form-control" name="alamat" value="{{old('alamat')}}" required>
             </div>
           </div>
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">TELP</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="telp" required>
+              <input type="text" class="form-control" name="telp" value="{{old('telp')}}" required>
             </div>
           </div>
 
