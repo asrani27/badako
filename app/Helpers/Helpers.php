@@ -21,12 +21,12 @@ function cuti_sebagai_sekre()
 }
 function cuti_sebagai_kadis()
 {
-    $result = Cuti::where('kadis', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
+    $result = Cuti::where('kepala_dinas', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
     return $result;
 }
 function pensiun_sebagai_atasan()
 {
-    $result = Pensiun::where('atasan_langsung', Auth::user()->username)->where('verifikasi_atasan', '=', null)->count();
+    $result = Pensiun::where('verifikasi_unitkerja', 'disetujui')->where('atasan_langsung', Auth::user()->username)->where('verifikasi_atasan', '=', null)->count();
     return $result;
 }
 function pensiun_sebagai_sekre()
@@ -36,7 +36,7 @@ function pensiun_sebagai_sekre()
 }
 function pensiun_sebagai_kadis()
 {
-    $result = Pensiun::where('kadis', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
+    $result = Pensiun::where('verifikasi_sekretaris', 'disetujui')->where('kadis', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
     return $result;
 }
 function checkPegawai($nip)
