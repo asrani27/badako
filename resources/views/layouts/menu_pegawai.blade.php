@@ -17,7 +17,7 @@
     </a>
 </li>
 
-@if (\App\Models\Kadis::where('nip', Auth::user()->username)->first() != null)
+@if (kadis_aktif(Auth::user()->username))
 <li class="{{ (request()->is('pegawai/cuti/verifikasi_kadis')) ? 'active' : '' }}"><a href="/pegawai/cuti/verifikasi_kadis"><i class="fa fa-edit"></i> <span><i>Verif Cuti Sbg Kadis</i></span>
     <span class="pull-right-container"> 
         @if (cuti_sebagai_kadis() != 0)
@@ -26,7 +26,10 @@
     </span>
 </a></li>
 @endif
-@if (\App\Models\Sekretaris::where('nip', Auth::user()->username)->first() != null)
+
+
+
+@if (sekretaris_aktif(Auth::user()->username))
 <li class="{{ (request()->is('pegawai/cuti/verifikasi_sekretaris')) ? 'active' : '' }}"><a href="/pegawai/cuti/verifikasi_sekretaris"><i class="fa fa-edit"></i> <span><i>Verif Cuti Sbg Sekretaris</i></span>
     <span class="pull-right-container"> 
         @if (cuti_sebagai_sekre() != 0)

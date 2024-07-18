@@ -5,7 +5,7 @@
     
 @endpush
 @section('content-header')
-sekretaris
+Sekretaris
 @endsection
 @section('content')
 <div class="row">
@@ -26,14 +26,35 @@ sekretaris
         @csrf
         <div class="box-body">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">NIP/NAMA</label>
+            <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
 
             <div class="col-sm-10">
-              <select class="form-control select2" name="pegawai_id">
-                <option value="">-pilih-</option>
-                @foreach ($pegawai as $item)
-                    <option value="{{$item->id}}">{{$item->nip}}-{{$item->nama}}</option>
-                @endforeach
+              <input type="text" class="form-control" name="nip" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nama" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Pangkat</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="pangkat" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Jenis</label>
+
+            <div class="col-sm-10">
+              <select name="jenis" class="form-control" required>
+                <option value=""></option>
+                <option value="definitif">DEFINITIF</option>
+                <option value="plt">PLT</option>
+                <option value="plh">PLH</option>
               </select>
             </div>
           </div>

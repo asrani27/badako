@@ -29,6 +29,7 @@
             <th>TGL DI AJUKAN</th>
             <th>MULAI CUTI </th>
             <th>LAMA</th>
+            <th>TAHUN CUTI YG DI GUNAKAN</th>
             <th>BUKTI DUKUNG</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
@@ -43,6 +44,7 @@
               {{\Carbon\Carbon::parse($item->sampai)->format('d M Y')}}
             </td>
             <td>{{$item->lama}} Hari</td>
+            <td class="text-center">{{$item->tahun_cuti_digunakan}} </td>
             <td>
 
               <a href="/storage/{{$item->nip}}/bukti_dukung/{{$item->bukti}}" target="_blank" style="color: black">{{$item->bukti}}</a> <br/>
@@ -92,7 +94,7 @@
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
-                  <td>Sekretaris </td>
+                  <td> {{$item->jenis_sekretaris != 'definitif' ? $item->jenis_sekretaris.'' :''}} Sekretaris </td>
                   <td>: {{checkPegawai($item->sekretaris)}}</td>
                 </tr>
                 @if ($item->verifikasi_kadis == 'disetujui')
@@ -101,7 +103,7 @@
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
-                  <td>Kadis </td>
+                  <td>{{$item->jenis_kadis != 'definitif' ? $item->jenis_kadis.'' :''}}  Kadis </td>
                   <td>: {{checkPegawai($item->kepala_dinas)}}</td>
                 </tr>
               </table>

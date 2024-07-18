@@ -26,6 +26,7 @@ SEKRETARIS
             <th>NIP</th>
             <th>NAMA</th>
             <th>PANGKAT</th>
+            <th>JENIS</th>
             <th>Aktif?</th>
             <th>Aksi</th>
           </tr>
@@ -35,6 +36,7 @@ SEKRETARIS
               <td>{{$item->nip}}</td>
               <td>{{$item->nama}}</td>
               <td>{{$item->pangkat}}</td>
+              <td>{{$item->jenis}}</td>
               <td>
 
                 @if ($item->is_aktif == null)
@@ -49,6 +51,9 @@ SEKRETARIS
               </td>
               <td>                  
                 
+                
+                <a href="/superadmin/sekretaris/edit/{{$item->id}}"
+                  class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
                   <a href="/superadmin/sekretaris/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
                       class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>

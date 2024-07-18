@@ -108,6 +108,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('/sekretaris', [SekretarisController::class, 'index']);
         Route::get('/sekretaris/add', [SekretarisController::class, 'create']);
         Route::post('/sekretaris/add', [SekretarisController::class, 'store']);
+        Route::get('/sekretaris/edit/{id}', [SekretarisController::class, 'edit']);
+        Route::post('/sekretaris/edit/{id}', [SekretarisController::class, 'update']);
         Route::get('/sekretaris/aktifkan/{id}', [SekretarisController::class, 'aktifkan']);
         Route::get('/sekretaris/delete/{id}', [SekretarisController::class, 'delete']);
 

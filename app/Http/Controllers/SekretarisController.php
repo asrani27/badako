@@ -19,6 +19,11 @@ class SekretarisController extends Controller
         $pegawai = M_pegawai::get();
         return view('superadmin.sekretaris.create', compact('pegawai'));
     }
+    public function edit($id)
+    {
+        $data = Sekretaris::find($id);
+        return view('superadmin.sekretaris.edit', compact('data'));
+    }
     public function aktifkan($id)
     {
         $sekretaris = Sekretaris::where('is_aktif', 1)->first();
@@ -44,12 +49,19 @@ class SekretarisController extends Controller
     {
         $pegawai = M_pegawai::find($req->pegawai_id);
 
-        $param['nip']  = $pegawai->nip;
-        $param['nama'] = $pegawai->nama;
-        $param['pangkat'] = $pegawai->pangkat == null ? null : $pegawai->pangkat->nama . ', ' . $pegawai->pangkat->golongan;
+        Sekretaris::create($req->all());
 
-        Sekretaris::create($param);
         Session::flash('success', 'berhasil di simpan');
+        return redirect('/superadmin/sekretaris');
+    }
+
+
+    public function update(Request $req, $id)
+    {
+
+        Sekretaris::find($id)->update($req->all());
+
+        Session::flash('success', 'berhasil di update');
         return redirect('/superadmin/sekretaris');
     }
 

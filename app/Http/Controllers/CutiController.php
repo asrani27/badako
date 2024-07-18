@@ -264,6 +264,9 @@ class CutiController extends Controller
         $cuti->kepala_dinas = $kadis;
         $cuti->sekretaris = $sekretaris;
         $cuti->ttd = $filename;
+        $cuti->tahun_cuti_digunakan = $req->sisa_cuti;
+        $cuti->jenis_kadis = Kadis::where('is_aktif', 1)->first()->jenis;
+        $cuti->jenis_sekretaris = Sekretaris::where('is_aktif', 1)->first()->jenis;
         $cuti->save();
         Session::flash('success', 'berhasil di ajukan');
         return redirect('/pegawai/cuti');

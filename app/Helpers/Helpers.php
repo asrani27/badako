@@ -1,13 +1,37 @@
 <?php
 
 use App\Models\Cuti;
+use App\Models\Kadis;
 use App\Models\Uraian;
 use App\Models\Pensiun;
 use App\Models\JenisRfk;
 use App\Models\M_pegawai;
 use App\Models\T_capaian;
+use App\Models\Sekretaris;
 use App\Models\M_indikator;
 use Illuminate\Support\Facades\Auth;
+
+function kadis_aktif($nip)
+{
+    $check = Kadis::where('nip', $nip)->first();
+    if ($check == null) {
+        $result = false;
+    } else {
+        $result =  $check->is_aktif == 1 ? true : false;
+    }
+    return $result;
+}
+
+function sekretaris_aktif($nip)
+{
+    $check = Sekretaris::where('nip', $nip)->first();
+    if ($check == null) {
+        $result = false;
+    } else {
+        $result =  $check->is_aktif == 1 ? true : false;
+    }
+    return $result;
+}
 
 function cuti_sebagai_atasan()
 {
