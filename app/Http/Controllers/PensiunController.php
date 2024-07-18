@@ -80,7 +80,11 @@ class PensiunController extends Controller
 
     public function verifikasi()
     {
-        $data = Pensiun::where('atasan_langsung', Auth::user()->pegawai->nip)->where('verifikasi_unitkerja', 'disetujui')->paginate(15);
+        if (Auth::user()->pegawai->unitkerja->kode == '170029' || Auth::user()->pegawai->unitkerja->kode == '170030' || Auth::user()->pegawai->unitkerja->kode == '170032') {
+            $data = Pensiun::where('atasan_langsung', Auth::user()->pegawai->nip)->paginate(15);
+        } else {
+            $data = Pensiun::where('atasan_langsung', Auth::user()->pegawai->nip)->where('verifikasi_unitkerja', 'disetujui')->paginate(15);
+        }
         return view('pegawai.pensiun.verifikasi', compact('data'));
     }
     public function verifikasi_sekretaris()
