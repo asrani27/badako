@@ -192,7 +192,7 @@
 			</tr>
 			<tr class="auto-style2" style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style6" style="width: 56px">N-1</td>
-				<td class="auto-style1" style="width: 73px">{{$cutiN1}}</td>
+				<td class="auto-style1" style="width: 73px">{{$cutiN1 < 0 ? 0 :$cutiN1}}</td>
 				<td class="auto-style1" style="width: 26px">&nbsp;</td>
 				<td class="auto-style6" style="width: 338px">5. CUTI KARENA 
 				ALASAN PENTING</td>
@@ -200,7 +200,7 @@
 			</tr>
 			<tr class="auto-style2" style="font-size:12px; font-family:Arial, Helvetica, sans-serif">
 				<td class="auto-style6" style="width: 56px">N</td>
-				<td class="auto-style1" style="width: 73px">{{$sisaCuti}}</td>
+				<td class="auto-style1" style="width: 73px">{{$sisaCuti < 0 ? 0 :$sisaCuti}}</td>
 				<td class="auto-style1" style="width: 26px">&nbsp;</td>
 				<td class="auto-style6" style="width: 338px">6. CUTI DI LUAR 
 				TANGGUNGAN NEGARA</td>
