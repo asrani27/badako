@@ -1,28 +1,28 @@
-@extends('superadmin.layouts.app')
+@extends('admin.layouts.app')
 @push('css')
 <!-- Select2 -->
 <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
     
 @endpush
 @section('content-header')
-KADIS
+kapus
 @endsection
 @section('content')
 <div class="row">
   <div class="col-xs-12">
-    <a href="/superadmin/kadis" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a>
+    <a href="/admin/kapus" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a>
     <br/><br/>
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Tambah Data</h3>
 
         <div class="box-tools">
-          {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+          {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
         </div>
       </div>
       <!-- /.box-header -->
       
-      <form class="form-horizontal" action="/superadmin/kadis/add" method="post">
+      <form class="form-horizontal" action="/admin/kapus/add" method="post">
         @csrf
         <div class="box-body">
           <div class="form-group">

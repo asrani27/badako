@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kapus;
 use App\Models\M_pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class KapusController extends Controller
@@ -12,18 +13,18 @@ class KapusController extends Controller
 
     public function index()
     {
-        $data = Kapus::paginate(40);
-        return view('superadmin.kapus.index', compact('data'));
+        $data = Kapus::where('user_id', Auth::user()->id)->paginate(10);
+        return view('admin.kapus.index', compact('data'));
     }
     public function create()
     {
         $pegawai = M_pegawai::get();
-        return view('superadmin.kapus.create', compact('pegawai'));
+        return view('admin.kapus.create', compact('pegawai'));
     }
     public function edit($id)
     {
         $data = Kapus::find($id);
-        return view('superadmin.kapus.edit', compact('data'));
+        return view('admin.kapus.edit', compact('data'));
     }
     public function aktifkan($id)
     {
@@ -44,25 +45,29 @@ class KapusController extends Controller
             Session::flash('success', 'berhasil di simpan');
             return back();
         }
-        return view('superadmin.kapus.create', compact('pegawai'));
+        return view('admin.kapus.create', compact('pegawai'));
     }
     public function store(Request $req)
     {
         $pegawai = M_pegawai::find($req->pegawai_id);
 
-        Kapus::create($req->all());
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Kapus::create($param);
 
         Session::flash('success', 'berhasil di simpan');
-        return redirect('/superadmin/kapus');
+        return redirect('/admin/kapus');
     }
 
     public function update(Request $req, $id)
     {
 
-        Kapus::find($id)->update($req->all());
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Kapus::find($id)->update($param);
 
         Session::flash('success', 'berhasil di update');
-        return redirect('/superadmin/kapus');
+        return redirect('/admin/kapus');
     }
     public function delete($id)
     {

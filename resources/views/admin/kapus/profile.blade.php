@@ -1,4 +1,4 @@
-@extends('superadmin.layouts.app')
+@extends('admin.layouts.app')
 @push('css')
     
 @endpush
@@ -20,7 +20,7 @@ DETAIL PEGAWAI
           <p class="text-muted text-center">NIP. {{$data->nip}}</p>
 
 
-          <a href="/superadmin/data/pegawai/" class="btn bg-purple btn-block"><b>Kembali</b></a>
+          <a href="/admin/data/pegawai/" class="btn bg-purple btn-block"><b>Kembali</b></a>
         </div>
         <!-- /.box-body -->
       </div>

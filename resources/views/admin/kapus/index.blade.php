@@ -1,20 +1,20 @@
-@extends('superadmin.layouts.app')
+@extends('admin.layouts.app')
 @push('css')
     
 @endpush
 @section('content-header')
-KEPALA DINAS
+KEPALA PUSKESMAS
 @endsection
 @section('content')
 <div class="row">
   <div class="col-xs-12">
-    <a href="/superadmin/kadis/add" class="btn btn-sm bg-purple"><i class="fa fa-user-plus"></i> Tambah</a>
+    <a href="/admin/kapus/add" class="btn btn-sm bg-purple"><i class="fa fa-user-plus"></i> Tambah</a>
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-clipboard"></i> Data Kepala Dinas</h3>
+        <h3 class="box-title"><i class="fa fa-clipboard"></i> Data</h3>
 
         <div class="box-tools">
-          {{-- <a href="/superadmin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+          {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
         </div>
       </div>
       <!-- /.box-header -->
@@ -40,7 +40,7 @@ KEPALA DINAS
               <td>
 
                 @if ($item->is_aktif == null)
-                <a href="/superadmin/kadis/aktifkan/{{$item->id}}"
+                <a href="/admin/kapus/aktifkan/{{$item->id}}"
                   onclick="return confirm('Yakin ingin di aktifkan');"
                   class="btn btn-xs btn-flat  btn-primary">Aktifkan</a>
                 @else
@@ -51,9 +51,9 @@ KEPALA DINAS
               </td>
               <td>                  
                 
-                <a href="/superadmin/kadis/edit/{{$item->id}}"
+                <a href="/admin/kapus/edit/{{$item->id}}"
                   class="btn btn-xs btn-flat  btn-success"><i class="fa fa-edit"></i></a>
-                  <a href="/superadmin/kadis/delete/{{$item->id}}"
+                  <a href="/admin/kapus/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
                       class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
                     
