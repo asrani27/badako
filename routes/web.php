@@ -9,9 +9,11 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SPMTController;
+use App\Http\Controllers\WordController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KadisController;
+use App\Http\Controllers\KapusController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PiketController;
 use App\Http\Controllers\KarpegController;
@@ -19,6 +21,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\UsulanController;
 use App\Http\Controllers\BerkalaController;
+use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PensiunController;
 use App\Http\Controllers\TimelineController;
@@ -31,9 +34,7 @@ use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\PengangkatanController;
 use App\Http\Controllers\LiburNasionalController;
-use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PengangkatanCpnsFileController;
-use App\Http\Controllers\WordController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -362,6 +363,15 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/piket/edit/{id}', [PiketController::class, 'edit']);
         Route::post('/piket/edit/{id}', [PiketController::class, 'update']);
         Route::get('/piket/delete/{id}', [PiketController::class, 'delete']);
+
+
+        Route::get('/kapus', [KapusController::class, 'index']);
+        Route::get('/kapus/add', [KapusController::class, 'create']);
+        Route::post('/kapus/add', [KapusController::class, 'store']);
+        Route::get('/kapus/aktifkan/{id}', [KapusController::class, 'aktifkan']);
+        Route::get('/kapus/delete/{id}', [KapusController::class, 'delete']);
+        Route::get('/kapus/edit/{id}', [KapusController::class, 'edit']);
+        Route::post('/kapus/edit/{id}', [KapusController::class, 'update']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {

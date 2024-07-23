@@ -76,6 +76,7 @@
                 
               </ul>
             </li>
+            <li><a href="/admin/kapus"><i class="fa fa-fw fa-edit"></i> TTD Kapus <span class="sr-only"></span></a></li>
             {{-- <li><a href="/admin/cuti"><i class="fa fa-fw fa-file"></i> CUTI <span class="sr-only"></span></a></li> --}}
             
           </ul>
