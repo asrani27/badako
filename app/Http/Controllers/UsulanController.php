@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KenaikanPangkat;
 use App\Models\Pensiun;
 use Illuminate\Http\Request;
 use App\Models\PengangkatanCPNS;
@@ -49,6 +50,35 @@ class UsulanController extends Controller
     }
 
     //----------------------------------------------------
+
+
+    //----------------------------------------------------
+    public function pangkat()
+    {
+        $data = KenaikanPangkat::where('verifikasi_atasan', 'disetujui')->paginate(15);
+        return view('superadmin.usulan_pangkat.index', compact('data'));
+    }
+
+    public function  pangkat_diterima($id)
+    {
+        KenaikanPangkat::find($id)->update([
+            'verifikasi_umpeg' => 'disetujui'
+        ]);
+        Session::flash('success', 'berhasil');
+        return back();
+    }
+
+    public function pangkat_ditolak($id)
+    {
+        KenaikanPangkat::find($id)->update([
+            'verifikasi_umpeg' => 'ditolak'
+        ]);
+        Session::flash('info', 'ditolak');
+        return back();
+    }
+
+    //----------------------------------------------------
+
 
     public function usulan5()
     {

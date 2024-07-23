@@ -99,7 +99,7 @@ class PenugasanController extends Controller
             'nipkadis' => $data->nipkadis,
         ]);
 
-        $file = 'penugasan_' . $data->nip . '_' . $data->nama . '.docx';
+        $file = 'surat_pengantar_' . $data->nip . '_' . $data->nama . '.docx';
         $word->saveAs(public_path() . '/export/' . $file);
 
         header("Content-Description: File Transfer");

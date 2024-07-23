@@ -5,6 +5,7 @@ use App\Models\Kadis;
 use App\Models\Uraian;
 use App\Models\Pensiun;
 use App\Models\JenisRfk;
+use App\Models\KenaikanPangkat;
 use App\Models\M_pegawai;
 use App\Models\T_capaian;
 use App\Models\Sekretaris;
@@ -63,6 +64,23 @@ function pensiun_sebagai_kadis()
     $result = Pensiun::where('verifikasi_sekretaris', 'disetujui')->where('kadis', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
     return $result;
 }
+
+function pangkat_sebagai_atasan()
+{
+    $result = KenaikanPangkat::where('verifikasi_unitkerja', 'disetujui')->where('atasan_langsung', Auth::user()->username)->where('verifikasi_atasan', '=', null)->count();
+    return $result;
+}
+function pangkat_sebagai_sekre()
+{
+    $result = KenaikanPangkat::where('sekretaris', Auth::user()->username)->where('verifikasi_umpeg', '=', 'disetujui')->where('verifikasi_sekretaris', '=', null)->count();
+    return $result;
+}
+function pangkat_sebagai_kadis()
+{
+    $result = KenaikanPangkat::where('verifikasi_sekretaris', 'disetujui')->where('kadis', Auth::user()->username)->where('verifikasi_kadis', '=', null)->count();
+    return $result;
+}
+
 function checkPegawai($nip)
 {
     if (M_pegawai::where('nip', $nip)->first() == null) {

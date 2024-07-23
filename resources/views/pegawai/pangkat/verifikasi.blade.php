@@ -4,13 +4,14 @@
 @endpush
 @section('content')
 <section class="content-header">
-  <h1>PERMOHONAN CPNS JADI PNS</h1>
+  <h1>PERMOHONAN KENAIKAN PANGKAT</h1>
 </section>
 <section class="content">
   <div class="row">
     <div class="col-md-12">
       
-    <a href="/pegawai/pengangkatan/add" class="btn btn-sm bg-purple"><i class="fa fa-plus"></i> Tambah</a> <br/><br/>
+    {{-- <a href="/pegawai/beranda" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a> 
+    <a href="/pegawai/pensiun/add" class="btn btn-sm bg-purple"><i class="fa fa-plus"></i> Tambah</a> <br/><br/> --}}
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Data</h3>
@@ -24,34 +25,38 @@
           <tbody>
           <tr style="background-color: #a8c4f1">
             <th class="text-center">NO</th>
+            <th>JENIS</th>
             <th>NIP/NAMA</th>
-            <th>TGL DI AJUKAN</th>
-            <th>FILE UPLOAD</th>
+            <th>SURAT-SURAT</th>
+            <th>WORD</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
           </tr>
           @foreach ($data as $key => $item)
+
           <tr>
             <td style="text-align: center">{{$key + 1}}</td>
-            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat->nama}} / {{$item->pangkat->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unitkerja->nama}}</td>
+            <td style="text-align: left">{{$item->jenis}} <br/> Tanggal Pengajuan : {{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
+            <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->pangkat}} / {{$item->golongan}}<br/>{{$item->jabatan}}<br/>{{$item->unit_kerja}}</td>
           
-            <td>{{\Carbon\Carbon::parse($item->tanggal)->format('d-M-Y')}}</td>
-            <td>   
-              <ul>   
-              @foreach ($item->file as $key2=> $item2)
-                 <li> <a href="/storage/{{$item->nip}}/permohonan_cpns/{{$item2->file}}" target="_blank" style="color: blue">{{$item2->nama}}</a>
-                  <a href="/pegawai/pengangkatan/deletefile/{{$item2->id}}" class="btn btn-xs btn-danger"onclick="return confirm('Yakin ingin di hapus');"><i class="fa fa-trash"></i> </a>
-                </li>
-              @endforeach        
+            <td>
+              <ul>
+                <li><a href="#" class="text-blue" target="_blank">Surat Pengantar Dinkes Yg bersangkutan</a></li>
+                <li><a href="#" class="text-blue" target="_blank">Surat Pernyataan Tidak Kena Hukuman</a></li>
+                <li><a href="#" class="text-blue" target="_blank">Daftar Usul Mutasi Kenaikan Pangkat</a></li>
               </ul>
-              <button type="button" class="btn btn-xs bg-purple modal-file" data-id="{{$item->id}}">+ Upload</button>
+            </td>
+            <td>
+              <a href="/pegawai/pangkat/surat/{{$item->id}}/pengantar" target="_blank" style="color: black"> <i class="fa fa-file-word-o"></i></a><br/>
+              <a href="/pegawai/pangkat/surat/{{$item->id}}/hukuman" target="_blank" style="color: black"> <i class="fa fa-file-word-o"></i></a><br/>
+              <a href="/pegawai/pangkat/surat/{{$item->id}}/mutasi" target="_blank" style="color: black"> <i class="fa fa-file-word-o"></i></a><br/>
             </td>
             <td>
               <table>
-                @if ($item->verifikasi_unitkerja == '170032' || $item->verifikasi_unitkerja == '170031' || $item->verifikasi_unitkerja == '170030' || $item->verifikasi_unitkerja == '170029')
+                @if ($item->kode_unitkerja == '170032' || $item->kode_unitkerja == '170031' || $item->kode_unitkerja == '170030' || $item->kode_unitkerja == '170029')
                       
                   @else
-                    @if ($item->verifikasi_unitkerja_isi == 'setuju')
+                    @if ($item->verifikasi_unitkerja == 'disetujui')
                       <tr style="color: green">
                     @else    
                       <tr>
@@ -59,11 +64,11 @@
                       <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                       <td>Puskesmas&nbsp;&nbsp;
                       </td>
-                      <td>: Admin {{$item->unitkerja->nama}}</td>
+                      <td>: Admin {{$item->unit_kerja}}</td>
                     </tr>
                 @endif
 
-                @if ($item->verifikasi_atasan_isi == 'setuju')
+                @if ($item->verifikasi_atasan == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -71,10 +76,10 @@
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
                   </td>
-                  <td>: {{checkPegawai($item->verifikasi_atasan)}}</td>
+                  <td>: {{checkPegawai($item->atasan_langsung)}}</td>
                 </tr>
 
-                @if ($item->verifikasi_dinkes_isi == 'setuju')
+                @if ($item->verifikasi_dinkes == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
@@ -84,41 +89,34 @@
                   <td>: Dinas Kesehatan</td>
                 </tr>
 
-                @if ($item->verifikasi_sekretaris_isi == 'setuju')
+                @if ($item->verifikasi_sekretaris == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
-                  <td>: {{checkPegawai($item->verifikasi_sekretaris)}}</td>
+                  <td>: {{checkPegawai($item->sekretaris)}}</td>
                 </tr>
-                @if ($item->verifikasi_kadis_isi == 'setuju')
+                @if ($item->verifikasi_kadis == 'disetujui')
                 <tr style="color: green">
                 @else    
                 <tr>
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
-                  <td>: {{checkPegawai($item->verifikasi_kadis)}}</td>
+                  <td>: {{checkPegawai($item->kadis)}}</td>
                 </tr>
               </table>
             </td>
             
             <td>
-              @if ($item->verifikasi_atasan_isi == null)
-              <a href="/pegawai/pengangkatan/delete/{{$item->id}}"
-                onclick="return confirm('Yakin ingin di hapus');"
-                class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
+              @if ($item->verifikasi_atasan == null)
+              <a href="/pegawai/pangkat/teruskan/{{$item->id}}"
+                onclick="return confirm('validasi Data');"
+                class="btn btn-xs btn-flat  btn-success">verifikasi</a>
               @endif
-
-				    @if ($item->verifikasi_kadis_isi != null)
-        
-              <a href="/pegawai/pengangkatan/surat1/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 1. Surat Pengantar</a><br/>
-              <a href="/pegawai/pengangkatan/surat2/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 2. Surat Ujikes</a><br/>
-              <a href="/pegawai/pengangkatan/surat3/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 3. Nota Usul</a><br/>
-              <a href="/pegawai/pengangkatan/surat4/{{$item->id}}" class="btn btn-xs  btn-primary" target="_blank"><i class="fa fa-file"></i> 4. Surat Pernyataan</a>
-            @endif
+              
             </td>
             
           </tr>
@@ -138,7 +136,7 @@
 <div class="modal fade" id="modal-file">
   <div class="modal-dialog">
       <div class="modal-content">
-          <form role="form" method="post" action="/pegawai/pengangkatan/upload" enctype="multipart/form-data">
+          <form role="form" method="post" action="/pegawai/pensiun/upload" enctype="multipart/form-data">
               @csrf
               
               <div class="modal-header" style="background-color:#37517e; color:white">

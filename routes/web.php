@@ -31,7 +31,9 @@ use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\PengangkatanController;
 use App\Http\Controllers\LiburNasionalController;
+use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PengangkatanCpnsFileController;
+use App\Http\Controllers\WordController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -71,6 +73,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
         Route::get('/cuti', [SuperadminController::class, 'cuti']);
         Route::get('/cuti/filter', [SuperadminController::class, 'cutiFilter']);
+        Route::post('/cuti/nsisa', [SuperadminController::class, 'cutiNsisa']);
         Route::post('/cuti/lama', [SuperadminController::class, 'cutiLama']);
         Route::get('/cuti/pdf/{id}', [SuperadminController::class, 'cutiPdf']);
         Route::get('/cuti/batal/{id}', [SuperadminController::class, 'cutiBatal']);
@@ -182,6 +185,10 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('pensiun/teruskan/{id}', [UsulanController::class, 'verifikasi_dinkes']);
         Route::get('pensiun/tolak/{id}', [UsulanController::class, 'pensiun_ditolak']);
 
+        Route::get('usulan_pangkat', [UsulanController::class, 'pangkat']);
+        Route::get('pangkat/teruskan/{id}', [UsulanController::class, 'pangkat_diterima']);
+        Route::get('pangkat/tolak/{id}', [UsulanController::class, 'pangkat_ditolak']);
+
         Route::get('usulan5', [UsulanController::class, 'usulan5']);
         Route::get('usulan6', [UsulanController::class, 'usulan6']);
         Route::get('usulan7', [UsulanController::class, 'usulan7']);
@@ -231,12 +238,33 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::get('surat/{id}/pidana', [PensiunController::class, 'pidana']);
         Route::get('surat/{id}/hukuman', [PensiunController::class, 'hukuman']);
         Route::get('surat/{id}/skpd', [PensiunController::class, 'skpd']);
+
         Route::get('pensiun/verifikasi', [PensiunController::class, 'verifikasi']);
         Route::get('pensiun/teruskan/{id}', [PensiunController::class, 'verifikasi_atasan']);
         Route::get('pensiun/verifikasi_sekretaris', [PensiunController::class, 'verifikasi_sekretaris']);
         Route::get('pensiun/verifikasi_sekretaris/{id}', [PensiunController::class, 'verifikasiSekretaris']);
         Route::get('pensiun/verifikasi_kadis', [PensiunController::class, 'verifikasi_kadis']);
         Route::get('pensiun/verifikasi_kadis/{id}', [PensiunController::class, 'verifikasiKadis']);
+
+
+        Route::get('pangkat', [PangkatController::class, 'index']);
+        Route::get('pangkat/add', [PangkatController::class, 'create']);
+        Route::post('pangkat/add', [PangkatController::class, 'store']);
+        Route::get('pangkat/edit/{id}', [PangkatController::class, 'edit']);
+        Route::post('pangkat/edit/{id}', [PangkatController::class, 'update']);
+        Route::get('pangkat/delete/{id}', [PangkatController::class, 'delete']);
+
+        Route::get('pangkat/surat/{id}/pengantar', [PangkatController::class, 'word_pengantar']);
+        Route::get('pangkat/surat/{id}/hukuman', [PangkatController::class, 'word_hukuman']);
+        Route::get('pangkat/surat/{id}/mutasi', [PangkatController::class, 'word_mutasi']);
+
+
+        Route::get('pangkat/verifikasi', [PangkatController::class, 'verifikasi']);
+        Route::get('pangkat/teruskan/{id}', [PangkatController::class, 'verifikasi_atasan']);
+        Route::get('pangkat/verifikasi_sekretaris', [PangkatController::class, 'verifikasi_sekretaris']);
+        Route::get('pangkat/verifikasi_sekretaris/{id}', [PangkatController::class, 'verifikasiSekretaris']);
+        Route::get('pangkat/verifikasi_kadis', [PangkatController::class, 'verifikasi_kadis']);
+        Route::get('pangkat/verifikasi_kadis/{id}', [PangkatController::class, 'verifikasiKadis']);
 
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/add', [CutiController::class, 'create']);
@@ -343,6 +371,10 @@ Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], functi
     Route::get('/pensiun/surat/{id}/hukuman', [PDFController::class, 'pensiun_hukuman']);
     Route::get('/pensiun/surat/{id}/skpd', [PDFController::class, 'pensiun_skpd']);
     Route::get('/pensiun/surat/{id}/penerima', [PDFController::class, 'pensiun_penerima']);
+
+    Route::get('/pangkat/surat/{id}/pengantar', [WordController::class, 'pangkat_pengantar']);
+    Route::get('/pangkat/surat/{id}/hukuman', [WordController::class, 'pangkat_hukuman']);
+    Route::get('/pangkat/surat/{id}/mutasi', [WordController::class, 'pangkat_mutasi']);
 
     Route::get('/logout', [LogoutController::class, 'logout']);
 

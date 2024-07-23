@@ -65,6 +65,7 @@
             <th>TGL DI AJUKAN</th>
             <th>MULAI CUTI </th>
             <th>LAMA</th>
+            <th>N, N-1, N-2</th>
             <th>VERIFIKASI</th>
             <th>AKSI</th>
           </tr>
@@ -79,6 +80,13 @@
             </td>
             <td>{{$item->lama}} Hari
               <a href="#" class="btn btn-xs btn-success modal-edit" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
+            </td>
+            <td>
+              N = {{$item->n == null ? 0: $item->n}}<br/>
+              N-1 = {{$item->n1 == null ? 0: $item->n1}}<br/>
+              N-2 = {{$item->n2 == null ? 0: $item->n2}}<br/>
+
+              <a href="#" class="btn btn-xs btn-success modal-nsisa" data-id="{{$item->id}}" data-n="{{$item->n}}" data-n1="{{$item->n1}}" data-n2="{{$item->n2}}"><i class="fa fa-edit"></i></a>
             </td>
             <td>
               <table border="0">
@@ -237,6 +245,43 @@
       </div>
   </div>
 </div>
+
+<div class="modal fade" id="modal-nsisa">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form role="form" method="post" action="/superadmin/cuti/nsisa" enctype="multipart/form-data">
+              @csrf
+              
+              <div class="modal-header" style="background-color:#37517e; color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sisa N</h4>
+              </div>
+
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>N</label>
+                      <input type="text" class="form-control" id="n" name="n" required onkeypress="return hanyaAngka(event)">
+                      <input type="hidden" class="form-control" id="nsisa_id" name="cuti_id" required>
+                  </div>
+                  <div class="form-group">
+                      <label>N-1</label>
+                      <input type="text" class="form-control" id="n1" name="n1" required onkeypress="return hanyaAngka(event)">
+                  </div>
+                  <div class="form-group">
+                      <label>N-2</label>
+                      <input type="text" class="form-control" id="n2" name="n2" required onkeypress="return hanyaAngka(event)">
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-send"></i>Kirim</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 @endsection
 @push('js')
 <script>
@@ -246,6 +291,16 @@
      $("#modal-edit").modal();
   });
 </script>
+<script>
+  $(document).on('click', '.modal-nsisa', function() {
+     $('#nsisa_id').val($(this).data('id'));
+     $('#n').val($(this).data('n'));
+     $('#n1').val($(this).data('n1'));
+     $('#n2').val($(this).data('n2'));
+     $("#modal-nsisa").modal();
+  });
+</script>
+
 
 <script>
   function hanyaAngka(evt) {

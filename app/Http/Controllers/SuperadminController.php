@@ -1598,4 +1598,15 @@ class SuperadminController extends Controller
         $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti', 'cutiN1'))->setPaper($customPaper);
         return $pdf->stream(M_pegawai::where('nip', $nip)->first()->nama . '_cuti.pdf');
     }
+
+    public function cutiNsisa(Request $req)
+    {
+        $edit = Cuti::find($req->cuti_id);
+        $edit->n = $req->n;
+        $edit->n1 = $req->n1;
+        $edit->n2 = $req->n2;
+        $edit->save();
+        Session::flash('success', 'Di update');
+        return back();
+    }
 }
