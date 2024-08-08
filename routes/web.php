@@ -332,11 +332,15 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('pengangkatan/teruskan/{id}', [PengangkatanController::class, 'verifikasi_admin']);
 
         Route::get('pensiun', [AdminController::class, 'pensiun']);
+        Route::get('pangkat', [AdminController::class, 'pangkat']);
+
+        Route::get('/cuti/pdf/{id}', [AdminController::class, 'cutiPdf']);
 
         Route::get('cuti', [AdminController::class, 'cuti']);
         Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
 
         Route::get('pensiun/teruskan/{id}', [AdminController::class, 'pensiunSetujui']);
+        Route::get('pangkat/teruskan/{id}', [AdminController::class, 'pangkatSetujui']);
 
         Route::get('cuti/teruskan/{id}', [AdminController::class, 'cutiSetujui']);
         Route::get('belumisi/asn', [AdminController::class, 'asnbelumisi']);
@@ -372,6 +376,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/kapus/delete/{id}', [KapusController::class, 'delete']);
         Route::get('/kapus/edit/{id}', [KapusController::class, 'edit']);
         Route::post('/kapus/edit/{id}', [KapusController::class, 'update']);
+
+        Route::post('/cuti/nsisa', [AdminController::class, 'cutiNsisa']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {

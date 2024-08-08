@@ -6,14 +6,18 @@ use Carbon\Carbon;
 use App\Models\Cuti;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Kadis;
 use App\Models\Pangkat;
 use App\Models\Pensiun;
 use App\Models\BelumIsi;
+use PDF;
 use App\Models\M_pegawai;
 use Illuminate\Http\Request;
+use App\Models\KenaikanPangkat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminController extends Controller
 {
@@ -973,6 +977,13 @@ class AdminController extends Controller
         return view('admin.pensiun.index', compact('data'));
     }
 
+    public function pangkat()
+    {
+        $data = KenaikanPangkat::where('kode_unitkerja', Auth::user()->username)->paginate(15);
+        //dd(Auth::user()->username);
+        return view('admin.pangkat.index', compact('data'));
+    }
+
 
     public function cuti()
     {
@@ -989,6 +1000,14 @@ class AdminController extends Controller
         return back();
     }
 
+    public function pangkatSetujui($id)
+    {
+        KenaikanPangkat::find($id)->update([
+            'verifikasi_unitkerja' => 'disetujui'
+        ]);
+        Session::flash('success', 'berhasil');
+        return back();
+    }
     public function cutiSetujui($id)
     {
         Cuti::find($id)->update([
@@ -1003,5 +1022,37 @@ class AdminController extends Controller
         $data = Cuti::where('kode_unitkerja', Auth::user()->username)->where('nama', 'LIKE', '%' . $keyword . '%')->orWhere('nip', 'LIKE', '%' . $keyword . '%')->paginate(10);
         request()->flash();
         return view('admin.cuti.index', compact('data'));
+    }
+
+
+    public function cutiNsisa(Request $req)
+    {
+        $edit = Cuti::find($req->cuti_id);
+        $edit->n = $req->n;
+        $edit->n1 = $req->n1;
+        $edit->n2 = $req->n2;
+        $edit->save();
+        Session::flash('success', 'Di update');
+        return back();
+    }
+    public function cutiPdf($id)
+    {
+        $url = env('APP_URL') . '/check/verifikasi/digital/cuti/' . $id;
+
+        $nip = Cuti::find($id)->nip;
+        $qrcode = base64_encode(QrCode::format('svg')->size(600)->errorCorrection('H')->generate($url));
+
+        $customPaper = array(0, 0, 610, 1160);
+
+        $checkKadis = Cuti::find($id);
+
+        $kadis = Kadis::where('nip', $checkKadis->kepala_dinas)->first();
+
+        $sisaCuti = 12 - Cuti::where('nip', $nip)->where('jenis_cuti_id', 1)->sum('lama');
+        $cutiN1 = M_pegawai::where('nip', $nip)->first() == null ? null :  M_pegawai::where('nip', $nip)->first()->sisacuti_2023;
+        $cuti = Cuti::find($id);
+
+        $pdf = PDF::loadView('pegawai.cuti.pdf', compact('cuti', 'qrcode', 'kadis', 'sisaCuti', 'cutiN1'))->setPaper($customPaper);
+        return $pdf->stream(M_pegawai::where('nip', $nip)->first()->nama . '_cuti.pdf');
     }
 }

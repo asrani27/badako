@@ -73,6 +73,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/admin/pengangkatan"><i class="fa fa-users"></i>  PERMOHONAN PENGANGKATAN CPNS</a></li>
                 <li><a href="/admin/pensiun"><i class="fa fa-users"></i>  PERMOHONAN PENSIUN PNS</a></li>
+                <li><a href="/admin/pangkat"><i class="fa fa-users"></i>  PERMOHONAN KENAIKAN PANGKAT</a></li>
                 
               </ul>
             </li>

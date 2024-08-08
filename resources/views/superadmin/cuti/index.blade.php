@@ -67,6 +67,7 @@
             <th>LAMA</th>
             <th>N, N-1, N-2</th>
             <th>VERIFIKASI</th>
+            <th>BUKTI DUKUNG</th>
             <th>AKSI</th>
           </tr>
           @foreach ($data as $key => $item)
@@ -185,7 +186,12 @@
                 </tr>
               </table>
             </td>
-            
+            <td>
+              @if ($item->bukti != null)
+              <a href="/storage/{{$item->nip}}/bukti_dukung/{{$item->bukti}}" target="_blank"
+                class="btn btn-xs btn-flat  btn-primary"><i class="fa fa-eye"></i> Preview</a>
+              @endif
+            </td>
             <td>
 
               @if ($item->verifikasi_atasan != null && $item->umpeg == null)
