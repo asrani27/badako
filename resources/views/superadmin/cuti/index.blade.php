@@ -62,9 +62,9 @@
           <tr style="background-color: #a8c4f1">
             <th class="text-center">NO</th>
             <th>NIP/NAMA</th>
-            <th>TGL DI AJUKAN</th>
-            <th>MULAI CUTI </th>
+            <th>DETAIL TANGGAL</th>
             <th>LAMA</th>
+            <th>TAHUN CUTI </th>
             <th>N, N-1, N-2</th>
             <th>VERIFIKASI</th>
             <th>BUKTI DUKUNG</th>
@@ -74,13 +74,17 @@
           <tr>
             <td>{{$data->firstItem() + $key}}</td>
             <td>{{checkPegawai($item->nip)}}<br/>{{$item->nip}}<br/>{{$item->unit_kerja}}</td>
-            <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
-            <td>{{\Carbon\Carbon::parse($item->mulai)->format('d M Y')}}
+            <td>Tgl Mengajukan : {{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}
+              <br/>
+              Mulai {{\Carbon\Carbon::parse($item->mulai)->format('d M Y')}}
               s/d
               {{\Carbon\Carbon::parse($item->sampai)->format('d M Y')}}
             </td>
             <td>{{$item->lama}} Hari
               <a href="#" class="btn btn-xs btn-success modal-edit" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
+            </td>
+            <td>
+              {{$item->tahun_cuti_digunakan}}
             </td>
             <td>
               N = {{$item->n == null ? 0: $item->n}}<br/>
