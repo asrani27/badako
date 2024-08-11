@@ -222,25 +222,25 @@ class CutiController extends Controller
         } else {
             $lama = count($collection->diff(['Sunday']));
         }
-        if ($req->jenis_id == 1) {
-            if ($req->sisa_cuti == null) {
-                Session::flash('info', 'Harap Pilih Sisa Cuti');
-                $req->flash();
-                return back();
-            } else {
-                if ($req->sisa_cuti == '2023') {
-                    $sisacuti = Auth::user()->pegawai->sisacuti_2023;
-                } else {
-                    $sisacuti = Auth::user()->pegawai->sisacuti_2024;
-                }
+        // if ($req->jenis_id == 1) {
+        //     if ($req->sisa_cuti == null) {
+        //         Session::flash('info', 'Harap Pilih Sisa Cuti');
+        //         $req->flash();
+        //         return back();
+        //     } else {
+        //         if ($req->sisa_cuti == '2023') {
+        //             $sisacuti = Auth::user()->pegawai->sisacuti_2023;
+        //         } else {
+        //             $sisacuti = Auth::user()->pegawai->sisacuti_2024;
+        //         }
 
-                if ($lama > $sisacuti) {
-                    Session::flash('info', 'sisa cuti anda tidak mencukupi');
-                    $req->flash();
-                    return back();
-                }
-            }
-        }
+        //         if ($lama > $sisacuti) {
+        //             Session::flash('info', 'sisa cuti anda tidak mencukupi');
+        //             $req->flash();
+        //             return back();
+        //         }
+        //     }
+        // }
         $kadis = Kadis::where('is_aktif', 1)->first()->nip;
         $sekretaris = Sekretaris::where('is_aktif', 1)->first()->nip;
         $cuti = new Cuti;
@@ -264,7 +264,7 @@ class CutiController extends Controller
         $cuti->kepala_dinas = $kadis;
         $cuti->sekretaris = $sekretaris;
         $cuti->ttd = $filename;
-        $cuti->tahun_cuti_digunakan = $req->sisa_cuti;
+        // $cuti->tahun_cuti_digunakan = $req->sisa_cuti;
         $cuti->jenis_kadis = Kadis::where('is_aktif', 1)->first()->jenis;
         $cuti->jenis_sekretaris = Sekretaris::where('is_aktif', 1)->first()->jenis;
         $cuti->save();

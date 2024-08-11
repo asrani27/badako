@@ -93,7 +93,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">SISA CUTI</label>
             <div class="col-sm-10">
               <select class="form-control" name="sisa_cuti">
@@ -104,7 +104,7 @@
               </select>
               Catatan : Hanya untuk cuti Tahunan
             </div>
-          </div>
+          </div> --}}
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label text-right">ALASAN CUTI</label>
             <div class="col-sm-10">
