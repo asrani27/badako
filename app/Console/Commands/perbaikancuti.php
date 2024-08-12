@@ -40,7 +40,7 @@ class perbaikancuti extends Command
     public function handle()
     {
         $nip = Cuti::groupBy('nip')->pluck('nip');
-        dd($nip);
+
         foreach ($nip as $ni) {
 
             $data = Cuti::where('nip', $ni)->orderBy('id', 'asc')->get();
@@ -72,7 +72,7 @@ class perbaikancuti extends Command
                             $n = $p->sisacuti_2024;
                         }
                     }
-
+                    dd($n, $n1);
                     $d->update([
                         'n' => $n,
                         'n1' => $n1,
