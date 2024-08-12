@@ -64,7 +64,6 @@
             <th>NIP/NAMA</th>
             <th>DETAIL TANGGAL</th>
             <th>LAMA</th>
-            <th>TAHUN CUTI </th>
             <th>N, N-1, N-2</th>
             <th>VERIFIKASI</th>
             <th>BUKTI DUKUNG</th>
@@ -82,9 +81,6 @@
             </td>
             <td>{{$item->lama}} Hari
               <a href="#" class="btn btn-xs btn-success modal-edit" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
-            </td>
-            <td>
-              {{$item->tahun_cuti_digunakan}}
             </td>
             <td>
               N = {{$item->n == null ? 0: $item->n}}<br/>
