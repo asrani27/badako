@@ -48,6 +48,9 @@ class perbaikandata extends Command
     {
         $p = M_pegawai::get();
         foreach ($p as $i) {
+            if ($i->sisacuti_2023 == null) {
+                $i->update(['sisacuti_2023' => 0]);
+            }
             $i->update(['sisacuti_2024' => 12]);
         }
         return 'sukses';
