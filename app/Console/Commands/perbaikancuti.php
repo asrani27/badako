@@ -72,7 +72,7 @@ class perbaikancuti extends Command
                             $n = $p->sisacuti_2024;
                         }
                     }
-                    dd($n, $n1);
+                    dd($n, $n1, $d);
                     $d->update([
                         'n' => $n,
                         'n1' => $n1,
