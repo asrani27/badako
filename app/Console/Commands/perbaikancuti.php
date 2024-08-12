@@ -40,19 +40,41 @@ class perbaikancuti extends Command
     public function handle()
     {
         $nip = Cuti::where('nip', '197402181999031005')->groupBy('nip')->pluck('nip');
-        foreach ($nip as $n) {
-            $data = Cuti::where('nip', '197402181999031005')->orderBy('id', 'asc')->get();
+        foreach ($nip as $ni) {
+
+            $data = Cuti::where('nip', $ni)->orderBy('id', 'asc')->get();
             foreach ($data as $d) {
                 //N1
                 $p = M_pegawai::where('nip', $d->nip)->first();
+
                 if ($p->sisacuti_2023 == 0) {
                     $n1 = 0;
-                } else {
                     $n = $p->sisacuti_2024 - $d->lama;
+                } else {
+                    if ($d->lama > $p->sisacuti_2023) {
+                        $n1 = 0;
+                        $sisa_lama_cuti = $d->lama - $p->sisacuti_2023;
+                        if ($sisa_lama_cuti == 0) {
+                            $n = 0;
+                        } else {
+                            $n = $p->sisacuti_2023 - $p->lama;
+                        }
+                    } else {
+                        $n1 = $p->sisacuti_2023 - $d->lama;
+                        $n = $p->sisacuti_2024;
+                    }
                 }
-                
+
+                $d->update([
+                    'n' => $n,
+                    'n1' => $n1,
+                ]);
+                $p->update([
+                    'sisacuti_2023' => $n1,
+                    'sisacuti_2024' => $n,
+                ]);
             }
-            dd($data);
+            return 'sukses'
         }
     }
 }
