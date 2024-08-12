@@ -39,7 +39,7 @@ class perbaikancuti extends Command
      */
     public function handle()
     {
-        $nip = Cuti::where('nip', '197402181999031005')->groupBy('nip')->pluck('nip');
+        $nip = Cuti::groupBy('nip')->pluck('nip');
         foreach ($nip as $ni) {
 
             $data = Cuti::where('nip', $ni)->orderBy('id', 'asc')->get();
