@@ -46,38 +46,41 @@ class perbaikancuti extends Command
             foreach ($data as $d) {
                 //N1
                 $p = M_pegawai::where('nip', $d->nip)->first();
-
-                if ($p->sisacuti_2023 == 0) {
-                    $n1 = 0;
-                    $n = $p->sisacuti_2024 - $d->lama;
+                if ($p == null) {
+                    return 'data kosong';
                 } else {
-
-                    if ($d->lama > $p->sisacuti_2023) {
-
+                    if ($p->sisacuti_2023 == 0) {
                         $n1 = 0;
-                        $sisa_lama_cuti = $d->lama - $p->sisacuti_2023;
-
-                        if ($sisa_lama_cuti == 0) {
-                            $n1 = 0;
-                            $n = $p->sisacuti_2024;
-                        } else {
-                            $n1 = 0;
-                            $n = $p->sisacuti_2024 - $sisa_lama_cuti;
-                        }
+                        $n = $p->sisacuti_2024 - $d->lama;
                     } else {
-                        $n1 = $p->sisacuti_2023 - $d->lama;
-                        $n = $p->sisacuti_2024;
-                    }
-                }
 
-                $d->update([
-                    'n' => $n,
-                    'n1' => $n1,
-                ]);
-                $p->update([
-                    'sisacuti_2023' =>  $n1,
-                    'sisacuti_2024' =>  $n,
-                ]);
+                        if ($d->lama > $p->sisacuti_2023) {
+
+                            $n1 = 0;
+                            $sisa_lama_cuti = $d->lama - $p->sisacuti_2023;
+
+                            if ($sisa_lama_cuti == 0) {
+                                $n1 = 0;
+                                $n = $p->sisacuti_2024;
+                            } else {
+                                $n1 = 0;
+                                $n = $p->sisacuti_2024 - $sisa_lama_cuti;
+                            }
+                        } else {
+                            $n1 = $p->sisacuti_2023 - $d->lama;
+                            $n = $p->sisacuti_2024;
+                        }
+                    }
+
+                    $d->update([
+                        'n' => $n,
+                        'n1' => $n1,
+                    ]);
+                    $p->update([
+                        'sisacuti_2023' =>  $n1,
+                        'sisacuti_2024' =>  $n,
+                    ]);
+                }
             }
             return 'sukses';
         }
