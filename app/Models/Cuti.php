@@ -10,4 +10,9 @@ class Cuti extends Model
     use HasFactory;
     protected $table = 'cuti';
     protected $guarded = ['id'];
+
+    public function jenis_cuti()
+    {
+        return $this->belongsTo(JenisCuti::class);
+    }
 }

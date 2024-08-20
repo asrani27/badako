@@ -63,8 +63,9 @@
             <th class="text-center">NO</th>
             <th>NIP/NAMA</th>
             <th>DETAIL TANGGAL</th>
+            <th>DETAIL CUTI</th>
             <th>LAMA</th>
-            <th>N, N-1, N-2</th>
+            <th>SISA CUTI</th>
             <th>VERIFIKASI</th>
             <th>BUKTI DUKUNG</th>
             <th>AKSI</th>
@@ -79,7 +80,15 @@
               s/d
               {{\Carbon\Carbon::parse($item->sampai)->format('d M Y')}}
             </td>
-            <td>{{$item->lama}} Hari
+            <td>
+              Jenis Cuti : {{$item->jenis_cuti->nama}} 
+              <a href="#" class="btn btn-xs btn-success modal-jenis" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
+              <br/>
+              Alamat Cuti :{!!wordwrap($item->alamat, 40,'<br/>')!!}<br/>
+              Telp : {{$item->telp}} 
+            </td>
+            <td>
+              {{$item->lama}} Hari
               <a href="#" class="btn btn-xs btn-success modal-edit" data-id="{{$item->id}}" data-lama="{{$item->lama}}"><i class="fa fa-edit"></i></a>
             </td>
             <td>
@@ -252,6 +261,40 @@
   </div>
 </div>
 
+<div class="modal fade" id="modal-jenis">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form role="form" method="post" action="/superadmin/cuti/jenis" enctype="multipart/form-data">
+              @csrf
+              
+              <div class="modal-header" style="background-color:#37517e; color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Jenis Cuti</h4>
+              </div>
+
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Jenis Cuti</label>
+                      <select class="form-control" name="jenis_cuti_id" required>
+                        <option value="">-</option>
+                        @foreach (jenis_cuti() as $item)
+                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                        @endforeach
+                      </select>
+                      <input type="hidden" class="form-control" id="jenis_id" name="cuti_id" required>
+                  </div>
+                  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-send"></i> Update</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modal-nsisa">
   <div class="modal-dialog">
       <div class="modal-content">
@@ -295,6 +338,12 @@
      $('#cuti_id').val($(this).data('id'));
      $('#lama').val($(this).data('lama'));
      $("#modal-edit").modal();
+  });
+</script>
+<script>
+  $(document).on('click', '.modal-jenis', function() {
+     $('#jenis_id').val($(this).data('id'));
+     $("#modal-jenis").modal();
   });
 </script>
 <script>

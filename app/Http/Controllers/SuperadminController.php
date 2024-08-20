@@ -1609,4 +1609,14 @@ class SuperadminController extends Controller
         Session::flash('success', 'Di update');
         return back();
     }
+
+    public function updateJenisCuti(Request $req)
+    {
+        $edit = Cuti::find($req->cuti_id);
+
+        $edit->jenis_cuti_id = $req->jenis_cuti_id;
+        $edit->save();
+        Session::flash('success', 'Di update');
+        return back();
+    }
 }
