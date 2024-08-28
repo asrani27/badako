@@ -95,6 +95,10 @@
               N = {{$item->n == null ? 0: $item->n}}<br/>
               N-1 = {{$item->n1 == null ? 0: $item->n1}}<br/>
               N-2 = {{$item->n2 == null ? 0: $item->n2}}<br/>
+              Piket = {{$item->piket == null ? 0: $item->piket}}
+              <hr>
+              Sisa = {{$item->sisa == null ? 0: $item->sisa}}
+              
 
               <a href="#" class="btn btn-xs btn-success modal-nsisa" data-id="{{$item->id}}" data-n="{{$item->n}}" data-n1="{{$item->n1}}" data-n2="{{$item->n2}}"><i class="fa fa-edit"></i></a>
             </td>

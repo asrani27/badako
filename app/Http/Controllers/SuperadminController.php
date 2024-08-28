@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Kadis;
 use App\Models\Nomor;
+use App\Models\Piket;
 use App\Models\Pangkat;
 use App\Models\BelumIsi;
 use App\Models\Timeline;
@@ -17,8 +18,8 @@ use App\Models\UnitKerja;
 use App\Exports\CutiExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Maatwebsite\Excel\Facades\Excel;
 
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -1543,7 +1544,12 @@ class SuperadminController extends Controller
     public function cuti()
     {
         $data = Cuti::orderBy('umpeg', 'ASC')->where('verifikasi_atasan', 'disetujui')->paginate(10);
-
+        $data->getCollection()->transform(function ($item) {
+            $item->piket = Piket::where('nip', $item->nip)->sum('lama');
+            $item->n = $item->n - Piket::where('nip', $item->nip)->sum('lama');
+            $item->sisa = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
+            return $item;
+        });
         $unitkerja = UnitKerja::get();
         return view('superadmin.cuti.index', compact('data', 'unitkerja'));
     }
