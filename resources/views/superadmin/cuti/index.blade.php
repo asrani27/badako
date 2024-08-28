@@ -95,6 +95,7 @@
               N = {{$item->n == null ? 0: $item->n - $item->piket}}<br/>
               N-1 = {{$item->n1 == null ? 0: $item->n1}}<br/>
               N-2 = {{$item->n2 == null ? 0: $item->n2}}<br/>
+              Piket = {{$item->piket == null ? 0: $item->piket}}
               {{-- <hr>
               Sisa = {{$item->sisa == null ? 0: $item->sisa}} --}}
               
