@@ -1546,12 +1546,13 @@ class SuperadminController extends Controller
         $data = Cuti::orderBy('umpeg', 'ASC')->where('verifikasi_atasan', 'disetujui')->paginate(10);
         $data->getCollection()->transform(function ($item) {
             $item->piket = Piket::where('nip', $item->nip)->sum('lama');
-            if ($item->n < 0) {
-                $item->piket = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
-            } else {
-                $item->n = $item->n;
-            }
-            $item->sisa = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
+            $item->n = $item->n - Piket::where('nip', $item->nip)->sum('lama');
+            // if ($item->n < 0) {
+            //     $item->piket = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
+            // } else {
+            //     $item->n = $item->n;
+            // }
+            // $item->sisa = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
             return $item;
         });
         $unitkerja = UnitKerja::get();
