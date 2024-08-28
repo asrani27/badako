@@ -1549,7 +1549,7 @@ class SuperadminController extends Controller
             if ($item->n < 0) {
                 $item->piket = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
             } else {
-                $item->n = 0;
+                $item->n = $item->n;
             }
             $item->sisa = Piket::where('nip', $item->nip)->sum('lama') + $item->n;
             return $item;
