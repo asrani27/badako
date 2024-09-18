@@ -1426,7 +1426,7 @@ class SuperadminController extends Controller
         M_pegawai::find($id)->update([
             'nip' => $req->nip,
             'nama' => $req->nama,
-            'unitkerja_id' => $req->unitkerja_id
+            'unitkerja_id' => $req->unitkerja_id,
             'nama' => $req->nama,
             'sisacuti_2024' => $req->sisacuti_2024,
         ]);
