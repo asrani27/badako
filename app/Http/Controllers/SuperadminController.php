@@ -17,8 +17,9 @@ use App\Models\M_pegawai;
 use App\Models\UnitKerja;
 use App\Exports\CutiExport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -1382,7 +1383,7 @@ class SuperadminController extends Controller
     }
     public function resetPassPegawai($id)
     {
-        $pegawai = M_pegawai::find($id)->user->update(['password' => bcrypt('bjm123')]);
+        $pegawai = M_pegawai::find($id)->user->update(['password' => Hash::make('bjm123')]);
         Session::flash('success', 'berhasil di reset, password : bjm123');
         return redirect('/superadmin/data/pegawai');
     }
