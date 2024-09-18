@@ -38,6 +38,18 @@ PEGAWAI
             </div>
           </div>
           <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Unit Kerja</label>
+
+            <div class="col-sm-10">
+              <select class="form-control" name="unitkerja_id" required>
+                <option value="">-pilih-</option>
+                @foreach ($unit as $item)
+                  <option value="{{$item->id}}" {{$data->unitkerja_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                @endforeach
+              </Select>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2023</label>
 
             <div class="col-sm-10">
