@@ -52,7 +52,11 @@
             </td>
             <td>
 
-              <a href="/storage/{{$item->nip}}/bukti_dukung/{{$item->bukti}}" target="_blank" style="color: black">{{$item->bukti}}</a> <br/>
+              <a href="/storage/{{$item->nip}}/bukti_dukung/{{$item->bukti}}" target="_blank" style="color: black">{{$item->bukti}}</a> 
+              @if ($item->bukti != null)
+              <a href="/pegawai/delete/buktidukung/{{$item->id}}" class="btn btn-md" onclick="return confirm('Yakin ingin bukti dukung dihapus?');"><span class="text-red"><i class="fa fa-times"></i></span></a>  
+              @endif
+              <br/>
               <a href="/pegawai/cuti/buktidukung/{{$item->id}}" class="btn btn-xs btn-primary">+ Bukti Dukung</a>
             </td>
             <td>

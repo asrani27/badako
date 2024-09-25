@@ -32,6 +32,12 @@ class CutiController extends Controller
         return view('pegawai.cuti.upload', compact('data'));
     }
 
+    public function deleteBuktiDukung($id)
+    {
+        Cuti::find($id)->update(['bukti' => null]);
+        return back();
+    }
+
 
     public function upload(Request $req, $id)
     {

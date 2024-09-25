@@ -275,6 +275,7 @@ Route::group(['middleware' => ['auth', 'role:pegawai']], function () {
         Route::post('cuti/buktidukung/{id}', [CutiController::class, 'upload']);
         Route::get('cuti/pdf/{id}', [CutiController::class, 'pdf']);
         Route::get('cuti/tolak/{id}', [CutiController::class, 'tolak']);
+        Route::get('delete/buktidukung/{id}', [CutiController::class, 'deleteBuktiDukung']);
 
         Route::get('cuti/kadis/setujui/{id}', [CutiController::class, 'kadisSetujui']);
         Route::get('cuti/setujuiatasan/{id}', [CutiController::class, 'atasanSetujui']);
