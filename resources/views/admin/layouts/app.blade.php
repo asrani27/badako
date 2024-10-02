@@ -13,6 +13,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="/assets/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
+  @stack('css')
   <link rel="stylesheet" href="/assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -28,7 +29,6 @@
   <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
   <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 
-  @stack('css')
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>

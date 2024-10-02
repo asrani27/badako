@@ -256,7 +256,11 @@
                 <br/>
 				
 				<img src="{{$cuti->ttd_atasan}}" width="80px" height="50px"><br/>
-				{{dataPegawai($cuti->atasan_langsung)->nama}}<br/>NIP.{{$cuti->atasan_langsung}}
+				@if ($cuti->jenis_atasan_langsung != null)
+				{{ucwords(strtolower($cuti->jenis_atasan_langsung))}}.	
+				@endif
+			 
+			 {{dataPegawai($cuti->atasan_langsung)->nama}}<br/>NIP.{{$cuti->atasan_langsung}}
                 </td>
 			</tr>
 		</table>		

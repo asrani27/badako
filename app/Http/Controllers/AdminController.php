@@ -21,6 +21,44 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminController extends Controller
 {
+    public function updateAtasan(Request $req, $id)
+    {
+        //tanda tangan digital
+
+        if ($req->signed == null) {
+            $req->flash();
+            Session::flash('info', 'Harap Tanda Tangan');
+            return back();
+        }
+        $folderPath = public_path('storage/ttd/');
+
+        $image_parts = explode(";base64,", $req->signed);
+
+        $image_type_aux = explode("image/", $image_parts[0]);
+
+        $image_type = $image_type_aux[1];
+
+        $image_base64 = base64_decode($image_parts[1]);
+
+        $filename = $folderPath . uniqid() . '.' . $image_type;
+
+        file_put_contents($filename, $image_base64);
+        //----------------//
+
+        $data = Cuti::find($id);
+        $data->jenis_atasan_langsung = $req->jenis_atasan_langsung;
+        $data->atasan_langsung = $req->atasan_langsung;
+        $data->ttd_atasan = $filename;
+        $data->save();
+        Session::flash('success', 'Berhasil');
+        return redirect('/admin/cuti');
+    }
+    public function gantiAtasan($id)
+    {
+        $data = Cuti::find($id);
+        $atasan = M_pegawai::where('unitkerja_id', Auth::user()->unitkerja->id)->get();
+        return view('admin.cuti.ganti', compact('data', 'atasan'));
+    }
     public function detail($nip)
     {
         $data = M_pegawai::where('nip', $nip)->first();

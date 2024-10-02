@@ -46,7 +46,7 @@
         <table class="table table-hover">
           <tbody>
           <tr style="background-color: #a8c4f1">
-            <th class="text-center">NO</th>
+            <th class="text-center">NO.</th>
             <th>NIP/NAMA</th>
             <th>TGL DI AJUKAN</th>
             <th>MULAI CUTI </th>
@@ -94,7 +94,7 @@
                   <td><i class="fa fa-circle"></i> &nbsp;&nbsp;</td>
                   <td>Atasan Langsung&nbsp;&nbsp;
                   </td>
-                  <td>: {{checkPegawai($item->atasan_langsung)}}</td>
+                  <td>: {{checkPegawai($item->atasan_langsung)}}  <a href="/admin/cuti/ganti-atasan/{{$item->id}}" class="text-primary" target="_blank"><i class="fa fa-edit"></i></a></td>
                 </tr>
 
                 @if ($item->umpeg == 'disetujui')

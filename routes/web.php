@@ -338,6 +338,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
         Route::get('/cuti/pdf/{id}', [AdminController::class, 'cutiPdf']);
 
+        Route::get('/cuti/ganti-atasan/{id}', [AdminController::class, 'gantiAtasan']);
+        Route::post('/cuti/ganti-atasan/{id}', [AdminController::class, 'updateAtasan']);
         Route::get('cuti', [AdminController::class, 'cuti']);
         Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
 
