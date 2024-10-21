@@ -260,7 +260,7 @@
 				{{ucwords(strtolower($cuti->jenis_atasan_langsung))}}.	
 				@endif
 			 
-			 {{dataPegawai($cuti->atasan_langsung)->nama}}<br/>NIP.{{$cuti->atasan_langsung}}
+			 	{{dataPegawai($cuti->atasan_langsung)->nama}}<br/>NIP.{{$cuti->atasan_langsung}}
                 </td>
 			</tr>
 		</table>		

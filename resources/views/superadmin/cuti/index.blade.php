@@ -188,7 +188,7 @@
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Kadis </td>
-                  <td>: {{checkPegawai($item->kepala_dinas)}}
+                  <td>:{{checkPegawai($item->kepala_dinas)}}  <a href="/superadmin/cuti/ganti-atasan/{{$item->id}}" class="text-primary" target="_blank"><i class="fa fa-edit"></i></a>
                   
                   
 

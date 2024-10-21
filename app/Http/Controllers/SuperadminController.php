@@ -17,8 +17,9 @@ use App\Models\M_pegawai;
 use App\Models\UnitKerja;
 use App\Exports\CutiExport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
@@ -27,6 +28,42 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class SuperadminController extends Controller
 {
+
+    public function updateAtasan(Request $req, $id)
+    {
+        // if ($req->signed == null) {
+        //     $req->flash();
+        //     Session::flash('info', 'Harap Tanda Tangan');
+        //     return back();
+        // }
+        // $folderPath = public_path('storage/ttd/');
+
+        // $image_parts = explode(";base64,", $req->signed);
+
+        // $image_type_aux = explode("image/", $image_parts[0]);
+
+        // $image_type = $image_type_aux[1];
+
+        // $image_base64 = base64_decode($image_parts[1]);
+
+        // $filename = $folderPath . uniqid() . '.' . $image_type;
+
+        // file_put_contents($filename, $image_base64);
+        //----------------//
+
+        $data = Cuti::find($id);
+        $data->jenis_kadis = $req->jenis_kadis;
+        $data->kepala_dinas = $req->kepala_dinas;
+        $data->save();
+        Session::flash('success', 'Berhasil');
+        return redirect('/superadmin/cuti');
+    }
+    public function gantiAtasan($id)
+    {
+        $data = Cuti::find($id);
+        $atasan = Kadis::get();
+        return view('superadmin.cuti.ganti', compact('data', 'atasan'));
+    }
 
     public function cariPegawai()
     {
