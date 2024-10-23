@@ -13,6 +13,7 @@
             <th>NIP</th>
             <th>NAMA</th>
             <th>UNITKERJA</th>
+            <th>JENIS CUTI</th>
             <th>TGL CUTI</th>
             <th>LAMA</th>
         </tr>
@@ -22,6 +23,8 @@
                 <td>'{{$item->nip}}</td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->unit_kerja}}</td>
+                <td>{{$item->jenis_cuti == null ? '' : $item->jenis_cuti->nama}}</td>
+                
                 <td>{{$item->mulai}} s/d {{$item->sampai}} </td>
                 <td>{{$item->lama}} hari</td>
             </tr>
