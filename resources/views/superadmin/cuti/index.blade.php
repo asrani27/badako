@@ -171,7 +171,7 @@
                 @endif
                   <td><i class="fa fa-circle"></i></td>
                   <td>Sekretaris </td>
-                  <td>: {{checkPegawai($item->sekretaris)}}
+                  <td>: {{checkPegawai($item->sekretaris)}}  <a href="/superadmin/cuti/ganti-sekretaris/{{$item->id}}" class="text-primary" target="_blank"><i class="fa fa-edit"></i></a>
                   
                   
                     @if ($item->verifikasi_sekretaris == 'disetujui')

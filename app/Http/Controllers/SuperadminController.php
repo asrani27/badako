@@ -15,10 +15,11 @@ use App\Models\BelumIsi;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
 use App\Models\UnitKerja;
+use App\Models\Sekretaris;
 use App\Exports\CutiExport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
@@ -58,11 +59,28 @@ class SuperadminController extends Controller
         Session::flash('success', 'Berhasil');
         return redirect('/superadmin/cuti');
     }
+
+    public function updateSekretaris(Request $req, $id)
+    {
+        $data = Cuti::find($id);
+        $data->jenis_sekretaris = $req->jenis_sekretaris;
+        $data->sekretaris = $req->sekretaris;
+        $data->save();
+        Session::flash('success', 'Berhasil');
+        return redirect('/superadmin/cuti');
+    }
     public function gantiAtasan($id)
     {
         $data = Cuti::find($id);
         $atasan = Kadis::get();
         return view('superadmin.cuti.ganti', compact('data', 'atasan'));
+    }
+
+    public function gantiSekretaris($id)
+    {
+        $data = Cuti::find($id);
+        $atasan = Sekretaris::get();
+        return view('superadmin.cuti.gantisekretaris', compact('data', 'atasan'));
     }
 
     public function cariPegawai()

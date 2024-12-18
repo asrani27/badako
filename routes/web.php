@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 
         Route::get('/cuti/ganti-atasan/{id}', [SuperadminController::class, 'gantiAtasan']);
         Route::post('/cuti/ganti-atasan/{id}', [SuperadminController::class, 'updateAtasan']);
+
+        Route::get('/cuti/ganti-sekretaris/{id}', [SuperadminController::class, 'gantiSekretaris']);
+        Route::post('/cuti/ganti-sekretaris/{id}', [SuperadminController::class, 'updateSekretaris']);
         // Route::get('bandingkan/data', function () {
         //     return redirect('/superadmin/bandingkan');
         // });
