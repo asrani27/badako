@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @push('css')
-    
+
 @endpush
 @section('content-header')
 PEGAWAI
@@ -9,17 +9,18 @@ PEGAWAI
 <div class="row">
   <div class="col-xs-12">
     <a href="/admin/data/pegawai" class="btn btn-sm bg-purple"><i class="fa fa-arrow-left"></i> Kembali</a>
-    <br/><br/>
+    <br /><br />
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-clipboard"></i> Edit Pegawai</h3>
 
         <div class="box-tools">
-          {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i> Tambah Akun</a> --}}
+          {{-- <a href="/admin/akun/add" class="btn btn-sm btn-primary btn-flat "><i class="fa fa-plus-circle"></i>
+            Tambah Akun</a> --}}
         </div>
       </div>
       <!-- /.box-header -->
-      
+
       <form class="form-horizontal" action="/admin/data/pegawai/edit/{{$data->id}}" method="post">
         @csrf
         <div class="box-body">
@@ -41,17 +42,27 @@ PEGAWAI
             <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2023</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="sisacuti_2023" value="{{$data->sisacuti_2023}}" onkeypress="return hanyaAngka(event)"/>
+              <input type="text" class="form-control" name="sisacuti_2023" value="{{$data->sisacuti_2023}}"
+                onkeypress="return hanyaAngka(event)" />
             </div>
           </div>
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2024</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="sisacuti_2024" value="{{$data->sisacuti_2024}}" onkeypress="return hanyaAngka(event)"/>
+              <input type="text" class="form-control" name="sisacuti_2024" value="{{$data->sisacuti_2024}}"
+                onkeypress="return hanyaAngka(event)" />
             </div>
           </div>
-          
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Sisa Cuti 2025</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sisacuti_2025" value="{{$data->sisacuti_2025}}"
+                onkeypress="return hanyaAngka(event)" />
+            </div>
+          </div>
+
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -59,11 +70,11 @@ PEGAWAI
         </div>
         <!-- /.box-footer -->
       </form>
-      
+
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    
+
   </div>
 </div>
 @endsection

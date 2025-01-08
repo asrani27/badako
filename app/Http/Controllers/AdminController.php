@@ -956,6 +956,7 @@ class AdminController extends Controller
             'nama' => $req->nama,
             'sisacuti_2023' => $req->sisacuti_2023,
             'sisacuti_2024' => $req->sisacuti_2024,
+            'sisacuti_2025' => $req->sisacuti_2025
         ]);
 
         Session::flash('success', 'Berhasil Di update');
