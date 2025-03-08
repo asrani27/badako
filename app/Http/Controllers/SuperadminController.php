@@ -1407,7 +1407,7 @@ class SuperadminController extends Controller
     public function pegawai()
     {
         $data = M_pegawai::paginate(10);
-
+        dd('d');
         return view('superadmin.pegawai.index', compact('data'));
     }
     public function syncPegawai()
