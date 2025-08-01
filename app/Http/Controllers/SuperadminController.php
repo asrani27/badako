@@ -1439,7 +1439,7 @@ class SuperadminController extends Controller
     public function resetPassPegawai($id)
     {
         $pegawai = M_pegawai::find($id)->user;
-        $pegawai->password  = Hash::make('bjm123');
+        $pegawai->password  = bcrypt('bjm123');
         $pegawai->save();
 
         Session::flash('success', 'berhasil di reset, password : bjm123');
