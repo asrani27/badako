@@ -323,8 +323,8 @@
 					<td style="width: 182px">&nbsp;</td>
 					<td style="width: 163px">&nbsp;</td>
 					<td style="width: 195px" align="center">
-						@if ($kadis->jenis_kadis != 'definitif')
-						{{$kadis->jenis_kadis}}.
+						@if ($kadis->jenis != 'definitif')
+						{{$kadis->jenis}}.
 						@endif
 						Kepala Dinas Kesehatan
 						<br />
