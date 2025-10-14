@@ -324,7 +324,7 @@
 					<td style="width: 163px">&nbsp;</td>
 					<td style="width: 195px" align="center">
 						@if ($kadis->jenis != 'definitif')
-						{{$kadis->jenis}}.
+						{{ucfirst($kadis->jenis)}}.
 						@endif
 						Kepala Dinas Kesehatan
 						<br />
