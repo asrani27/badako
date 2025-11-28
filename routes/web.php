@@ -348,6 +348,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('/cuti/ganti-atasan/{id}', [AdminController::class, 'updateAtasan']);
         Route::get('cuti', [AdminController::class, 'cuti']);
         Route::get('/cuti/search', [AdminController::class, 'cariCuti']);
+        Route::get('/cuti/filter', [AdminController::class, 'cutiFilter']);
 
         Route::get('pensiun/teruskan/{id}', [AdminController::class, 'pensiunSetujui']);
         Route::get('pangkat/teruskan/{id}', [AdminController::class, 'pangkatSetujui']);

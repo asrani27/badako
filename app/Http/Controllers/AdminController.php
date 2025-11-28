@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\Cuti;
 use App\Models\Role;
@@ -10,11 +11,12 @@ use App\Models\Kadis;
 use App\Models\Pangkat;
 use App\Models\Pensiun;
 use App\Models\BelumIsi;
-use PDF;
 use App\Models\M_pegawai;
+use App\Exports\CutiExport;
 use Illuminate\Http\Request;
 use App\Models\KenaikanPangkat;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -1063,7 +1065,23 @@ class AdminController extends Controller
         return view('admin.cuti.index', compact('data'));
     }
 
+    public function cutiFilter()
+    {
+        $unitkerja = Auth::user()->username;
+        $tanggal = request()->get('tanggal');
+        $tanggal2 = request()->get('tanggal2');
+        $button = request()->get('button');
 
+        if ($button == 'cari') {
+
+            $data = Cuti::where('kode_unitkerja', $unitkerja)->where('mulai', '>=', $tanggal)->where('sampai', '<=', $tanggal2)->orderBy('umpeg', 'ASC')->paginate(10)->withQueryString();
+            request()->flash();
+            return view('admin.cuti.index', compact('data', 'unitkerja'));
+        } else {
+            $filename = 'Cuti_' . Carbon::now()->format('d-m-Y-H-i-s') . '.xlsx';
+            return Excel::download(new CutiExport($unitkerja, $tanggal,  $tanggal2), $filename);
+        }
+    }
     public function cutiNsisa(Request $req)
     {
         $edit = Cuti::find($req->cuti_id);
